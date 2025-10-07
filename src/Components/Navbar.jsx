@@ -52,19 +52,19 @@ const Navbar = () => {
                 href="#"
                 className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
               >
-                Project Alpha
+                Project1
               </a>
               <a
                 href="#"
                 className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
               >
-                Project Beta
+                Project2
               </a>
               <a
                 href="#"
                 className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
               >
-                Project Gamma
+                Project3
               </a>
             </div>
           )}
@@ -103,19 +103,19 @@ const Navbar = () => {
                 href="#"
                 className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
               >
-                Legacy Project
+                 Project1
               </a>
               <a
                 href="#"
                 className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
               >
-                Archive A
+                Project2
               </a>
               <a
                 href="#"
                 className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
               >
-                Archive B
+                Project3
               </a>
             </div>
           )}
