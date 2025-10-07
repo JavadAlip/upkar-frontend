@@ -1,5 +1,6 @@
 import React from 'react';
 import { Globe, Shield, Users, ShieldCheck } from 'lucide-react';
+import CertificationImage from "../../assets/Certification.png"; 
 
 const Certification = () => {
   const certifications = [
@@ -47,7 +48,7 @@ const Certification = () => {
         <div 
           className="relative rounded-3xl overflow-hidden shadow-2xl"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=400&fit=crop')",
+            backgroundImage: `url(${CertificationImage})`, // ✅ Replaced Unsplash with imported image
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             minHeight: '350px'

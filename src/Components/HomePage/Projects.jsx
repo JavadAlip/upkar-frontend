@@ -1,8 +1,8 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import Project1 from "../assets/Project1.png";
-import Project2 from "../assets/Project2.png";
-import Project3 from "../assets/Project3.png";
+import Project1 from "../../assets/Project1.png";
+import Project2 from "../../assets/Project2.png";
+import Project3 from "../../assets/Project3.png";
 
 const Projects = () => {
   const projects = [

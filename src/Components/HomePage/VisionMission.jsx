@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
-import Vision1 from "../assets/vision1.png";
-import Map from "../assets/map.png";
+import Vision1 from "../../assets/vision1.png";
+import Map from "../../assets/map.png";
 
 const VisionMission = () => {
   const [missionOpen, setMissionOpen] = useState(false);
