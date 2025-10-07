@@ -48,7 +48,7 @@ const QnsAns = () => {
 
             <div className="flex">
               <button className="bg-black text-white px-8 py-3 rounded-full font-semibold flex items-center gap-2 transition-all duration-300 shadow-lg">
-                Contact us !
+                Contact us
                 <div className="bg-white text-black rounded-full p-2 flex items-center justify-center">
                   <ArrowRight size={20} />
                 </div>
