@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, TreeDeciduous } from 'lucide-react';
-import Home1 from "../assets/HomeMain.png";
+import Home1 from "../assets/homeMain.png";
 import UbkarHabit from "../assets/UbkarHabit.png";
 
 const HomeMain = () => {
