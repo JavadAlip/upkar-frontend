@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import navbarLast from "../../assets/navbarLast.png";
 
 const Navbar = () => {
   const [ongoingOpen, setOngoingOpen] = useState(false);
@@ -11,22 +13,24 @@ const Navbar = () => {
     <nav className="bg-white shadow-md p-4 flex items-center justify-between relative">
       {/* Logo */}
       <div className="flex items-center">
-        <img
-          src={logo}
-          alt="Logo"
-          className="h-10 w-auto object-contain cursor-pointer"
-        />
+        <Link to="/">
+          <img
+            src={logo}
+            alt="Logo"
+            className="h-12 w-auto object-contain cursor-pointer"
+          />
+        </Link>
       </div>
 
       {/* Desktop Menu */}
       <ul className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center">
         <li>
-          <a
-            href="#"
+          <Link
+            to="/aboutus"
             className="text-gray-700 hover:text-blue-600 transition-colors duration-300 whitespace-nowrap"
           >
             About us
-          </a>
+          </Link>
         </li>
 
         {/* Ongoing Dropdown */}
@@ -110,6 +114,15 @@ const Navbar = () => {
         ))}
       </ul>
 
+      {/* NavbarLast Image - Desktop Only */}
+      <div className="hidden md:block">
+        <img
+          src={navbarLast}
+          alt="Credai Logo"
+          className="h-8 w-auto object-contain cursor-pointer"
+        />
+      </div>
+
       {/* Hamburger Icon */}
       <button
         className="md:hidden text-gray-700 focus:outline-none"
@@ -123,12 +136,13 @@ const Navbar = () => {
         <div className="absolute top-full left-0 w-full bg-white shadow-md rounded-md mt-2 z-50 md:hidden">
           <ul className="flex flex-col space-y-2 p-4">
             <li>
-              <a
-                href="#"
+              <Link
+                to="/aboutus"
                 className="block text-gray-700 hover:text-blue-600 transition-colors"
+                onClick={() => setMenuOpen(false)}
               >
                 About us
-              </a>
+              </Link>
             </li>
 
             {/* Ongoing Collapsible */}

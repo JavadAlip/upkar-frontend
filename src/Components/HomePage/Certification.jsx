@@ -48,7 +48,7 @@ const Certification = () => {
         <div 
           className="relative rounded-3xl overflow-hidden shadow-2xl"
           style={{
-            backgroundImage: `url(${CertificationImage})`, // ✅ Replaced Unsplash with imported image
+            backgroundImage: `url(${CertificationImage})`, 
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             minHeight: '350px'
