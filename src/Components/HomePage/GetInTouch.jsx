@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import GetInTocuh1 from "../../assets/GetInTouch1.png";
 
 const GetInTouch = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +24,7 @@ const GetInTouch = () => {
   };
 
   return (
-    <div className="w-full py-16 px-4">
+    <div className="w-full py-16 px-4 font-figtree">
       <div className="max-w-6xl mx-auto">
         {/* Section Title */}
         <h2 className="text-4xl md:text-5xl font-serif mb-12">
@@ -37,7 +38,7 @@ const GetInTouch = () => {
           <div 
             className="relative bg-cover bg-center min-h-[500px] lg:min-h-[700px] flex items-center justify-center p-8"
             style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80')"
+              backgroundImage: `url(${GetInTocuh1})`
             }}
           >
             {/* Dark Overlay */}
@@ -48,7 +49,7 @@ const GetInTouch = () => {
               <h3 className="text-3xl md:text-4xl lg:text-5xl font-serif leading-tight">
                 Ready to take the next step?
                 <br />
-                Let's Connect !
+                Let's Connect!
               </h3>
             </div>
           </div>
@@ -131,7 +132,7 @@ const GetInTouch = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-gray-700 bg-white"
                 >
-                  <option value="">Are you an Existing customer ?</option>
+                  <option value="">Are you an Existing customer?</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
                 </select>

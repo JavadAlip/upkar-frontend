@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import navbarLast from "../../assets/navbarLast.png";
+import navbarLast from "../../assets/navbarLast1.png";
 
 const Navbar = () => {
   const [ongoingOpen, setOngoingOpen] = useState(false);
@@ -17,7 +17,7 @@ const Navbar = () => {
           <img
             src={logo}
             alt="Logo"
-            className="h-12 w-auto object-contain cursor-pointer"
+            className="h-16 w-auto object-contain cursor-pointer"
           />
         </Link>
       </div>
@@ -33,34 +33,43 @@ const Navbar = () => {
           </Link>
         </li>
 
+        
         {/* Ongoing Dropdown */}
-        <li
-          className="relative flex items-center space-x-1 cursor-pointer"
-          onMouseEnter={() => setOngoingOpen(true)}
-          onMouseLeave={() => setOngoingOpen(false)}
-        >
-          <span className="text-gray-700 hover:text-blue-600 transition-colors duration-300 flex items-center">
-            Ongoing
-            <ChevronDown
-              className={`ml-1 w-4 h-4 transition-transform duration-300 ${
-                ongoingOpen ? "rotate-180 text-blue-600" : "text-gray-500"
-              }`}
-            />
-          </span>
+        <li className="relative flex items-center space-x-1 cursor-pointer">
+          <div
+            onMouseEnter={() => {
+              setOngoingOpen(true);
+              if (window.ongoingTimeout) {
+                clearTimeout(window.ongoingTimeout);
+                window.ongoingTimeout = null;
+              }
+            }}
+            onMouseLeave={() => {
+              window.ongoingTimeout = setTimeout(() => {
+                setOngoingOpen(false);
+              }, 2000);
+            }}
+            className="relative"
+          >
+            <span className="text-gray-700 hover:text-blue-600 transition-colors duration-300 flex items-center">
+              Ongoing
+              <ChevronDown
+                className={`ml-1 w-4 h-4 transition-transform duration-300 ${ongoingOpen ? "rotate-180 text-blue-600" : "text-gray-500"
+                  }`}
+              />
+            </span>
 
-          {ongoingOpen && (
-            <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
-              {["Project1", "Project2", "Project3"].map((p) => (
-                <a
-                  key={p}
-                  href="#"
+            {ongoingOpen && (
+              <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
+                <Link
+                  to="/"
                   className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                 >
-                  {p}
-                </a>
-              ))}
-            </div>
-          )}
+                  Project
+                </Link>
+              </div>
+            )}
+          </div>
         </li>
 
         <li>
@@ -72,34 +81,45 @@ const Navbar = () => {
           </a>
         </li>
 
-        {/* Completed Dropdown */}
-        <li
-          className="relative flex items-center space-x-1 cursor-pointer"
-          onMouseEnter={() => setCompletedOpen(true)}
-          onMouseLeave={() => setCompletedOpen(false)}
-        >
-          <span className="text-gray-700 hover:text-blue-600 transition-colors duration-300 flex items-center">
-            Completed
-            <ChevronDown
-              className={`ml-1 w-4 h-4 transition-transform duration-300 ${
-                completedOpen ? "rotate-180 text-blue-600" : "text-gray-500"
-              }`}
-            />
-          </span>
+        {/* Completed Dropdown with Single Project Link */}
+        <li className="relative flex items-center space-x-1 cursor-pointer group">
+          <div
+            onMouseEnter={() => {
+              setCompletedOpen(true);
+              if (window.completedTimeout) {
+                clearTimeout(window.completedTimeout);
+                window.completedTimeout = null;
+              }
+            }}
+            onMouseLeave={() => {
+              window.completedTimeout = setTimeout(() => {
+                setCompletedOpen(false);
+              }, 2000);
+            }}
+            className="relative"
+          >
+            <Link
+              to="/completed-projects"
+              className="text-gray-700 hover:text-blue-600 transition-colors duration-300 flex items-center"
+            >
+              Completed
+              <ChevronDown
+                className={`ml-1 w-4 h-4 transition-transform duration-300 ${completedOpen ? "rotate-180 text-blue-600" : "text-gray-500"
+                  }`}
+              />
+            </Link>
 
-          {completedOpen && (
-            <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
-              {["Project1", "Project2", "Project3"].map((p) => (
-                <a
-                  key={p}
-                  href="#"
+            {completedOpen && (
+              <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
+                <Link
+                  to="/project"
                   className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                 >
-                  {p}
-                </a>
-              ))}
-            </div>
-          )}
+                  Project
+                </Link>
+              </div>
+            )}
+          </div>
         </li>
 
         {["Commercial", "Events", "Blogs", "Careers"].map((item) => (
@@ -119,7 +139,7 @@ const Navbar = () => {
         <img
           src={navbarLast}
           alt="Credai Logo"
-          className="h-8 w-auto object-contain cursor-pointer"
+          className="h-24 w-auto object-contain cursor-pointer"
         />
       </div>
 
@@ -153,22 +173,19 @@ const Navbar = () => {
               >
                 <span>Ongoing</span>
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    ongoingOpen ? "rotate-180 text-blue-600" : "text-gray-500"
-                  }`}
+                  className={`w-4 h-4 transition-transform ${ongoingOpen ? "rotate-180 text-blue-600" : "text-gray-500"
+                    }`}
                 />
               </button>
               {ongoingOpen && (
-                <div className="ml-4 mt-2 space-y-1">
-                  {["Project1", "Project2", "Project3"].map((p) => (
-                    <a
-                      key={p}
-                      href="#"
-                      className="block text-gray-600 hover:text-blue-600"
-                    >
-                      {p}
-                    </a>
-                  ))}
+                <div className="ml-4 mt-2">
+                  <Link
+                    to="/project"
+                    className="block text-gray-600 hover:text-blue-600 py-1"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Project
+                  </Link>
                 </div>
               )}
             </li>
@@ -184,30 +201,40 @@ const Navbar = () => {
 
             {/* Completed Collapsible */}
             <li>
-              <button
-                className="w-full flex justify-between items-center text-gray-700 hover:text-blue-600"
-                onClick={() => setCompletedOpen(!completedOpen)}
-              >
-                <span>Completed</span>
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    completedOpen ? "rotate-180 text-blue-600" : "text-gray-500"
-                  }`}
-                />
-              </button>
-              {completedOpen && (
-                <div className="ml-4 mt-2 space-y-1">
-                  {["Project1", "Project2", "Project3"].map((p) => (
-                    <a
-                      key={p}
-                      href="#"
-                      className="block text-gray-600 hover:text-blue-600"
-                    >
-                      {p}
-                    </a>
-                  ))}
+              <div>
+                <div className="flex items-center justify-between">
+                  <Link
+                    to="/completed-projects"
+                    className="flex-1 text-gray-700 hover:text-blue-600"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Completed
+                  </Link>
+                  <button
+                    className="p-2 text-gray-700 hover:text-blue-600"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setCompletedOpen(!completedOpen);
+                    }}
+                  >
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform ${completedOpen ? "rotate-180 text-blue-600" : "text-gray-500"
+                        }`}
+                    />
+                  </button>
                 </div>
-              )}
+                {completedOpen && (
+                  <div className="ml-4 mt-2">
+                    <Link
+                      to="/project"
+                      className="block text-gray-600 hover:text-blue-600 py-1"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      Project
+                    </Link>
+                  </div>
+                )}
+              </div>
             </li>
 
             {["Commercial", "Events", "Blogs", "Careers"].map((item) => (

@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../Components/Common/Navbar';
+import Navbar from '../Components/AboutUs/AboutNavbar';
 import MainSection from '../Components/AboutUs/MainSection';
 import Team from '../Components/AboutUs/Team';
 import AboutCertification from '../Components/AboutUs/AboutCertification';
