@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 import Vision1 from "../../assets/vision1.png";
-import Vision3 from "../../assets/vision3.png";
+import Vision3 from "../../assets/Vision3.png";
 import Map from "../../assets/map.png";
 
 const VisionMission = () => {
