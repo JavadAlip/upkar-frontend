@@ -5,113 +5,215 @@ import Project2 from "../../assets/Project2.png";
 import Project3 from "../../assets/Project3.png";
 
 const Projects = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "Looking Ahead to Your Future?",
-      type: "Ongoing project",
-      description: "Investing in an Ongoing project offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.",
-      features: [
-        "Early bird pricing",
-        "Prime location selection",
-        "A future-proof investment"
-      ],
-      image: Project1, // Updated to imported image
-      buttonText: "Explore Ongoing Projects",
-      reverse: false
-    },
-    {
-      id: 2,
-      title: "Watch Your Future Take Shape.",
-      type: "Upcoming project",
-      description: "Investing in an Upcoming project offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.",
-      features: [
-        "Early bird pricing",
-        "Prime location selection",
-        "A future-proof investment"
-      ],
-      image: Project2, // Updated to imported image
-      buttonText: "Explore Upcoming Projects",
-      reverse: true
-    },
-    {
-      id: 3,
-      title: "Discover Your Ready-to-Build Plot.",
-      type: "Completed project",
-      description: "Investing in an Completed project offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.",
-      features: [
-        "Early-bird pricing",
-        "Prime location selection",
-        "A future-proof investment"
-      ],
-      image: Project3, // Updated to imported image
-      buttonText: "Explore Completed Projects",
-      reverse: false
-    }
-  ];
-
   return (
     <div className="w-full bg-white py-16 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Section Title */}
-        <h2 className="text-4xl md:text-5xl font-serif mb-16 text-center">
-          Our Projects
+        <h2
+          className="mb-16 text-start"
+          style={{ fontFamily: "'Noto Serif JP', serif", fontSize: '48px', color: '#000000' }}
+        >
+          <span style={{ fontWeight: 700 }}>Our </span>
+          <span style={{ fontWeight: 500 }}>Projects</span>
         </h2>
 
         {/* Projects List */}
         <div className="space-y-20">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${
-                project.reverse ? 'lg:grid-flow-dense' : ''
-              }`}
-            >
-              {/* Text Content */}
-              <div className={`space-y-6 ${project.reverse ? 'lg:col-start-2' : ''}`}>
-                <h3 className="text-3xl md:text-4xl font-serif leading-tight">
-                  {project.title}
-                </h3>
 
-                <p className="text-gray-700 text-base leading-relaxed">
-                  Investing in an <span className="font-semibold">{project.type}</span> offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.
-                </p>
+          {/* Project 1 - Ongoing */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            {/* Text Content */}
+            <div className="space-y-6">
+              <h3
+                className="leading-tight"
+                style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300, fontSize: '48px', color: '#000000' }}
+              >
+                Looking Ahead to Your <span style={{ fontWeight: 700 }}>Future</span>?
+              </h3>
 
-                {/* Features List */}
-                <ul className="space-y-2">
-                  {project.features.map((feature, index) => (
-                    <li key={index} className="text-gray-700 text-base flex items-start">
-                      <span className="mr-2">•</span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+              <p
+                style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '20px', color: '#000000' }}
+              >
+                Investing in an <span className="font-semibold">Ongoing project</span> offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.
+              </p>
 
-                <p className="text-gray-700 text-base leading-relaxed">
+              <ul className="space-y-2">
+                <li style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }} className="flex items-start">
+                  <span className="mr-2">•</span> Early bird pricing
+                </li>
+                <li style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }} className="flex items-start">
+                  <span className="mr-2">•</span> Prime location selection
+                </li>
+                <li style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }} className="flex items-start">
+                  <span className="mr-2">•</span> A future-proof investment
+                </li>
+              </ul>
+
+              <button
+                className="bg-black text-white px-6 py-3 rounded-full flex items-center gap-3 hover:bg-gray-800 transition-all duration-300"
+                style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 500, fontSize: '16px' }}
+              >
+                Explore Ongoing Projects
+                <div className="bg-white text-black rounded-full p-1">
+                  <ArrowRight size={16} />
+                </div>
+              </button>
+            </div>
+
+            {/* Image with Overlapping Text Box */}
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden shadow-xl">
+                <img src={Project1} alt="Ongoing Project" className="w-full h-80 object-cover" />
+              </div>
+
+              <div
+                className="absolute -bottom-6 -left-56 right-4 bg-white rounded-lg shadow-lg p-6"
+                style={{ maxWidth: '85%' }}
+              >
+                <p
+                  style={{
+                    fontFamily: "'Figtree', sans-serif",
+                    fontWeight: 300,
+                    fontSize: '16px',
+                    color: '#000000',
+                    lineHeight: '1.6',
+                    margin: 0
+                  }}
+                >
                   Aim is to consistently deliver exceptional homes and build lasting relationships based on trust, quality, and a commitment to customer satisfaction.
                 </p>
-
-                {/* Button */}
-                <button className="bg-black text-white px-6 py-3 rounded-full font-medium flex items-center gap-3 hover:bg-gray-800 transition-all duration-300">
-                  {project.buttonText}
-                  <div className="bg-white text-black rounded-full p-1">
-                    <ArrowRight size={16} />
-                  </div>
-                </button>
-              </div>
-
-              {/* Image */}
-              <div className={`${project.reverse ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
-                <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-80 object-cover"
-                  />
-                </div>
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Project 2 - Upcoming (Reversed) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center lg:grid-flow-dense">
+            <div className="space-y-6 lg:col-start-2">
+              <h3
+                className="leading-tight"
+                style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300, fontSize: '48px', color: '#000000' }}
+              >
+                Watch Your Future <span style={{ fontWeight: 700 }}>Take Shape.</span>
+              </h3>
+
+              <p
+                style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '20px', color: '#000000' }}
+              >
+                Investing in an <span className="font-semibold">Upcoming project</span> offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.
+              </p>
+
+              <ul className="space-y-2">
+                <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
+                  <span className="mr-2">•</span> Early bird pricing
+                </li>
+                <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
+                  <span className="mr-2">•</span> Prime location selection
+                </li>
+                <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
+                  <span className="mr-2">•</span> A future-proof investment
+                </li>
+              </ul>
+
+              <button
+                className="bg-black text-white px-6 py-3 rounded-full flex items-center gap-3 hover:bg-gray-800 transition-all duration-300"
+                style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 500, fontSize: '16px' }}
+              >
+                Explore Upcoming Projects
+                <div className="bg-white text-black rounded-full p-1">
+                  <ArrowRight size={16} />
+                </div>
+              </button>
+            </div>
+
+            <div className="relative lg:col-start-1 lg:row-start-1">
+              <div className="rounded-2xl overflow-hidden shadow-xl">
+                <img src={Project2} alt="Upcoming Project" className="w-full h-80 object-cover" />
+              </div>
+
+              <div
+                className="absolute -bottom-6 left-4 right-4 bg-white rounded-lg shadow-lg p-6"
+                style={{ maxWidth: '85%' }}
+              >
+                <p
+                  style={{
+                    fontFamily: "'Figtree', sans-serif",
+                    fontWeight: 300,
+                    fontSize: '16px',
+                    color: '#000000',
+                    lineHeight: '1.6',
+                    margin: 0
+                  }}
+                >
+                  Aim is to consistently deliver exceptional homes and build lasting relationships based on trust, quality, and a commitment to customer satisfaction.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Project 3 - Completed */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="space-y-6">
+              <h3
+                className="leading-tight"
+                style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300, fontSize: '48px', color: '#000000' }}
+              >
+                Discover Your <span style={{ fontWeight: 700 }}>Ready-to-Build Plot.</span>
+              </h3>
+
+              <p
+                style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '20px', color: '#000000' }}
+              >
+                Investing in a <span className="font-semibold">Completed project</span> offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.
+              </p>
+
+              <ul className="space-y-2">
+                <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
+                  <span className="mr-2">•</span> Early-bird pricing
+                </li>
+                <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
+                  <span className="mr-2">•</span> Prime location selection
+                </li>
+                <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
+                  <span className="mr-2">•</span> A future-proof investment
+                </li>
+              </ul>
+
+              <button
+                className="bg-black text-white px-6 py-3 rounded-full flex items-center gap-3 hover:bg-gray-800 transition-all duration-300"
+                style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 500, fontSize: '16px' }}
+              >
+                Explore Completed Projects
+                <div className="bg-white text-black rounded-full p-1">
+                  <ArrowRight size={16} />
+                </div>
+              </button>
+            </div>
+
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden shadow-xl">
+                <img src={Project3} alt="Completed Project" className="w-full h-80 object-cover" />
+              </div>
+
+              <div
+                className="absolute -bottom-6 -left-56 right-4 bg-white rounded-lg shadow-lg p-6"
+                style={{ maxWidth: '85%' }}
+              >
+                <p
+                  style={{
+                    fontFamily: "'Figtree', sans-serif",
+                    fontWeight: 300,
+                    fontSize: '16px',
+                    color: '#000000',
+                    lineHeight: '1.6',
+                    margin: 0
+                  }}
+                >
+                  Aim is to consistently deliver exceptional homes and build lasting relationships based on trust, quality, and a commitment to customer satisfaction.
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
