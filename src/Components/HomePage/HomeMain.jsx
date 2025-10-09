@@ -6,6 +6,8 @@ import AboveIcon from "../../assets/aboveIcon.png";
 import Phone from "../../assets/Icons/Phone.png";
 import Mail from "../../assets/Icons/mail.png";
 import Whatsapp from "../../assets/Icons/whatsapp.png";
+import Connect from "../../assets/Icons/connect.png";
+import rfra from "../../assets/Icons/rfra.png";
 // import Tree from "../../assets/Icons/Tree.png";
 
 const HomeMain = () => {
@@ -27,29 +29,46 @@ const HomeMain = () => {
           {/* Content Overlay */}
           <div className="absolute inset-0 flex flex-col pt-80 px-8 md:px-16">
             {/* Main Heading */}
-            <h1 className="text-white text-5xl lg:text-[64px] font-semibold mb-4 leading-tight">
-              Experience Life<br />Elevated
+            <h1 className="text-white text-5xl lg:text-[64px] mb-6 " style={{ fontFamily: "'Figtree', sans-serif" }}>
+              <span className="font-semibold">Experience Life</span>
+              <br />
+              <span className="font-bold">Elevated</span>
             </h1>
 
             {/* Subheading */}
-            <p className="text-white lg:text-[22px] font-normal md:text-xl mb-8 max-w-xl">
-              Upkar Developers is a leading real estate company in Bangalore since 1974.
+            <p
+              className="text-white mb-4 max-w-xl"
+              style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 400, fontSize: '24px' }}
+            >
+              <span>Upkar Developers is a leading real estate</span>
+              <br />
+              company in Bangalore since 1974.
             </p>
 
+
+
             {/* Connect Us Button */}
-            <div className="flex items-start">
+            {/* <div className="flex items-start">
               <button className="bg-white text-black px-8 py-3 rounded-full font-medium text-[16px] flex items-center gap-2 hover:bg-gray-100 transition-all duration-300 shadow-lg">
                 Connect us !
                 <div className="bg-black text-white rounded-full p-2">
                   <ArrowRight size={26} />
                 </div>
               </button>
+            </div> */}
+            <div className="flex items-start">
+              <img
+                src={Connect}
+                alt="Connect"
+                className="w-52 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
+              />
             </div>
+
           </div>
 
           {/* RERA Badge - Bottom Right */}
-          <div className="absolute bottom-8 right-8">
-            <div className="bg-white px-6 py-3 rounded-full  shadow-lg flex items-center gap-2">
+          <div className="absolute bottom-14 right-8">
+            <div className="bg-white px-6 py-2 rounded-full  shadow-lg flex items-center gap-2">
               <p className="text-black text-[13px] font-normal">
                 RERA & BMRDA Approved Projects
               </p>
@@ -117,7 +136,7 @@ const HomeMain = () => {
 
         {/* Description */}
         <div className="text-center mb-12">
-          <p className="text-[24px] text-[#050F27] font-[Figtree]">
+          <p className="text-[24px] text-[#050F27] font-[Figtree]" style={{lineHeight: '1.2'}}>
             <span className="font-bold">Upkar Developers</span> is a leading real estate company in Bangalore since 1974
             <br />
             who contributes its precious little to the growth and glory of the city.

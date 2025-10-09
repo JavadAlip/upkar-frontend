@@ -1,73 +1,97 @@
 import React from 'react';
-import { Globe, Shield, Users, ShieldCheck } from 'lucide-react';
-import CertificationImage from "../../assets/Certification.png"; 
+import CertificationImage from "../../assets/Certification.png";
+import sustainability from "../../assets/Icons/sustainability.png";
+import integrity from "../../assets/Icons/integrity.png";
+import community from "../../assets/Icons/community.png";
+import safety from "../../assets/Icons/safety.png";
+import Certification1 from "../../assets/Certification1.png";
 
 const Certification = () => {
   const certifications = [
     {
-      icon: <Globe className="w-10 h-10" />,
+      icon: sustainability,
       title: 'Sustainability'
     },
     {
-      icon: <ShieldCheck className="w-10 h-10" />,
+      icon: integrity,
       title: 'Integrity'
     },
     {
-      icon: <Users className="w-10 h-10" />,
+      icon: community,
       title: 'Community'
     },
     {
-      icon: <Shield className="w-10 h-10" />,
+      icon: safety,
       title: 'Safety'
     }
   ];
 
   return (
-    <div className="w-full bg-gray-100 py-16 px-4 font-[Figtree]">
-      <div className="max-w-6xl mx-auto">
-        {/* Header Section */}
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-semibold text-gray-800 mb-12">
-            Certifications
-          </h2>
-          
-          {/* Certification Icons */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-            {certifications.map((cert, index) => (
-              <div key={index} className="flex flex-col items-center justify-center">
-                <div className="text-gray-700 mb-3">
-                  {cert.icon}
+    <div className="w-full font-[Figtree]">
+      {/* Certifications Section - Title Left, Grid Right */}
+      <div className="bg-gray-100 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-16">
+            {/* Certifications Title */}
+            <div className="lg:flex-shrink-0">
+              <h2
+                className="text-black text-[48px] font-light"
+                style={{ fontFamily: "'Noto Serif JP', serif" }}
+              >
+                Certifications
+              </h2>
+            </div>
+
+            {/* Certifications Grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 w-full lg:flex-1">
+              {certifications.map((cert, index) => (
+                <div key={index} className="flex flex-col items-center justify-center">
+                  <div className="mb-3">
+                    <img
+                      src={cert.icon}
+                      alt={cert.title}
+                      className="w-16 h-16  object-contain"
+                    />
+                  </div>
+                  <p
+                    className="text-center text-black"
+                    style={{
+                      fontFamily: "'Satoshi', sans-serif",
+                      fontWeight: 100, 
+                      fontSize: "32px",
+                      lineHeight: '36px'
+                    }}
+                  >
+                    {cert.title}
+                  </p>
                 </div>
-                <p className="text-gray-800 font-medium text-center text-lg">{cert.title}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Testimonial Card */}
-        <div 
-          className="relative rounded-3xl overflow-hidden shadow-2xl"
+      {/* Testimonial Card Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div
+          className="relative rounded-3xl overflow-hidden "
           style={{
-            backgroundImage: `url(${CertificationImage})`, 
+            backgroundImage: `url(${CertificationImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             minHeight: '350px'
           }}
         >
           {/* Overlay */}
-          <div className="absolute inset-0 bg-black/40"></div>
-          
+          {/* <div className="absolute inset-0 bg-black/40"></div> */}
+
           {/* Content */}
           <div className="relative z-10 flex items-center justify-center min-h-[350px] px-8 py-12">
-            <div className="bg-white/20 backdrop-blur-md rounded-2xl p-8 md:p-12 max-w-2xl text-white text-center">
-              <span className="text-6xl leading-none">"</span>
-              <p className="text-lg md:text-xl my-4 leading-relaxed font-light">
-                One of the reputed developers in Bangalore with timely delivery. They have amazing properties in Bangalore with reasonable pricing, moreover, these people maintain good relationship management with clients.
-              </p>
-              <div className="flex justify-end">
-                <span className="text-6xl leading-none">"</span>
-              </div>
-            </div>
+            <img
+              src={Certification1}
+              alt="Certification"
+              className="w-full sm:w-4/5 md:w-3/4 lg:w-2/3 h-auto rounded-2xl shadow-xl"
+            />
           </div>
         </div>
       </div>
