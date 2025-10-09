@@ -61,6 +61,7 @@ const QnsAns = () => {
                 </span>
               </button>
             </div>
+
           </div>
 
           <div className="space-y-4">
@@ -76,7 +77,15 @@ const QnsAns = () => {
                   onClick={() => toggleFAQ(index)}
                   className="w-full flex items-center justify-between p-5 text-left"
                 >
-                  <span className="font-medium text-gray-800 text-lg pr-4">
+                  <span
+                    className="pr-4"
+                    style={{
+                      fontFamily: "'Figtree', sans-serif",
+                      fontWeight: 500, // medium
+                      fontSize: "24px",
+                      color: "#050F27",
+                    }}
+                  >
                     {index + 1}. {faq.question}
                   </span>
                   {openIndex === index ? (
@@ -88,7 +97,31 @@ const QnsAns = () => {
 
                 {openIndex === index && (
                   <div className="px-5 pb-5">
-                    <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                    <p
+                      style={{
+                        fontFamily: "'Figtree', sans-serif",
+                        fontWeight: 300, // light
+                        fontSize: "24px",
+                        color: "#050F27",
+                        lineHeight: "1.2",
+                      }}
+                    >
+                      {faq.answer}
+                    </p>
+                    <div className="flex justify-end mt-2">
+                      <span
+                        style={{
+                          fontFamily: "'Satoshi', sans-serif",
+                          fontWeight: 400, // regular
+                          fontSize: "20px",
+                          color: "#050F27",
+                          textDecoration: "underline",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Learn more
+                      </span>
+                    </div>
                   </div>
                 )}
               </div>
