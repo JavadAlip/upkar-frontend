@@ -1,25 +1,28 @@
 import React from 'react';
 import { Globe, Shield, Users, ShieldCheck } from 'lucide-react';
-
+import sustainability from "../../assets/Icons/sustainability.png";
+import integrity from "../../assets/Icons/integrity.png";
+import community from "../../assets/Icons/community.png";
+import safety from "../../assets/Icons/safety.png";
 
 
 const AboutCertification = () => {
 
   const certifications = [
     {
-      icon: <Globe className="w-10 h-10" />,
+      icon: sustainability,
       title: 'Sustainability'
     },
     {
-      icon: <ShieldCheck className="w-10 h-10" />,
+      icon: integrity,
       title: 'Integrity'
     },
     {
-      icon: <Users className="w-10 h-10" />,
+      icon: community,
       title: 'Community'
     },
     {
-      icon: <Shield className="w-10 h-10" />,
+      icon: safety,
       title: 'Safety'
     }
   ];
@@ -32,13 +35,13 @@ const AboutCertification = () => {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-white mb-12 leading-tight">
             Certifications
           </h2>
-          
+
           {/* Certification Icons */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             {certifications.map((cert, index) => (
               <div key={index} className="flex flex-col items-center justify-center">
-                <div className="text-white mb-3">
-                  {cert.icon}
+                <div className="mb-3">
+                  <img src={cert.icon} alt={`icon-${index + 1}`} className='w-20 h-20 object-contain filter brightness-0 invert' />
                 </div>
                 <p className="text-white font-medium text-center text-lg">{cert.title}</p>
               </div>

@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import navbarLast from "../../assets/navbarLast.png";
 
+
 const AboutNavbar = () => {
+
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
@@ -21,7 +23,7 @@ const AboutNavbar = () => {
             </div>
 
             {/* Desktop Menu */}
-            <ul className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center">
+            <ul className="hidden lg-nav:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center">
                 <li>
                     <Link
                         to="/aboutus"
@@ -82,7 +84,7 @@ const AboutNavbar = () => {
             </ul>
 
             {/* NavbarLast Image - Desktop Only */}
-            <div className="hidden md:block">
+            <div className="hidden lg-nav:block">
                 <img
                     src={navbarLast}
                     alt="Credai Logo"
@@ -92,7 +94,7 @@ const AboutNavbar = () => {
 
             {/* Hamburger Icon */}
             <button
-                className="md:hidden text-gray-700 focus:outline-none"
+                className="lg-nav:hidden text-gray-700 focus:outline-none"
                 onClick={() => setMenuOpen(!menuOpen)}
             >
                 {menuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
@@ -100,7 +102,7 @@ const AboutNavbar = () => {
 
             {/* Mobile Menu */}
             {menuOpen && (
-                <div className="absolute top-full left-0 w-full bg-white shadow-md rounded-md mt-2 z-50 md:hidden">
+                <div className="absolute top-full left-0 w-full bg-white shadow-md rounded-md mt-2 z-50 lg-nav:hidden">
                     <ul className="flex flex-col space-y-2 p-4">
                         <li>
                             <Link

@@ -82,7 +82,7 @@ const QnsAns = () => {
                     style={{
                       fontFamily: "'Figtree', sans-serif",
                       fontWeight: 500, // medium
-                      fontSize: "24px",
+                      fontSize: "17px",
                       color: "#050F27",
                     }}
                   >
@@ -101,9 +101,8 @@ const QnsAns = () => {
                       style={{
                         fontFamily: "'Figtree', sans-serif",
                         fontWeight: 300, // light
-                        fontSize: "24px",
+                        fontSize: "15px",
                         color: "#050F27",
-                        lineHeight: "1.2",
                       }}
                     >
                       {faq.answer}
@@ -113,7 +112,7 @@ const QnsAns = () => {
                         style={{
                           fontFamily: "'Satoshi', sans-serif",
                           fontWeight: 400, // regular
-                          fontSize: "20px",
+                          fontSize: "15px",
                           color: "#050F27",
                           textDecoration: "underline",
                           cursor: "pointer",

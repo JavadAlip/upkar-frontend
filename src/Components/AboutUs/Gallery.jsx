@@ -14,9 +14,9 @@ const Gallery = () => {
   return (
     <div className="w-full bg-white py-16 pb-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-800 mb-12 leading-tight">Gallery</h2>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-800 mb-10 leading-tight">Gallery</h2>
 
-        <div className="relative">
+        <div className="relative hidden sm:block">
           <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth pb-6" style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth" }}>
 
             {Array.from({ length: Math.ceil(images.length / 8) }, (_, i) => {
@@ -94,13 +94,50 @@ const Gallery = () => {
               container.scrollBy({ left: -400, behavior: 'smooth' });
             }}
           >
-        <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-4 h-4" />
           </button>
 
           <button
             className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
             onClick={() => {
               const container = document.querySelector('.overflow-x-auto');
+              container.scrollBy({ left: 400, behavior: 'smooth' });
+            }}
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div className="relative block sm:hidden mt-2 mx-2">
+          <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth pb-6 movile" style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth" }}>
+            {images.map((src, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-full h-[400px] rounded-lg overflow-hidden snap-center"
+              >
+                <img
+                  src={src}
+                  alt={`gallery-${index}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+
+          <button
+            className="absolute left-0 top-1/2 bg-white text-gray-800 p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+            onClick={() => {
+              const container = document.querySelector('.movile');
+              container.scrollBy({ left: -400, behavior: 'smooth' });
+            }}
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+
+          <button
+            className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+            onClick={() => {
+              const container = document.querySelector('.movile');
               container.scrollBy({ left: 400, behavior: 'smooth' });
             }}
           >
