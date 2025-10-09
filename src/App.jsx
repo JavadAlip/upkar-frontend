@@ -4,6 +4,7 @@ import AboutUs from "./Pages/AboutUs";
 import CompletedPrjcts from "./Pages/CompletedPrjcts";
 import Project from "./Pages/Project";
 
+
 export default function App() {
   return (
     <Router>
@@ -15,4 +16,4 @@ export default function App() {
       </Routes>
     </Router>
   );
-}
+};
