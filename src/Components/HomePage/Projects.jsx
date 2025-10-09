@@ -5,7 +5,7 @@ import Project2 from "../../assets/Project2.png";
 import Project3 from "../../assets/Project3.png";
 import ProjectBtn1 from "../../assets/Icons/projectBtn1.png";
 import ProjectBtn2 from "../../assets/Icons/projectBtn2.png";
-import ProjectBtn3 from "../../assets/Icons/ProjectBtn3.png";
+import ProjectBtn3 from "../../assets/Icons/projectBtn3.png";
 
 const Projects = () => {
   return (
