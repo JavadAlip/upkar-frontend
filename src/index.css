@@ -19,3 +19,24 @@ body {
 body {
   font-family: 'Santosh', sans-serif;
 }
+
+/* Custom horizontal scrollbar style */
+::-webkit-scrollbar {
+  height: 8px; /* scrollbar thickness */
+}
+
+::-webkit-scrollbar-track {
+  background: #e5e7eb; /* light gray track */
+  border-radius: 10px;
+  margin-inline: 16px; /* gap from edges */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9ca3af; /* gray thumb */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280; /* darker on hover */
+}
+

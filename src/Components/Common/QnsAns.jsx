@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 
+
 const QnsAns = () => {
+
   const [openIndex, setOpenIndex] = useState(0);
 
   const faqs = [
@@ -32,40 +34,43 @@ const QnsAns = () => {
   };
 
   return (
-    <div className="w-full bg-white py-16 px-4 font-[Figtree]">
+    <div className="w-full mb-12 bg-white font-[Figtree]">
       <div className="max-w-6xl mx-auto">
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left Section */}
-          <div>
-            <h2 className="text-4xl md:text-5xl font-semibold text-gray-800 mb-6">
-              Invest smarter with<br />
+          <div className="text-left p-4 font-[Figtree] flex flex-col justify-between h-full">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-800 leading-tight mb-14">
+              Invest smarter with <br />
               <span className="font-bold">Right Answers !</span>
             </h2>
 
-            <p className="text-gray-600 mb-8">
-              Still any doubts in your mind?
-            </p>
+            <div>
+              <p className="text-gray-600 mb-6 text-base sm:text-lg">
+                Still any doubts in your mind ?
+              </p>
 
-            <div className="flex">
-              <button className="bg-black text-white px-8 py-3 rounded-full font-semibold flex items-center gap-2 transition-all duration-300 shadow-lg">
-                Contact us
-                <div className="bg-white text-black rounded-full p-2 flex items-center justify-center">
-                  <ArrowRight size={20} />
-                </div>
+              <button
+                aria-label="Explore Projects"
+                className="inline-flex items-center bg-[#050F27] rounded-full shadow-md mb-10 transition-colors hover:bg-[#0b2444] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#071334]"
+              >
+                <span className="px-6 py-3 text-white text-sm sm:text-base font-medium">
+                  Connect us !
+                </span>
+                <span className="relative -mr-1 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center border-2 border-[#071334]">
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#071334]" />
+                </span>
               </button>
             </div>
           </div>
 
-          {/* Right Section - FAQ */}
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className={`border rounded-2xl transition-all ${
-                  openIndex === index
-                    ? 'bg-gray-100 border-gray-200'
-                    : 'bg-white border-gray-200'
-                }`}
+                className={`border rounded-2xl transition-all ${openIndex === index
+                  ? 'bg-gray-100 border-gray-200'
+                  : 'bg-white border-gray-200'
+                  }`}
               >
                 <button
                   onClick={() => toggleFAQ(index)}
@@ -90,6 +95,7 @@ const QnsAns = () => {
             ))}
           </div>
         </div>
+
       </div>
     </div>
   );

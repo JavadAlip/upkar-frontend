@@ -2,7 +2,9 @@ import React from 'react';
 import { Globe, Shield, Users, ShieldCheck } from 'lucide-react';
 
 
+
 const AboutCertification = () => {
+
   const certifications = [
     {
       icon: <Globe className="w-10 h-10" />,
@@ -23,11 +25,11 @@ const AboutCertification = () => {
   ];
 
   return (
-    <div className="w-full bg-black py-16 px-4 font-[Figtree]">
+    <div className="w-full bg-[#050F27] py-16 px-4 font-[Figtree]">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-semibold text-white mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-white mb-12 leading-tight">
             Certifications
           </h2>
           
@@ -43,8 +45,6 @@ const AboutCertification = () => {
             ))}
           </div>
         </div>
-
-       
       </div>
     </div>
   );
