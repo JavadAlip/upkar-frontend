@@ -1,5 +1,4 @@
 import React from 'react'
-// import Navbar from '../Components/CompletedPrjcts/CmpltNavbar';
 import PrjctMain from '../Components/Project/PrjctMain';
 // import Features from '../Components/Project/Features';
 import PlotLayout from '../Components/Project/PlotLayout';
@@ -12,7 +11,7 @@ import Footer from '../Components/Common/Footer';
 const Project = () => {
     return (
         <div>
-            {/* <Navbar /> */}
+          
             <PrjctMain />
             {/* <Features /> */}
             <PlotLayout />
@@ -20,7 +19,7 @@ const Project = () => {
             <AboutProject />
             <Directions/>
             <GetInTouch />
-            <Footer />
+        
         </div>
     )
 }
