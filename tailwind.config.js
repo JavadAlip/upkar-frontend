@@ -9,7 +9,14 @@ export default {
       screens: {
         "lg-nav": "1140px",
       },
+      fontFamily: {
+        figtree: ['Figtree', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+        
+      },
     },
   },
   plugins: [],
 };
+
+
