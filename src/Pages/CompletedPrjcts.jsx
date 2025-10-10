@@ -1,5 +1,5 @@
 
-import Navbar from '../Components/CompletedPrjcts/CmpltNavbar';
+// import Navbar from '../Components/CompletedPrjcts/CmpltNavbar';
 import CompletedMain from '../Components/CompletedPrjcts/CompletedMain';
 import ProjectsList from '../Components/CompletedPrjcts/ProjectsList';
 import OurValues from '../Components/CompletedPrjcts/OurValues';
@@ -9,7 +9,7 @@ import Footer from '../Components/Common/Footer';
 const CompletedPrjcts = () => {
     return (
         <div>
-            <Navbar />
+            {/* <Navbar /> */}
             <CompletedMain />
             <ProjectsList />
             <OurValues />
