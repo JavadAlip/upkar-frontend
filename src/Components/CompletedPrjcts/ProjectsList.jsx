@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
-import CmpltMain2 from "../../assets/CompletedPro2.png"; 
-import CmpltMain3 from "../../assets/CompletedPro3.png"; 
-import CmpltMain4 from "../../assets/CompletedPro4.png"; 
+import { FiChevronDown } from "react-icons/fi";
+import CmpltMain2 from "../../assets/CompletedPro2.png";
+import CmpltMain3 from "../../assets/CompletedPro3.png";
+import CmpltMain4 from "../../assets/CompletedPro4.png";
 
 const ProjectsList = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -14,13 +16,14 @@ const ProjectsList = () => {
   const images = [CmpltMain2, CmpltMain3, CmpltMain4];
 
   // Sample project data - using local images
-  const allProjects = Array.from({ length: 9 }, (_, index) => {
+  const allProjects = Array.from({ length: 27 }, (_, index) => {
     const id = index + 1;
     return {
       id,
       title: 'Upkar Habitat',
+      subtitle: 'Property',
       location: 'Dasarahali Road, Bangalore',
-      image: images[index % images.length], // cycle through the 3 images
+      image: images[index % images.length],
       category: ['Completed', 'Ongoing', 'Upcoming'][index % 3],
       status: ['Completed', 'Ongoing', 'Upcoming'][index % 3],
     };
@@ -29,7 +32,7 @@ const ProjectsList = () => {
   // Filter projects based on search and selections
   const filteredProjects = allProjects.filter(project => {
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.location.toLowerCase().includes(searchTerm.toLowerCase());
+      project.location.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'All' || project.category === selectedCategory;
     const matchesStatus = selectedStatus === 'All' || project.status === selectedStatus;
     return matchesSearch && matchesCategory && matchesStatus;
@@ -43,13 +46,13 @@ const ProjectsList = () => {
   const currentProjects = filteredProjects.slice(startIndex, endIndex);
 
   return (
-    <div className="w-full bg-gray-50 py-16 px-4">
+    <div className="w-full py-16 px-4">
       <div className="max-w-6xl mx-auto">
-        
+
         {/* Filter Section */}
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
+
             {/* Search Input */}
             <div className="relative">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
@@ -58,73 +61,126 @@ const ProjectsList = () => {
                 placeholder="Search Projects"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white"
+                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white font-inter font-normal text-[13px] text-[#1E1E1E] placeholder:text-[#1E1E1E]"
               />
             </div>
 
             {/* Category Dropdown */}
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white"
-            >
-              <option value="All">All</option>
-              <option value="Completed">Completed</option>
-              <option value="Ongoing">Ongoing</option>
-              <option value="Upcoming">Upcoming</option>
-            </select>
+            <div className="relative w-full">
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white font-inter font-normal text-[13px] text-[#1E1E1E] appearance-none pr-10"
+              >
+                <option value="All">All</option>
+                <option value="Completed">Completed</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Upcoming">Upcoming</option>
+              </select>
+              <FiChevronDown
+                size={20}
+                className="pointer-events-none absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500"
+              />
+            </div>
 
             {/* Status Dropdown */}
-            <select
-              value={selectedStatus}
-              onChange={(e) => setSelectedStatus(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white"
-            >
-              <option value="All">All Status</option>
-              <option value="Upcoming">Upcoming</option>
-              <option value="Ongoing">Ongoing</option>
-              <option value="Completed">Completed</option>
-            </select>
+            <div className="relative w-full">
+              <select
+                value={selectedStatus}
+                onChange={(e) => setSelectedStatus(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 bg-white font-inter font-normal text-[13px] text-[#1E1E1E] appearance-none pr-10"
+              >
+                <option value="All">All Status</option>
+                <option value="Upcoming">Upcoming</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Completed">Completed</option>
+              </select>
+              <FiChevronDown
+                size={20}
+                className="pointer-events-none absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500"
+              />
+            </div>
           </div>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {currentProjects.map((project) => (
             <div
               key={project.id}
-              className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
+              className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
             >
               {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative overflow-hidden rounded-t-xl">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                  className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
 
               {/* Project Info */}
-              <div className="p-4">
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-sm text-gray-600">{project.location}</p>
+              <div className="p-5">
+                <h3
+                  className="text-[20px] font-medium text-black"
+                  style={{ fontFamily: "'Figtree', sans-serif" }}
+                >
+                  {project.title}
+                </h3>
+
+                <p
+                  className="text-[13px] font-light text-black mt-1"
+                  style={{ fontFamily: "'Figtree', sans-serif" }}
+                >
+                  {project.subtitle}
+                </p>
+
+                <div className="flex items-center gap-2 mt-2 text-[#6B6B6B]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-4 h-4 text-[#6B6B6B]"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19.5 10.5c0 7.5-7.5 12-7.5 12s-7.5-4.5-7.5-12a7.5 7.5 0 1115 0z"
+                    />
+                  </svg>
+                  <p
+                    className="text-[13px] font-light text-black"
+                    style={{ fontFamily: "'Figtree', sans-serif" }}
+                  >
+                    {project.location}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Pagination Dots */}
+        {/* Pagination Dots - Fixed */}
         {totalPages > 1 && (
-          <div className="flex justify-center items-center gap-2">
+          <div className="flex justify-center items-center gap-2 pb-8">
             {Array.from({ length: totalPages }, (_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentPage(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`transition-all duration-300 rounded-full ${
                   currentPage === index
-                    ? 'bg-black w-8'
-                    : 'bg-gray-300 hover:bg-gray-400'
+                    ? 'bg-black h-3 w-8'
+                    : 'bg-gray-300 h-3 w-3 hover:bg-gray-400'
                 }`}
+                aria-label={`Go to page ${index + 1}`}
+                aria-current={currentPage === index ? 'page' : undefined}
               />
             ))}
           </div>

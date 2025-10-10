@@ -1,15 +1,20 @@
 import React from 'react';
-import { Award, Settings, Users, Search, Sparkles, Handshake } from 'lucide-react';
-import Value1 from "../../assets/UbkarHabit.png"; 
+import Value1 from "../../assets/UbkarHabit.png";
+import icon1 from "../../assets/Icons/value1.png";
+import icon2 from "../../assets/Icons/value2.png";
+import icon3 from "../../assets/Icons/value3.png";
+import icon4 from "../../assets/Icons/value4.png";
+import icon5 from "../../assets/Icons/value5.png";
+import icon6 from "../../assets/Icons/value6.png";
 
 const OurValues = () => {
   const values = [
-    { id: 1, icon: <Award size={40} />, title: 'Quality' },
-    { id: 2, icon: <Settings size={40} />, title: 'Technology' },
-    { id: 3, icon: <Users size={40} />, title: 'Approach' },
-    { id: 4, icon: <Search size={40} />, title: 'Transparency' },
-    { id: 5, icon: <Sparkles size={40} />, title: 'Expertise' },
-    { id: 6, icon: <Handshake size={40} />, title: 'Reliability' }
+    { id: 1, icon: icon1, title: 'Quality' },
+    { id: 2, icon: icon2, title: 'Technology' },
+    { id: 3, icon: icon3, title: 'Approach' },
+    { id: 4, icon: icon4, title: 'Transparency' },
+    { id: 5, icon: icon5, title: 'Expertise' },
+    { id: 6, icon: icon6, title: 'Reliability' },
   ];
 
   return (
@@ -17,9 +22,9 @@ const OurValues = () => {
       <div className="max-w-6xl mx-auto">
 
         {/* Section Title */}
-        <h2 className="text-4xl md:text-5xl mb-16">
-          <span className="font-normal">Our </span>
-          <span className="font-bold">Values!</span>
+        <h2 className="text-4xl md:text-5xl mb-16 text-black font-figtree">
+          <span className="font-light">Our </span>
+          <span className="font-semibold">Values!</span>
         </h2>
 
         {/* Values Grid */}
@@ -29,13 +34,32 @@ const OurValues = () => {
               key={value.id}
               className="flex flex-col items-center justify-center space-y-4 group cursor-pointer"
             >
-              {/* Icon Container */}
-              <div className="w-20 h-20 flex items-center justify-center text-gray-700 group-hover:text-black transition-all duration-300 group-hover:scale-110">
-                {value.icon}
+              {/* Image Icon */}
+              <div
+                className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                style={{
+                  width: '64px',
+                  height: '64px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <img
+                  src={value.icon}
+                  alt={value.title}
+                  style={{
+                    maxWidth: '64px',
+                    maxHeight: '64px',
+                    width: 'auto',
+                    height: 'auto',
+                    objectFit: 'contain'
+                  }}
+                />
               </div>
 
               {/* Title */}
-              <p className="text-base font-medium text-gray-800 text-center">
+              <p className="font-satoshi font-medium text-[20px] text-black text-center">
                 {value.title}
               </p>
             </div>
