@@ -10,7 +10,9 @@ import Awards from '../Components/HomePage/Awards';
 import ContactUs from '../Components/Common/ContactUs';
 import Footer from '../Components/Common/Footer';
 
+
 const Home = () => {
+
     return (
         <div>
             <Navbar />
@@ -20,11 +22,11 @@ const Home = () => {
             <GetInTouch />
             <Certification />
             <HomeQnsAns />
-            <Awards/>
+            <Awards />
             <ContactUs />
             <Footer />
         </div>
     )
-}
+};
 
 export default Home;

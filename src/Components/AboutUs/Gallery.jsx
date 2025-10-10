@@ -12,7 +12,7 @@ const Gallery = () => {
   const images = importAllImages();
 
   return (
-    <div className="w-full bg-white py-16 pb-4 sm:px-6 lg:px-8">
+    <div className="w-full bg-white py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-800 mb-10 leading-tight">Gallery</h2>
 

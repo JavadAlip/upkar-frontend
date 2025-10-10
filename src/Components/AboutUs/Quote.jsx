@@ -8,17 +8,33 @@ const Quote = () => {
     return (
         <div className="bg-[#050F27] text-white py-24 px-6 sm:px-10 md:px-16 font-[Figtree] relative overflow-hidden">
 
-            <div className="absolute top-16 left-6 sm:top-20 sm:left-12 md:top-24 md:left-20 flex gap-2 opacity-70 pointer-events-none">
-                <img src={QuoteUp} alt="quote up" className="w-5 sm:w-7 md:w-9 lg:w-10" />
-                <img src={QuoteUp} alt="quote up" className="w-5 sm:w-7 md:w-9 lg:w-10" />
+            <div className="absolute top-13 left-5 sm:top-13 flex gap-1 sm:gap-2 opacity-90">
+                <img
+                    src={QuoteUp}
+                    alt="quote up"
+                    className="w-4 sm:w-5 md:w-6 lg:w-7"
+                />
+                <img
+                    src={QuoteUp}
+                    alt="quote up"
+                    className="w-4 sm:w-5 md:w-6 lg:w-7"
+                />
             </div>
 
-            <div className="absolute top-16 right-6 sm:top-20 sm:right-12 md:top-24 md:right-20 flex gap-2 opacity-70 pointer-events-none">
-                <img src={QuoteDown} alt="quote down" className="w-5 sm:w-7 md:w-9 lg:w-10" />
-                <img src={QuoteDown} alt="quote down" className="w-5 sm:w-7 md:w-9 lg:w-10" />
+            <div className="absolute top-13 right-5 sm:top-13 flex gap-1 sm:gap-2 opacity-90">
+                <img
+                    src={QuoteDown}
+                    alt="quote down"
+                    className="w-4 sm:w-5 md:w-6 lg:w-7"
+                />
+                <img
+                    src={QuoteDown}
+                    alt="quote down"
+                    className="w-4 sm:w-5 md:w-6 lg:w-7"
+                />
             </div>
 
-            <div className="max-w-5xl mx-auto text-gray-100 text-sm sm:text-base md:text-lg leading-relaxed text-center space-y-4 px-2 relative z-10 sm:mt-16 md:mt-20">
+            <div className="text-center mt-7 text-white text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed sm:leading-relaxed max-w-[73%] mx-auto">
                 <p>
                     Since four decades, Upkar Group of Companies is a pioneer in the property and real estate business of Bangalore. Under the able guidance and mentorship of Mr. K.H Khan, Upkar Developers has grown from strength to strength.
                 </p>
