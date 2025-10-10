@@ -1,5 +1,5 @@
 import React from 'react';
-import Direction from "../../assets/Directions.png"; 
+import Direction from "../../assets/Directions.png";
 
 const Directions = () => {
   return (
@@ -7,9 +7,10 @@ const Directions = () => {
       <div className="max-w-6xl mx-auto">
 
         {/* Section Title */}
-        <h2 className="text-4xl md:text-5xl mb-16 font-bold">
+        <h2 className="mb-16 text-[48px] font-[Figtree] font-semibold text-black">
           Directions
         </h2>
+
 
         {/* Image Section - updated max width */}
         <div className="relative w-full max-w-6xl mx-auto rounded-3xl overflow-hidden shadow-2xl">

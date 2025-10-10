@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { ArrowRight, Phone, Mail } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 // Local image imports
-import PrjctMain1 from "../../assets/PrjctMain1.png"; 
-import PrjctMain2 from "../../assets/PrjctMain2.png"; 
-import PrjctMain3 from "../../assets/PrjctMain3.png"; 
-import PrjctMain4 from "../../assets/PrjctMain4.png"; 
-import PrjctMain5 from "../../assets/PrjctMain5.png"; 
+import PrjctMain1 from "../../assets/PrjctMain1.png";
+import PrjctMain2 from "../../assets/PrjctMain2.png";
+import PrjctMain3 from "../../assets/PrjctMain3.png";
+import PrjctMain4 from "../../assets/PrjctMain4.png";
+import PrjctMain5 from "../../assets/PrjctMain5.png";
 import PrjctMain6 from "../../assets/PrjctMain6.png";
+import Phone from "../../assets/Icons/Phone.png";
+import Mail from "../../assets/Icons/mail.png";
+import Whatsapp from "../../assets/Icons/whatsapp.png";
+import enqNow from "../../assets/Icons/enqNow.png";
+import global from "../../assets/Icons/sustainability.png";
 
 const PrjctMain = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -30,14 +35,17 @@ const PrjctMain = () => {
 
           {/* Left Text + Thumbnails */}
           <div className="space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              Elevate Your Lifestyle<br />
-              with <span className="font-bold">Upkar Spring woods</span>
+            <h2 className="leading-tight text-[48px] text-black font-figtree font-light">
+              Elevate Your Lifestyle with{' '}
+              <span className="font-figtree font-semibold">
+                Upkar Spring woods
+              </span>
             </h2>
 
-            <p className="text-gray-700 text-base leading-relaxed">
+            <p className="font-figtree font-light text-[20px] text-upkarText leading-[1.2]">
               Join a legacy of excellence that spans over 50 years. At Upkar Developers, we don't just build structures; we shape communities and craft spaces that stand the test of time.
             </p>
+
 
             {/* Thumbnail Grid */}
             <div className="grid grid-cols-4 gap-3">
@@ -45,9 +53,8 @@ const PrjctMain = () => {
                 <div
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
-                  className={`rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
-                    currentImageIndex === index ? 'ring-2 ring-black' : ''
-                  }`}
+                  className={`rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${currentImageIndex === index ? 'ring-2 ring-black' : ''
+                    }`}
                 >
                   <img
                     src={img}
@@ -58,104 +65,123 @@ const PrjctMain = () => {
               ))}
             </div>
 
-            {/* Dot Indicators */}
-            <div className="flex justify-center gap-2">
-              {galleryImages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    currentImageIndex === index ? 'bg-black w-6' : 'bg-gray-300'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Right Static Main Image + Contact Icons */}
-          <div className="relative">
-            <div className="rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src={PrjctMain1} // <-- always fixed
-                alt="Upkar Spring Woods Main"
-                className="w-full h-auto object-cover"
-              />
-            </div>
-
-            {/* Contact Buttons */}
-            <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-4">
-              <button className="bg-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
-                <Phone size={24} className="text-gray-800" />
+            {/* Arrow Navigation */}
+            <div className="flex justify-center gap-4 items-center">
+              <button
+                onClick={() => setCurrentImageIndex(prev => (prev === 0 ? galleryImages.length - 1 : prev - 1))}
+                className="w-9 h-9 rounded-full border-2 border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-all duration-300"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
               </button>
-              <button className="bg-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
-                <Mail size={24} className="text-gray-800" />
-              </button>
-              <button className="bg-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
-                <svg 
-                  viewBox="0 0 24 24" 
-                  width="24" 
-                  height="24" 
-                  fill="currentColor"
-                  className="text-green-600"
-                >
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              <button
+                onClick={() => setCurrentImageIndex(prev => (prev === galleryImages.length - 1 ? 0 : prev + 1))}
+                className="w-9 h-9 rounded-full bg-black flex items-center justify-center hover:bg-gray-800 transition-all duration-300"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
               </button>
             </div>
           </div>
+
+          {/* Right Dynamic Main Image + Contact Icons */}
+          <div className="relative">
+            <div className="rounded-3xl overflow-hidden shadow-2xl">
+              <img
+                src={galleryImages[currentImageIndex]}
+                alt="Upkar Spring Woods Main"
+                className="w-full h-auto object-cover"
+              />
+
+              {/* Contact Icons - Top Right */}
+              <div className="absolute top-24 -right-4 bg-white rounded-2xl p-4 shadow-lg flex flex-col gap-6">
+                <button className="hover:scale-110 transition-transform duration-300">
+                  <img src={Phone} alt="Phone" className="w-6 h-6" />
+                </button>
+                <button className="hover:scale-110 transition-transform duration-300">
+                  <img src={Mail} alt="Mail" className="w-6 h-6" />
+                </button>
+                <button className="hover:scale-110 transition-transform duration-300">
+                  <img src={Whatsapp} alt="WhatsApp" className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
+
         {/* Customer Stats */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center">
           <div className="space-y-6">
-            <h3 className="text-3xl md:text-4xl font-bold">
-              36000+ Happy<br />
-              Customers with us
+            <h3 className="leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black font-figtree">
+              <span className="font-semibold block">
+                36000+ Happy
+              </span>
+              <span className="font-light block">
+                Customers with us
+              </span>
             </h3>
 
-            <div className="flex items-center gap-4">
-              <div className="flex -space-x-3">
-                {customerAvatars.map((avatar, index) => (
-                  <img
-                    key={index}
-                    src={avatar}
-                    alt={`Customer ${index + 1}`}
-                    className="w-12 h-12 rounded-full border-2 border-white"
-                  />
-                ))}
+            <div className="flex items-center gap-48">
+              <div className="flex flex-col items-start gap-2">
+                <div className="flex -space-x-3">
+                  {customerAvatars.map((avatar, index) => (
+                    <img
+                      key={index}
+                      src={avatar}
+                      alt={`Customer ${index + 1}`}
+                      className="w-10 sm:w-12 h-10 sm:h-12 rounded-full border-2 border-white"
+                    />
+                  ))}
+                </div>
+                <p className="font-satoshi font-normal text-sm sm:text-base text-upkarText">
+                  10K ratings (4.8)
+                </p>
               </div>
-              <p className="text-sm text-gray-600">10K ratings (4.8)</p>
+
+              {/* Globe/World Icon */}
+              <div className=" sm:w-32 sm:h-48 rounded-full flex items-center justify-center">
+                <img
+                  src={global}
+                  alt="Sustainability"
+                  className="w-16 h-auto object-contain"
+                />
+              </div>
+
             </div>
           </div>
 
-          <div className="space-y-6">
-            <p className="text-gray-700 text-base leading-relaxed">
+          <div className="space-y-4 sm:space-y-6">
+            <p className="font-figtree font-normal text-base sm:text-lg md:text-xl lg:text-2xl text-upkarText leading-relaxed">
               Upkar Spring Woods is a BMRDA, approved residential layout, we have taken great care to aesthetically design.
             </p>
 
-            <div className="flex gap-4">
-              <button className="bg-black text-white px-8 py-3 rounded-full font-semibold flex items-center gap-3 hover:bg-gray-800 transition-all duration-300">
-                Enquire now
-                <div className="bg-white text-black rounded-full p-1">
-                  <ArrowRight size={16} />
-                </div>
-              </button>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center w-full">
+              <img
+                src={enqNow}
+                alt="Enquire Now"
+                className="cursor-pointer w-auto h-10 sm:h-12 md:h-[50px]"
+              />
 
-              <button className="text-black font-semibold hover:underline">
+              <button className="font-satoshi font-normal text-base sm:text-lg md:text-xl lg:text-2xl text-upkarText hover:underline transition-all sm:ml-auto md:ml-8 lg:ml-16">
                 More about us!
               </button>
             </div>
+
           </div>
         </div>
 
-        {/* Bottom Image - Upkar Habitat */}
+        {/* Bottom Global Image */}
         <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl">
           <img
             src={PrjctMain6}
-            alt="Upkar Habitat"
-            className="w-full h-96 object-cover"
+            alt="Upkar Global View"
+            className="w-full h-auto object-cover"
           />
         </div>
+
       </div>
     </div>
   );

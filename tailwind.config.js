@@ -12,7 +12,7 @@ export default {
       fontFamily: {
         figtree: ['Figtree', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
-        
+        satoshi: ['Satoshi', 'sans-serif'],
       },
     },
   },

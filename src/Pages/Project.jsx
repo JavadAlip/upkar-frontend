@@ -1,25 +1,24 @@
 import React from 'react'
 import PrjctMain from '../Components/Project/PrjctMain';
-// import Features from '../Components/Project/Features';
+import Features from '../Components/Project/Features';
 import PlotLayout from '../Components/Project/PlotLayout';
 import Amenities from '../Components/Project/Amenities';
 import AboutProject from '../Components/Project/AboutProject';
+import PrjctGallery from '../Components/Project/PrjctGallery';
 import Directions from '../Components/Project/Directions';
-import GetInTouch from '../Components/HomePage/GetInTouch';
-import Footer from '../Components/Common/Footer';
+import PrjctGetinTouch from '../Components/Project/PrjctGetinTouch';
 
 const Project = () => {
     return (
         <div>
-          
             <PrjctMain />
-            {/* <Features /> */}
+            <Features />
             <PlotLayout />
             <Amenities/>
             <AboutProject />
+            <PrjctGallery/>
             <Directions/>
-            <GetInTouch />
-        
+            <PrjctGetinTouch />
         </div>
     )
 }

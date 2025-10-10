@@ -17,12 +17,12 @@ const CompletedMain = () => {
           {/* Left Section - Content */}
           <div className="">
             {/* Title */}
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-black font-figtree mb-[100px] text-left">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-black font-figtree mb-8 sm:mb-12 md:mb-16 lg:mb-[100px] text-left">
               Completed <span className="font-semibold">Projects</span>
             </h2>
 
             {/* Description */}
-            <p className="font-figtree font-extralight text-[24px] text-primaryText text-center leading-[1.2] mb-[40px]" >
+            <p className="font-figtree font-extralight text-base sm:text-lg md:text-xl lg:text-[24px] text-primaryText text-center leading-[1.4] sm:leading-[1.3] lg:leading-[1.2] mb-6 sm:mb-8 lg:mb-[40px]">
               The development of our ongoing gated community plots projects is happening at a very fast pace. We are happy to announce that two latest projects are under development. This section contains our latest ongoing projects in south Bangalore which are updated on a timely basis.
             </p>
 
@@ -34,7 +34,6 @@ const CompletedMain = () => {
                 className="cursor-pointer hover:scale-105 transition-transform duration-300"
               />
             </div>
-
           </div>
 
           {/* Right Section - Image with Contact Icons */}

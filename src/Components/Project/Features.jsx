@@ -1,74 +1,72 @@
 import React from 'react';
-import { Shield, Users, CheckCircle } from 'lucide-react';
+import assurance from '../../assets/Icons/feature1.png';
+import Community1 from '../../assets/Icons/feature3.png';
+import safety1 from '../../assets/Icons/feature4.png';
+import mainimg from '../../assets/featuree.png';
 
 const Features = () => {
     const features = [
-        {
-            icon: <CheckCircle className="w-8 h-8" />,
-            title: "Assurance"
-        },
-        {
-            icon: <Users className="w-8 h-8" />,
-            title: "Community"
-        },
-        {
-            icon: <Shield className="w-8 h-8" />,
-            title: "Safety"
-        }
+        { icon: assurance, title: 'Assurance' },
+        { icon: Community1, title: 'Community' },
+        { icon: safety1, title: 'Safety' },
     ];
 
     return (
-        <section className=" py-12 px-4 sm:px-6 lg:px-8">
-            {/* Features Heading */}
-            <h2 className="text-black text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 sm:mb-12">
+        <section className="py-12 px-4 sm:px-6 lg:px-8">
+            <h2 className="mb-12 text-[48px] font-[Figtree] font-semibold text-black">
                 Features
             </h2>
+
+
             <div className="max-w-7xl mx-auto">
+                <div className="bg-[#000814] rounded-3xl p-8 lg:p-12">
+                    {/* Wrap text and image+features in a flex container */}
+                    <div className="flex flex-col lg:flex-row gap-6 items-start">
+                        {/* LEFT SIDE — Text and Image */}
 
-
-                {/* Features Container */}
-                <div className="bg-black rounded-2xl p-6 sm:p-8 lg:p-12">
-                    {/* Description and Image Row */}
-                    <div className="flex flex-col lg:flex-row gap-8 items-start mb-8 lg:mb-12">
-                        {/* Text Description */}
-                        <div className="flex-1">
-                            <p className="text-white text-base sm:text-lg lg:text-xl leading-relaxed">
-                                Upkar Spring Woods is a BMRDA,<br className="hidden sm:block" />
+                        {/* Left Column */}
+                        <div className="lg:w-5/12 flex flex-col justify-center">
+                            {/* Text centered above the image */}
+                            <p className="text-white text-[24px] font-light font-[Figtree] text-center mb-6">
+                                Upkar Spring Woods is a BMRDA,<br />
                                 approved residential layout.
                             </p>
-                        </div>
 
-                        {/* Image */}
-                        <div className="flex-1 w-full lg:w-auto">
-                            <div className="rounded-2xl overflow-hidden shadow-xl">
+                            {/* Image */}
+                            <div className="relative rounded-2xl overflow-hidden">
                                 <img
-                                    src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=400&fit=crop"
+                                    src={mainimg}
                                     alt="Upkar Habitat"
-                                    className="w-full h-48 sm:h-56 lg:h-64 object-cover"
+                                    className="w-full h-60 object-cover rounded-2xl"
                                 />
                             </div>
                         </div>
-                    </div>
 
-                    {/* Feature Icons Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
-                        {features.map((feature, index) => (
-                            <div
-                                key={index}
-                                className="flex flex-col items-center text-center p-6 bg-[#0a1628] rounded-xl hover:bg-[#162844] transition-colors duration-300"
-                            >
-                                <div className="mb-4 text-blue-400">
-                                    {feature.icon}
+                        {/* RIGHT SIDE — Feature Cards */}
+                        <div className="lg:w-7/12 grid grid-cols-3 gap-3 sm:gap-2">
+                            {features.map((feature, index) => (
+                                <div
+                                    key={index}
+                                    className="flex flex-col items-center rounded-lg justify-center text-center p-2 sm:p-4"
+                                >
+                                    <img
+                                        src={feature.icon}
+                                        alt={feature.title}
+                                        className="w-48 h-52 sm:w-32 sm:h-40 md:w-40 md:h-48 lg:w-48 lg:h-52 -mb-5 object-contain rounded-2xl"
+                                    />
+                                    <h3
+                                        className="text-white font-light font-[Figtree] text-base sm:text-lg md:text-xl lg:text-[24px]"
+                                    >
+                                        {feature.title}
+                                    </h3>
                                 </div>
-                                <h3 className="text-white text-lg sm:text-xl font-medium">
-                                    {feature.title}
-                                </h3>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
     );
 };
 
