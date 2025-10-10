@@ -19,7 +19,7 @@ const Awards = () => {
           {/* Title */}
           <div className="lg:flex-shrink-0 text-center lg:text-left">
             <h2
-              className="text-white text-3xl sm:text-4xl md:text-5xl font-light"
+              className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight"
               style={{ fontFamily: "'Noto Serif JP', serif" }}
             >
               Awards

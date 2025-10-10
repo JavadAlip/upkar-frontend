@@ -7,14 +7,15 @@ import Phone from "../../assets/Icons/Phone.png";
 import Mail from "../../assets/Icons/mail.png";
 import Whatsapp from "../../assets/Icons/whatsapp.png";
 import Connect from "../../assets/Icons/connect.png";
+import tree from "../../assets/Tree.png";
 
 
 const HomeMain = () => {
 
   return (
-    <div className="w-full flex flex-col justify-center items-center px-4 py-8 space-y-16">
+    <div className="w-full flex flex-col justify-center items-center px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
 
-      <div className="relative w-full max-w-6xl group cursor-pointer mx-auto">
+      <div className="relative w-full group cursor-pointer mb-6 lg:mb-12">
         <div className="relative overflow-hidden rounded-xl transition-all duration-300">
           <img
             src={Home1}
@@ -76,19 +77,22 @@ const HomeMain = () => {
         </div>
       </div>
 
-      <div className="w-full max-w-6xl px-4 sm:px-6 lg:px-0 mx-auto">
+      <div className="w-full">
         {/* Heading with Tree Icon */}
         <div className="text-center mb-6 sm:mb-8">
-          <h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] leading-snug sm:leading-normal md:leading-relaxed lg:leading-[1.3]"
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] leading-snug sm:leading-normal md:leading-relaxed lg:leading-[1.3]"
             style={{ fontFamily: "'Noto Serif JP', serif" }}
           >
             <span className="font-medium">Shaping a 50 years legacy of</span>
             <br />
             <span className="font-semibold">
               quality{" "}
-              <span className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-green-100 rounded-full mx-2 align-middle">
-                <TreeDeciduous className="w-6 h-6 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 text-green-600" />
+              <span className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 bg-white rounded-full mx-2 align-middle">
+                <img
+                  src={tree}
+                  alt="Tree Icon"
+                  className="w-28 md:w-28 lg:w-36 h-auto object-contain"
+                />
               </span>
               trust
             </span>

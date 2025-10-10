@@ -30,7 +30,7 @@ const Certification = () => {
   ];
 
   return (
-    <div className="w-full font-[Figtree]">
+    <div className="w-full py-6 sm:py-8 md:py-10 lg:py-12 font-[Figtree]">
 
       <div className="bg-gray-100 py-10 sm:py-14 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -39,7 +39,7 @@ const Certification = () => {
             {/* Certifications Title */}
             <div className="lg:flex-shrink-0 text-center lg:text-left w-full lg:w-auto">
               <h2
-                className="text-black text-3xl sm:text-4xl lg:text-[48px] font-light"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight"
                 style={{ fontFamily: "'Noto Serif JP', serif" }}
               >
                 Certifications
@@ -77,7 +77,7 @@ const Certification = () => {
       </div>
 
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-16">
         <div
           className="relative rounded-3xl overflow-hidden"
           style={{
@@ -89,7 +89,7 @@ const Certification = () => {
         >
 
           <div className="relative z-10 flex items-center justify-center min-h-[350px] px-4 sm:px-6 lg:px-12">
-            <div className="relative w-[90%] sm:w-3/4 lg:w-1/2 bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl px-6 sm:px-10 py-8 sm:py-12 text-center shadow-lg">
+            <div className="relative w-[100%] sm:w-3/4 lg:w-1/2 bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl px-6 sm:px-10 py-8 sm:py-12 text-center shadow-lg">
 
               <div className="absolute top-3 left-3 sm:top-5 sm:left-5 flex gap-1 sm:gap-2 opacity-90">
                 <img
@@ -117,7 +117,7 @@ const Certification = () => {
                 />
               </div>
 
-              <p className="text-center text-white text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed sm:leading-relaxed font-[Satoshi] max-w-[70%] mx-auto">
+              <p className="text-center text-white text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed sm:leading-relaxed max-w-[80%] mx-auto font-[Figtree]">
                 One of the reputed developers in Bangalore with timely delivery. They have amazing
                 properties in Bangalore with reasonable pricing, moreover, these people maintain
                 good relationship management with clients.

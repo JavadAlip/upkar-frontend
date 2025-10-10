@@ -26,9 +26,8 @@ const GetInTouch = () => {
   };
 
   return (
-    <div className="w-full py-16 px-4 font-sans">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="mb-5 sm:mb-5 md:mb-10 text-start text-3xl sm:text-4xl md:text-5xl" style={{ fontFamily: "'Noto Serif JP', serif", color: '#000000' }}>
+    <div className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 mb-0 lg:mb-2 font-sans">
+        <h2 className="mb-4 lg:mb-12 text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight" style={{ fontFamily: "'Noto Serif JP', serif"}}>
           <span style={{ fontWeight: 500 }}>Get in </span>
           <span style={{ fontWeight: 700 }}>Touch</span>
         </h2>
@@ -153,8 +152,6 @@ const GetInTouch = () => {
             </div>
           </div>
         </div>
-
-      </div>
     </div>
   );
 };

@@ -28,11 +28,11 @@ const AboutCertification = () => {
   ];
 
   return (
-    <div className="w-full bg-[#050F27] py-16 px-4 font-[Figtree]">
+    <div className="w-full bg-[#050F27] px-4 lg:px-10 py-12 sm:py-14 md:py-16 lg:py-12 font-[Figtree]">
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <div className="mb-12">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-white mb-12 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight text-white mb-8 lg:mb-12">
             Certifications
           </h2>
 

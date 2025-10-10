@@ -24,15 +24,13 @@ const MainSection = () => {
 
 
   return (
-    <div className="w-full bg-white py-16 px-4 font-[Figtree]">
-      <div className="max-w-6xl mx-auto">
-
+    <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 font-[Figtree]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
           {/* ---------- LEFT SECTION ---------- */}
           <div className="flex flex-col items-center text-center">
             {/* Heading */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-800 mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light mb-6 leading-tight">
               Shaping a 50+ years legacy of <br />
               <span className="font-bold">quality & trust !</span>
             </h2>
@@ -137,19 +135,17 @@ const MainSection = () => {
 
         </div>
 
-        <div className="mx-auto text-center pt-10">
-          <p className="text-gray-700 leading-relaxed mb-4">
+        <div className="mx-auto max-w-[95%] lg:max-w-[85%] text-center pt-6 sm:pt-8 md:pt-10 lg:pt-12">
+          <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed mb-4">
             Upkar Developers, a leading real estate company in Bangalore, has an extraordinary legacy spanning over 50 years since its foundation in 1974. Started by <span className="font-semibold">Mr. K.H. Khan</span>, the company has been a pioneering force behind the city's rapidly changing skyline.
           </p>
-          <p className="text-gray-700 leading-relaxed mb-4">
+          <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed mb-4">
             Our clear vision is to offer innovative real estate services and create an environment of peace, tranquility, and comfort. We have successfully completed <span className="font-semibold">34 projects</span>, bringing the joy of housing to over <span className="font-semibold">36,000 families</span> across Bangalore.
           </p>
-          <p className="text-gray-700 leading-relaxed">
+          <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
             Upkar's portfolio includes gated communities, urban townships, villas, apartments, and residential plots. Our projects are conceptualized by leading architects and engineers. We are recognized for our uncompromising business ethics, timeless values, and customer-centric approach, which ensure timely delivery and state-of-art infrastructure. We look forward to establishing our presence in cities across India.
           </p>
         </div>
-
-      </div>
     </div>
   );
 };

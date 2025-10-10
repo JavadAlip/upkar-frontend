@@ -9,12 +9,11 @@ import ProjectBtn3 from "../../assets/Icons/projectBtn3.png";
 const Projects = () => {
 
   return (
-    <div className="w-full bg-white py-10 sm:py-14 px-4 sm:px-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
         
         <h2
-          className="mb-5 sm:mb-5 md:mb-10 text-start text-3xl sm:text-4xl md:text-5xl"
-          style={{ fontFamily: "'Noto Serif JP', serif", color: '#000000' }}
+          className="mb-4 lg:mb-12 text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight"
+          style={{ fontFamily: "'Noto Serif JP', serif" }}
         >
           <span style={{ fontWeight: 700 }}>Our </span>
           <span style={{ fontWeight: 500 }}>Projects</span>
@@ -24,14 +23,13 @@ const Projects = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             {/* Text Content */}
             <div className="space-y-6">
-              <h3
-                className="leading-tight"
-                style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300, fontSize: '48px', color: '#000000' }}
+              <h2
+                className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-800 leading-tight" style={{ fontFamily: "'Noto Serif JP', serif",  fontWeight: 300, fontSize: '48px', color: '#000000' }}
               >
                 Looking Ahead to
                 <br />
                 <span style={{ fontWeight: 700 }}>Your Future</span>?
-              </h3>
+              </h2>
 
 
               <p
@@ -152,14 +150,11 @@ const Projects = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-6">
-              <h3
-                className="leading-tight"
-                style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300, fontSize: '48px', color: '#000000' }}
-              >
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-800 leading-tight" style={{ fontFamily: "'Noto Serif JP', serif",  fontWeight: 300, fontSize: '48px', color: '#000000' }}>
                 Discover Your
                 <br />
                 <span style={{ fontWeight: 700 }}>Ready-to-Build Plot.</span>
-              </h3>
+              </h2>
 
 
               <p
@@ -219,30 +214,28 @@ const Projects = () => {
         <div className="space-y-12 sm:space-y-16 block lg:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center pb-10 sm:pb-12">
             <div className="space-y-6">
-              <h3
-                className="leading-tight text-3xl sm:text-4xl md:text-5xl"
-                style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300, color: '#000000' }}
+              <h2
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight"
+                style={{ fontFamily: "'Noto Serif JP', serif", }}
               >
                 Looking Ahead to
                 <br />
                 <span style={{ fontWeight: 700 }}>Your Future</span>?
-              </h3>
+              </h2>
 
 
-              <p
-                style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '20px', color: '#000000', lineHeight: '1.2' }}
-              >
+              <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                 Investing in an <span className="font-semibold">Ongoing project</span> offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.
               </p>
 
               <ul className="space-y-2">
-                <li style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }} className="flex items-start">
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                   <span className="mr-2">•</span> Early bird pricing
                 </li>
-                <li style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }} className="flex items-start">
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                   <span className="mr-2">•</span> Prime location selection
                 </li>
-                <li style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }} className="flex items-start">
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                   <span className="mr-2">•</span> A future-proof investment
                 </li>
               </ul>
@@ -251,7 +244,7 @@ const Projects = () => {
                 <img
                   src={ProjectBtn1}
                   alt="Explore Ongoing Projects"
-                  className="w-45 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
+                  className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
                 />
               </div>
             </div>
@@ -283,31 +276,31 @@ const Projects = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center pb-10 sm:pb-12">
             <div className="space-y-6">
-              <h3 className="leading-tight text-3xl sm:text-4xl md:text-5xl" style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300, color: '#000000' }}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight" style={{ fontFamily: "'Noto Serif JP', serif" }}>
                 Watch Your Future <span style={{ fontWeight: 700 }}>Take Shape.</span>
-              </h3>
+              </h2>
 
-              <p style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '20px', color: '#000000', lineHeight: '1.2' }}>
+              <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                 Investing in an <span className="font-semibold">Upcoming project</span> offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.
               </p>
 
-              <ul className="space-y-2 sm:pl-16 md:pl-32 lg:pl-64">
-                <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
-                  <span className="mr-2">•</span> Early bird pricing
+              <ul className="space-y-2">
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                  <span className="mr-2">•</span> Early-bird pricing
                 </li>
-                <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                   <span className="mr-2">•</span> Prime location selection
                 </li>
-                <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                   <span className="mr-2">•</span> A future-proof investment
                 </li>
               </ul>
 
-              <div className="mt-4 sm:pl-16 md:pl-32 lg:pl-64">
+              <div className="mt-4">
                 <img
-                  src={ProjectBtn2}
-                  alt="Explore Upcoming Projects"
-                  className="w-45 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
+                  src={ProjectBtn3}
+                  alt="Explore Completed Projects"
+                  className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
                 />
               </div>
             </div>
@@ -339,24 +332,24 @@ const Projects = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center pb-10 sm:pb-12">
             <div className="space-y-6">
-              <h3 className="leading-tight text-3xl sm:text-4xl md:text-5xl" style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300, color: '#000000' }}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight" style={{ fontFamily: "'Noto Serif JP', serif" }}>
                 Discover Your
                 <br />
                 <span style={{ fontWeight: 700 }}>Ready-to-Build Plot.</span>
-              </h3>
+              </h2>
 
-              <p style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '20px', color: '#000000', lineHeight: '1.2' }}>
+              <p>
                 Investing in a <span className="font-semibold">Completed project</span> offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.
               </p>
 
               <ul className="space-y-2">
-                <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                   <span className="mr-2">•</span> Early-bird pricing
                 </li>
-                <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                   <span className="mr-2">•</span> Prime location selection
                 </li>
-                <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                   <span className="mr-2">•</span> A future-proof investment
                 </li>
               </ul>
@@ -365,7 +358,7 @@ const Projects = () => {
                 <img
                   src={ProjectBtn3}
                   alt="Explore Completed Projects"
-                  className="w-45 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
+                  className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
                 />
               </div>
             </div>
@@ -395,8 +388,6 @@ const Projects = () => {
             </div>
           </div>
         </div>
-
-      </div>
     </div>
   );
 };

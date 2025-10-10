@@ -34,12 +34,10 @@ const QnsAns = () => {
   };
 
   return (
-    <div className="w-full mb-12 bg-white font-[Figtree]">
-      <div className="max-w-6xl mx-auto">
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+    <div className="w-full bg-white px-4 lg:px-24 py-6 sm:py-8 md:py-10 lg:py-12 font-[Figtree]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-start">
           <div className="text-left p-4 font-[Figtree] flex flex-col justify-between h-full">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-800 leading-tight mb-14">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight">
               Invest smarter with <br />
               <span className="font-bold">Right Answers !</span>
             </h2>
@@ -51,7 +49,7 @@ const QnsAns = () => {
 
               <button
                 aria-label="Explore Projects"
-                className="inline-flex items-center bg-[#050F27] rounded-full shadow-md mb-10 transition-colors hover:bg-[#0b2444] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#071334]"
+                className="inline-flex items-center bg-[#050F27] rounded-full shadow-md transition-colors hover:bg-[#0b2444] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#071334]"
               >
                 <span className="px-6 py-3 text-white text-sm sm:text-base font-medium">
                   Connect us !
@@ -61,7 +59,6 @@ const QnsAns = () => {
                 </span>
               </button>
             </div>
-
           </div>
 
           <div className="space-y-4">
@@ -77,15 +74,7 @@ const QnsAns = () => {
                   onClick={() => toggleFAQ(index)}
                   className="w-full flex items-center justify-between p-5 text-left"
                 >
-                  <span
-                    className="pr-4"
-                    style={{
-                      fontFamily: "'Figtree', sans-serif",
-                      fontWeight: 500, // medium
-                      fontSize: "17px",
-                      color: "#050F27",
-                    }}
-                  >
+                  <span className="pr-4 text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[22px] font-[Figtree] font-medium leading-snug sm:leading-relaxed">
                     {index + 1}. {faq.question}
                   </span>
                   {openIndex === index ? (
@@ -97,27 +86,11 @@ const QnsAns = () => {
 
                 {openIndex === index && (
                   <div className="px-5 pb-5">
-                    <p
-                      style={{
-                        fontFamily: "'Figtree', sans-serif",
-                        fontWeight: 300, // light
-                        fontSize: "15px",
-                        color: "#050F27",
-                      }}
-                    >
+                    <p className='text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[20px] font-[Figtree] font-light leading-snug sm:leading-relaxed'>
                       {faq.answer}
                     </p>
                     <div className="flex justify-end mt-2">
-                      <span
-                        style={{
-                          fontFamily: "'Satoshi', sans-serif",
-                          fontWeight: 400, // regular
-                          fontSize: "15px",
-                          color: "#050F27",
-                          textDecoration: "underline",
-                          cursor: "pointer",
-                        }}
-                      >
+                      <span className='text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[20px] font-[Figtree] font-light leading-snug sm:leading-relaxed'>
                         Learn more
                       </span>
                     </div>
@@ -127,8 +100,6 @@ const QnsAns = () => {
             ))}
           </div>
         </div>
-
-      </div>
     </div>
   );
 };
