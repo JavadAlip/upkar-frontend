@@ -16,7 +16,7 @@ export default function App() {
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/completed-projects" element={< CompletedPrjcts />} />
           <Route path="/project" element={< Project />} />
-          <Route path="/event" element={< Event />} />
+          <Route path="/events" element={< Event />} />
         </Routes>
       </Layout>
     </Router>

@@ -278,10 +278,12 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="block text-black hover:text-gray-600 transition-colors">
+                            <Link
+                                to="/events" className="block text-black hover:text-gray-600 transition-colors">
                                 Events
-                            </a>
+                            </Link>
                         </li>
+
                         <li>
                             <a href="#" className="block text-black hover:text-gray-600 transition-colors">
                                 Blogs
