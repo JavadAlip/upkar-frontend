@@ -1,5 +1,6 @@
 import React from 'react';
 import { Download, ArrowRight } from 'lucide-react';
+import { RiHome2Line } from "react-icons/ri";
 import Plot1 from "../../assets/Plot1.png";
 import Plot2 from "../../assets/Plot2.png";
 import home from "../../assets/Icons/units.png";
@@ -9,10 +10,12 @@ import box from "../../assets/Icons/box.png";
 import brousche from "../../assets/Icons/brousche.png";
 import plotEnq from "../../assets/Icons/plotEnq.png";
 
+
 const PlotLayout = () => {
+
     const plotDetails = [
         {
-            icon: home,
+            icon: <RiHome2Line className="w-9 h-9 text-gray-300  -mb-7" />,
             label: 'Unit Configuration',
             value: '1,2,2.5,3 BHK'
         },
@@ -32,7 +35,6 @@ const PlotLayout = () => {
             value: '8.42 Acres'
         }
     ];
-
     return (
         <div className="w-full bg-white py-12 px-4 sm:py-16 sm:px-6">
             <div className="max-w-6xl mx-auto">
@@ -54,11 +56,17 @@ const PlotLayout = () => {
                                 className="bg-white rounded-lg p-4 border border-gray-300 hover:border-gray-400 transition-all duration-300"
                             >
                                 <div className="flex items-center gap-3 mb-1">
-                                    <img
-                                        src={detail.icon}
-                                        alt={detail.label}
-                                        className="w-6 h-6 -mb-7 object-contain flex-shrink-0"
-                                    />
+                                    {typeof detail.icon === 'string' ? (
+                                        <img
+                                            src={detail.icon}
+                                            alt={detail.label}
+                                            className="w-6 h-6 -mb-7 object-contain flex-shrink-0"
+                                        />
+                                    ) : (
+                                        <div className="w-6 h-6 flex items-center justify-center">
+                                            {detail.icon}
+                                        </div>
+                                    )}
                                     <p className="font-[Figtree] font-light text-[18px] sm:text-[20px] text-black">
                                         {detail.label}
                                     </p>
