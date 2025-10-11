@@ -1,6 +1,8 @@
 import React from 'react';
-import { Linkedin, Instagram, Youtube, Twitter } from 'lucide-react';
 import Footerimg from "../../assets/Footer.png";
+import { FaLinkedin, FaWhatsapp, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+
 
 const Footer = () => {
   return (
@@ -10,53 +12,63 @@ const Footer = () => {
 
         {/* Left - Description */}
         <div className="md:col-span-1 flex flex-col">
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-white">
-            Stay connected, explore opportunities, and invest with confidence.
-            Your real estate success starts here.
+          <p className="font-[Figtree] text-[20px] font-light leading-[1] text-white">
+            Stay connected, explore opportunities,<br />
+            and invest with confidence. Your real<br />
+            estate success starts here.
           </p>
-
           {/* Social Icons */}
           <div className="flex gap-4 mt-6">
             <a href="#" className="hover:text-gray-300 transition-colors">
-              <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
+              <FaLinkedin className="w-5 h-5 sm:w-6 sm:h-6" />
             </a>
             <a href="#" className="hover:text-gray-300 transition-colors">
-              <Instagram className="w-5 h-5 sm:w-6 sm:h-6" />
+              <FaWhatsapp className="w-5 h-5 sm:w-6 sm:h-6" />
             </a>
             <a href="#" className="hover:text-gray-300 transition-colors">
-              <Youtube className="w-5 h-5 sm:w-6 sm:h-6" />
+              <FaInstagram className="w-5 h-5 sm:w-6 sm:h-6" />
             </a>
             <a href="#" className="hover:text-gray-300 transition-colors">
-              <Twitter className="w-5 h-5 sm:w-6 sm:h-6" />
+              <FaXTwitter className="w-5 h-5 sm:w-6 sm:h-6" />
             </a>
           </div>
         </div>
 
-        {/* Middle - About Us Links */}
-        <div className="md:col-span-1">
-          <ul className="space-y-2">
+
+        {/* Middle - Other Links (now shifted to center) */}
+        <div className="md:col-span-1 md:ml-20 lg:ml-52">
+          <ul className="space-y-2 font-[figtree] font-normal text-[17px]">
             {["About us", "Ongoing", "Upcoming", "Completed"].map((item, idx) => (
               <li key={idx}>
-                <a href="#" className="hover:text-gray-300 transition-colors text-sm sm:text-base md:text-lg">
+                <a
+                  href="#"
+                  className="hover:text-gray-300 transition-colors"
+                >
                   {item}
                 </a>
               </li>
             ))}
           </ul>
+
         </div>
 
-        {/* Right - Other Links */}
-        <div className="md:col-span-1">
-          <ul className="space-y-2">
+        {/* Right - About Us Links (moved to far right) */}
+        <div className="md:col-span-1 lg:ml-11">
+          <ul className="space-y-2 inline-block text-left font-[Figtree] text-[17px] text-white">
             {["Commercial", "Events", "Blogs", "Careers"].map((item, idx) => (
               <li key={idx}>
-                <a href="#" className="hover:text-gray-300 transition-colors text-sm sm:text-base md:text-lg">
+                <a
+                  href="#"
+                  className="hover:text-gray-300 transition-colors font-normal"
+                >
                   {item}
                 </a>
               </li>
             ))}
           </ul>
+
         </div>
+
 
       </div>
 
@@ -65,7 +77,7 @@ const Footer = () => {
           All Rights Reserved 2025 | <span className="font-bold">Upkar Groups</span>
         </p>
 
-        <img src={Footerimg} alt="Upkar Logo"  className="w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] object-contain" />
+        <img src={Footerimg} alt="Upkar Logo" className="w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] object-contain" />
       </div>
 
     </footer>

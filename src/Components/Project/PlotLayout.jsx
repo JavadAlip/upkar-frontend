@@ -103,18 +103,17 @@ const PlotLayout = () => {
 
                     {/* Text Overlay - Left Bottom */}
                     <div className="absolute bottom-0 left-0 right-0 pb-6 sm:pb-12 pl-4 sm:pl-12 text-white space-y-2 sm:space-y-4">
-                        <h3 className="font-[Figtree] ml-4 sm:ml-16 font-normal text-[32px] sm:text-[64px] md:text-[80px] lg:text-[96px] text-white leading-tight sm:leading-tight">
+                        <h3 className="font-[Figtree] ml-4 sm:ml-16 font-normal text-[32px] sm:text-[64px] md:text-[80px] lg:text-[96px] text-white leading-tight sm:leading-tight lg:mb-[-25px] md:mb-[-25px]">
                             Start Low
                         </h3>
-
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 ">
                             <img
                                 src={plotEnq}
                                 alt="Enquire Now"
                                 className="w-24 sm:w-32 md:w-40 lg:w-48 cursor-pointer hover:opacity-90 transition-opacity"
                             />
 
-                            <h3 className="font-[Figtree] font-semibold text-[32px] sm:text-[64px] md:text-[80px] lg:text-[96px] text-white leading-tight sm:leading-tight">
+                            <h3 className="font-[Figtree] font-semibold text-[32px] sm:text-[64px] md:text-[80px] lg:text-[96px] text-white leading-tight sm:leading-tight ">
                                 Save More
                             </h3>
                         </div>
