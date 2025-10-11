@@ -125,17 +125,7 @@ const Navbar = () => {
                     </div>
                 </li>
 
-                {/* Static Links */}
-                {/* {["Commercial", "Events", "Blogs", "Careers"].map((item) => (
-                    <li key={item}>
-                        <a
-                            href="#"
-                            className="text-black hover:text-gray-600 transition-colors duration-300"
-                        >
-                            {item}
-                        </a>
-                    </li>
-                ))} */}
+              
                 <li>
                     <a href="#" className="text-black hover:text-gray-600 transition-colors duration-300">
                         Commercial
@@ -156,9 +146,9 @@ const Navbar = () => {
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="text-black hover:text-gray-600 transition-colors duration-300">
+                    <Link to="/career" className="text-black hover:text-gray-600 transition-colors duration-300">
                         Careers
-                    </a>
+                    </Link>
                 </li>
 
 
@@ -290,9 +280,9 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li>
-                            <a href="#" className="block text-black hover:text-gray-600 transition-colors">
+                            <Link to="/career" className="block text-black hover:text-gray-600 transition-colors">
                                 Careers
-                            </a>
+                            </Link>
                         </li>
 
 

@@ -5,7 +5,7 @@ import AboutUs from "./Pages/AboutUs";
 import CompletedPrjcts from "./Pages/CompletedPrjcts";
 import Project from "./Pages/Project";
 import Event from "./Pages/Event";
-
+import Career from "./Pages/Career"
 
 export default function App() {
   return (
@@ -17,6 +17,7 @@ export default function App() {
           <Route path="/completed-projects" element={< CompletedPrjcts />} />
           <Route path="/project" element={< Project />} />
           <Route path="/events" element={< Event />} />
+          <Route path="/career" element={< Career />} />
         </Routes>
       </Layout>
     </Router>
