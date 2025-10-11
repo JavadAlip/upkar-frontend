@@ -2,6 +2,7 @@ import React from 'react';
 import Footerimg from "../../assets/Footer.png";
 import { FaLinkedin, FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 
 const Footer = () => {
@@ -34,39 +35,81 @@ const Footer = () => {
           </div>
         </div>
 
-
         {/* Middle - Other Links (now shifted to center) */}
         <div className="md:col-span-1 md:ml-20 lg:ml-52">
           <ul className="space-y-2 font-[figtree] font-normal text-[17px]">
-            {["About us", "Ongoing", "Upcoming", "Completed"].map((item, idx) => (
-              <li key={idx}>
-                <a
-                  href="#"
-                  className="hover:text-gray-300 transition-colors"
-                >
-                  {item}
-                </a>
-              </li>
-            ))}
+            <li>
+              <Link
+                to="/aboutus"
+                className="hover:text-gray-300 transition-colors"
+              >
+                About us
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/"
+                className="hover:text-gray-300 transition-colors"
+              >
+                Ongoing
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/"
+                className="hover:text-gray-300 transition-colors"
+              >
+                Upcoming
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/completed-projects"
+                className="hover:text-gray-300 transition-colors"
+              >
+                Completed
+              </Link>
+            </li>
           </ul>
-
         </div>
 
         {/* Right - About Us Links (moved to far right) */}
+
         <div className="md:col-span-1 lg:ml-11">
           <ul className="space-y-2 inline-block text-left font-[Figtree] text-[17px] text-white">
-            {["Commercial", "Events", "Blogs", "Careers"].map((item, idx) => (
-              <li key={idx}>
-                <a
-                  href="#"
-                  className="hover:text-gray-300 transition-colors font-normal"
-                >
-                  {item}
-                </a>
-              </li>
-            ))}
+            <li>
+              <Link
+                to="/"
+                className="hover:text-gray-300 transition-colors font-normal"
+              >
+                Commercial
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/"
+                className="hover:text-gray-300 transition-colors font-normal"
+              >
+                Events
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/"
+                className="hover:text-gray-300 transition-colors font-normal"
+              >
+                Blogs
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/"
+                className="hover:text-gray-300 transition-colors font-normal"
+              >
+                Careers
+              </Link>
+            </li>
           </ul>
-
         </div>
 
 
