@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import AboutUs from "./Pages/AboutUs";
 import CompletedPrjcts from "./Pages/CompletedPrjcts";
 import Project from "./Pages/Project";
+import Event from "./Pages/Event";
 
 
 export default function App() {
@@ -13,9 +14,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/aboutus" element={<AboutUs />} />
-
           <Route path="/completed-projects" element={< CompletedPrjcts />} />
           <Route path="/project" element={< Project />} />
+          <Route path="/event" element={< Event />} />
         </Routes>
       </Layout>
     </Router>
