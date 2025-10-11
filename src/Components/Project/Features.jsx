@@ -27,10 +27,11 @@ const Features = () => {
                         {/* Left Column */}
                         <div className="lg:w-5/12 flex flex-col justify-center">
                             {/* Text centered above the image */}
-                            <p className="text-white text-[24px] font-light font-[Figtree] text-center mb-6">
+                            <p className="text-white text-[20px] sm:text-[24px] font-light font-[Figtree] text-center mb-6">
                                 Upkar Spring Woods is a BMRDA,<br />
                                 approved residential layout.
                             </p>
+
 
                             {/* Image */}
                             <div className="relative rounded-2xl overflow-hidden">
