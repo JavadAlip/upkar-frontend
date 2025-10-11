@@ -30,7 +30,7 @@ const Certification = () => {
   ];
 
   return (
-    <div className="w-full py-6 sm:py-8 md:py-10 lg:py-12 font-[Figtree]">
+    <div className="w-full pt-6 sm:pt-8 md:pt-10 lg:pt-12 font-[Figtree]">
 
       <div className="bg-gray-100 py-10 sm:py-14 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -76,56 +76,46 @@ const Certification = () => {
         </div>
       </div>
 
+      <div className="px-4 lg:px-20 py-6 sm:py-8 md:py-10 lg:py-12">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 lg:pt-16">
-        <div
-          className="relative rounded-3xl overflow-hidden"
-          style={{
-            backgroundImage: `url(${CertificationImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            minHeight: "350px",
-          }}
-        >
+        <div className="px-4 lg:px-10 py-10 sm:py-12 md:py-20 lg:py-24 flex items-center justify-center align-center relative rounded-[23px] overflow-hidden" style={{ backgroundImage: `url(${CertificationImage})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+          <div className="relative w-[90%] bg-gradient-to-b from-white/50 via-white/30 via-white/20 to-white/0 backdrop-blur-lg border border-white/20 rounded-[23px] px-4 lg:px-10 py-10 sm:py-12 md:py-20 lg:py-24 text-center shadow-lg flex align-center justify-center gap-2 border border-[#3a4200]">
 
-          <div className="relative z-10 flex items-center justify-center min-h-[350px] px-4 sm:px-6 lg:px-12">
-            <div className="relative w-[100%] sm:w-3/4 lg:w-1/2 bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl px-6 sm:px-10 py-8 sm:py-12 text-center shadow-lg">
-
-              <div className="absolute top-3 left-3 sm:top-5 sm:left-5 flex gap-1 sm:gap-2 opacity-90">
-                <img
-                  src={QuoteUp}
-                  alt="quote up"
-                  className="w-4 sm:w-5 md:w-6 lg:w-7"
-                />
-                <img
-                  src={QuoteUp}
-                  alt="quote up"
-                  className="w-4 sm:w-5 md:w-6 lg:w-7"
-                />
-              </div>
-
-              <div className="absolute top-3 right-3 sm:top-5 sm:right-5 flex gap-1 sm:gap-2 opacity-90">
-                <img
-                  src={QuoteDown}
-                  alt="quote down"
-                  className="w-4 sm:w-5 md:w-6 lg:w-7"
-                />
-                <img
-                  src={QuoteDown}
-                  alt="quote down"
-                  className="w-4 sm:w-5 md:w-6 lg:w-7"
-                />
-              </div>
-
-              <p className="text-center text-white text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed sm:leading-relaxed max-w-[80%] mx-auto font-[Figtree]">
-                One of the reputed developers in Bangalore with timely delivery. They have amazing
-                properties in Bangalore with reasonable pricing, moreover, these people maintain
-                good relationship management with clients.
-              </p>
+            <div className="h-full flex flex-row align-start gap-[0px] opacity-90">
+              <img
+                src={QuoteUp}
+                alt="quote up"
+                className="w-6 lg:w-8 aspect-square object-contain"
+              />
+              <img
+                src={QuoteUp}
+                alt="quote up"
+                className="w-6 lg:w-8 aspect-square object-contain"
+              />
             </div>
-          </div>
 
+            <p className="text-center mt-2 text-white text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] leading-snug sm:leading-tight md:leading-tight lg:leading-[1.2] max-w-[60%] font-[Figtree]">
+              One of the reputed developers in Bangalore with timely delivery. They have amazing
+              properties in Bangalore with reasonable pricing, moreover, these people maintain
+              good relationship management with clients.
+            </p>
+
+            <div className="h-full flex flex-row align-start gap-[0px] opacity-90">
+              <img
+                src={QuoteDown}
+                alt="quote down"
+                className="w-6 lg:w-8 aspect-square object-contain"
+              />
+              <img
+                src={QuoteDown}
+                alt="quote down"
+                className="w-6 lg:w-8 aspect-square object-contain"
+              />
+            </div>
+
+          </div>
         </div>
+
       </div>
 
     </div>

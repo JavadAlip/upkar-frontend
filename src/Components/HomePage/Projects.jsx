@@ -92,10 +92,7 @@ const Projects = () => {
                 <img src={Project2} alt="Upcoming Project" className="w-full h-full object-cover" />
               </div>
 
-              <div
-                className="absolute -bottom-6 left-56 translate-x-1/3 bg-white rounded-lg shadow-lg p-6"
-                style={{ width: '430px' }}
-              >
+              <div className="absolute bottom-10 -right-56 bg-white rounded-xl shadow-xl p-4 sm:p-6 translate-y-1/3" style={{ width: '430px' }}>
                 <p
                   style={{
                     fontFamily: "'Figtree', sans-serif",
