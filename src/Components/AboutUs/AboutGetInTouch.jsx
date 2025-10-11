@@ -27,7 +27,7 @@ const AboutGetInTouch = () => {
   return (
     <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 font-[Figtree]">
       <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight">
-        Get in <span className="font-bold">Touch</span>
+        Get in <span className="font-semibold">Touch</span>
       </h2>
 
       <div className="flex flex-col items-center">

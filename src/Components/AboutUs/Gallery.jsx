@@ -14,7 +14,10 @@ const Gallery = () => {
   return (
     <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
 
-      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight mb-4 lg:mb-12">Gallery</h2>
+      <h2 className="text-[48px] font-[Figtree] font-semibold text-black leading-tight mb-12">
+        Gallery
+      </h2>
+
 
       <div className="relative hidden sm:block">
         <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth pb-6" style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth" }}>

@@ -13,7 +13,7 @@ const Team = () => {
     <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 font-[Figtree]">
       <div className="flex items-center gap-3 mb-4 lg:mb-12">
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight">
-          Our <span className="font-bold">Team !</span>
+          Our <span className="font-semibold">Team !</span>
         </h2>
       </div>
 

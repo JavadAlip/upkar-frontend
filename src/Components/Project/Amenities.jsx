@@ -33,9 +33,10 @@ const Amenities = () => {
       <div className="max-w-6xl mx-auto">
 
         {/* Section Title */}
-        <h2 className="text-4xl md:text-5xl font-bold mb-12">
+        <h2 className="text-[48px] font-[Figtree] font-semibold text-black mb-12">
           Amenities
         </h2>
+
 
         {/* Amenities Grid - Each row has all 4 amenities */}
         <div className="space-y-8">
@@ -49,8 +50,8 @@ const Amenities = () => {
                 >
                   {/* Icon and Name in single row */}
                   <div className="flex items-center gap-4">
-                    <img 
-                      src={amenity.icon} 
+                    <img
+                      src={amenity.icon}
                       alt={amenity.name}
                       className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300 flex-shrink-0"
                     />

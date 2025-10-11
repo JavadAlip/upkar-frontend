@@ -32,7 +32,7 @@ const AboutCertification = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header Section */}
         <div className="mb-12">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight text-white mb-8 lg:mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-semibold leading-tight text-white mb-8 lg:mb-12">
             Certifications
           </h2>
 
