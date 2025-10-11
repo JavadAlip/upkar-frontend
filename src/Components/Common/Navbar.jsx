@@ -181,7 +181,7 @@ const Navbar = () => {
                         <li>
                             <Link
                                 to="/aboutus"
-                                className="block text-gray-700 hover:text-blue-600 transition-colors"
+                                className="block text-black hover:text-gray-600 transition-colors"
                                 onClick={() => setMenuOpen(false)}
                             >
                                 About us
@@ -191,17 +191,56 @@ const Navbar = () => {
                         <li>
                             <a
                                 href="#"
-                                className="block text-gray-700 hover:text-blue-600 transition-colors"
+                                className="block text-black hover:text-gray-600 transition-colors"
                             >
                                 Upcoming
                             </a>
                         </li>
+                         <li className="relative flex items-center space-x-1 cursor-pointer group">
+                    <div
+                        onMouseEnter={() => {
+                            setCompletedOpen(true);
+                            if (window.completedTimeout) {
+                                clearTimeout(window.completedTimeout);
+                                window.completedTimeout = null;
+                            }
+                        }}
+                        onMouseLeave={() => {
+                            window.completedTimeout = setTimeout(() => {
+                                setCompletedOpen(false);
+                            }, 2000);
+                        }}
+                        className="relative"
+                    >
+                        <Link
+                            to="/completed-projects"
+                            className="text-black hover:text-gray-600 transition-colors duration-300 flex items-center"
+                        >
+                            Completed
+                            <ChevronDown
+                                className={`ml-1 w-4 h-4 transition-transform duration-300 ${completedOpen ? "rotate-180 text-gray-600" : "text-gray-500"
+                                    }`}
+                            />
+                        </Link>
+
+                        {completedOpen && (
+                            <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
+                                <Link
+                                    to="/project"
+                                    className="block px-4 py-2 text-black hover:bg-gray-50  transition-colors"
+                                >
+                                    Project
+                                </Link>
+                            </div>
+                        )}
+                    </div>
+                </li>
 
                         {["Commercial", "Events", "Blogs", "Careers"].map((item) => (
                             <li key={item}>
                                 <a
                                     href="#"
-                                    className="block text-gray-700 hover:text-blue-600 transition-colors"
+                                    className="block text-black hover:text-gray-600 transition-colors"
                                 >
                                     {item}
                                 </a>

@@ -23,7 +23,6 @@ const PrjctMain = () => {
     'https://i.pravatar.cc/150?img=1',
     'https://i.pravatar.cc/150?img=2',
     'https://i.pravatar.cc/150?img=3',
-    'https://i.pravatar.cc/150?img=4'
   ];
 
   return (
@@ -48,21 +47,26 @@ const PrjctMain = () => {
 
 
             {/* Thumbnail Grid */}
-            <div className="grid grid-cols-4 gap-3">
-              {galleryImages.map((img, index) => (
-                <div
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${currentImageIndex === index ? 'ring-2 ring-black' : ''
-                    }`}
-                >
-                  <img
-                    src={img}
-                    alt={`Gallery ${index + 1}`}
-                    className="w-full h-20 object-cover hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-              ))}
+            <div className="relative">
+              <div className="grid grid-cols-4 gap-3">
+                {galleryImages.map((img, index) => (
+                  <div
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${currentImageIndex === index ? '' : ''}`}
+                  >
+                    <img
+                      src={img}
+                      alt={`Gallery ${index + 1}`}
+                      className="w-full h-32 object-cover hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* White Gradient Overlay - Only Left and Right Edges */}
+              <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
+              <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"></div>
             </div>
 
             {/* Arrow Navigation */}
@@ -135,6 +139,9 @@ const PrjctMain = () => {
                       className="w-10 sm:w-12 h-10 sm:h-12 rounded-full border-2 border-white"
                     />
                   ))}
+                   <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-[#008000] border-2 border-white flex items-center justify-center cursor-pointer hover:bg-green-600 transition-colors">
+                    <span className="text-white text-2xl font-light">+</span>
+                  </div>
                 </div>
                 <p className="font-satoshi font-normal text-sm sm:text-base text-upkarText">
                   10K ratings (4.8)
