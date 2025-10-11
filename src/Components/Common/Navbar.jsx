@@ -33,7 +33,7 @@ const Navbar = () => {
                 <li>
                     <Link
                         to="/aboutus"
-                        className="text-gray-700 hover:text-blue-600 transition-colors duration-300 whitespace-nowrap"
+                        className="text-black hover:text-gray-600 transition-colors duration-300 whitespace-nowrap"
                     >
                         About us
                     </Link>
@@ -55,10 +55,10 @@ const Navbar = () => {
                         }}
                         className="relative"
                     >
-                        <span className="text-gray-700 hover:text-blue-600 transition-colors duration-300 flex items-center">
+                        <span className="text-black hover:text-gray-600 transition-colors duration-300 flex items-center">
                             Ongoing
                             <ChevronDown
-                                className={`ml-1 w-4 h-4 transition-transform duration-300 ${ongoingOpen ? "rotate-180 text-blue-600" : "text-gray-500"
+                                className={`ml-1 w-4 h-4 transition-transform duration-300 ${ongoingOpen ? "rotate-180 text-gray-600" : "text-gray-500"
                                     }`}
                             />
                         </span>
@@ -67,7 +67,7 @@ const Navbar = () => {
                             <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
                                 <Link
                                     to="/"
-                                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                                    className="block px-4 py-2 text-black hover:bg-gray-50  transition-colors"
                                 >
                                     Project
                                 </Link>
@@ -79,7 +79,7 @@ const Navbar = () => {
                 <li>
                     <a
                         href="#"
-                        className="text-gray-700 hover:text-blue-600 transition-colors duration-300"
+                        className="text-black hover:text-gray-600 transition-colors duration-300"
                     >
                         Upcoming
                     </a>
@@ -103,11 +103,11 @@ const Navbar = () => {
                     >
                         <Link
                             to="/completed-projects"
-                            className="text-gray-700 hover:text-blue-600 transition-colors duration-300 flex items-center"
+                            className="text-black hover:text-gray-600 transition-colors duration-300 flex items-center"
                         >
                             Completed
                             <ChevronDown
-                                className={`ml-1 w-4 h-4 transition-transform duration-300 ${completedOpen ? "rotate-180 text-blue-600" : "text-gray-500"
+                                className={`ml-1 w-4 h-4 transition-transform duration-300 ${completedOpen ? "rotate-180 text-gray-600" : "text-gray-500"
                                     }`}
                             />
                         </Link>
@@ -116,7 +116,7 @@ const Navbar = () => {
                             <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
                                 <Link
                                     to="/project"
-                                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                                    className="block px-4 py-2 text-black hover:bg-gray-50  transition-colors"
                                 >
                                     Project
                                 </Link>
@@ -130,7 +130,7 @@ const Navbar = () => {
                     <li key={item}>
                         <a
                             href="#"
-                            className="text-gray-700 hover:text-blue-600 transition-colors duration-300"
+                            className="text-black hover:text-gray-600 transition-colors duration-300"
                         >
                             {item}
                         </a>
