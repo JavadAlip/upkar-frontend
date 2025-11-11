@@ -33,20 +33,24 @@ const Projects = () => {
 
 
               <p
+                className="text-sm sm:text-base lg:text-xl"
                 style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '20px', color: '#000000', lineHeight: '1.2' }}
               >
                 Investing in an <span className="font-semibold">Ongoing project</span> offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.
               </p>
 
-              <ul className="space-y-2">
+              <ul className="space-y-2 text-sm sm:text-base lg:text-lg">
                 <li style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }} className="flex items-start">
-                  <span className="mr-2">•</span> Early bird pricing
+                  <span className="mr-2 flex-shrink-0">•</span>
+                  <span>Early bird pricing</span>
                 </li>
                 <li style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }} className="flex items-start">
-                  <span className="mr-2">•</span> Prime location selection
+                  <span className="mr-2 flex-shrink-0">•</span>
+                  <span>Prime location selection</span>
                 </li>
                 <li style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }} className="flex items-start">
-                  <span className="mr-2">•</span> A future-proof investment
+                  <span className="mr-2 flex-shrink-0">•</span>
+                  <span>A future-proof investment</span>
                 </li>
               </ul>
 
@@ -160,15 +164,18 @@ const Projects = () => {
                 Investing in a <span className="font-semibold">Completed project</span> offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.
               </p>
 
-              <ul className="space-y-2">
+              <ul className="space-y-2 text-sm sm:text-base lg:text-lg">
                 <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
-                  <span className="mr-2">•</span> Early-bird pricing
+                  <span className="mr-2 flex-shrink-0">•</span>
+                  <span>Early-bird pricing</span>
                 </li>
                 <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
-                  <span className="mr-2">•</span> Prime location selection
+                  <span className="mr-2 flex-shrink-0">•</span>
+                  <span>Prime location selection</span>
                 </li>
                 <li className="flex items-start" style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}>
-                  <span className="mr-2">•</span> A future-proof investment
+                  <span className="mr-2 flex-shrink-0">•</span>
+                  <span>A future-proof investment</span>
                 </li>
               </ul>
 
@@ -179,7 +186,184 @@ const Projects = () => {
                   className="w-45 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
                 />
               </div>
+            </div>
 
+            <div className="relative mt-8 lg:mt-0">
+              <div className="rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-lg lg:shadow-xl">
+                <img src={Project3} alt="Completed Project" className="w-full h-48 sm:h-64 lg:h-auto object-cover" />
+              </div>
+
+              <div
+                className="relative sm:absolute sm:-bottom-6 sm:-left-32 md:-left-48 lg:-left-56 right-0 sm:right-4 mt-4 sm:mt-0 bg-white rounded-lg shadow-lg p-4 sm:p-6"
+                style={{ maxWidth: '100%', width: 'auto' }}
+              >
+                <p
+                  style={{
+                    fontFamily: "'Figtree', sans-serif",
+                    fontWeight: 300,
+                    fontSize: '16px',
+                    color: '#000000',
+                    lineHeight: '1.6',
+                    margin: 0
+                  }}
+                >
+                  Aim is to consistently deliver exceptional homes and build lasting relationships based on trust, quality, and a commitment to customer satisfaction.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-12 sm:space-y-16 block lg:hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center pb-10 sm:pb-12">
+            <div className="space-y-6">
+              <h2
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight"
+                style={{ fontFamily: "'Noto Serif JP', serif", }}
+              >
+                Looking Ahead to
+                <br />
+                <span style={{ fontWeight: 700 }}>Your Future</span>?
+              </h2>
+
+
+              <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                Investing in an <span className="font-semibold">Ongoing project</span> offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.
+              </p>
+
+              <ul className="space-y-2">
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                  <span className="mr-2">•</span> Early bird pricing
+                </li>
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                  <span className="mr-2">•</span> Prime location selection
+                </li>
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                  <span className="mr-2">•</span> A future-proof investment
+                </li>
+              </ul>
+
+              <div className="mt-4">
+                <img
+                  src={ProjectBtn1}
+                  alt="Explore Ongoing Projects"
+                  className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden shadow-xl">
+                <img src={Project1} alt="Ongoing Project" className="w-full h-64 sm:h-80 md:h-full object-cover" />
+              </div>
+
+              <div
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[85%] sm:w-[75%] md:w-[65%] bg-white rounded-lg shadow-lg p-3 sm:p-4"
+                style={{ maxWidth: '77%' }}
+              >
+                <p
+                  style={{
+                    fontFamily: "'Figtree', sans-serif",
+                    fontWeight: 300,
+                    fontSize: '16px',
+                    color: '#000000',
+                    lineHeight: '1.6',
+                    margin: 0
+                  }}
+                >
+                  Aim is to consistently deliver exceptional homes and build lasting relationships based on trust, quality, and a commitment to customer satisfaction.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center pb-10 sm:pb-12">
+            <div className="space-y-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight" style={{ fontFamily: "'Noto Serif JP', serif" }}>
+                Watch Your Future <span style={{ fontWeight: 700 }}>Take Shape.</span>
+              </h2>
+
+              <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                Investing in an <span className="font-semibold">Upcoming project</span> offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.
+              </p>
+
+              <ul className="space-y-2">
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                  <span className="mr-2">•</span> Early-bird pricing
+                </li>
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                  <span className="mr-2">•</span> Prime location selection
+                </li>
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                  <span className="mr-2">•</span> A future-proof investment
+                </li>
+              </ul>
+
+              <div className="mt-4">
+                <img
+                  src={ProjectBtn3}
+                  alt="Explore Completed Projects"
+                  className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden shadow-xl">
+                <img src={Project2} alt="Upcoming Project" className="w-full h-64 sm:h-80 md:h-full object-cover" />
+              </div>
+
+              <div
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[85%] sm:w-[75%] md:w-[65%] bg-white rounded-lg shadow-lg p-3 sm:p-4"
+                style={{ maxWidth: '77%' }}
+              >
+                <p
+                  style={{
+                    fontFamily: "'Figtree', sans-serif",
+                    fontWeight: 300,
+                    fontSize: '16px',
+                    color: '#000000',
+                    lineHeight: '1.6',
+                    margin: 0
+                  }}
+                >
+                  Aim is to consistently deliver exceptional homes and build lasting relationships based on trust, quality, and a commitment to customer satisfaction.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center pb-10 sm:pb-12">
+            <div className="space-y-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight" style={{ fontFamily: "'Noto Serif JP', serif" }}>
+                Discover Your
+                <br />
+                <span style={{ fontWeight: 700 }}>Ready-to-Build Plot.</span>
+              </h2>
+
+              <p>
+                Investing in a <span className="font-semibold">Completed project</span> offers the unique opportunity to secure your ideal plot in a prime location. Get ahead of the market and be the first to choose from the best options available.
+              </p>
+
+              <ul className="space-y-2">
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                  <span className="mr-2">•</span> Early-bird pricing
+                </li>
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                  <span className="mr-2">•</span> Prime location selection
+                </li>
+                <li className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                  <span className="mr-2">•</span> A future-proof investment
+                </li>
+              </ul>
+
+              <div className="mt-4">
+                <img
+                  src={ProjectBtn3}
+                  alt="Explore Completed Projects"
+                  className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
+                />
+              </div>
             </div>
 
             <div className="relative">
