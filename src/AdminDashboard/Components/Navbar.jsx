@@ -1,11 +1,65 @@
+// import React from "react";
+
+// const Navbar = () => {
+//   return (
+//     <div className="w-full h-16 bg-white shadow flex items-center justify-between px-6">
+//       <h1 className="text-xl font-bold text-gray-800">Admin Dashboard</h1>
+//       <div>
+//         <button className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700">
+//           Logout
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Navbar;
+
+
+
+
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2"; // ✅ SweetAlert2
+import "sweetalert2/dist/sweetalert2.min.css";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // 1️⃣ Show confirmation modal before logout
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out of the admin dashboard!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Logout!",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // 2️⃣ Remove token
+        localStorage.removeItem("adminToken");
+
+        // 3️⃣ Redirect to login
+        navigate("/admin-login");
+
+        // 4️⃣ Optional toast
+        toast.success("Logged out successfully!");
+      }
+    });
+  };
+
   return (
     <div className="w-full h-16 bg-white shadow flex items-center justify-between px-6">
       <h1 className="text-xl font-bold text-gray-800">Admin Dashboard</h1>
       <div>
-        <button className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700">
+        <button
+          onClick={handleLogout} 
+          className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700"
+        >
           Logout
         </button>
       </div>
