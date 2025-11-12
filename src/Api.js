@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api";
+// const API_URL = "http://localhost:5000/api";
+const API_URL = "https://upkar-backend.onrender.com/api";
 
 //banners
 export const getBanners = async (token) => {
