@@ -1,40 +1,63 @@
 import React, { useState, useEffect } from "react";
 import { Plus, Edit, Trash2 } from "lucide-react";
-
-// Dummy data (replace with API call later)
-const dummyCertifications = [
-  {
-    _id: "1",
-    heading: "Certified React Developer",
-    icon: "https://via.placeholder.com/50",
-    createdAt: "2025-11-11",
-  },
-  {
-    _id: "2",
-    heading: "MongoDB Expert",
-    icon: "https://via.placeholder.com/50",
-    createdAt: "2025-11-10",
-  },
-];
+import CertificationAdd from "../Common/CertificationAdd";
+import CertificationEdit from "../Common/CertificationEdit";
+import { getCertifications, deleteCertification } from "../../../Api";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 const Certification = () => {
   const [certifications, setCertifications] = useState([]);
+  const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [selectedCert, setSelectedCert] = useState(null);
+
+  const token = localStorage.getItem("adminToken");
 
   useEffect(() => {
-    // Replace with API fetch later
-    setCertifications(dummyCertifications);
+    fetchCertifications();
   }, []);
 
-  const handleAdd = () => {
-    console.log("Add new Certification");
+  const fetchCertifications = async () => {
+    try {
+      const data = await getCertifications(token);
+      setCertifications(data);
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to fetch certifications!");
+    }
   };
 
-  const handleEdit = (id) => {
-    console.log("Edit Certification", id);
+  const handleDelete = async (id) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "This will be deleted permanently!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await deleteCertification(id, token);
+        setCertifications(certifications.filter((c) => c._id !== id));
+        toast.success("Certification deleted successfully!");
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to delete certification!");
+      }
+    }
   };
 
-  const handleDelete = (id) => {
-    console.log("Delete Certification", id);
+  const handleAddSuccess = () => {
+    fetchCertifications();
+    toast.success("Certification added successfully!");
+  };
+
+  const handleEditSuccess = () => {
+    fetchCertifications();
+    toast.success("Certification updated successfully!");
   };
 
   return (
@@ -43,14 +66,14 @@ const Certification = () => {
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Certifications Management</h1>
         <button
-          onClick={handleAdd}
+          onClick={() => setIsAddOpen(true)}
           className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
         >
           <Plus className="w-4 h-4" /> Add
         </button>
       </div>
 
-      {/* Scrollable Table */}
+      {/* Table */}
       <div className="overflow-x-auto w-full bg-white rounded shadow">
         <div className="min-w-[800px]">
           <table className="min-w-full divide-y divide-gray-200">
@@ -74,7 +97,10 @@ const Certification = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap flex gap-2">
                     <button
-                      onClick={() => handleEdit(cert._id)}
+                      onClick={() => {
+                        setSelectedCert(cert);
+                        setIsEditOpen(true);
+                      }}
                       className="text-blue-500 hover:text-blue-700"
                     >
                       <Edit className="w-4 h-4" />
@@ -99,6 +125,19 @@ const Certification = () => {
           </table>
         </div>
       </div>
+
+      {/* Modals */}
+      <CertificationAdd
+        isOpen={isAddOpen}
+        onClose={() => setIsAddOpen(false)}
+        onAdded={handleAddSuccess}
+      />
+      <CertificationEdit
+        isOpen={isEditOpen}
+        onClose={() => setIsEditOpen(false)}
+        certification={selectedCert}
+        onUpdated={handleEditSuccess}
+      />
     </div>
   );
 };

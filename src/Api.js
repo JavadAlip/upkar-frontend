@@ -88,3 +88,64 @@ export const deleteProject = async (id, token) => {
   });
   return res.data;
 };
+
+
+//certification
+export const getCertifications = async (token) => {
+  const res = await axios.get(`${API_URL}/homepage/get-all-certificates`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+export const createCertification = async (formData, token) => {
+  const res = await axios.post(`${API_URL}/homepage/create-certificate`, formData, {
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" },
+  });
+  return res.data;
+};
+
+export const deleteCertification = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/homepage/delete-certificate/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+// Placeholder for future update API
+export const updateCertification = async (id, formData, token) => {
+  const res = await axios.put(`${API_URL}/homepage/update-certificate/${id}`, formData, {
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" },
+  });
+  return res.data;
+};
+
+
+// Q&A 
+export const getQuestionsAPI = async (token) => {
+  const res = await axios.get(`${API_URL}/homepage/get-all-qns`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+export const createQuestionAPI = async (data, token) => {
+  const res = await axios.post(`${API_URL}/homepage/create-qn`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+export const updateQuestionAPI = async (id, data, token) => {
+  const res = await axios.put(`${API_URL}/homepage/update-qn/${id}`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+export const deleteQuestionAPI = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/homepage/delete-qn/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};

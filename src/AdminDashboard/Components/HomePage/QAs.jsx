@@ -1,102 +1,129 @@
 import React, { useState, useEffect } from "react";
 import { Plus, Edit, Trash2 } from "lucide-react";
-
-// Dummy data (replace with API call later)
-const dummyQAs = [
-  {
-    _id: "1",
-    question: "What is React?",
-    answer: "React is a JavaScript library for building user interfaces.",
-    createdAt: "2025-11-11",
-  },
-  {
-    _id: "2",
-    question: "What is MongoDB?",
-    answer: "MongoDB is a NoSQL document-oriented database.",
-    createdAt: "2025-11-10",
-  },
-];
+import QAsAdd from "../Common/QAsAdd";
+import QAsEdit from "../Common/QAsEdit";
+import { getQuestionsAPI, deleteQuestionAPI } from "../../../Api";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const QAs = () => {
   const [qas, setQAs] = useState([]);
+  const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [selectedQA, setSelectedQA] = useState(null);
+
+  const token = localStorage.getItem("adminToken");
 
   useEffect(() => {
-    // Replace with API fetch later
-    setQAs(dummyQAs);
+    fetchQAs();
   }, []);
 
-  const handleAdd = () => {
-    console.log("Add new QA");
+  const fetchQAs = async () => {
+    try {
+      const data = await getQuestionsAPI(token);
+      setQAs(data);
+    } catch (error) {
+      console.error("Error fetching Q&As:", error);
+      toast.error("Failed to fetch Q&As!");
+    }
   };
 
-  const handleEdit = (id) => {
-    console.log("Edit QA", id);
+  const handleDelete = async (id) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await deleteQuestionAPI(id, token);
+        setQAs(qas.filter((qa) => qa._id !== id));
+        toast.success("Question deleted successfully!");
+      } catch (error) {
+        console.error("Error deleting question:", error);
+        toast.error("Failed to delete question!");
+      }
+    }
   };
 
-  const handleDelete = (id) => {
-    console.log("Delete QA", id);
+  const handleQAAdded = () => {
+    fetchQAs();
+    toast.success("Question added successfully!");
+  };
+
+  const handleQAUpdated = () => {
+    fetchQAs();
+    toast.success("Question updated successfully!");
   };
 
   return (
-    <div className="flex-1 p-6 bg-gray-100 min-h-screen">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-4">
+    <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
         <h1 className="text-2xl font-bold">Q&A Management</h1>
         <button
-          onClick={handleAdd}
+          onClick={() => setIsAddOpen(true)}
           className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
         >
-          <Plus className="w-4 h-4" /> Add
+          <Plus className="w-4 h-4" /> Add Q&A
         </button>
       </div>
 
-      {/* Scrollable Table */}
       <div className="overflow-x-auto w-full bg-white rounded shadow">
-        <div className="min-w-[800px]">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50 sticky top-0">
-              <tr>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Question</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Answer</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Created At</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Actions</th>
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Question</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Answer</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Created At</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {qas.map((qa) => (
+              <tr key={qa._id}>
+                <td className="px-4 py-2">{qa.question}</td>
+                <td className="px-4 py-2">{qa.answer}</td>
+                <td className="px-4 py-2">{new Date(qa.createdAt).toLocaleDateString()}</td>
+                <td className="px-4 py-2 flex gap-2">
+                  <button
+                    onClick={() => {
+                      setSelectedQA(qa);
+                      setIsEditOpen(true);
+                    }}
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(qa._id)}
+                    className="text-red-500 hover:text-red-700"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </td>
               </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {qas.map((qa) => (
-                <tr key={qa._id}>
-                  <td className="px-6 py-4 whitespace-nowrap">{qa.question}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{qa.answer}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    {new Date(qa.createdAt).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap flex gap-2">
-                    <button
-                      onClick={() => handleEdit(qa._id)}
-                      className="text-blue-500 hover:text-blue-700"
-                    >
-                      <Edit className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(qa._id)}
-                      className="text-red-500 hover:text-red-700"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              {qas.length === 0 && (
-                <tr>
-                  <td colSpan={4} className="text-center py-4 text-gray-500">
-                    No Q&A found.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
+
+      {/* Add/Edit Modals */}
+      <QAsAdd
+        isOpen={isAddOpen}
+        onClose={() => setIsAddOpen(false)}
+        onQAAdded={handleQAAdded}
+      />
+      <QAsEdit
+        isOpen={isEditOpen}
+        onClose={() => setIsEditOpen(false)}
+        qa={selectedQA}
+        onUpdate={handleQAUpdated}
+      />
     </div>
   );
 };
