@@ -1,85 +1,78 @@
 import React, { useState } from "react";
+import { createBanner } from "../../../Api";
 
-const BannerAdd = ({ isOpen, onClose, onSave }) => {
-  const [form, setForm] = useState({ title: "", subtitle: "" });
-  const [imagePreview, setImagePreview] = useState(null);
+const BannerAdd = ({ isOpen, onClose, onBannerAdded }) => {
+  const [title, setTitle] = useState("");
+  const [subtitle, setSubtitle] = useState("");
+  const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem("adminToken");
 
-  if (!isOpen) return null;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!title || !image) return alert("Title and image are required!");
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("subtitle", subtitle);
+    formData.append("image", image);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImagePreview(URL.createObjectURL(file));
-      setForm({ ...form, image: file });
+    try {
+      setLoading(true);
+      await createBanner(formData, token);
+      onBannerAdded(); // refresh banners list
+      onClose();
+    } catch (error) {
+      console.error("Error creating banner:", error);
+      alert("Failed to create banner.");
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleSubmit = () => {
-    onSave({
-      ...form,
-      image: imagePreview || "https://via.placeholder.com/100", // fallback
-      createdAt: new Date(),
-    });
-    onClose();
-  };
+  if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-40 z-50">
-      <div className="bg-white p-6 rounded-lg w-[400px]">
-        <h2 className="text-lg font-semibold mb-4">Add New Banner</h2>
-
-        {/* Title */}
-        <input
-          name="title"
-          value={form.title}
-          onChange={handleChange}
-          className="border p-2 w-full mb-3 rounded"
-          placeholder="Title"
-        />
-
-        {/* Subtitle */}
-        <input
-          name="subtitle"
-          value={form.subtitle}
-          onChange={handleChange}
-          className="border p-2 w-full mb-3 rounded"
-          placeholder="Subtitle"
-        />
-
-        {/* Image Upload */}
-        <label className="block mb-2 font-medium text-sm text-gray-700">
-          Banner Image
-        </label>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          className="border p-2 w-full mb-3 rounded"
-        />
-        {imagePreview && (
-          <img
-            src={imagePreview}
-            alt="Preview"
-            className="w-full h-32 object-cover rounded mb-3"
+    <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+      <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
+        <h2 className="text-xl font-semibold mb-4">Add Banner</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Title"
+            className="border p-2 w-full mb-3 rounded"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
-        )}
-
-        {/* Buttons */}
-        <div className="flex justify-end gap-2">
-          <button onClick={onClose} className="px-4 py-1 border rounded">
-            Cancel
-          </button>
-          <button
-            onClick={handleSubmit}
-            className="px-4 py-1 bg-blue-500 text-white rounded"
-          >
-            Save
-          </button>
-        </div>
+          <input
+            type="text"
+            placeholder="Subtitle"
+            className="border p-2 w-full mb-3 rounded"
+            value={subtitle}
+            onChange={(e) => setSubtitle(e.target.value)}
+          />
+          <input
+            type="file"
+            accept="image/*"
+            className="mb-3"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
+          <div className="flex justify-end gap-2">
+            <button
+              type="button"
+              className="px-4 py-2 bg-gray-300 rounded"
+              onClick={onClose}
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
+            >
+              {loading ? "Uploading..." : "Add"}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

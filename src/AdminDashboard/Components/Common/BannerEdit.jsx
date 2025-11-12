@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { editBanner } from "../../../Api"; 
 
 const BannerEdit = ({ isOpen, onClose, banner, onUpdate }) => {
-  const [form, setForm] = useState({ title: "", subtitle: "", image: "" });
+  const [form, setForm] = useState({ title: "", subtitle: "", image: null });
   const [imagePreview, setImagePreview] = useState("");
+
+  const token = localStorage.getItem("adminToken"); 
 
   useEffect(() => {
     if (banner) {
       setForm({
         title: banner.title,
         subtitle: banner.subtitle,
-        image: banner.image,
+        image: null, // reset file input
       });
       setImagePreview(banner.image);
     }
@@ -29,12 +32,20 @@ const BannerEdit = ({ isOpen, onClose, banner, onUpdate }) => {
     }
   };
 
-  const handleSubmit = () => {
-    onUpdate(banner._id, {
-      ...form,
-      image: imagePreview || banner.image,
-    });
-    onClose();
+  const handleSubmit = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("title", form.title);
+      formData.append("subtitle", form.subtitle);
+      if (form.image) formData.append("image", form.image);
+
+      await editBanner(banner._id, formData, token); // ✅ Call API
+
+      onUpdate(); // refresh banners in parent
+      onClose();  // close modal
+    } catch (error) {
+      console.error("Error updating banner:", error);
+    }
   };
 
   return (
