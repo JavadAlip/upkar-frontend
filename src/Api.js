@@ -59,3 +59,32 @@ export const deleteVisionMission = async (token) => {
   });
   return res.data;
 };
+
+
+
+// Projects
+export const getProjects = async (token) => {
+  const res = await axios.get(`${API_URL}/homepage/get-all-projects`, { headers: { Authorization: `Bearer ${token}` } });
+  return res.data;
+};
+
+export const createProject = async (formData, token) => {
+  const res = await axios.post(`${API_URL}/homepage/create-project`, formData, {
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" },
+  });
+  return res.data;
+};
+
+export const updateProject = async (id, formData, token) => {
+  const res = await axios.put(`${API_URL}/homepage/update-project/${id}`, formData, {
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" },
+  });
+  return res.data;
+};
+
+export const deleteProject = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/homepage/delete-project/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
