@@ -149,3 +149,32 @@ export const deleteQuestionAPI = async (id, token) => {
   });
   return res.data;
 };
+
+
+
+// Awards
+export const getAwardsAPI = async () => {
+  const { data } = await axios.get(`${API_URL}/homepage/get-all`);
+  return data;
+};
+
+export const createAwardAPI = async (formData, token) => {
+  const { data } = await axios.post(`${API_URL}/homepage/create-award`, formData, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return data;
+};
+
+export const updateAwardAPI = async (id, formData, token) => {
+  const { data } = await axios.put(`${API_URL}/homepage/update/${id}`, formData, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return data;
+};
+
+export const deleteAwardAPI = async (id, token) => {
+  const { data } = await axios.delete(`${API_URL}/homepage/delete/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return data;
+};

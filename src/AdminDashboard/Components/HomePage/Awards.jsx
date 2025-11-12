@@ -1,104 +1,149 @@
 import React, { useState, useEffect } from "react";
 import { Plus, Edit, Trash2 } from "lucide-react";
+import AwardsAdd from "../Common/AwardsAdd";
+import AwardsEdit from "../Common/AwardsEdit";
+import { getAwardsAPI, deleteAwardAPI } from "../../../Api";
 
-// Dummy data (replace with API call later)
-const dummyAwards = [
-  {
-    _id: "1",
-    title: "Best Innovation Award",
-    image: "https://via.placeholder.com/80",
-    createdAt: "2025-11-11",
-  },
-  {
-    _id: "2",
-    title: "Top Performer 2025",
-    image: "https://via.placeholder.com/80",
-    createdAt: "2025-11-10",
-  },
-];
+// Toastify & SweetAlert2
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 const Awards = () => {
   const [awards, setAwards] = useState([]);
+  const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [selectedAward, setSelectedAward] = useState(null);
 
+  const token = localStorage.getItem("adminToken");
+
+  // Fetch awards on mount
   useEffect(() => {
-    // Replace with API fetch later
-    setAwards(dummyAwards);
+    fetchAwards();
   }, []);
 
-  const handleAdd = () => {
-    console.log("Add new Award");
+  const fetchAwards = async () => {
+    try {
+      const data = await getAwardsAPI();
+      setAwards(data);
+    } catch (error) {
+      console.error("Error fetching awards:", error);
+      toast.error("Failed to fetch awards!");
+    }
   };
 
-  const handleEdit = (id) => {
-    console.log("Edit Award", id);
+  // Delete with SweetAlert2 confirmation
+  const handleDelete = async (id) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await deleteAwardAPI(id, token);
+        setAwards(awards.filter((award) => award._id !== id));
+        toast.success("Award deleted successfully!");
+      } catch (error) {
+        console.error("Error deleting award:", error);
+        toast.error("Failed to delete award!");
+      }
+    }
   };
 
-  const handleDelete = (id) => {
-    console.log("Delete Award", id);
+  // After add success
+  const handleAwardAdded = () => {
+    fetchAwards();
+    toast.success("Award added successfully!");
+  };
+
+  // After edit success
+  const handleAwardUpdated = () => {
+    fetchAwards();
+    toast.success("Award updated successfully!");
   };
 
   return (
-    <div className="flex-1 p-6 bg-gray-100 min-h-screen">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-4">
+    <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
         <h1 className="text-2xl font-bold">Awards Management</h1>
         <button
-          onClick={handleAdd}
+          onClick={() => setIsAddOpen(true)}
           className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
         >
-          <Plus className="w-4 h-4" /> Add
+          <Plus className="w-4 h-4" /> Add Award
         </button>
       </div>
 
-      {/* Scrollable Table */}
       <div className="overflow-x-auto w-full bg-white rounded shadow">
-        <div className="min-w-[800px]">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50 sticky top-0">
-              <tr>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Title</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Image</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Created At</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Actions</th>
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Title</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Image</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Created At</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {awards.map((award) => (
+              <tr key={award._id}>
+                <td className="px-4 py-2">{award.title}</td>
+                <td className="px-4 py-2">
+                  <img
+                    src={award.image}
+                    alt={award.title}
+                    className="w-20 h-12 object-cover rounded"
+                  />
+                </td>
+                <td className="px-4 py-2">{new Date(award.createdAt).toLocaleDateString()}</td>
+                <td className="px-4 py-2 flex gap-2">
+                  <button
+                    onClick={() => {
+                      setSelectedAward(award);
+                      setIsEditOpen(true);
+                    }}
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(award._id)}
+                    className="text-red-500 hover:text-red-700"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </td>
               </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {awards.map((award) => (
-                <tr key={award._id}>
-                  <td className="px-6 py-4 whitespace-nowrap">{award.title}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <img src={award.image} alt={award.title} className="w-20 h-12 object-cover rounded" />
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    {new Date(award.createdAt).toLocaleDateString()}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap flex gap-2">
-                    <button
-                      onClick={() => handleEdit(award._id)}
-                      className="text-blue-500 hover:text-blue-700"
-                    >
-                      <Edit className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(award._id)}
-                      className="text-red-500 hover:text-red-700"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              {awards.length === 0 && (
-                <tr>
-                  <td colSpan={4} className="text-center py-4 text-gray-500">
-                    No Awards found.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+            ))}
+            {awards.length === 0 && (
+              <tr>
+                <td colSpan={4} className="text-center py-4 text-gray-500">
+                  No Awards found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
+
+      {/* Modals */}
+      <AwardsAdd
+        isOpen={isAddOpen}
+        onClose={() => setIsAddOpen(false)}
+        onAwardAdded={handleAwardAdded}
+      />
+      <AwardsEdit
+        isOpen={isEditOpen}
+        onClose={() => setIsEditOpen(false)}
+        award={selectedAward}
+        onUpdate={handleAwardUpdated}
+      />
     </div>
   );
 };
