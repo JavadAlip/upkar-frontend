@@ -97,7 +97,7 @@ const BannerEdit = ({ isOpen, onClose, banner, onUpdate }) => {
           <button
             onClick={handleSubmit}
             className="px-4 py-1 bg-green-500 text-white rounded"
-          >
+          > 
             Update
           </button>
         </div>
