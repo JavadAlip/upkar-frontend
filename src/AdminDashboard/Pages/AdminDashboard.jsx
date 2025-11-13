@@ -7,9 +7,17 @@ import Projects from "../Components/HomePage/Projects";
 import Certification from "../Components/HomePage/Certification";
 import QAs from "../Components/HomePage/QAs";
 import Awards from "../Components/HomePage/Awards";
+import ProjectMain from "../Components/ProjectPage/ProjectMain";
+import Feature from "../Components/ProjectPage/Feature";
+import Amenity from "../Components/ProjectPage/Amenity";
+import PlotLayout from "../Components/ProjectPage/PlotLayout";
+import ProjectImages from "../Components/ProjectPage/ProjectImages";
+import AboutProject from "../Components/ProjectPage/AboutProject";
+
+
 
 const AdminDashboard = () => {
-  const [activeSection, setActiveSection] = useState("banner"); 
+  const [activeSection, setActiveSection] = useState("banner");
 
   const renderSection = () => {
     switch (activeSection) {
@@ -18,19 +26,31 @@ const AdminDashboard = () => {
       case "vision":
         return <VisionMission />;
       case "projects":
-        return <Projects/>;
+        return <Projects />;
       case "certification":
-        return <Certification/>;
+        return <Certification />;
       case "qna":
-        return <QAs/>;
+        return <QAs />;
       case "awards":
-        return <Awards/>;
+        return <Awards />;
+      case "projectmain":
+        return <ProjectMain />;
+      case "feature":
+        return <Feature />;
+      case "amenity":
+        return <Amenity />;
+      case "plotlayout":
+        return <PlotLayout />;
+      case "projectimages":
+        return <ProjectImages />;
+      case "aboutproject":
+        return <AboutProject />;
       default:
         return <div>Welcome Admin</div>;
     }
   };
 
-  
+
 
   return (
     <div>

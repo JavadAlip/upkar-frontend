@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Home, ChevronDown, Menu, X } from "lucide-react";
+import { Home, ChevronDown, Menu, X, Grid } from "lucide-react"; // Grid icon for project page
 
 const Sidebar = ({ setActiveSection }) => {
-  const [open, setOpen] = useState(false); // dropdown inside sidebar
-  const [mobileOpen, setMobileOpen] = useState(false); // mobile sidebar toggle
+  const [openHome, setOpenHome] = useState(false); 
+  const [openProject, setOpenProject] = useState(false); 
+  const [mobileOpen, setMobileOpen] = useState(false); 
 
   return (
     <>
@@ -32,9 +33,10 @@ const Sidebar = ({ setActiveSection }) => {
 
         {/* Menu Items */}
         <div className="flex flex-col p-4 gap-2 overflow-hidden">
+          
           {/* Home Page Dropdown */}
           <button
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpenHome(!openHome)}
             className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
           >
             <span className="flex items-center gap-2">
@@ -42,14 +44,10 @@ const Sidebar = ({ setActiveSection }) => {
               Home Page
             </span>
             <ChevronDown
-              className={`w-4 h-4 transform transition-transform ${
-                open ? "rotate-180" : ""
-              }`}
+              className={`w-4 h-4 transform transition-transform ${openHome ? "rotate-180" : ""}`}
             />
           </button>
-
-          {/* Dropdown Items */}
-          {open && (
+          {openHome && (
             <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
@@ -89,6 +87,61 @@ const Sidebar = ({ setActiveSection }) => {
               </button>
             </div>
           )}
+
+          {/* Project Page Dropdown */}
+          <button
+            onClick={() => setOpenProject(!openProject)}
+            className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
+          >
+            <span className="flex items-center gap-2">
+              <Grid className="w-5 h-5" />
+              Project Page
+            </span>
+            <ChevronDown
+              className={`w-4 h-4 transform transition-transform ${openProject ? "rotate-180" : ""}`}
+            />
+          </button>
+          {openProject && (
+            <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("projectmain")}
+              >
+                Project Main
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("feature")}
+              >
+                Feature
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("plotlayout")}
+              >
+                Plot Layout
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("amenity")}
+              >
+                Amenities
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("aboutproject")}
+              >
+                About Project
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("projectimages")}
+              >
+                Project Image
+              </button>
+            </div>
+          )}
+
         </div>
       </div>
 
