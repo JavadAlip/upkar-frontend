@@ -56,4 +56,5 @@ const AmenityAdd = ({ isOpen, onClose, onAdd }) => {
   );
 };
 
+
 export default AmenityAdd;
