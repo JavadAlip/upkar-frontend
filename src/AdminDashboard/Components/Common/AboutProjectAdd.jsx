@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { createAboutProjectAPI } from "../../../Api";
+import { toast } from "react-toastify";
 
-const AboutProjectAdd = ({ isOpen, onClose, onAdd }) => {
+const AboutProjectAdd = ({ isOpen, onClose, refresh }) => {
   const [formData, setFormData] = useState({
     aboutHeading: "",
     aboutDescription: "",
@@ -9,6 +11,7 @@ const AboutProjectAdd = ({ isOpen, onClose, onAdd }) => {
     noBrokerHeading: "",
     builderHeading: "",
   });
+  const [loading, setLoading] = useState(false);
 
   if (!isOpen) return null;
 
@@ -16,22 +19,33 @@ const AboutProjectAdd = ({ isOpen, onClose, onAdd }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
-    if (onAdd) onAdd(formData);
-    onClose();
-    setFormData({
-      aboutHeading: "",
-      aboutDescription: "",
-      reRaising: "",
-      reRadescription: "",
-      noBrokerHeading: "",
-      builderHeading: "",
-    });
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      const token = localStorage.getItem("adminToken"); // Make sure token exists
+      await createAboutProjectAPI(formData, token); // Send JSON
+      toast.success("About Project added successfully!");
+      refresh();
+      onClose();
+      setFormData({
+        aboutHeading: "",
+        aboutDescription: "",
+        reRaising: "",
+        reRadescription: "",
+        noBrokerHeading: "",
+        builderHeading: "",
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error(error.response?.data?.message || "Failed to add About Project");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-start z-50 overflow-auto pt-10">
-      <div className="bg-white p-6 rounded shadow-md w-full max-w-lg my-6">
+    <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+      <div className="bg-white p-6 rounded shadow-md w-full max-w-lg">
         <h2 className="text-xl font-semibold mb-4">Add About Project</h2>
         <div className="flex flex-col gap-3">
           <input
@@ -89,8 +103,9 @@ const AboutProjectAdd = ({ isOpen, onClose, onAdd }) => {
             <button
               className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
               onClick={handleSubmit}
+              disabled={loading}
             >
-              Add
+              {loading ? "Adding..." : "Add"}
             </button>
           </div>
         </div>
