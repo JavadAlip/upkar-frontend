@@ -302,7 +302,6 @@ export const getPlotLayout = async () => {
 };
 
 
-
 export const deletePlotLayout = async (token) => {
   try {
     const res = await axios.delete(`${API_URL}/projectpage/delete-plot-layout`, {
@@ -417,3 +416,43 @@ export const deleteAboutProjectAPI = async (id, token) => {
 };
 
 
+
+
+
+// GET all project images
+export const getProjectImagesAPI = async (token) => {
+  const res = await axios.get(`${API_URL}/projectpage/get-all-project-images`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+// CREATE project images
+export const createProjectImagesAPI = async (formData, token) => {
+  const res = await axios.post(`${API_URL}/projectpage/create-project-images`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+// UPDATE project images
+export const updateProjectImagesAPI = async (id, formData, token) => {
+  const res = await axios.put(`${API_URL}/projectpage/edit-project-images/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+// DELETE project images
+export const deleteProjectImagesAPI = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/projectpage/delete-project-images/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
