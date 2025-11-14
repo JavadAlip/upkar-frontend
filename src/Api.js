@@ -154,32 +154,32 @@ export const deleteQuestionAPI = async (id, token) => {
 
 
 
-// Awards
-export const getAwardsAPI = async () => {
-  const { data } = await axios.get(`${API_URL}/homepage/get-all`);
-  return data;
-};
+  // Awards
+  export const getAwardsAPI = async () => {
+    const { data } = await axios.get(`${API_URL}/homepage/get-all`);
+    return data;
+  };
 
-export const createAwardAPI = async (formData, token) => {
-  const { data } = await axios.post(`${API_URL}/homepage/create-award`, formData, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return data;
-};
+  export const createAwardAPI = async (formData, token) => {
+    const { data } = await axios.post(`${API_URL}/homepage/create-award`, formData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data;
+  };
 
-export const updateAwardAPI = async (id, formData, token) => {
-  const { data } = await axios.put(`${API_URL}/homepage/update/${id}`, formData, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return data;
-};
+  export const updateAwardAPI = async (id, formData, token) => {
+    const { data } = await axios.put(`${API_URL}/homepage/update/${id}`, formData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data;
+  };
 
-export const deleteAwardAPI = async (id, token) => {
-  const { data } = await axios.delete(`${API_URL}/homepage/delete/${id}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return data;
-};
+  export const deleteAwardAPI = async (id, token) => {
+    const { data } = await axios.delete(`${API_URL}/homepage/delete/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data;
+  };
 
 
 
@@ -279,17 +279,15 @@ export const createPlotLayout = async (formData, token) => {
     const res = await axios.post(`${API_URL}/projectpage/create-plot-layout`, formData, {
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "multipart/form-data", // required for file uploads
+        "Content-Type": "multipart/form-data",
       },
     });
-    return res.data; // returns backend response
+    return res.data; 
   } catch (error) {
     console.error("Error creating/updating plot layout:", error.response?.data || error.message);
     throw error;
   }
 };
-
-
 
 export const getPlotLayout = async () => {
   try {
@@ -303,9 +301,11 @@ export const getPlotLayout = async () => {
   }
 };
 
-export const deletePlotLayout = async (id, token) => {
+
+
+export const deletePlotLayout = async (token) => {
   try {
-    const res = await axios.delete(`${API_URL}/projectpage/delete-plot-layout/${id}`, {
+    const res = await axios.delete(`${API_URL}/projectpage/delete-plot-layout`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -316,3 +316,104 @@ export const deletePlotLayout = async (id, token) => {
     throw error;
   }
 };
+
+
+
+
+// Amenities 
+export const getAmenitiesAPI = async () => {
+  const { data } = await axios.get(`${API_URL}/projectpage/get-amenity`);
+  return data;
+};
+
+export const createAmenityAPI = async (formData, token) => {
+  const { data } = await axios.post(
+    `${API_URL}/projectpage/create-amenity`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return data;
+};
+
+export const updateAmenityAPI = async (id, formData, token) => {
+  const { data } = await axios.put(
+    `${API_URL}/projectpage/update-amenity/${id}`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return data;
+};
+
+export const deleteAmenityAPI = async (id, token) => {
+  const { data } = await axios.delete(
+    `${API_URL}/projectpage/delete-amenity/${id}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+  return data;
+};
+
+
+// about project
+export const getAboutProjectsAPI = async (token) => {
+  const { data } = await axios.get(`${API_URL}/projectpage/get-about-project`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return data;
+};
+
+
+export const createAboutProjectAPI = async (data, token) => {
+  try {
+    const res = await axios.post(
+      `${API_URL}/projectpage/create-about-project`,
+      data, 
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+
+export const updateAboutProjectAPI = async (id, data, token) => {
+  const res = await axios.put(
+    `${API_URL}/projectpage/update-about-project/${id}`,
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  return res.data;
+};
+
+
+export const deleteAboutProjectAPI = async (id, token) => {
+  const { data } = await axios.delete(`${API_URL}/projectpage/delete-about-project/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return data;
+};
+
+
