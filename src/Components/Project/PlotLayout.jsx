@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getPlotLayout } from "../../Api"; 
 import brousche from "../../assets/Icons/brousche.png";
 import plotEnq from "../../assets/Icons/plotEnq.png";
+import Plot2 from "../../assets/Plot2.png";
 
 const PlotLayout = () => {
   const [plotData, setPlotData] = useState(null);
@@ -92,7 +93,7 @@ const PlotLayout = () => {
         {/* Bottom Section */}
         <div className="relative rounded-3xl overflow-hidden shadow-xl mt-8 sm:mt-12 h-96 sm:h-[500px] md:h-[600px]">
           <img
-            src={plotData.mainImage} 
+            src={Plot2} 
             alt="Project View"
             className="w-full h-full object-cover"
           />
