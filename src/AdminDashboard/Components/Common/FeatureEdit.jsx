@@ -1,15 +1,31 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import { updateFeature } from "../../../Api";
 
-const FeatureEdit = ({ isOpen, onClose, feature, onUpdate }) => {
+const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
   const [description, setDescription] = useState("");
-  const [mainImage, setMainImage] = useState("");
-  const [icons, setIcons] = useState([{ icon: "", iconTitle: "" }]);
+  const [mainImage, setMainImage] = useState(null); // file
+  const [mainImagePreview, setMainImagePreview] = useState(""); // URL
+  const [icons, setIcons] = useState([{ icon: "", iconTitle: "", file: null, preview: "" }]);
+  const [loading, setLoading] = useState(false);
+
+  const token = localStorage.getItem("adminToken");
 
   useEffect(() => {
     if (feature) {
       setDescription(feature.description || "");
-      setMainImage(feature.mainImage || "");
-      setIcons(feature.icons && feature.icons.length ? feature.icons : [{ icon: "", iconTitle: "" }]);
+      setMainImagePreview(feature.mainImage || "");
+      setMainImage(null); // user can replace it
+      setIcons(
+        feature.icons && feature.icons.length
+          ? feature.icons.map((icon) => ({
+            icon: icon.icon || "",
+            iconTitle: icon.iconTitle || "",
+            file: null,
+            preview: icon.iconImage || "", // assuming your backend returns icon image URL as `iconImage`
+          }))
+          : [{ icon: "", iconTitle: "", file: null, preview: "" }]
+      );
     }
   }, [feature]);
 
@@ -21,20 +37,56 @@ const FeatureEdit = ({ isOpen, onClose, feature, onUpdate }) => {
     setIcons(newIcons);
   };
 
+  const handleIconFileChange = (index, file) => {
+    const newIcons = [...icons];
+    newIcons[index].file = file;
+    newIcons[index].preview = URL.createObjectURL(file);
+    setIcons(newIcons);
+  };
+
   const addIcon = () => {
-    if (icons.length < 3) setIcons([...icons, { icon: "", iconTitle: "" }]);
+    if (icons.length < 3) setIcons([...icons, { icon: "", iconTitle: "", file: null, preview: "" }]);
   };
 
   const removeIcon = (index) => {
     setIcons(icons.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = () => {
-    const updatedFeature = { description, mainImage, icons };
-    console.log("Update Feature:", updatedFeature);
-    if (onUpdate) onUpdate(updatedFeature);
+  const handleSubmit = async () => {
+  if (!description) {
+    toast.error("Description is required!");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("description", description);
+  if (mainImage) formData.append("mainImage", mainImage);
+
+  icons.forEach((icon, idx) => {
+    // If user selected a new file, send it
+    if (icon.file) {
+      formData.append(`icon${idx + 1}`, icon.file);
+    } else if (icon.preview) {
+      // If no new file, send existing URL so backend keeps it
+      formData.append(`iconUrl${idx + 1}`, icon.preview);
+    }
+
+    formData.append(`iconTitle${idx + 1}`, icon.iconTitle || "");
+  });
+
+  try {
+    setLoading(true);
+    await updateFeature(feature._id, formData, token);
+    toast.success("Feature updated successfully!");
+    onFeatureUpdated(); // refresh parent list
     onClose();
-  };
+  } catch (error) {
+    console.error(error);
+    toast.error("Failed to update feature!");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50 overflow-auto">
@@ -48,13 +100,21 @@ const FeatureEdit = ({ isOpen, onClose, feature, onUpdate }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <input
-            type="text"
-            placeholder="Main Image URL"
-            className="border p-2 w-full rounded"
-            value={mainImage}
-            onChange={(e) => setMainImage(e.target.value)}
-          />
+
+          <div>
+            <label className="font-medium">Main Image</label>
+            {mainImagePreview && (
+              <img src={mainImagePreview} alt="Main" className="w-32 h-20 object-cover rounded mb-2" />
+            )}
+            <input
+              type="file"
+              className="border p-2 w-full rounded"
+              onChange={(e) => {
+                setMainImage(e.target.files[0]);
+                setMainImagePreview(URL.createObjectURL(e.target.files[0]));
+              }}
+            />
+          </div>
 
           <div>
             <label className="font-medium">Icons (max 3)</label>
@@ -74,42 +134,39 @@ const FeatureEdit = ({ isOpen, onClose, feature, onUpdate }) => {
                   value={icon.iconTitle}
                   onChange={(e) => handleIconChange(idx, "iconTitle", e.target.value)}
                 />
+                {icon.preview && (
+                  <img src={icon.preview} alt="Icon" className="w-12 h-12 object-cover rounded" />
+                )}
+                <input
+                  type="file"
+                  className="border p-1 rounded"
+                  onChange={(e) => handleIconFileChange(idx, e.target.files[0])}
+                />
                 {icons.length > 1 && (
-                  <button
-                    type="button"
-                    className="text-red-500"
-                    onClick={() => removeIcon(idx)}
-                  >
+                  <button type="button" className="text-red-500" onClick={() => removeIcon(idx)}>
                     ✕
                   </button>
                 )}
               </div>
             ))}
             {icons.length < 3 && (
-              <button
-                type="button"
-                className="mt-2 px-3 py-1 bg-gray-200 rounded"
-                onClick={addIcon}
-              >
+              <button type="button" className="mt-2 px-3 py-1 bg-gray-200 rounded" onClick={addIcon}>
                 Add Icon
               </button>
             )}
           </div>
 
           <div className="flex justify-end gap-2 mt-4">
-            <button
-              type="button"
-              className="px-4 py-2 bg-gray-300 rounded"
-              onClick={onClose}
-            >
+            <button type="button" className="px-4 py-2 bg-gray-300 rounded" onClick={onClose}>
               Cancel
             </button>
             <button
               type="button"
               className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
               onClick={handleSubmit}
+              disabled={loading}
             >
-              Update
+              {loading ? "Updating..." : "Update"}
             </button>
           </div>
         </div>

@@ -39,7 +39,7 @@ const BannerEdit = ({ isOpen, onClose, banner, onUpdate }) => {
       formData.append("subtitle", form.subtitle);
       if (form.image) formData.append("image", form.image);
 
-      await editBanner(banner._id, formData, token); // ✅ Call API
+      await editBanner(banner._id, formData, token); 
 
       onUpdate(); // refresh banners in parent
       onClose();  // close modal

@@ -180,3 +180,139 @@ export const deleteAwardAPI = async (id, token) => {
   });
   return data;
 };
+
+
+
+//project main
+export const getAllProjectMain = async (token) => {
+  const { data } = await axios.get(`${API_URL}/projectpage/get-all-projectmain`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return data;
+};
+
+export const createProjectMain = async (formData, token) => {
+  const { data } = await axios.post(
+    `${API_URL}/projectpage/create-projectmain`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return data;
+};
+
+export const updateProjectMain = async (id, formData, token) => {
+  const { data } = await axios.put(
+    `${API_URL}/projectpage/edit-projectmain/${id}`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return data;
+};
+
+export const deleteProjectMain = async (id, token) => {
+  const { data } = await axios.delete(
+    `${API_URL}/projectpage/delete-projectmain/${id}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+  return data;
+};
+
+
+
+//Features
+export const createFeature = async (formData, token) => {
+  const { data } = await axios.post(`${API_URL}/projectpage/create-feature`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return data;
+};
+
+export const getAllFeatures = async (token) => {
+  const { data } = await axios.get(`${API_URL}/projectpage/get-all-features`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return data;
+};
+
+export const updateFeature = async (id, formData, token) => {
+  const { data } = await axios.put(`${API_URL}/projectpage/edit-feature/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return data;
+};
+
+export const deleteFeature = async (id, token) => {
+  const { data } = await axios.delete(`${API_URL}/projectpage/delete-feature/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return data;
+};
+
+
+
+
+// Create or Update Plot Layout
+export const createPlotLayout = async (formData, token) => {
+  try {
+    const res = await axios.post(`${API_URL}/projectpage/create-plot-layout`, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data", // required for file uploads
+      },
+    });
+    return res.data; // returns backend response
+  } catch (error) {
+    console.error("Error creating/updating plot layout:", error.response?.data || error.message);
+    throw error;
+  }
+};
+
+
+
+export const getPlotLayout = async () => {
+  try {
+    const res = await axios.get(`${API_URL}/projectpage/get-plot-layout`, {
+     
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching plot layout:", error.response?.data || error.message);
+    throw error;
+  }
+};
+
+export const deletePlotLayout = async (id, token) => {
+  try {
+    const res = await axios.delete(`${API_URL}/projectpage/delete-plot-layout/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Error deleting plot layout:", error.response?.data || error.message);
+    throw error;
+  }
+};

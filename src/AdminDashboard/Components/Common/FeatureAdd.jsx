@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { createFeature } from "../../../Api";
 
-const FeatureAdd = ({ isOpen, onClose, onAdd }) => {
+const FeatureAdd = ({ isOpen, onClose, onFeatureAdded }) => {
   const [description, setDescription] = useState("");
-  const [mainImage, setMainImage] = useState("");
-  const [icons, setIcons] = useState([{ icon: "", iconTitle: "" }]);
+  const [mainImage, setMainImage] = useState(null);
+  const [icons, setIcons] = useState([{ icon: "", iconTitle: "", file: null }]);
+  const [loading, setLoading] = useState(false);
+
+  const token = localStorage.getItem("adminToken");
 
   if (!isOpen) return null;
 
@@ -13,24 +18,55 @@ const FeatureAdd = ({ isOpen, onClose, onAdd }) => {
     setIcons(newIcons);
   };
 
+  const handleIconFileChange = (index, file) => {
+    const newIcons = [...icons];
+    newIcons[index].file = file;
+    setIcons(newIcons);
+  };
+
   const addIcon = () => {
-    if (icons.length < 3) setIcons([...icons, { icon: "", iconTitle: "" }]);
+    if (icons.length < 3) setIcons([...icons, { icon: "", iconTitle: "", file: null }]);
   };
 
   const removeIcon = (index) => {
     setIcons(icons.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = () => {
-    const newFeature = { description, mainImage, icons };
-    console.log("Add Feature:", newFeature);
-    if (onAdd) onAdd(newFeature);
-    onClose();
-    // reset form
-    setDescription("");
-    setMainImage("");
-    setIcons([{ icon: "", iconTitle: "" }]);
+  const handleSubmit = async () => {
+    if (!description || !mainImage) {
+      toast.error("Description and Main Image are required!");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("description", description);
+    formData.append("mainImage", mainImage);
+
+    // Add icons + icon titles
+    icons.forEach((icon, idx) => {
+      if (icon.file) formData.append(`icon${idx + 1}`, icon.file);
+      formData.append(`iconTitle${idx + 1}`, icon.iconTitle || "");
+    });
+
+    try {
+      setLoading(true);
+      await createFeature(formData, token);
+      toast.success("Feature added successfully!");
+      onFeatureAdded(); // refresh parent list
+      onClose();
+
+      // reset form
+      setDescription("");
+      setMainImage(null);
+      setIcons([{ icon: "", iconTitle: "", file: null }]);
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to add feature!");
+    } finally {
+      setLoading(false);
+    }
   };
+
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50 overflow-auto">
@@ -44,12 +80,11 @@ const FeatureAdd = ({ isOpen, onClose, onAdd }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
+
           <input
-            type="text"
-            placeholder="Main Image URL"
+            type="file"
             className="border p-2 w-full rounded"
-            value={mainImage}
-            onChange={(e) => setMainImage(e.target.value)}
+            onChange={(e) => setMainImage(e.target.files[0])}
           />
 
           <div>
@@ -70,42 +105,36 @@ const FeatureAdd = ({ isOpen, onClose, onAdd }) => {
                   value={icon.iconTitle}
                   onChange={(e) => handleIconChange(idx, "iconTitle", e.target.value)}
                 />
+                <input
+                  type="file"
+                  className="border p-1 rounded"
+                  onChange={(e) => handleIconFileChange(idx, e.target.files[0])}
+                />
                 {icons.length > 1 && (
-                  <button
-                    type="button"
-                    className="text-red-500"
-                    onClick={() => removeIcon(idx)}
-                  >
+                  <button type="button" className="text-red-500" onClick={() => removeIcon(idx)}>
                     ✕
                   </button>
                 )}
               </div>
             ))}
             {icons.length < 3 && (
-              <button
-                type="button"
-                className="mt-2 px-3 py-1 bg-gray-200 rounded"
-                onClick={addIcon}
-              >
+              <button type="button" className="mt-2 px-3 py-1 bg-gray-200 rounded" onClick={addIcon}>
                 Add Icon
               </button>
             )}
           </div>
 
           <div className="flex justify-end gap-2 mt-4">
-            <button
-              type="button"
-              className="px-4 py-2 bg-gray-300 rounded"
-              onClick={onClose}
-            >
+            <button type="button" className="px-4 py-2 bg-gray-300 rounded" onClick={onClose}>
               Cancel
             </button>
             <button
               type="button"
               className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
               onClick={handleSubmit}
+              disabled={loading}
             >
-              Add
+              {loading ? "Adding..." : "Add"}
             </button>
           </div>
         </div>

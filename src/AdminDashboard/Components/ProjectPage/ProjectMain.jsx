@@ -1,49 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Plus, Edit, Trash2 } from "lucide-react";
-import ProjectAdd from "../../Components/Common/ProjectMainAdd"; 
-import ProjectEdit from "../../Components/Common/ProjectMainEdit"; 
+import ProjectAdd from "../../Components/Common/ProjectMainAdd";
+import ProjectEdit from "../../Components/Common/ProjectMainEdit";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import "sweetalert2/dist/sweetalert2.min.css";
 
-const ProjectMainStatic = () => {   
+// Import your backend API functions
+import { getAllProjectMain, deleteProjectMain } from "../../../Api";
+
+const ProjectMain = () => {
+  const [projects, setProjects] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  // Static projects data
-  const [projects, setProjects] = useState([
-    {
-      _id: "1",
-      heading: "Luxury Villa",
-      description: "A beautiful villa in the city center",
-      mainImages: [
-        "https://via.placeholder.com/100",
-        "https://via.placeholder.com/100",
-        "https://via.placeholder.com/100",
-      ],
-      customerHeading: "Happy Clients",
-      customerDescription: "Our clients love our villas",
-      ratingText: "5/5 Excellent",
-      createdAt: "2025-11-01T12:00:00Z",
-    },
-    {
-      _id: "2",
-      heading: "Modern Apartment",
-      description: "Comfortable apartment with modern amenities",
-      mainImages: [
-        "https://via.placeholder.com/100",
-        "https://via.placeholder.com/100",
-        "https://via.placeholder.com/100",
-      ],
-      customerHeading: "Satisfied Tenants",
-      customerDescription: "Tenants enjoy our apartments",
-      ratingText: "4.8/5 Very Good",
-      createdAt: "2025-11-05T12:00:00Z",
-    },
-  ]);
+  const token = localStorage.getItem("adminToken");
 
-  // Delete project with SweetAlert2
+  // ✅ Fetch projects on component mount
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const data = await getAllProjectMain(token);
+      setProjects(data);
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+      toast.error("Failed to fetch projects!");
+    }
+  };
+
+  // ✅ Delete project with SweetAlert2 confirmation
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -56,20 +45,37 @@ const ProjectMainStatic = () => {
     });
 
     if (result.isConfirmed) {
-      const updatedProjects = projects.filter((proj) => proj._id !== id);
-      setProjects(updatedProjects);
-      toast.success("Project deleted successfully!");
+      try {
+        await deleteProjectMain(id, token);
+        setProjects(projects.filter((proj) => proj._id !== id));
+        toast.success("Project deleted successfully!");
+      } catch (error) {
+        console.error("Error deleting project:", error);
+        toast.error("Failed to delete project!");
+      }
     }
+  };
+
+  // ✅ After add success
+  const handleProjectAdded = () => {
+    fetchProjects();
+    toast.success("Project added successfully!");
+  };
+
+  // ✅ After edit success
+  const handleProjectUpdated = () => {
+    fetchProjects();
+    toast.success("Project updated successfully!");
   };
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
-      {/* Header with Add Project button */}
+      {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
         <h1 className="text-2xl font-bold">Project Management</h1>
         <button
-          className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
           onClick={() => setIsAddOpen(true)}
+          className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
         >
           <Plus className="w-4 h-4" /> Add Project
         </button>
@@ -95,20 +101,24 @@ const ProjectMainStatic = () => {
               <tr key={project._id}>
                 <td className="px-4 py-2">{project.heading}</td>
                 <td className="px-4 py-2">{project.description}</td>
-                <td className="px-4 py-2 flex gap-2">
-                  {project.mainImages.map((img, index) => (
-                    <img
-                      key={index}
-                      src={img}
-                      alt={`Project ${index}`}
-                      className="w-16 h-12 object-cover rounded"
-                    />
-                  ))}
+                <td className="px-4 py-2">
+                  <div className="flex flex-col gap-2">
+                    {project.mainImages?.map((img, index) => (
+                      <img
+                        key={index}
+                        src={img}
+                        alt={`Project ${index}`}
+                        className="w-10 h-10 object-cover rounded"
+                      />
+                    ))}
+                  </div>
                 </td>
                 <td className="px-4 py-2">{project.customerHeading}</td>
                 <td className="px-4 py-2">{project.customerDescription}</td>
                 <td className="px-4 py-2">{project.ratingText}</td>
-                <td className="px-4 py-2">{new Date(project.createdAt).toLocaleDateString()}</td>
+                <td className="px-4 py-2">
+                  {new Date(project.createdAt).toLocaleDateString()}
+                </td>
                 <td className="px-4 py-2 flex gap-2">
                   <button
                     className="text-blue-500 hover:text-blue-700"
@@ -128,22 +138,32 @@ const ProjectMainStatic = () => {
                 </td>
               </tr>
             ))}
+
+            {projects.length === 0 && (
+              <tr>
+                <td colSpan={8} className="text-center py-4 text-gray-500">
+                  No projects found.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
 
-      {/* Add Project Modal */}
-      <ProjectAdd isOpen={isAddOpen} onClose={() => setIsAddOpen(false)} />
-
-      {/* Edit Project Modal */}
+      {/* Modals */}
+      <ProjectAdd
+        isOpen={isAddOpen}
+        onClose={() => setIsAddOpen(false)}
+        onProjectAdded={handleProjectAdded}
+      />
       <ProjectEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
         project={selectedProject}
+        onProjectUpdated={handleProjectUpdated}
       />
     </div>
   );
 };
 
-export default ProjectMainStatic;
-    
+export default ProjectMain;
