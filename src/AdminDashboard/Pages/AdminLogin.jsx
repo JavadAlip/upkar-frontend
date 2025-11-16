@@ -96,7 +96,7 @@ const AdminLogin = () => {
 
     try {
       const res = await axios.post(
-        "https://upkar-backend.onrender.com/api/admin/login", // ✅ deployed backend URL
+        "https://upkar-backend.onrender.com/api/admin/login", 
         {
           username,
           password,

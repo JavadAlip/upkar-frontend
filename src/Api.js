@@ -5,10 +5,8 @@ import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL || "https://upkar-backend.onrender.com/api";
 
 //banners
-export const getBanners = async (token) => {
-  const res = await axios.get(`${API_URL}/homepage/get-all-banners`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export const getBanners = async () => {
+  const res = await axios.get(`${API_URL}/homepage/get-all-banners`);
   return res.data;
 };
 
@@ -41,10 +39,8 @@ export const editBanner = async (id, formData, token) => {
 
 
 //VisionMission
-export const getVisionMission = async (token) => {
-  const res = await axios.get(`${API_URL}/homepage/get-all-visions`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export const getVisionMission = async () => {
+  const res = await axios.get(`${API_URL}/homepage/get-all-visions`);
   return res.data;
 };
 
@@ -65,8 +61,8 @@ export const deleteVisionMission = async (token) => {
 
 
 // Projects
-export const getProjects = async (token) => {
-  const res = await axios.get(`${API_URL}/homepage/get-all-projects`, { headers: { Authorization: `Bearer ${token}` } });
+export const getProjects = async () => {
+  const res = await axios.get(`${API_URL}/homepage/get-all-projects`);
   return res.data;
 };
 
@@ -93,10 +89,8 @@ export const deleteProject = async (id, token) => {
 
 
 //certification
-export const getCertifications = async (token) => {
-  const res = await axios.get(`${API_URL}/homepage/get-all-certificates`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export const getCertifications = async () => {
+  const res = await axios.get(`${API_URL}/homepage/get-all-certificates`);
   return res.data;
 };
 
@@ -124,10 +118,8 @@ export const updateCertification = async (id, formData, token) => {
 
 
 // Q&A 
-export const getQuestionsAPI = async (token) => {
-  const res = await axios.get(`${API_URL}/homepage/get-all-qns`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export const getQuestionsAPI = async () => {
+  const res = await axios.get(`${API_URL}/homepage/get-all-qns`);
   return res.data;
 };
 
@@ -184,10 +176,8 @@ export const deleteQuestionAPI = async (id, token) => {
 
 
 //project main
-export const getAllProjectMain = async (token) => {
-  const { data } = await axios.get(`${API_URL}/projectpage/get-all-projectmain`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export const getAllProjectMain = async () => {
+  const { data } = await axios.get(`${API_URL}/projectpage/get-all-projectmain`);
   return data;
 };
 
@@ -242,12 +232,8 @@ export const createFeature = async (formData, token) => {
   return data;
 };
 
-export const getAllFeatures = async (token) => {
-  const { data } = await axios.get(`${API_URL}/projectpage/get-all-features`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+export const getAllFeatures = async () => {
+  const { data } = await axios.get(`${API_URL}/projectpage/get-all-features`);
   return data;
 };
 
@@ -365,10 +351,8 @@ export const deleteAmenityAPI = async (id, token) => {
 
 
 // about project
-export const getAboutProjectsAPI = async (token) => {
-  const { data } = await axios.get(`${API_URL}/projectpage/get-about-project`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+export const getAboutProjectsAPI = async () => {
+  const { data } = await axios.get(`${API_URL}/projectpage/get-about-project`);
   return data;
 };
 
@@ -418,16 +402,12 @@ export const deleteAboutProjectAPI = async (id, token) => {
 
 
 
-
-// GET all project images
-export const getProjectImagesAPI = async (token) => {
-  const res = await axios.get(`${API_URL}/projectpage/get-all-project-images`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+//project images
+export const getProjectImagesAPI = async () => {
+  const res = await axios.get(`${API_URL}/projectpage/get-all-project-images`);
   return res.data;
 };
 
-// CREATE project images
 export const createProjectImagesAPI = async (formData, token) => {
   const res = await axios.post(`${API_URL}/projectpage/create-project-images`, formData, {
     headers: {
