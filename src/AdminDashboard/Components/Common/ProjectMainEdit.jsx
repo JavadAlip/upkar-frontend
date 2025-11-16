@@ -64,8 +64,8 @@ const ProjectMainEdit = ({ isOpen, onClose, project, onProjectUpdated }) => {
     try {
       setLoading(true);
       await updateProjectMain(project._id, form, token);
-      onProjectUpdated(); // ✅ fixed prop name
-      onClose();          // close modal
+      onProjectUpdated(); 
+      onClose();          
     } catch (error) {
       console.error("Error updating project:", error);
       alert("Failed to update project.");

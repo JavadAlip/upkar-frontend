@@ -17,7 +17,7 @@ const ProjectMain = () => {
 
   const token = localStorage.getItem("adminToken");
 
-  // ✅ Fetch projects on component mount
+  //Fetch projects on component mount
   useEffect(() => {
     fetchProjects();
   }, []);
@@ -32,7 +32,7 @@ const ProjectMain = () => {
     }
   };
 
-  // ✅ Delete project with SweetAlert2 confirmation
+  //Delete project with SweetAlert2 confirmation
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -56,13 +56,13 @@ const ProjectMain = () => {
     }
   };
 
-  // ✅ After add success
+  //After add success
   const handleProjectAdded = () => {
     fetchProjects();
     toast.success("Project added successfully!");
   };
 
-  // ✅ After edit success
+  //After edit success
   const handleProjectUpdated = () => {
     fetchProjects();
     toast.success("Project updated successfully!");

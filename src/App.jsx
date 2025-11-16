@@ -65,14 +65,14 @@ import AdminDashboard from "./AdminDashboard/Pages/AdminDashboard";
 import AdminLogin from "./AdminDashboard/Pages/AdminLogin";
 import ProtectedRoute from "./AdminDashboard/Components/ProtectedRoute";
 
-// ✅ Import Toastify
+// Import Toastify
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
   return (
     <Router>
-      {/* ✅ Toast Container at top-level */}
+      {/* Toast Container at top-level */}
       <ToastContainer
         position="top-right"
         autoClose={3000}
