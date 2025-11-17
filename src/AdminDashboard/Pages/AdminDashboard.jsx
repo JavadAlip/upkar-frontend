@@ -13,6 +13,9 @@ import Amenity from "../Components/ProjectPage/Amenity";
 import PlotLayout from "../Components/ProjectPage/PlotLayout";
 import ProjectImages from "../Components/ProjectPage/ProjectImages";
 import AboutProject from "../Components/ProjectPage/AboutProject";
+import AboutMain from "../Components/AboutPage/AboutMain";
+import Quote from "../Components/AboutPage/Quote";
+import Team from "../Components/AboutPage/Team";
 
 
 
@@ -45,6 +48,12 @@ const AdminDashboard = () => {
         return <ProjectImages />;
       case "aboutproject":
         return <AboutProject />;
+      case "aboutmain":
+        return <AboutMain />;
+      case "quote":
+        return <Quote />;
+      case "team":
+        return <Team />;
       default:
         return <div>Welcome Admin</div>;
     }

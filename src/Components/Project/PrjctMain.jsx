@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { getAllProjectMain } from "../../Api"; 
 import Phone from "../../assets/Icons/Phone.png";

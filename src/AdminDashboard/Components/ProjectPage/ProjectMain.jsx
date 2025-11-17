@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import "sweetalert2/dist/sweetalert2.min.css";
 
-// Import your backend API functions
 import { getAllProjectMain, deleteProjectMain } from "../../../Api";
 
 const ProjectMain = () => {

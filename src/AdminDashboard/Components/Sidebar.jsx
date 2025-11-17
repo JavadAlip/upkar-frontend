@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Home, ChevronDown, Menu, X, Grid } from "lucide-react"; // Grid icon for project page
+import { Home, ChevronDown, Menu, X, Grid } from "lucide-react";
 
 const Sidebar = ({ setActiveSection }) => {
-  const [openHome, setOpenHome] = useState(false); 
-  const [openProject, setOpenProject] = useState(false); 
-  const [mobileOpen, setMobileOpen] = useState(false); 
+  const [openHome, setOpenHome] = useState(false);
+  const [openProject, setOpenProject] = useState(false);
+  const [openAbout, setOpenAbout] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <>
@@ -33,7 +34,7 @@ const Sidebar = ({ setActiveSection }) => {
 
         {/* Menu Items */}
         <div className="flex flex-col p-4 gap-2 overflow-hidden">
-          
+
           {/* Home Page Dropdown */}
           <button
             onClick={() => setOpenHome(!openHome)}
@@ -138,6 +139,42 @@ const Sidebar = ({ setActiveSection }) => {
                 onClick={() => setActiveSection("projectimages")}
               >
                 Project Image
+              </button>
+            </div>
+          )}
+
+          {/* About Page Dropdown */}
+          <button
+            onClick={() => setOpenAbout(!openAbout)}
+            className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
+          >
+            <span className="flex items-center gap-2">
+              <Grid className="w-5 h-5" />
+              About Page
+            </span>
+            <ChevronDown
+              className={`w-4 h-4 transform transition-transform ${openAbout ? "rotate-180" : ""}`}
+            />
+          </button>
+          {openAbout && (
+            <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("aboutmain")}
+              >
+                About Main
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("quote")}
+              >
+                Quote
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("team")}
+              >
+                Team
               </button>
             </div>
           )}
