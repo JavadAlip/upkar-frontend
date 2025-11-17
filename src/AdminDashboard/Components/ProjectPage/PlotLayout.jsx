@@ -8,10 +8,9 @@ import PlotLayoutEdit from "./../Common/PlotLayoutEdit";
 import { getPlotLayout, deletePlotLayout } from "../../../Api";
 
 const PlotLayout = () => {
-  const [layouts, setLayouts] = useState([]); // array of layouts
+  const [layouts, setLayouts] = useState([]); 
   const [isAddOpen, setIsAddOpen] = useState(false);
-  const [editLayout, setEditLayout] = useState(null); // layout to edit
-
+  const [editLayout, setEditLayout] = useState(null); 
   // Fetch all layouts on mount
   useEffect(() => {
     fetchLayouts();
@@ -19,7 +18,7 @@ const PlotLayout = () => {
 
   const fetchLayouts = async () => {
     try {
-      const data = await getPlotLayout(); // array from API
+      const data = await getPlotLayout(); 
       setLayouts(data || []);
     } catch (error) {
       console.error("Error fetching plot layouts:", error);

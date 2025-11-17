@@ -15,8 +15,8 @@ const PlotLayoutEdit = ({ isOpen, onClose, layout, onUpdate }) => {
       setMainImagePreview(layout.mainImage || "");
       setIcons(
         layout.icons?.map((ic) => ({
-          file: null,         // For new uploads
-          preview: ic.icon,   // Existing image URL
+          file: null,        
+          preview: ic.icon,   
           heading: ic.heading,
           subheading: ic.subheading,
         })) || []
