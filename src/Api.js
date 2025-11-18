@@ -4,6 +4,7 @@ import axios from "axios";
 const API_URL =
   import.meta.env.VITE_API_URL || "https://upkar-backend.onrender.com/api";
 
+  
 //banners
 export const getBanners = async () => {
   const res = await axios.get(`${API_URL}/homepage/get-all-banners`);
@@ -41,6 +42,7 @@ export const editBanner = async (id, formData, token) => {
   return res.data;
 };
 
+
 //VisionMission
 export const getVisionMission = async () => {
   const res = await axios.get(`${API_URL}/homepage/get-all-visions`);
@@ -63,6 +65,7 @@ export const deleteVisionMission = async (token) => {
   });
   return res.data;
 };
+
 
 // Projects
 export const getProjects = async () => {
@@ -100,6 +103,7 @@ export const deleteProject = async (id, token) => {
   });
   return res.data;
 };
+
 
 //certification
 export const getCertifications = async () => {
@@ -145,6 +149,7 @@ export const updateCertification = async (id, formData, token) => {
   return res.data;
 };
 
+
 // Q&A
 export const getQuestionsAPI = async () => {
   const res = await axios.get(`${API_URL}/homepage/get-all-qns`);
@@ -171,6 +176,7 @@ export const deleteQuestionAPI = async (id, token) => {
   });
   return res.data;
 };
+
 
 // Awards
 export const getAwardsAPI = async () => {
@@ -206,6 +212,7 @@ export const deleteAwardAPI = async (id, token) => {
   });
   return data;
 };
+
 
 //project main
 export const getAllProjectMain = async () => {
@@ -319,7 +326,6 @@ export const createPlotLayout = async (formData, token) => {
   }
 };
 
-
 export const updatePlotLayout = async (id, formData, token) => {
   try {
     const res = await axios.put(`${API_URL}/projectpage/update-plot-layout/${id}`, formData, {
@@ -338,7 +344,6 @@ export const updatePlotLayout = async (id, formData, token) => {
   }
 };
 
-
 export const getPlotLayout = async () => {
   try {
     const res = await axios.get(`${API_URL}/projectpage/get-plot-layout`);
@@ -351,7 +356,6 @@ export const getPlotLayout = async () => {
     throw error;
   }
 };
-
 
 export const deletePlotLayout = async (id, token) => {
   try {
@@ -415,6 +419,7 @@ export const deleteAmenityAPI = async (id, token) => {
   return data;
 };
 
+
 // about project
 export const getAboutProjectsAPI = async () => {
   const { data } = await axios.get(`${API_URL}/projectpage/get-about-project`);
@@ -463,6 +468,7 @@ export const deleteAboutProjectAPI = async (id, token) => {
   return data;
 };
 
+
 //project images
 export const getProjectImagesAPI = async () => {
   const res = await axios.get(`${API_URL}/projectpage/get-all-project-images`);
@@ -506,6 +512,7 @@ export const deleteProjectImagesAPI = async (id, token) => {
   );
   return res.data;
 };
+
 
 // AboutMain
 export const createAboutMain = async (formData, token) => {
@@ -551,6 +558,7 @@ export const deleteAboutMain = async (id, token) => {
   return res.data;
 };
 
+
 //Quotes
 export const getAllQuotes = async () => {
   const res = await axios.get(`${API_URL}/aboutuspage/get-all-quotes`);
@@ -583,8 +591,8 @@ export const deleteQuote = async (id, token) => {
   return res.data;
 };
 
-//our team
 
+//our team
 export const createTeamMember = async (formData, token) => {
   const res = await axios.post(`${API_URL}/aboutuspage/create-team`, formData, {
     headers: {
@@ -616,6 +624,42 @@ export const updateTeamMember = async (id, formData, token) => {
 
 export const deleteTeamMember = async (id, token) => {
   const res = await axios.delete(`${API_URL}/aboutuspage/delete-team/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};
+
+
+//Event
+export const createEvent = async (formData, token) => {
+  const res = await axios.post(`${API_URL}/eventspage/create-event`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+export const getAllEvents = async () => {
+  const res = await axios.get(`${API_URL}/eventspage/get-all-events`);
+  return res.data;
+};
+
+export const updateEvent = async (id, formData, token) => {
+  const res = await axios.put(`${API_URL}/eventspage/update-event/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+export const deleteEvent = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/eventspage/delete-event/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

@@ -5,6 +5,7 @@ const Sidebar = ({ setActiveSection }) => {
   const [openHome, setOpenHome] = useState(false);
   const [openProject, setOpenProject] = useState(false);
   const [openAbout, setOpenAbout] = useState(false);
+  const [openEvent, setOpenEvent] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -15,7 +16,11 @@ const Sidebar = ({ setActiveSection }) => {
           onClick={() => setMobileOpen(!mobileOpen)}
           className="text-white bg-black p-2 rounded"
         >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
         </button>
       </div>
 
@@ -30,11 +35,12 @@ const Sidebar = ({ setActiveSection }) => {
         `}
       >
         {/* Sidebar Header */}
-        <h2 className="text-2xl font-bold p-4 border-b border-gray-700">Admin</h2>
+        <h2 className="text-2xl font-bold p-4 border-b border-gray-700">
+          Admin
+        </h2>
 
         {/* Menu Items */}
         <div className="flex flex-col p-4 gap-2 overflow-hidden">
-
           {/* Home Page Dropdown */}
           <button
             onClick={() => setOpenHome(!openHome)}
@@ -45,7 +51,9 @@ const Sidebar = ({ setActiveSection }) => {
               Home Page
             </span>
             <ChevronDown
-              className={`w-4 h-4 transform transition-transform ${openHome ? "rotate-180" : ""}`}
+              className={`w-4 h-4 transform transition-transform ${
+                openHome ? "rotate-180" : ""
+              }`}
             />
           </button>
           {openHome && (
@@ -99,7 +107,9 @@ const Sidebar = ({ setActiveSection }) => {
               Project Page
             </span>
             <ChevronDown
-              className={`w-4 h-4 transform transition-transform ${openProject ? "rotate-180" : ""}`}
+              className={`w-4 h-4 transform transition-transform ${
+                openProject ? "rotate-180" : ""
+              }`}
             />
           </button>
           {openProject && (
@@ -153,7 +163,9 @@ const Sidebar = ({ setActiveSection }) => {
               About Page
             </span>
             <ChevronDown
-              className={`w-4 h-4 transform transition-transform ${openAbout ? "rotate-180" : ""}`}
+              className={`w-4 h-4 transform transition-transform ${
+                openAbout ? "rotate-180" : ""
+              }`}
             />
           </button>
           {openAbout && (
@@ -179,6 +191,31 @@ const Sidebar = ({ setActiveSection }) => {
             </div>
           )}
 
+          {/* Event Page Dropdown */}
+          <button
+            onClick={() => setOpenEvent(!openEvent)}
+            className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
+          >
+            <span className="flex items-center gap-2">
+              <Grid className="w-5 h-5" />
+              Event Page
+            </span>
+            <ChevronDown
+              className={`w-4 h-4 transform transition-transform ${
+                openEvent ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+          {openEvent && (
+            <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("eventmain")}
+              >
+                Event Main
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

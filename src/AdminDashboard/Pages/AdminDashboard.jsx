@@ -16,8 +16,7 @@ import AboutProject from "../Components/ProjectPage/AboutProject";
 import AboutMain from "../Components/AboutPage/AboutMain";
 import Quote from "../Components/AboutPage/Quote";
 import Team from "../Components/AboutPage/Team";
-
-
+import EventMain from "../Components/EventPage/EventMain";
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState("banner");
@@ -54,12 +53,12 @@ const AdminDashboard = () => {
         return <Quote />;
       case "team":
         return <Team />;
+      case "eventmain":
+        return <EventMain />;
       default:
         return <div>Welcome Admin</div>;
     }
   };
-
-
 
   return (
     <div>
