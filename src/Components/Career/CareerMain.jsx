@@ -1,13 +1,25 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import Career1 from "../../assets/career1.png";
-import Career2 from "../../assets/CompletedPro3.png";
-import Career3 from "../../assets/PrjctGetin.png";
-import Career4 from "../../assets/PrjctMain6.png";
+import React, { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
 import JoinUs from "../../assets/Icons/joinUs.png";
-
+import { getCareerMainAPI } from "../../Api";
 
 const CareerMain = () => {
+  const [careerDescription, setCareerDescription] = useState("");
+
+  useEffect(() => {
+    const fetchCareerDescription = async () => {
+      try {
+        const res = await getCareerMainAPI();
+        if (res.success && res.data.length > 0) {
+          setCareerDescription(res.data[0].careerDescription);
+        }
+      } catch (error) {
+        console.error("Failed to fetch career description:", error);
+      }
+    };
+    fetchCareerDescription();
+  }, []);
+
   return (
     <div className="w-full bg-white py-8 md:py-16 px-4">
       <div className="max-w-6xl mx-auto space-y-12 md:space-y-16">
@@ -24,9 +36,9 @@ const CareerMain = () => {
             </span>
           </h2>
 
-          {/* Description */}
-          <p className="font-[Figtree] font-light text-base md:text-lg lg:text-[20px] text-[#050F27] leading-[1.4] max-w-4xl mx-auto px-2">
-            Join a legacy of excellence that spans over 50 years. At Upkar Developers, we don't just build structures; we shape communities and create spaces that stand the test of time. We are a team of visionaries, engineers, and builders dedicated to uncompromising quality, timeless values, and a customer-centric approach.
+          {/* Dynamic Description */}
+          <p className="font-[Figtree] font-light text-base md:text-lg lg:text-[20px] text-[#050F27] leading-[1.4] max-w-4xl mx-auto px-2 whitespace-pre-line">
+            {careerDescription || "Loading career description..."}
           </p>
 
           {/* Join Us Button */}
@@ -41,60 +53,6 @@ const CareerMain = () => {
           </div>
         </div>
 
-        {/* Image Gallery Section */}
-        {/* <div className="w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 min-h-80 md:h-96">
-
-            <div className="h-64 md:h-full">
-              <div className="relative h-full rounded-lg md:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <img
-                  src={Career1}
-                  alt="Upkar Development"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            </div>
-
-
-            <div className="flex flex-col gap-3 md:gap-4 h-64 md:h-full">
-              <div className="flex-1 rounded-lg md:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <img
-                  src={Career2}
-                  alt="Upkar Project"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="flex-1 rounded-lg md:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <img
-                  src={Career2}
-                  alt="Upkar Community"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            </div>
-
-
-            <div className="flex flex-col gap-3 md:gap-4 h-64 md:h-full">
-              <div className="flex-1 rounded-lg md:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <img
-                  src={Career3}
-                  alt="Upkar Aerial"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="flex-1 rounded-lg md:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <img
-                  src={Career4}
-                  alt="Upkar Habitat"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            </div>
-          </div>
-        </div> */}
-
-        <div className=" md:pt-12">
-        </div>
       </div>
     </div>
   );

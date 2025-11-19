@@ -1,7 +1,6 @@
-
 import React, { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { getProjectImagesAPI } from '../../Api'; 
+import { getCareerImages } from '../../Api'; 
 
 const CareerImages = () => {
   const [images, setImages] = useState([]);
@@ -11,7 +10,7 @@ const CareerImages = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const data = await getProjectImagesAPI(token);
+        const data = await getCareerImages(token);
         // Flatten all images from all objects
         const allImages = data.flatMap(item => item.images || []);
         setImages(allImages);

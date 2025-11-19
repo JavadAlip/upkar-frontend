@@ -17,6 +17,9 @@ import AboutMain from "../Components/AboutPage/AboutMain";
 import Quote from "../Components/AboutPage/Quote";
 import Team from "../Components/AboutPage/Team";
 import EventMain from "../Components/EventPage/EventMain";
+import CareerMain from "../Components/CareerPage/CareerMain";
+import WhyJoinMain from "../Components/CareerPage/WhyJoinMain";
+import CareerImages from "../Components/CareerPage/CareerImages";
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState("banner");
@@ -55,6 +58,12 @@ const AdminDashboard = () => {
         return <Team />;
       case "eventmain":
         return <EventMain />;
+      case "careermain":
+        return <CareerMain />;
+      case "whyjoin":
+        return <WhyJoinMain />;
+      case "careerimages":
+        return <CareerImages />;
       default:
         return <div>Welcome Admin</div>;
     }

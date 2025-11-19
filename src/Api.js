@@ -666,3 +666,175 @@ export const deleteEvent = async (id, token) => {
   });
   return res.data;
 };
+
+
+//career main
+export const createCareerMainAPI = async (formData, token) => {
+  try {
+    const { data } = await axios.post(
+      `${API_URL}/careerspage/create-careermain`,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+export const getCareerMainAPI = async () => {
+  try {
+    const { data } = await axios.get(`${API_URL}/careerspage/get-all-careermain`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateCareerMainAPI = async (id, formData, token) => {
+  try {
+    const { data } = await axios.put(
+      `${API_URL}/careerspage/update-careermain/${id}`,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteCareerMainAPI = async (id, token) => {
+  try {
+    const { data } = await axios.delete(
+      `${API_URL}/careerspage/delete-careermain/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+//why join
+export const getWhyJoinAPI = async () => {
+  try {
+    const { data } = await axios.get(`${API_URL}/careerspage/get-all-whyjoin`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createWhyJoinAPI = async (formData, token) => {
+  try {
+    const { data } = await axios.post(
+      `${API_URL}/careerspage/create-whyjoin`,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateWhyJoinAPI = async (id, formData, token) => {
+  try {
+    const { data } = await axios.put(
+      `${API_URL}/careerspage/update-whyjoin/${id}`,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteWhyJoinAPI = async (id, token) => {
+  try {
+    const { data } = await axios.delete(
+      `${API_URL}/careerspage/delete-whyjoin/${id}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+
+
+//career images
+export const getCareerImages = async () => {
+  const res = await axios.get(`${API_URL}/careerspage/get-all-career-images`);
+  return res.data;
+};
+
+export const createCareerImages = async (formData, token) => {
+  const res = await axios.post(
+    `${API_URL}/careerspage/create-career-images`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return res.data;
+};
+
+export const updateCareerImages = async (id, formData, token) => {
+  const res = await axios.put(
+    `${API_URL}/careerspage/update-career-images/${id}`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return res.data;
+};
+
+export const deleteCareerImages = async (id, token) => {
+  const res = await axios.delete(
+    `${API_URL}/careerspage/delete-career-images/${id}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+  return res.data;
+};
+

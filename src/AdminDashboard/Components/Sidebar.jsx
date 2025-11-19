@@ -6,6 +6,7 @@ const Sidebar = ({ setActiveSection }) => {
   const [openProject, setOpenProject] = useState(false);
   const [openAbout, setOpenAbout] = useState(false);
   const [openEvent, setOpenEvent] = useState(false);
+  const [openCareer, setOpenCareer] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -213,6 +214,44 @@ const Sidebar = ({ setActiveSection }) => {
                 onClick={() => setActiveSection("eventmain")}
               >
                 Event Main
+              </button>
+            </div>
+          )}
+
+          {/* Career Page Dropdown */}
+          <button
+            onClick={() => setOpenCareer(!openCareer)}
+            className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
+          >
+            <span className="flex items-center gap-2">
+              <Grid className="w-5 h-5" />
+              Career Page
+            </span>
+            <ChevronDown
+              className={`w-4 h-4 transform transition-transform ${
+                openCareer ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+          {openCareer && (
+            <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("careermain")}
+              >
+                Career Main
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("whyjoin")}
+              >
+                Why join
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("careerimages")}
+              >
+                Career Images
               </button>
             </div>
           )}
