@@ -3,46 +3,34 @@ import { Plus, Edit, Trash2 } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast, ToastContainer } from "react-toastify";
 
-import CompletedProjectAdd from "../../Components/Common/CompletedProjectAdd";
-import CompletedProjectEdit from "../../Components/Common/CompletedProjectEdit";
+import ReadMoreAdd from "../../Components/Common/ReadMoreAdd";
+import ReadMoreEdit from "../../Components/Common/ReadMoreEdit";
+import { getAllReadMore, deleteReadMore } from "../../../Api";
 
-import {
-  getAllCompletedProjects,
-  deleteCompletedProject,
-} from "../../../Api";
-
-const CompletedProjectMain = () => {
-  const [projects, setProjects] = useState([]);
+const ReadMoreMain = () => {
+  const [readMores, setReadMores] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedReadMore, setSelectedReadMore] = useState(null);
 
   const token = localStorage.getItem("adminToken");
 
   useEffect(() => {
-    fetchProjects();
+    fetchReadMores();
   }, []);
 
-  // =====================
-  // FETCH PROJECT LIST
-  // =====================
-  const fetchProjects = async () => {
+  // ===================== FETCH ALL =====================
+  const fetchReadMores = async () => {
     try {
-      const response = await getAllCompletedProjects();
-
-      // backend returns: { success: true, data: [ ... ] }
-      const list = Array.isArray(response.data) ? response.data : [];
-
-      setProjects(list);
+      const res = await getAllReadMore();
+      setReadMores(Array.isArray(res.data) ? res.data : []);
     } catch (error) {
-      console.error("Error fetching completed projects:", error);
-      toast.error("Failed to fetch projects!");
+      console.error(error);
+      toast.error("Failed to fetch ReadMore items!");
     }
   };
 
-  // =====================
-  // DELETE PROJECT
-  // =====================
+  // ===================== DELETE =====================
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
       title: "Are you sure?",
@@ -56,24 +44,24 @@ const CompletedProjectMain = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await deleteCompletedProject(id, token);
-        setProjects(projects.filter((p) => p._id !== id));
-        toast.success("Project deleted successfully!");
-      } catch (error) {
-        console.error("Error deleting:", error);
-        toast.error("Failed to delete project!");
+        await deleteReadMore(id, token);
+        setReadMores(readMores.filter((item) => item._id !== id));
+        toast.success("Deleted successfully!");
+      } catch (err) {
+        console.error(err);
+        toast.error("Failed to delete!");
       }
     }
   };
 
   const handleAdded = () => {
-    fetchProjects();
-    toast.success("Project added successfully!");
+    fetchReadMores();
+    toast.success("ReadMore added!");
   };
-  
+
   const handleUpdated = () => {
-    fetchProjects();
-    toast.success("Project updated successfully!");
+    fetchReadMores();
+    toast.success("ReadMore updated!");
   };
 
   return (
@@ -81,12 +69,12 @@ const CompletedProjectMain = () => {
       <ToastContainer position="top-right" autoClose={1500} />
 
       <div className="flex justify-between mb-4">
-        <h1 className="text-2xl font-bold">Completed Projects</h1>
+        <h1 className="text-2xl font-bold">ReadMore</h1>
         <button
           onClick={() => setIsAddOpen(true)}
           className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
         >
-          <Plus className="w-4 h-4" /> Add Project
+          <Plus className="w-4 h-4" /> Add ReadMore
         </button>
       </div>
 
@@ -94,7 +82,6 @@ const CompletedProjectMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Heading</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Description</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Image</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
@@ -102,9 +89,8 @@ const CompletedProjectMain = () => {
           </thead>
 
           <tbody className="bg-white divide-y divide-gray-200">
-            {projects.map((item) => (
+            {readMores.map((item) => (
               <tr key={item._id}>
-                <td className="px-4 py-2">{item.heading}</td>
                 <td className="px-4 py-2">{item.description}</td>
                 <td className="px-4 py-2">
                   <img
@@ -116,7 +102,7 @@ const CompletedProjectMain = () => {
                 <td className="px-4 py-2 flex gap-2">
                   <button
                     onClick={() => {
-                      setSelectedProject(item);
+                      setSelectedReadMore(item);
                       setIsEditOpen(true);
                     }}
                     className="text-blue-500 hover:text-blue-700"
@@ -134,10 +120,10 @@ const CompletedProjectMain = () => {
               </tr>
             ))}
 
-            {projects.length === 0 && (
+            {readMores.length === 0 && (
               <tr>
-                <td colSpan="4" className="text-center py-4 text-gray-500">
-                  No Completed Projects Found.
+                <td colSpan="3" className="text-center py-4 text-gray-500">
+                  No ReadMore Found.
                 </td>
               </tr>
             )}
@@ -146,21 +132,21 @@ const CompletedProjectMain = () => {
       </div>
 
       {/* Add Modal */}
-      <CompletedProjectAdd
+      <ReadMoreAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onAdded={handleAdded}
       />
 
       {/* Edit Modal */}
-      <CompletedProjectEdit
+      <ReadMoreEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
-        project={selectedProject}
+        readMore={selectedReadMore}
         onUpdated={handleUpdated}
       />
     </div>
   );
 };
 
-export default CompletedProjectMain;
+export default ReadMoreMain;

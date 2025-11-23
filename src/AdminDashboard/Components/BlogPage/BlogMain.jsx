@@ -3,50 +3,41 @@ import { Plus, Edit, Trash2 } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast, ToastContainer } from "react-toastify";
 
-import CompletedProjectAdd from "../../Components/Common/CompletedProjectAdd";
-import CompletedProjectEdit from "../../Components/Common/CompletedProjectEdit";
+import BlogMainAdd from "../../Components/Common/BlogMainAdd";
+import BlogMainEdit from "../../Components/Common/BlogMainEdit";
 
 import {
-  getAllCompletedProjects,
-  deleteCompletedProject,
+  getAllBlogMain,
+  deleteBlogMain,
 } from "../../../Api";
 
-const CompletedProjectMain = () => {
-  const [projects, setProjects] = useState([]);
+const BlogMain = () => {
+  const [blogs, setBlogs] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedBlog, setSelectedBlog] = useState(null);
 
   const token = localStorage.getItem("adminToken");
 
   useEffect(() => {
-    fetchProjects();
+    fetchBlogs();
   }, []);
 
-  // =====================
-  // FETCH PROJECT LIST
-  // =====================
-  const fetchProjects = async () => {
+  const fetchBlogs = async () => {
     try {
-      const response = await getAllCompletedProjects();
-
-      // backend returns: { success: true, data: [ ... ] }
+      const response = await getAllBlogMain();
       const list = Array.isArray(response.data) ? response.data : [];
-
-      setProjects(list);
+      setBlogs(list);
     } catch (error) {
-      console.error("Error fetching completed projects:", error);
-      toast.error("Failed to fetch projects!");
+      console.error(error);
+      toast.error("Failed to fetch blogs!");
     }
   };
 
-  // =====================
-  // DELETE PROJECT
-  // =====================
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "This action cannot be undone!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -56,24 +47,24 @@ const CompletedProjectMain = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await deleteCompletedProject(id, token);
-        setProjects(projects.filter((p) => p._id !== id));
-        toast.success("Project deleted successfully!");
+        await deleteBlogMain(id, token);
+        setBlogs(blogs.filter((b) => b._id !== id));
+        toast.success("Blog deleted successfully!");
       } catch (error) {
-        console.error("Error deleting:", error);
-        toast.error("Failed to delete project!");
+        console.error(error);
+        toast.error("Failed to delete blog!");
       }
     }
   };
 
   const handleAdded = () => {
-    fetchProjects();
-    toast.success("Project added successfully!");
+    fetchBlogs();
+    toast.success("Blog added successfully!");
   };
-  
+
   const handleUpdated = () => {
-    fetchProjects();
-    toast.success("Project updated successfully!");
+    fetchBlogs();
+    toast.success("Blog updated successfully!");
   };
 
   return (
@@ -81,12 +72,12 @@ const CompletedProjectMain = () => {
       <ToastContainer position="top-right" autoClose={1500} />
 
       <div className="flex justify-between mb-4">
-        <h1 className="text-2xl font-bold">Completed Projects</h1>
+        <h1 className="text-2xl font-bold">Blog Main</h1>
         <button
           onClick={() => setIsAddOpen(true)}
           className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
         >
-          <Plus className="w-4 h-4" /> Add Project
+          <Plus className="w-4 h-4" /> Add Blog
         </button>
       </div>
 
@@ -95,6 +86,7 @@ const CompletedProjectMain = () => {
           <thead className="bg-gray-50">
             <tr>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Heading</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Heading1</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Description</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Image</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
@@ -102,21 +94,18 @@ const CompletedProjectMain = () => {
           </thead>
 
           <tbody className="bg-white divide-y divide-gray-200">
-            {projects.map((item) => (
+            {blogs.map((item) => (
               <tr key={item._id}>
                 <td className="px-4 py-2">{item.heading}</td>
+                <td className="px-4 py-2">{item.heading1}</td>
                 <td className="px-4 py-2">{item.description}</td>
                 <td className="px-4 py-2">
-                  <img
-                    src={item.mainImage}
-                    alt=""
-                    className="w-20 h-12 object-cover rounded"
-                  />
+                  <img src={item.mainImage} alt="" className="w-20 h-12 object-cover rounded" />
                 </td>
                 <td className="px-4 py-2 flex gap-2">
                   <button
                     onClick={() => {
-                      setSelectedProject(item);
+                      setSelectedBlog(item);
                       setIsEditOpen(true);
                     }}
                     className="text-blue-500 hover:text-blue-700"
@@ -134,10 +123,10 @@ const CompletedProjectMain = () => {
               </tr>
             ))}
 
-            {projects.length === 0 && (
+            {blogs.length === 0 && (
               <tr>
-                <td colSpan="4" className="text-center py-4 text-gray-500">
-                  No Completed Projects Found.
+                <td colSpan="5" className="text-center py-4 text-gray-500">
+                  No Blogs Found.
                 </td>
               </tr>
             )}
@@ -146,21 +135,21 @@ const CompletedProjectMain = () => {
       </div>
 
       {/* Add Modal */}
-      <CompletedProjectAdd
+      <BlogMainAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onAdded={handleAdded}
       />
 
       {/* Edit Modal */}
-      <CompletedProjectEdit
+      <BlogMainEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
-        project={selectedProject}
+        blog={selectedBlog}
         onUpdated={handleUpdated}
       />
     </div>
   );
 };
 
-export default CompletedProjectMain;
+export default BlogMain;

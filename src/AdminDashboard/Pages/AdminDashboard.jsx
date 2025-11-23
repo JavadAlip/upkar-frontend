@@ -23,6 +23,9 @@ import CareerImages from "../Components/CareerPage/CareerImages";
 import CompletedMain from "../Components/CompletedPrjctPage/CompletedMain";
 import OurValues from "../Components/CompletedPrjctPage/OurValues";
 import ProjectLists from "../Components/CompletedPrjctPage/ProjectLists";
+import BlogMain from "../Components/BlogPage/BlogMain";
+import PopularArticles from "../Components/BlogPage/PopularArticles";
+import Readmore from "../Components/BlogPage/Readmore";
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState("banner");
@@ -73,6 +76,12 @@ const AdminDashboard = () => {
         return <OurValues />;
       case "projectlists":
         return <ProjectLists />;
+      case "blogsmain":
+        return <BlogMain />;
+      case "populararticles":
+        return <PopularArticles />;
+      case "readmore":
+        return <Readmore />;
       default:
         return <div>Welcome Admin</div>;
     }

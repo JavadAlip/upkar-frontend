@@ -948,3 +948,98 @@ export const deleteProjectList = async (id, token) => {
   });
   return res.data;
 };
+
+
+
+// blogs main
+export const createBlogMain = async (formData, token) => {
+  const res = await axios.post(`${API_URL}/blogspage/create-blogmain`, formData, {
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" },
+  });
+  return res.data;
+};
+
+export const getAllBlogMain = async () => {
+  const res = await axios.get(`${API_URL}/blogspage/get-all-blogmain`);
+  return res.data;
+};
+
+export const updateBlogMain = async (id, formData, token) => {
+  const res = await axios.put(`${API_URL}/blogspage/update-blogmain/${id}`, formData, {
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" },
+  });
+  return res.data;
+};
+
+export const deleteBlogMain = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/blogspage/delete-blogmain/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+
+
+//top articles
+export const createArticle = async (formData, token) => {
+  const res = await axios.post(`${API_URL}/blogspage/create-article`, formData, {
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" },
+  });
+  return res.data;
+};
+
+
+export const getAllArticles = async () => {
+  const res = await axios.get(`${API_URL}/blogspage/get-all-articles`);
+  return res.data;
+};
+
+
+export const updateArticle = async (id, formData, token) => {
+  const res = await axios.put(`${API_URL}/blogspage/update-article/${id}`, formData, {
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" },
+  });
+  return res.data;
+};
+
+
+export const deleteArticle = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/blogspage/delete-article/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+
+//read more
+export const getAllReadMore = async () => {
+  const res = await axios.get(`${API_URL}/blogspage/get-all-readmore`);
+  return res.data;
+};
+
+export const createReadMore = async (formData, token) => {
+  const res = await axios.post(`${API_URL}/blogspage/create-readmore`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+export const updateReadMore = async (id, formData, token) => {
+  const res = await axios.put(`${API_URL}/blogspage/update-readmore/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+export const deleteReadMore = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/blogspage/delete-readmore/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};

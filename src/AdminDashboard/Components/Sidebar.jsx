@@ -8,6 +8,7 @@ const Sidebar = ({ setActiveSection }) => {
   const [openEvent, setOpenEvent] = useState(false);
   const [openCareer, setOpenCareer] = useState(false);
   const [openCompleted, setOpenCompleted] = useState(false);
+  const [openBlog, setOpenBlog] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -291,6 +292,44 @@ const Sidebar = ({ setActiveSection }) => {
                 onClick={() => setActiveSection("projectlists")}
               >
                 Project Lists
+              </button>
+            </div>
+          )}
+
+          {/* Blog Page */}
+          <button
+            onClick={() => setOpenBlog(!openBlog)}
+            className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
+          >
+            <span className="flex items-center gap-2">
+              <Grid className="w-5 h-5" />
+              Blogs
+            </span>
+            <ChevronDown
+              className={`w-4 h-4 transform transition-transform ${
+                openBlog ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+          {openBlog && (
+            <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("blogsmain")}
+              >
+                Blogs Main
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("populararticles")}
+              >
+                Popular Articles
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("readmore")}
+              >
+                Read More
               </button>
             </div>
           )}

@@ -3,46 +3,37 @@ import { Plus, Edit, Trash2 } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast, ToastContainer } from "react-toastify";
 
-import CompletedProjectAdd from "../../Components/Common/CompletedProjectAdd";
-import CompletedProjectEdit from "../../Components/Common/CompletedProjectEdit";
+import PopularArticleAdd from "../../Components/Common/PopularArticleAdd";
+import PopularArticleEdit from "../../Components/Common/PopularArticleEdit";
 
 import {
-  getAllCompletedProjects,
-  deleteCompletedProject,
+  getAllArticles,
+  deleteArticle,
 } from "../../../Api";
 
-const CompletedProjectMain = () => {
-  const [projects, setProjects] = useState([]);
+const PopularArticlesMain = () => {
+  const [articles, setArticles] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedArticle, setSelectedArticle] = useState(null);
 
   const token = localStorage.getItem("adminToken");
 
   useEffect(() => {
-    fetchProjects();
+    fetchArticles();
   }, []);
 
-  // =====================
-  // FETCH PROJECT LIST
-  // =====================
-  const fetchProjects = async () => {
+  const fetchArticles = async () => {
     try {
-      const response = await getAllCompletedProjects();
-
-      // backend returns: { success: true, data: [ ... ] }
+      const response = await getAllArticles();
       const list = Array.isArray(response.data) ? response.data : [];
-
-      setProjects(list);
+      setArticles(list);
     } catch (error) {
-      console.error("Error fetching completed projects:", error);
-      toast.error("Failed to fetch projects!");
+      console.error(error);
+      toast.error("Failed to fetch articles!");
     }
   };
 
-  // =====================
-  // DELETE PROJECT
-  // =====================
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
       title: "Are you sure?",
@@ -56,24 +47,24 @@ const CompletedProjectMain = () => {
 
     if (confirm.isConfirmed) {
       try {
-        await deleteCompletedProject(id, token);
-        setProjects(projects.filter((p) => p._id !== id));
-        toast.success("Project deleted successfully!");
+        await deleteArticle(id, token);
+        setArticles(articles.filter((a) => a._id !== id));
+        toast.success("Article deleted successfully!");
       } catch (error) {
-        console.error("Error deleting:", error);
-        toast.error("Failed to delete project!");
+        console.error(error);
+        toast.error("Failed to delete article!");
       }
     }
   };
 
   const handleAdded = () => {
-    fetchProjects();
-    toast.success("Project added successfully!");
+    fetchArticles();
+    toast.success("Article added successfully!");
   };
-  
+
   const handleUpdated = () => {
-    fetchProjects();
-    toast.success("Project updated successfully!");
+    fetchArticles();
+    toast.success("Article updated successfully!");
   };
 
   return (
@@ -81,12 +72,12 @@ const CompletedProjectMain = () => {
       <ToastContainer position="top-right" autoClose={1500} />
 
       <div className="flex justify-between mb-4">
-        <h1 className="text-2xl font-bold">Completed Projects</h1>
+        <h1 className="text-2xl font-bold">Popular Articles</h1>
         <button
           onClick={() => setIsAddOpen(true)}
           className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
         >
-          <Plus className="w-4 h-4" /> Add Project
+          <Plus className="w-4 h-4" /> Add Article
         </button>
       </div>
 
@@ -94,38 +85,42 @@ const CompletedProjectMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Heading</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Description</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Image</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Main Description</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Main Image</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Sub Items</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
             </tr>
           </thead>
 
           <tbody className="bg-white divide-y divide-gray-200">
-            {projects.map((item) => (
-              <tr key={item._id}>
-                <td className="px-4 py-2">{item.heading}</td>
-                <td className="px-4 py-2">{item.description}</td>
+            {articles.map((article) => (
+              <tr key={article._id}>
+                <td className="px-4 py-2">{article.mainDescription}</td>
                 <td className="px-4 py-2">
                   <img
-                    src={item.mainImage}
+                    src={article.mainImage}
                     alt=""
                     className="w-20 h-12 object-cover rounded"
                   />
                 </td>
+                <td className="px-4 py-2">
+                  {article.subItems.map((sub, idx) => (
+                    <div key={idx} className="mb-2 border p-1 rounded">
+                      <p className="font-semibold text-sm">{sub.subHeading}</p>
+                      <p className="text-xs">{sub.subDescription}</p>
+                      <img src={sub.subImage} alt="" className="w-16 h-8 object-cover rounded mt-1" />
+                    </div>
+                  ))}
+                </td>
                 <td className="px-4 py-2 flex gap-2">
                   <button
-                    onClick={() => {
-                      setSelectedProject(item);
-                      setIsEditOpen(true);
-                    }}
+                    onClick={() => { setSelectedArticle(article); setIsEditOpen(true); }}
                     className="text-blue-500 hover:text-blue-700"
                   >
                     <Edit size={18} />
                   </button>
-
                   <button
-                    onClick={() => handleDelete(item._id)}
+                    onClick={() => handleDelete(article._id)}
                     className="text-red-500 hover:text-red-700"
                   >
                     <Trash2 size={18} />
@@ -134,10 +129,10 @@ const CompletedProjectMain = () => {
               </tr>
             ))}
 
-            {projects.length === 0 && (
+            {articles.length === 0 && (
               <tr>
                 <td colSpan="4" className="text-center py-4 text-gray-500">
-                  No Completed Projects Found.
+                  No Articles Found.
                 </td>
               </tr>
             )}
@@ -145,22 +140,20 @@ const CompletedProjectMain = () => {
         </table>
       </div>
 
-      {/* Add Modal */}
-      <CompletedProjectAdd
+      <PopularArticleAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onAdded={handleAdded}
       />
 
-      {/* Edit Modal */}
-      <CompletedProjectEdit
+      <PopularArticleEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
-        project={selectedProject}
+        article={selectedArticle}
         onUpdated={handleUpdated}
       />
     </div>
   );
 };
 
-export default CompletedProjectMain;
+export default PopularArticlesMain;
