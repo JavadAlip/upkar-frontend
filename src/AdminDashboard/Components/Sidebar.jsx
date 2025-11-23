@@ -7,6 +7,7 @@ const Sidebar = ({ setActiveSection }) => {
   const [openAbout, setOpenAbout] = useState(false);
   const [openEvent, setOpenEvent] = useState(false);
   const [openCareer, setOpenCareer] = useState(false);
+  const [openCompleted, setOpenCompleted] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -252,6 +253,44 @@ const Sidebar = ({ setActiveSection }) => {
                 onClick={() => setActiveSection("careerimages")}
               >
                 Career Images
+              </button>
+            </div>
+          )}
+
+          {/* Completed Project Page Dropdown */}
+          <button
+            onClick={() => setOpenCompleted(!openCompleted)}
+            className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
+          >
+            <span className="flex items-center gap-2">
+              <Grid className="w-5 h-5" />
+              Completed Projects
+            </span>
+            <ChevronDown
+              className={`w-4 h-4 transform transition-transform ${
+                openCompleted ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+          {openCompleted && (
+            <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("completedmain")}
+              >
+                Completed Main
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("ourvalues")}
+              >
+                Our Values
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("projectlists")}
+              >
+                Project Lists
               </button>
             </div>
           )}

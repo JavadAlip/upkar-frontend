@@ -1,40 +1,37 @@
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Search } from 'lucide-react';
 import { FiChevronDown } from "react-icons/fi";
-import CmpltMain2 from "../../assets/CompletedPro2.png";
-import CmpltMain3 from "../../assets/CompletedPro3.png";
-import CmpltMain4 from "../../assets/CompletedPro4.png";
+import { getAllProjectsList } from '../../Api'; 
 
 const ProjectsList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedStatus, setSelectedStatus] = useState('All');
   const [currentPage, setCurrentPage] = useState(0);
+  const [projects, setProjects] = useState([]);
 
-  // List of local images to cycle through
-  const images = [CmpltMain2, CmpltMain3, CmpltMain4];
-
-  // Sample project data - using local images
-  const allProjects = Array.from({ length: 27 }, (_, index) => {
-    const id = index + 1;
-    return {
-      id,
-      title: 'Upkar Habitat',
-      subtitle: 'Property',
-      location: 'Dasarahali Road, Bangalore',
-      image: images[index % images.length],
-      category: ['Completed', 'Ongoing', 'Upcoming'][index % 3],
-      status: ['Completed', 'Ongoing', 'Upcoming'][index % 3],
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await getAllProjectsList();
+        if (res.success) {
+          setProjects(res.data); 
+        }
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
     };
-  });
+
+    fetchProjects();
+  }, []);
 
   // Filter projects based on search and selections
-  const filteredProjects = allProjects.filter(project => {
-    const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  const filteredProjects = projects.filter(project => {
+    const matchesSearch =
+      project.heading.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.location.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'All' || project.category === selectedCategory;
-    const matchesStatus = selectedStatus === 'All' || project.status === selectedStatus;
+    const matchesCategory = selectedCategory === 'All' || project.type === selectedCategory;
+    const matchesStatus = selectedStatus === 'All' || project.type === selectedStatus; 
     return matchesSearch && matchesCategory && matchesStatus;
   });
 
@@ -52,7 +49,6 @@ const ProjectsList = () => {
         {/* Filter Section */}
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-
             {/* Search Input */}
             <div className="relative">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
@@ -107,14 +103,14 @@ const ProjectsList = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {currentProjects.map((project) => (
             <div
-              key={project.id}
+              key={project._id}
               className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
             >
               {/* Project Image */}
               <div className="relative overflow-hidden rounded-t-xl">
                 <img
-                  src={project.image}
-                  alt={project.title}
+                  src={project.projectImage}
+                  alt={project.heading}
                   className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
@@ -125,14 +121,14 @@ const ProjectsList = () => {
                   className="text-[20px] font-medium text-black"
                   style={{ fontFamily: "'Figtree', sans-serif" }}
                 >
-                  {project.title}
+                  {project.heading}
                 </h3>
 
                 <p
                   className="text-[13px] font-light text-black mt-1"
                   style={{ fontFamily: "'Figtree', sans-serif" }}
                 >
-                  {project.subtitle}
+                  {project.type}
                 </p>
 
                 <div className="flex items-center gap-2 mt-2 text-[#6B6B6B]">
@@ -167,7 +163,7 @@ const ProjectsList = () => {
           ))}
         </div>
 
-        {/* Pagination Dots - Fixed */}
+        {/* Pagination Dots */}
         {totalPages > 1 && (
           <div className="flex justify-center items-center gap-2 pb-8">
             {Array.from({ length: totalPages }, (_, index) => (

@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import Value1 from "../../assets/UbkarHabit.png";
-import icon1 from "../../assets/Icons/value1.png";
-import icon2 from "../../assets/Icons/value2.png";
-import icon3 from "../../assets/Icons/value3.png";
-import icon4 from "../../assets/Icons/value4.png";
-import icon5 from "../../assets/Icons/value5.png";
-import icon6 from "../../assets/Icons/value6.png";
+import { getAllOurValues } from "../../Api"; 
 
 const OurValues = () => {
-  const values = [
-    { id: 1, icon: icon1, title: 'Quality' },
-    { id: 2, icon: icon2, title: 'Technology' },
-    { id: 3, icon: icon3, title: 'Approach' },
-    { id: 4, icon: icon4, title: 'Transparency' },
-    { id: 5, icon: icon5, title: 'Expertise' },
-    { id: 6, icon: icon6, title: 'Reliability' },
-  ];
+  const [values, setValues] = useState([]);
+
+  useEffect(() => {
+    const fetchValues = async () => {
+      try {
+        const res = await getAllOurValues();
+        setValues(res.data);
+      } catch (error) {
+        console.error("Failed to fetch values:", error);
+      }
+    };
+
+    fetchValues();
+  }, []);
 
   return (
     <div className="w-full bg-white py-16 px-4 font-figtree">
@@ -31,29 +32,29 @@ const OurValues = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16">
           {values.map((value) => (
             <div
-              key={value.id}
+              key={value._id} 
               className="flex flex-col items-center justify-center space-y-4 group cursor-pointer"
             >
               {/* Image Icon */}
               <div
                 className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
                 style={{
-                  width: '64px',
-                  height: '64px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
+                  width: "64px",
+                  height: "64px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
                 <img
-                  src={value.icon}
+                  src={value.iconImage}
                   alt={value.title}
                   style={{
-                    maxWidth: '64px',
-                    maxHeight: '64px',
-                    width: 'auto',
-                    height: 'auto',
-                    objectFit: 'contain'
+                    maxWidth: "64px",
+                    maxHeight: "64px",
+                    width: "auto",
+                    height: "auto",
+                    objectFit: "contain",
                   }}
                 />
               </div>

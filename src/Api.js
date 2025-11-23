@@ -838,3 +838,113 @@ export const deleteCareerImages = async (id, token) => {
   return res.data;
 };
 
+
+
+// Completed Project Main
+export const createCompletedProject = async (formData, token) => {
+  const res = await axios.post(
+    `${API_URL}/completedproject/create-completeprjct`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return res.data;
+};
+
+
+export const getAllCompletedProjects = async () => {
+  const res = await axios.get(`${API_URL}/completedproject/get-all-completeprjcts`);
+  return res.data;
+};
+
+export const updateCompletedProject = async (id, formData, token) => {
+  const res = await axios.put(`${API_URL}/completedproject/update-completeprjct/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+export const deleteCompletedProject = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/completedproject/delete-completeprjct/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};
+
+
+// our values
+export const getAllOurValues = async () => {
+  const res = await axios.get(`${API_URL}/completedproject/get-all-ourvalues`);
+  return res.data;
+};
+
+export const createOurValue = async (formData, token) => {
+  const res = await axios.post(`${API_URL}/completedproject/create-ourvalues`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+export const updateOurValue = async (id, formData, token) => {
+  const res = await axios.put(`${API_URL}/completedproject/update-ourvalues/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+export const deleteOurValue = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/completedproject/delete-ourvalues/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+
+
+// Projects List
+export const getAllProjectsList = async () => {
+  const res = await axios.get(`${API_URL}/completedproject/get-all-projectlists`);
+  return res.data;
+};
+
+export const createProjectList = async (formData, token) => {
+  const res = await axios.post(`${API_URL}/completedproject/create-projectlist`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+export const updateProjectList = async (id, formData, token) => {
+  const res = await axios.put(`${API_URL}/completedproject/update-projectlist/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+export const deleteProjectList = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/completedproject/delete-projectlist/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
