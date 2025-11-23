@@ -7,6 +7,7 @@ import CompletedPrjcts from "./Pages/CompletedPrjcts";
 import Project from "./Pages/Project";
 import Event from "./Pages/Event";
 import Career from "./Pages/Career";
+import Blogs from "./Pages/Blogs";
 import AdminDashboard from "./AdminDashboard/Pages/AdminDashboard";
 import AdminLogin from "./AdminDashboard/Pages/AdminLogin";
 import ProtectedRoute from "./AdminDashboard/Components/ProtectedRoute";
@@ -41,10 +42,14 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/aboutus" element={<AboutUs />} />
-                <Route path="/completed-projects" element={<CompletedPrjcts />} />
+                <Route
+                  path="/completed-projects"
+                  element={<CompletedPrjcts />}
+                />
                 <Route path="/project" element={<Project />} />
                 <Route path="/events" element={<Event />} />
                 <Route path="/career" element={<Career />} />
+                <Route path="/blogs" element={<Blogs />} />
               </Routes>
             </Layout>
           }

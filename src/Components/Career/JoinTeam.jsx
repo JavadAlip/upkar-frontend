@@ -1,12 +1,7 @@
-
-
-
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 
-
 const JoinTeam = () => {
-
     const [formData, setFormData] = useState({
         projectType: '',
         preferredEstate: '',
@@ -50,9 +45,6 @@ const JoinTeam = () => {
                             <option value="completed">Service3</option>
                         </select>
                     </div>
-
-
-
                     <div>
                         <input
                             type="text"
@@ -63,7 +55,6 @@ const JoinTeam = () => {
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-gray-700 bg-white"
                         />
                     </div>
-
                     <div>
                         <input
                             type="email"
@@ -74,7 +65,6 @@ const JoinTeam = () => {
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-gray-700 bg-white"
                         />
                     </div>
-
                     <div>
                         <input
                             type="tel"
@@ -85,7 +75,6 @@ const JoinTeam = () => {
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-gray-700 bg-white"
                         />
                     </div>
-
                     <div>
                         <input
                             type="text"
@@ -97,7 +86,6 @@ const JoinTeam = () => {
                         />
                     </div>
                 </div>
-
                 <button
                     aria-label="Explore Projects"
                     className="flex items-center justify-center items-center bg-[#050F27] rounded-full shadow-md transition-colors hover:bg-[#0b2444] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#071334]"
