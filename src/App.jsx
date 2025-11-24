@@ -13,8 +13,6 @@ import Blogs from "./Pages/Blogs";
 import AdminDashboard from "./AdminDashboard/Pages/AdminDashboard";
 import AdminLogin from "./AdminDashboard/Pages/AdminLogin";
 import ProtectedRoute from "./AdminDashboard/Components/ProtectedRoute";
-
-// Import Toastify
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -22,7 +20,6 @@ import "react-toastify/dist/ReactToastify.css";
 export default function App() {
   return (
     <Router>
-      {/* Toast Container at top-level */}
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -35,13 +32,11 @@ export default function App() {
         pauseOnHover
         theme="colored"
       />
-
       <Routes>
-        {/* Public routes inside Layout */}
+
         <Route
           path="/*"
           element={
-            <Layout>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/aboutus" element={<AboutUs />} />
@@ -50,10 +45,9 @@ export default function App() {
                 <Route path="/ongoing-projects" element={<OngoingPrjcts />}/>
                 <Route path="/project" element={<Project />} />
                 <Route path="/events" element={<Event />} />
-                <Route path="/career" element={<Career />} />
+                <Route path="/careers" element={<Career />} />
                 <Route path="/blogs" element={<Blogs />} />
               </Routes>
-            </Layout>
           }
         />
 
@@ -71,3 +65,4 @@ export default function App() {
     </Router>
   );
 }
+

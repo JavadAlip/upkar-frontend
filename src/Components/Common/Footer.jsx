@@ -48,7 +48,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/"
+                to="/ongoing-projects"
                 className="hover:text-gray-300 transition-colors"
               >
                 Ongoing
@@ -56,7 +56,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/"
+                to="/upcoming-projects"
                 className="hover:text-gray-300 transition-colors"
               >
                 Upcoming
@@ -87,7 +87,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/"
+                to="/events"
                 className="hover:text-gray-300 transition-colors font-normal"
               >
                 Events
@@ -95,7 +95,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/"
+                to="/blogs"
                 className="hover:text-gray-300 transition-colors font-normal"
               >
                 Blogs
@@ -103,7 +103,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/"
+                to="/career"
                 className="hover:text-gray-300 transition-colors font-normal"
               >
                 Careers

@@ -7,10 +7,13 @@ import AboutProject from '../Components/Project/AboutProject';
 import PrjctGallery from '../Components/Project/PrjctGallery';
 import Directions from '../Components/Project/Directions';
 import PrjctGetinTouch from '../Components/Project/PrjctGetinTouch';
+import CmpltNavbar from '../Components/CompletedPrjcts/CmpltNavbar';
+import Footer from '../Components/Common/Footer';
 
 const Project = () => {
     return (
         <div>
+            <CmpltNavbar/>
             <PrjctMain />
             <Features />
             <PlotLayout />
@@ -19,6 +22,7 @@ const Project = () => {
             <PrjctGallery/>
             <Directions/>
             <PrjctGetinTouch />
+            <Footer/>
         </div>
     )
 }

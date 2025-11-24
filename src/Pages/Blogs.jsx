@@ -1,19 +1,21 @@
-
-import BlogMain from '../Components/Blogs/BlogMain';
-import PopularArticles from '../Components/Blogs/PopularArticles';
-import ReadMore from '../Components/Blogs/ReadMore';
-import JoinTeam from '../Components/Career/JoinTeam';
+import BlogMain from "../Components/Blogs/BlogMain";
+import PopularArticles from "../Components/Blogs/PopularArticles";
+import ReadMore from "../Components/Blogs/ReadMore";
+import JoinTeam from "../Components/Career/JoinTeam";
+import Footer from "../Components/Common/Footer";
+import CmpltNavbar from "../Components/CompletedPrjcts/CmpltNavbar";
 
 const Blogs = () => {
-
   return (
     <>
+      <CmpltNavbar />
       <BlogMain />
-      <PopularArticles/>
-      <ReadMore/>
-      <JoinTeam/>
+      <PopularArticles />
+      <ReadMore />
+      <JoinTeam />
+      <Footer />
     </>
-  )
+  );
 };
 
 export default Blogs;

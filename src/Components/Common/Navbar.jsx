@@ -152,7 +152,7 @@ const Navbar = () => {
 
         <li>
           <Link
-            to="/career"
+            to="/careers"
             className="text-black hover:text-gray-600 transition-colors duration-300"
           >
             Careers
@@ -162,7 +162,7 @@ const Navbar = () => {
         {location.pathname === "/aboutus" && (
           <li>
             <Link
-              to="/contact"
+              to="/"
               className="bg-black text-white px-5 py-2 rounded-2xl hover:bg-gray-900 transition-all duration-300 whitespace-nowrap"
             >
               Contact
@@ -299,7 +299,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/career"
+                to="/careers"
                 className="block text-black hover:text-gray-600 transition-colors"
               >
                 Careers
@@ -309,7 +309,7 @@ const Navbar = () => {
             {/* Contact Button - Mobile */}
             <li>
               <Link
-                to="/contact"
+                to="/"
                 className="block text-white bg-black text-center py-2 px-4 rounded-lg hover:bg-gray-900 transition-all duration-300"
                 onClick={() => setMenuOpen(false)}
               >

@@ -5,13 +5,21 @@ import logo from "../../assets/logo.png";
 import navbarLast from "../../assets/navbarLast1.png";
 
 const NavbarHome = () => {
-  
   const [ongoingOpen, setOngoingOpen] = useState(false);
   const [completedOpen, setCompletedOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Static links with paths
+  const staticLinks = [
+    { name: "Commercial", path: "/" },
+    { name: "Events", path: "/events" },
+    { name: "Blogs", path: "/blogs" },
+    { name: "Careers", path: "/careers" },
+  ];
+
   return (
     <nav className="bg-white shadow-md p-4 flex items-center justify-between relative">
+      {/* Logo */}
       <div className="flex items-center">
         <Link to="/">
           <img
@@ -22,6 +30,7 @@ const NavbarHome = () => {
         </Link>
       </div>
 
+      {/* Desktop Menu */}
       <ul className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center">
         <li>
           <Link
@@ -32,6 +41,7 @@ const NavbarHome = () => {
           </Link>
         </li>
 
+        {/* Ongoing Dropdown */}
         <li className="relative flex items-center space-x-1 cursor-pointer">
           <div
             onMouseEnter={() => {
@@ -51,15 +61,16 @@ const NavbarHome = () => {
             <span className="text-gray-700 hover:text-blue-600 transition-colors duration-300 flex items-center">
               Ongoing
               <ChevronDown
-                className={`ml-1 w-4 h-4 transition-transform duration-300 ${ongoingOpen ? "rotate-180 text-blue-600" : "text-gray-500"
-                  }`}
+                className={`ml-1 w-4 h-4 transition-transform duration-300 ${
+                  ongoingOpen ? "rotate-180 text-blue-600" : "text-gray-500"
+                }`}
               />
             </span>
 
             {ongoingOpen && (
               <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
                 <Link
-                  to="/"
+                  to="/project"
                   className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                 >
                   Project
@@ -70,15 +81,16 @@ const NavbarHome = () => {
         </li>
 
         <li>
-          <a
-            href="#"
+          <Link
+            to="/upcoming-projects"
             className="text-gray-700 hover:text-blue-600 transition-colors duration-300"
           >
             Upcoming
-          </a>
+          </Link>
         </li>
 
-        <li className="relative flex items-center space-x-1 cursor-pointer group">
+        {/* Completed Dropdown */}
+        <li className="relative flex items-center space-x-1 cursor-pointer">
           <div
             onMouseEnter={() => {
               setCompletedOpen(true);
@@ -100,8 +112,9 @@ const NavbarHome = () => {
             >
               Completed
               <ChevronDown
-                className={`ml-1 w-4 h-4 transition-transform duration-300 ${completedOpen ? "rotate-180 text-blue-600" : "text-gray-500"
-                  }`}
+                className={`ml-1 w-4 h-4 transition-transform duration-300 ${
+                  completedOpen ? "rotate-180 text-blue-600" : "text-gray-500"
+                }`}
               />
             </Link>
 
@@ -118,18 +131,20 @@ const NavbarHome = () => {
           </div>
         </li>
 
-        {["Commercial", "Events", "Blogs", "Careers"].map((item) => (
-          <li key={item}>
-            <a
-              href="#"
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-300"
+        {/* Static Links */}
+        {staticLinks.map((item) => (
+          <li key={item.name}>
+            <Link
+              to={item.path}
+              className="text-gray-700 hover:text-blue-600 transition-colors duration-300 whitespace-nowrap"
             >
-              {item}
-            </a>
+              {item.name}
+            </Link>
           </li>
         ))}
       </ul>
 
+      {/* Navbar Last Image */}
       <div className="hidden md:block">
         <img
           src={navbarLast}
@@ -138,6 +153,7 @@ const NavbarHome = () => {
         />
       </div>
 
+      {/* Hamburger Icon */}
       <button
         className="md:hidden text-gray-700 focus:outline-none"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -145,6 +161,7 @@ const NavbarHome = () => {
         {menuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
       </button>
 
+      {/* Mobile Menu */}
       {menuOpen && (
         <div className="absolute top-full left-0 w-full bg-white shadow-md rounded-md mt-2 z-50 md:hidden">
           <ul className="flex flex-col space-y-2 p-4">
@@ -158,6 +175,7 @@ const NavbarHome = () => {
               </Link>
             </li>
 
+            {/* Ongoing Dropdown Mobile */}
             <li>
               <button
                 className="w-full flex justify-between items-center text-gray-700 hover:text-blue-600"
@@ -165,8 +183,9 @@ const NavbarHome = () => {
               >
                 <span>Ongoing</span>
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform ${ongoingOpen ? "rotate-180 text-blue-600" : "text-gray-500"
-                    }`}
+                  className={`w-4 h-4 transition-transform ${
+                    ongoingOpen ? "rotate-180 text-blue-600" : "text-gray-500"
+                  }`}
                 />
               </button>
               {ongoingOpen && (
@@ -183,14 +202,16 @@ const NavbarHome = () => {
             </li>
 
             <li>
-              <a
-                href="#"
+              <Link
+                to="/upcoming-projects"
                 className="block text-gray-700 hover:text-blue-600 transition-colors"
+                onClick={() => setMenuOpen(false)}
               >
                 Upcoming
-              </a>
+              </Link>
             </li>
-            
+
+            {/* Completed Dropdown Mobile */}
             <li>
               <div>
                 <div className="flex items-center justify-between">
@@ -209,8 +230,11 @@ const NavbarHome = () => {
                     }}
                   >
                     <ChevronDown
-                      className={`w-4 h-4 transition-transform ${completedOpen ? "rotate-180 text-blue-600" : "text-gray-500"
-                        }`}
+                      className={`w-4 h-4 transition-transform ${
+                        completedOpen
+                          ? "rotate-180 text-blue-600"
+                          : "text-gray-500"
+                      }`}
                     />
                   </button>
                 </div>
@@ -228,14 +252,16 @@ const NavbarHome = () => {
               </div>
             </li>
 
-            {["Commercial", "Events", "Blogs", "Careers"].map((item) => (
-              <li key={item}>
-                <a
-                  href="#"
+            {/* Static Links Mobile */}
+            {staticLinks.map((item) => (
+              <li key={item.name}>
+                <Link
+                  to={item.path}
                   className="block text-gray-700 hover:text-blue-600 transition-colors"
+                  onClick={() => setMenuOpen(false)}
                 >
-                  {item}
-                </a>
+                  {item.name}
+                </Link>
               </li>
             ))}
           </ul>
