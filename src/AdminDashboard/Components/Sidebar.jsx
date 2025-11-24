@@ -8,6 +8,8 @@ const Sidebar = ({ setActiveSection }) => {
   const [openEvent, setOpenEvent] = useState(false);
   const [openCareer, setOpenCareer] = useState(false);
   const [openCompleted, setOpenCompleted] = useState(false);
+  const [openUpcoming, setOpenUpcoming] = useState(false);
+  const [openOngoing, setOpenOngoing] = useState(false);
   const [openBlog, setOpenBlog] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -19,11 +21,7 @@ const Sidebar = ({ setActiveSection }) => {
           onClick={() => setMobileOpen(!mobileOpen)}
           className="text-white bg-black p-2 rounded"
         >
-          {mobileOpen ? (
-            <X className="w-6 h-6" />
-          ) : (
-            <Menu className="w-6 h-6" />
-          )}
+          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
@@ -38,12 +36,12 @@ const Sidebar = ({ setActiveSection }) => {
         `}
       >
         {/* Sidebar Header */}
-        <h2 className="text-2xl font-bold p-4 border-b border-gray-700">
+        <h2 className="text-2xl font-bold p-4 border-b border-gray-700 flex-shrink-0">
           Admin
         </h2>
 
-        {/* Menu Items */}
-        <div className="flex flex-col p-4 gap-2 overflow-hidden">
+        {/* Scrollable Menu Items */}
+        <div className="flex-1 flex flex-col p-4 gap-2 overflow-y-auto">
           {/* Home Page Dropdown */}
           <button
             onClick={() => setOpenHome(!openHome)}
@@ -258,7 +256,7 @@ const Sidebar = ({ setActiveSection }) => {
             </div>
           )}
 
-          {/* Completed Project Page Dropdown */}
+          {/* Completed Projects Dropdown */}
           <button
             onClick={() => setOpenCompleted(!openCompleted)}
             className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
@@ -296,7 +294,84 @@ const Sidebar = ({ setActiveSection }) => {
             </div>
           )}
 
-          {/* Blog Page */}
+          {/* Upcoming Projects Dropdown */}
+          <button
+            onClick={() => setOpenUpcoming(!openUpcoming)}
+            className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
+          >
+            <span className="flex items-center gap-2">
+              <Grid className="w-5 h-5" />
+              Upcoming Projects
+            </span>
+            <ChevronDown
+              className={`w-4 h-4 transform transition-transform ${
+                openUpcoming ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+          {openUpcoming && (
+            <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("upcomingmain")}
+              >
+                Upcoming Main
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("upcomingourvalues")}
+              >
+                Our Values
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("upcomingprojectlists")}
+              >
+                Project Lists
+              </button>
+            </div>
+          )}
+
+
+          {/* Ongoing Projects Dropdown */}
+          <button
+            onClick={() => setOpenOngoing(!openOngoing)}
+            className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
+          >
+            <span className="flex items-center gap-2">
+              <Grid className="w-5 h-5" />
+              Ongoing Projects
+            </span>
+            <ChevronDown
+              className={`w-4 h-4 transform transition-transform ${
+                openOngoing ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+          {openOngoing && (
+            <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("ongoingmain")}
+              >
+                Ongoing Main
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("ongoingourvalues")}
+              >
+                Our Values
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("ongoingprojectlists")}
+              >
+                Project Lists
+              </button>
+            </div>
+          )}
+
+          {/* Blog Page Dropdown */}
           <button
             onClick={() => setOpenBlog(!openBlog)}
             className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
@@ -335,6 +410,7 @@ const Sidebar = ({ setActiveSection }) => {
           )}
         </div>
       </div>
+
 
       {/* Overlay for mobile when sidebar open */}
       {mobileOpen && (

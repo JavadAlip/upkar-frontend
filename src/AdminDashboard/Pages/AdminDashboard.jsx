@@ -21,11 +21,17 @@ import CareerMain from "../Components/CareerPage/CareerMain";
 import WhyJoinMain from "../Components/CareerPage/WhyJoinMain";
 import CareerImages from "../Components/CareerPage/CareerImages";
 import CompletedMain from "../Components/CompletedPrjctPage/CompletedMain";
-import OurValues from "../Components/CompletedPrjctPage/OurValues";
-import ProjectLists from "../Components/CompletedPrjctPage/ProjectLists";
+import OurValues1 from "../Components/CompletedPrjctPage/OurValues";
+import ProjectLists1 from "../Components/CompletedPrjctPage/ProjectLists";
 import BlogMain from "../Components/BlogPage/BlogMain";
 import PopularArticles from "../Components/BlogPage/PopularArticles";
 import Readmore from "../Components/BlogPage/Readmore";
+import UpcomingMain from "../Components/UpcomingPrjctPage/UpcomingMain";
+import ProjectLists2 from "../Components/UpcomingPrjctPage/ProjectLists";
+import OurValues2 from "../Components/UpcomingPrjctPage/OurValues";
+import OngoingMain from "../Components/OngoingPrjctPage/OngoingMain";
+import ProjectLists from "../Components/OngoingPrjctPage/ProjectLists";
+import OurValues from "../Components/OngoingPrjctPage/OurValues";
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState("banner");
@@ -73,15 +79,27 @@ const AdminDashboard = () => {
       case "completedmain":
         return <CompletedMain />;
       case "ourvalues":
-        return <OurValues />;
+        return <OurValues1 />;
       case "projectlists":
-        return <ProjectLists />;
+        return <ProjectLists1 />;
       case "blogsmain":
         return <BlogMain />;
       case "populararticles":
         return <PopularArticles />;
       case "readmore":
         return <Readmore />;
+      case "upcomingmain":
+        return <UpcomingMain />;
+      case "upcomingprojectlists":
+        return <ProjectLists2 />;
+      case "upcomingourvalues":
+        return <OurValues2 />;
+         case "ongoingmain":
+        return <OngoingMain />;
+      case "ongoingprojectlists":
+        return <ProjectLists />;
+      case "ongoingourvalues":
+        return <OurValues />;
       default:
         return <div>Welcome Admin</div>;
     }

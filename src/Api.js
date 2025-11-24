@@ -1043,3 +1043,172 @@ export const deleteReadMore = async (id, token) => {
   });
   return res.data;
 };
+
+
+// Upcoming Project Main
+export const createUpcomingProject = async (formData, token) => {
+  const res = await axios.post(
+    `${API_URL}/upcomingproject/create-upcomingprjct`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return res.data;
+};
+
+export const getAllUpcomingProjects = async () => {
+  const res = await axios.get(`${API_URL}/upcomingproject/get-all-upcomingprjcts`);
+  return res.data;
+};
+
+export const updateUpcomingProject = async (id, formData, token) => {
+  const res = await axios.put(
+    `${API_URL}/upcomingproject/update-upcomingprjct/${id}`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return res.data;
+};
+
+export const deleteUpcomingProject = async (id, token) => {
+  const res = await axios.delete(
+    `${API_URL}/upcomingproject/delete-upcomingprjct/${id}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return res.data;
+};
+
+
+// Upcoming Projects List
+export const getAllUpcomingProjectsList = async () => {
+  const res = await axios.get(`${API_URL}/upcomingproject/get-all-upcoming-projectlists`);
+  return res.data;
+};
+
+export const createUpcomingProjectList = async (formData, token) => {
+  const res = await axios.post(
+    `${API_URL}/upcomingproject/create-upcoming-projectlist`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return res.data;
+};
+
+export const updateUpcomingProjectList = async (id, formData, token) => {
+  const res = await axios.put(
+    `${API_URL}/upcomingproject/update-upcoming-projectlist/${id}`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return res.data;
+};
+
+export const deleteUpcomingProjectList = async (id, token) => {
+  const res = await axios.delete(
+    `${API_URL}/upcomingproject/delete-upcoming-projectlist/${id}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+  return res.data;
+};
+
+
+// Ongoing Project Main
+export const createOngoingProject = async (formData, token) => {
+  const res = await axios.post(`${API_URL}/ongoingproject/create-ongoingprjct`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+export const getAllOngoingProjects = async () => {
+  const res = await axios.get(`${API_URL}/ongoingproject/get-all-ongoingprjcts`);
+  return res.data;
+};
+
+export const updateOngoingProject = async (id, formData, token) => {
+  const res = await axios.put(`${API_URL}/ongoingproject/update-ongoingprjct/${id}`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res.data;
+};
+
+export const deleteOngoingProject = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/ongoingproject/delete-ongoingprjct/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+
+
+// Ongoing projects list
+export const getAllOngoingProjectsList = async () => {
+  const res = await axios.get(`${API_URL}/ongoingproject/get-all-ongoing-projectlists`);
+  return res.data;
+};
+
+export const createOngoingProjectList = async (formData, token) => {
+  const res = await axios.post(
+    `${API_URL}/ongoingproject/create-ongoing-projectlist`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return res.data;
+};
+
+export const updateOngoingProjectList = async (id, formData, token) => {
+  const res = await axios.put(
+    `${API_URL}/ongoingproject/update-ongoing-projectlist/${id}`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return res.data;
+};
+
+export const deleteOngoingProjectList = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/ongoingproject/delete-ongoing-projectlist/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
