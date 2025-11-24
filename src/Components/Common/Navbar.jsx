@@ -52,19 +52,31 @@ const Navbar = () => {
             }}
             className="relative"
           >
-            <span className="text-black hover:text-gray-600 transition-colors duration-300 flex items-center">
+             <Link
+              to="/ongoing-projects"
+              className="text-black hover:text-gray-600 transition-colors duration-300 flex items-center"
+            >
               Ongoing
               <ChevronDown
                 className={`ml-1 w-4 h-4 transition-transform duration-300 ${
                   ongoingOpen ? "rotate-180 text-gray-600" : "text-gray-500"
                 }`}
               />
-            </span>
+            </Link>
+
+            {/* <span className="text-black hover:text-gray-600 transition-colors duration-300 flex items-center">
+              Ongoing
+              <ChevronDown
+                className={`ml-1 w-4 h-4 transition-transform duration-300 ${
+                  ongoingOpen ? "rotate-180 text-gray-600" : "text-gray-500"
+                }`}
+              />
+            </span> */}
 
             {ongoingOpen && (
               <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
                 <Link
-                  to="/"
+                  to="/project"
                   className="block px-4 py-2 text-black hover:bg-gray-50  transition-colors"
                 >
                   Project
@@ -75,12 +87,13 @@ const Navbar = () => {
         </li>
 
         <li>
-          <a
-            href="#"
+          <Link
+          
+            to="/upcoming-projects"
             className="text-black hover:text-gray-600 transition-colors duration-300"
           >
             Upcoming
-          </a>
+          </Link>
         </li>
 
         <li className="relative flex items-center space-x-1 cursor-pointer group">
@@ -211,12 +224,21 @@ const Navbar = () => {
             </li>
 
             <li>
-              <a
-                href="#"
+              <Link
+                to="/upcoming-projects"
                 className="block text-black hover:text-gray-600 transition-colors"
               >
                 Upcoming
-              </a>
+              </Link>
+            </li>
+            
+            <li>
+              <Link
+                to="/ongoing-projects"
+                className="block text-black hover:text-gray-600 transition-colors"
+              >
+                Ongoing
+              </Link>
             </li>
             <li className="relative flex items-center space-x-1 cursor-pointer group">
               <div
