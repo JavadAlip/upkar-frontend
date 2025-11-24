@@ -4,6 +4,8 @@ import Layout from "./Components/Common/Layout";
 import Home from "./Pages/Home";
 import AboutUs from "./Pages/AboutUs";
 import CompletedPrjcts from "./Pages/CompletedPrjcts";
+import UpcomingPrjcts from "./Pages/UpcomingPrjcts";
+import OngoingPrjcts from "./Pages/OngoingPrjcts";
 import Project from "./Pages/Project";
 import Event from "./Pages/Event";
 import Career from "./Pages/Career";
@@ -15,6 +17,7 @@ import ProtectedRoute from "./AdminDashboard/Components/ProtectedRoute";
 // Import Toastify
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 export default function App() {
   return (
@@ -42,10 +45,9 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/aboutus" element={<AboutUs />} />
-                <Route
-                  path="/completed-projects"
-                  element={<CompletedPrjcts />}
-                />
+                <Route path="/completed-projects" element={<CompletedPrjcts />}/>
+                <Route path="/upcoming-projects" element={<UpcomingPrjcts />}/>
+                <Route path="/ongoing-projects" element={<OngoingPrjcts />}/>
                 <Route path="/project" element={<Project />} />
                 <Route path="/events" element={<Event />} />
                 <Route path="/career" element={<Career />} />
