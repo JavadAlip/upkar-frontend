@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Home, ChevronDown, Menu, X, Grid } from "lucide-react";
+import { Home, Info, Folder, Calendar, Briefcase,CheckCircle,Activity,FileText, ChevronDown, Menu, X, Grid } from "lucide-react";
 
 const Sidebar = ({ setActiveSection }) => {
   const [openHome, setOpenHome] = useState(false);
@@ -21,7 +21,11 @@ const Sidebar = ({ setActiveSection }) => {
           onClick={() => setMobileOpen(!mobileOpen)}
           className="text-white bg-black p-2 rounded"
         >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
         </button>
       </div>
 
@@ -104,7 +108,7 @@ const Sidebar = ({ setActiveSection }) => {
             className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
           >
             <span className="flex items-center gap-2">
-              <Grid className="w-5 h-5" />
+              <Folder className="w-5 h-5" />
               Project Page
             </span>
             <ChevronDown
@@ -160,7 +164,7 @@ const Sidebar = ({ setActiveSection }) => {
             className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
           >
             <span className="flex items-center gap-2">
-              <Grid className="w-5 h-5" />
+              <Info className="w-5 h-5" />
               About Page
             </span>
             <ChevronDown
@@ -198,7 +202,7 @@ const Sidebar = ({ setActiveSection }) => {
             className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
           >
             <span className="flex items-center gap-2">
-              <Grid className="w-5 h-5" />
+              <Calendar className="w-5 h-5" />
               Event Page
             </span>
             <ChevronDown
@@ -224,7 +228,7 @@ const Sidebar = ({ setActiveSection }) => {
             className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
           >
             <span className="flex items-center gap-2">
-              <Grid className="w-5 h-5" />
+              <Briefcase className="w-5 h-5" />
               Career Page
             </span>
             <ChevronDown
@@ -262,7 +266,7 @@ const Sidebar = ({ setActiveSection }) => {
             className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
           >
             <span className="flex items-center gap-2">
-              <Grid className="w-5 h-5" />
+              <CheckCircle className="w-5 h-5" />
               Completed Projects
             </span>
             <ChevronDown
@@ -300,7 +304,7 @@ const Sidebar = ({ setActiveSection }) => {
             className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
           >
             <span className="flex items-center gap-2">
-              <Grid className="w-5 h-5" />
+              <Calendar className="w-5 h-5" />
               Upcoming Projects
             </span>
             <ChevronDown
@@ -332,14 +336,13 @@ const Sidebar = ({ setActiveSection }) => {
             </div>
           )}
 
-
           {/* Ongoing Projects Dropdown */}
           <button
             onClick={() => setOpenOngoing(!openOngoing)}
             className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
           >
             <span className="flex items-center gap-2">
-              <Grid className="w-5 h-5" />
+              <Activity className="w-5 h-5" />
               Ongoing Projects
             </span>
             <ChevronDown
@@ -377,7 +380,7 @@ const Sidebar = ({ setActiveSection }) => {
             className="flex items-center justify-between w-full p-2 rounded hover:bg-gray-900"
           >
             <span className="flex items-center gap-2">
-              <Grid className="w-5 h-5" />
+              <FileText className="w-5 h-5" />
               Blogs
             </span>
             <ChevronDown
@@ -410,7 +413,6 @@ const Sidebar = ({ setActiveSection }) => {
           )}
         </div>
       </div>
-
 
       {/* Overlay for mobile when sidebar open */}
       {mobileOpen && (
