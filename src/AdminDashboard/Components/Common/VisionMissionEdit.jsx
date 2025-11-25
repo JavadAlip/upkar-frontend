@@ -6,6 +6,7 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
   const [description, setDescription] = useState("");
   const [missionText, setMissionText] = useState("");
   const [visionText, setVisionText] = useState("");
+  const [totalExperience, setTotalExperience] = useState(""); 
   const [stats, setStats] = useState([{ number: "", label: "" }]);
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState("");
@@ -18,8 +19,11 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
       setDescription(visionMission.description || "");
       setMissionText(visionMission.missionText || "");
       setVisionText(visionMission.visionText || "");
+      setTotalExperience(visionMission.totalExperience || ""); 
       setStats(
-        visionMission.stats?.length ? visionMission.stats : [{ number: "", label: "" }]
+        visionMission.stats?.length
+          ? visionMission.stats
+          : [{ number: "", label: "" }]
       );
       setImagePreview(visionMission.image || "");
     }
@@ -34,7 +38,8 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
   };
 
   const addStatField = () => setStats([...stats, { number: "", label: "" }]);
-  const removeStatField = (index) => setStats(stats.filter((_, i) => i !== index));
+  const removeStatField = (index) =>
+    setStats(stats.filter((_, i) => i !== index));
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -46,7 +51,8 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!description || !missionText || !visionText) {
+
+    if (!description || !missionText || !visionText || !totalExperience) {
       return toast.error("All fields are required!");
     }
 
@@ -54,6 +60,7 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
     formData.append("description", description);
     formData.append("missionText", missionText);
     formData.append("visionText", visionText);
+    formData.append("totalExperience", totalExperience); // ⬅️ NEW
     if (image) formData.append("image", image);
     formData.append("stats", JSON.stringify(stats));
 
@@ -75,6 +82,7 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
     <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-40 z-50 p-4">
       <div className="bg-white p-6 rounded w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-lg">
         <h2 className="text-xl font-semibold mb-4">Edit Vision & Mission</h2>
+
         <form onSubmit={handleSubmit} className="space-y-4 pb-4">
           <textarea
             placeholder="Description"
@@ -83,6 +91,7 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
           />
+
           <textarea
             placeholder="Mission Text"
             className="resize-none border p-2 w-full rounded"
@@ -90,12 +99,22 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
             onChange={(e) => setMissionText(e.target.value)}
             rows={3}
           />
+
           <textarea
             placeholder="Vision Text"
             className="resize-none border p-2 w-full rounded"
             value={visionText}
             onChange={(e) => setVisionText(e.target.value)}
             rows={3}
+          />
+
+          {/* NEW Total Experience Field */}
+          <input
+            type="text"
+            placeholder="Total Experience (Ex: 10+ Years of Experience)"
+            className="border p-2 w-full rounded"
+            value={totalExperience}
+            onChange={(e) => setTotalExperience(e.target.value)}
           />
 
           <div>
@@ -106,6 +125,7 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
               onChange={handleImageChange}
               className="mb-2"
             />
+
             {imagePreview && (
               <img
                 src={imagePreview}
@@ -123,16 +143,21 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
                   type="text"
                   placeholder="Number"
                   value={stat.number}
-                  onChange={(e) => handleStatChange(index, "number", e.target.value)}
+                  onChange={(e) =>
+                    handleStatChange(index, "number", e.target.value)
+                  }
                   className="border p-1 rounded w-1/3"
                 />
                 <input
                   type="text"
                   placeholder="Label"
                   value={stat.label}
-                  onChange={(e) => handleStatChange(index, "label", e.target.value)}
+                  onChange={(e) =>
+                    handleStatChange(index, "label", e.target.value)
+                  }
                   className="border p-1 rounded w-2/3"
                 />
+
                 {stats.length > 1 && (
                   <button
                     type="button"
@@ -144,6 +169,7 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
                 )}
               </div>
             ))}
+
             <button
               type="button"
               onClick={addStatField}

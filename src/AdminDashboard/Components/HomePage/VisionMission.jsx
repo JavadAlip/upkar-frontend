@@ -34,6 +34,7 @@ const VisionMission = () => {
 
   const handleDelete = async () => {
     if (!visionMission) return;
+
     const result = await Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -76,6 +77,7 @@ const VisionMission = () => {
     <div className="flex-1 p-6 bg-gray-100 min-h-screen">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
         <h1 className="text-2xl font-bold">Vision & Mission Management</h1>
+
         {!visionMission && (
           <button
             onClick={() => setIsAddOpen(true)}
@@ -96,16 +98,26 @@ const VisionMission = () => {
               <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Vision</th>
               <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Image</th>
               <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Stats</th>
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Experience</th>
               <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Created At</th>
               <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Actions</th>
             </tr>
           </thead>
+
           <tbody className="bg-white divide-y divide-gray-200">
             {visionMission ? (
               <tr>
-                <td className="px-6 py-4 max-w-xs truncate">{shortText(visionMission.description)}</td>
-                <td className="px-6 py-4 max-w-xs truncate">{shortText(visionMission.missionText)}</td>
-                <td className="px-6 py-4 max-w-xs truncate">{shortText(visionMission.visionText)}</td>
+                <td className="px-6 py-4 max-w-xs truncate">
+                  {shortText(visionMission.description)}
+                </td>
+
+                <td className="px-6 py-4 max-w-xs truncate">
+                  {shortText(visionMission.missionText)}
+                </td>
+
+                <td className="px-6 py-4 max-w-xs truncate">
+                  {shortText(visionMission.visionText)}
+                </td>
 
                 <td className="px-6 py-4">
                   <img
@@ -115,24 +127,35 @@ const VisionMission = () => {
                   />
                 </td>
 
-                {/* Stats Section with tooltip */}
+                {/* Stats */}
                 <td className="px-6 py-4 max-w-xs">
                   {visionMission.stats?.slice(0, 2).map((stat, index) => (
                     <div key={index}>
                       {stat.number} - {stat.label}
                     </div>
                   ))}
+
                   {visionMission.stats?.length > 2 && (
                     <span
                       className="cursor-pointer text-gray-400 ml-1"
-                      title={visionMission.stats.slice(2).map(s => `${s.number} - ${s.label}`).join(", ")}
+                      title={visionMission.stats
+                        .slice(2)
+                        .map((s) => `${s.number} - ${s.label}`)
+                        .join(", ")}
                     >
                       ...
                     </span>
                   )}
                 </td>
 
-                <td className="px-6 py-4">{new Date(visionMission.createdAt).toLocaleDateString()}</td>
+                {/* ⭐ NEW EXPERIENCE COLUMN */}
+                <td className="px-6 py-4">
+                  {visionMission.totalExperience || "—"}
+                </td>
+
+                <td className="px-6 py-4">
+                  {new Date(visionMission.createdAt).toLocaleDateString()}
+                </td>
 
                 <td className="px-6 py-4 flex gap-2">
                   <button
@@ -159,7 +182,7 @@ const VisionMission = () => {
               </tr>
             ) : (
               <tr>
-                <td colSpan={7} className="text-center py-4 text-gray-500">
+                <td colSpan={8} className="text-center py-4 text-gray-500">
                   No Vision & Mission found.
                 </td>
               </tr>

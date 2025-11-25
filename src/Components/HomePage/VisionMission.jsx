@@ -1,11 +1,11 @@
-
 import React, { useState, useEffect } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import Vision3 from "../../assets/Vision3.png";
+import visionExp from "../../assets/visionExp1.png";
 import aboutArrow from "../../assets/Icons/aboutArrow.png";
 import ProjectBtn from "../../assets/Icons/ProjectBtn.png";
 import Map from "../../assets/map.png";
-import { getVisionMission } from "../../Api"; 
+import { getVisionMission } from "../../Api";
 import axios from "axios";
 
 const VisionMission = () => {
@@ -18,7 +18,7 @@ const VisionMission = () => {
     const fetchData = async () => {
       try {
         const data = await getVisionMission(token);
-        setVisionMission(data); // assuming backend sends a single object
+        setVisionMission(data);
       } catch (error) {
         console.error("Error fetching Vision & Mission:", error);
       }
@@ -40,10 +40,9 @@ const VisionMission = () => {
           </h2>
 
           {/* Dynamic Description */}
-          <p
-            className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed"
-          >
-            {visionMission?.description || "Our core values are centered on integrity and trust, upholding transparency and ethical practices in every interaction. We are driven by a commitment to quality and craftsmanship."}
+          <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+            {visionMission?.description ||
+              "Our core values are centered on integrity and trust, upholding transparency and ethical practices in every interaction. We are driven by a commitment to quality and craftsmanship."}
           </p>
 
           {/* Our Mission Accordion */}
@@ -63,7 +62,8 @@ const VisionMission = () => {
             </button>
             {missionOpen && (
               <p className="mt-4 text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
-                {visionMission?.missionText || "It is to consistently deliver exceptional homes and build lasting relationships based on trust, quality, and a commitment to customer satisfaction."}
+                {visionMission?.missionText ||
+                  "It is to consistently deliver exceptional homes and build lasting relationships based on trust, quality, and a commitment to customer satisfaction."}
               </p>
             )}
           </div>
@@ -85,7 +85,8 @@ const VisionMission = () => {
             </button>
             {visionOpen && (
               <p className="mt-4 text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
-                {visionMission?.visionText || "To be the most trusted and innovative real estate developer, creating sustainable communities that enhance the quality of life for generations to come."}
+                {visionMission?.visionText ||
+                  "To be the most trusted and innovative real estate developer, creating sustainable communities that enhance the quality of life for generations to come."}
               </p>
             )}
           </div>
@@ -109,11 +110,30 @@ const VisionMission = () => {
               className="w-full h-64 sm:h-80 md:h-[420px] lg:h-[480px] object-cover"
             />
             <div className="absolute -bottom-4 right-0 sm:-bottom-6 sm:-right-4 md:-bottom-8 md:-right-6">
-              <img
-                src={Vision3}
-                alt="Years of Experience"
-                className="w-32 sm:w-40 md:w-48 lg:w-56 rounded-xl shadow-lg"
-              />
+              <div className="relative w-32 sm:w-40 md:w-48 lg:w-56">
+                <img
+                  src={visionExp}
+                  alt="Years of Experience"
+                  className="w-full rounded-xl shadow-lg"
+                />
+                <div className="absolute font-[Figtree] inset-0 flex flex-col justify-center items-center text-start px-2">
+                  <h3 className="text-3xl sm:text-3xl md:text-6xl font-bold text-white">
+                    {visionMission?.totalExperience?.split(" ")[0] ||
+                      visionMission?.stats?.[0]?.number ||
+                      "10+"}
+                  </h3>
+                  <p className="text-xs sm:text-sm md:text-base font-[Figtree] text-white font-medium leading-snug whitespace-pre-line">
+                    {visionMission?.totalExperience
+                      ?.replace(
+                        visionMission?.totalExperience?.split(" ")[0],
+                        ""
+                      )
+                      .trim() ||
+                      visionMission?.stats?.[0]?.label ||
+                      "Years of experience"}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -158,7 +178,8 @@ const VisionMission = () => {
 
         <div className="space-y-4 sm:space-y-6">
           <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
-            Explore our portfolio of exceptional properties and take the first step toward a new life.
+            Explore our portfolio of exceptional properties and take the first
+            step toward a new life.
           </p>
           <div className="mt-4">
             <img

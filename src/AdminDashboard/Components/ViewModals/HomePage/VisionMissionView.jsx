@@ -45,6 +45,12 @@ const VisionMissionViewModal = ({ isOpen, onClose, data }) => {
             <p className="text-gray-700 whitespace-pre-line">{data.visionText}</p>
           </div>
 
+          {/* ✅ Total Experience */}
+          <div className="border p-3 rounded-lg">
+            <h3 className="font-semibold mb-1">Total Experience</h3>
+            <p className="text-gray-700">{data.totalExperience}</p>
+          </div>
+
           {/* Stats */}
           <div className="border p-3 rounded-lg">
             <h3 className="font-semibold mb-1">Stats</h3>
