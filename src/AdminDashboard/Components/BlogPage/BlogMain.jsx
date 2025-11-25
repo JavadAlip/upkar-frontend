@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast, ToastContainer } from "react-toastify";
 
 import BlogMainAdd from "../../Components/Common/BlogMainAdd";
 import BlogMainEdit from "../../Components/Common/BlogMainEdit";
+import BlogMainViewModal from "../../Components/ViewModals/BlogPage/BlogMainView";
 
-import {
-  getAllBlogMain,
-  deleteBlogMain,
-} from "../../../Api";
+import { getAllBlogMain, deleteBlogMain } from "../../../Api";
 
 const BlogMain = () => {
   const [blogs, setBlogs] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -67,6 +66,9 @@ const BlogMain = () => {
     toast.success("Blog updated successfully!");
   };
 
+  // helper to truncate text to 20 chars
+  const truncate = (text) => text?.length > 20 ? text.slice(0, 20) + "..." : text;
+
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
       <ToastContainer position="top-right" autoClose={1500} />
@@ -96,18 +98,24 @@ const BlogMain = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {blogs.map((item) => (
               <tr key={item._id}>
-                <td className="px-4 py-2">{item.heading}</td>
-                <td className="px-4 py-2">{item.heading1}</td>
-                <td className="px-4 py-2">{item.description}</td>
+                <td className="px-4 py-2">{truncate(item.heading)}</td>
+                <td className="px-4 py-2">{truncate(item.heading1)}</td>
+                <td className="px-4 py-2">{truncate(item.description)}</td>
                 <td className="px-4 py-2">
-                  <img src={item.mainImage} alt="" className="w-20 h-12 object-cover rounded" />
+                  {item.mainImage && (
+                    <img src={item.mainImage} alt="" className="w-20 h-12 object-cover rounded" />
+                  )}
                 </td>
                 <td className="px-4 py-2 flex gap-2">
                   <button
-                    onClick={() => {
-                      setSelectedBlog(item);
-                      setIsEditOpen(true);
-                    }}
+                    onClick={() => { setSelectedBlog(item); setIsViewOpen(true); }}
+                    className="text-green-500 hover:text-green-700"
+                  >
+                    <Eye size={18} />
+                  </button>
+
+                  <button
+                    onClick={() => { setSelectedBlog(item); setIsEditOpen(true); }}
                     className="text-blue-500 hover:text-blue-700"
                   >
                     <Edit size={18} />
@@ -148,8 +156,16 @@ const BlogMain = () => {
         blog={selectedBlog}
         onUpdated={handleUpdated}
       />
+
+      {/* View Modal */}
+      <BlogMainViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        blog={selectedBlog}
+      />
     </div>
   );
 };
 
 export default BlogMain;
+

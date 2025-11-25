@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import ProjectAdd from "../../Components/Common/ProjectMainAdd";
 import ProjectEdit from "../../Components/Common/ProjectMainEdit";
+import ProjectViewModal from "../../Components/ViewModals/ProjectPage/ProjectView"; 
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import "sweetalert2/dist/sweetalert2.min.css";
@@ -12,11 +13,11 @@ const ProjectMain = () => {
   const [projects, setProjects] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const token = localStorage.getItem("adminToken");
 
-  //Fetch projects on component mount
   useEffect(() => {
     fetchProjects();
   }, []);
@@ -31,7 +32,6 @@ const ProjectMain = () => {
     }
   };
 
-  //Delete project with SweetAlert2 confirmation
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -55,17 +55,9 @@ const ProjectMain = () => {
     }
   };
 
-  //After add success
-  const handleProjectAdded = () => {
-    fetchProjects();
-    toast.success("Project added successfully!");
-  };
-
-  //After edit success
-  const handleProjectUpdated = () => {
-    fetchProjects();
-    toast.success("Project updated successfully!");
-  };
+  // truncate helper
+  const truncate = (text, length = 20) =>
+    text?.length > length ? text.slice(0, length) + "..." : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -80,45 +72,40 @@ const ProjectMain = () => {
         </button>
       </div>
 
-      {/* Projects Table */}
+      {/* Table */}
       <div className="overflow-x-auto w-full bg-white rounded shadow">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Heading</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Description</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Main Images</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Customer Heading</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Customer Description</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Rating</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Created At</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {projects.map((project) => (
               <tr key={project._id}>
-                <td className="px-4 py-2">{project.heading}</td>
-                <td className="px-4 py-2">{project.description}</td>
-                <td className="px-4 py-2">
-                  <div className="flex flex-col gap-2">
-                    {project.mainImages?.map((img, index) => (
-                      <img
-                        key={index}
-                        src={img}
-                        alt={`Project ${index}`}
-                        className="w-10 h-10 object-cover rounded"
-                      />
-                    ))}
-                  </div>
-                </td>
-                <td className="px-4 py-2">{project.customerHeading}</td>
-                <td className="px-4 py-2">{project.customerDescription}</td>
-                <td className="px-4 py-2">{project.ratingText}</td>
-                <td className="px-4 py-2">
-                  {new Date(project.createdAt).toLocaleDateString()}
-                </td>
+                <td className="px-4 py-2">{truncate(project.heading)}</td>
+                <td className="px-4 py-2">{truncate(project.description)}</td>
+                <td className="px-4 py-2">{truncate(project.customerHeading)}</td>
+                <td className="px-4 py-2">{truncate(project.customerDescription)}</td>
+                <td className="px-4 py-2">{truncate(project.ratingText)}</td>
                 <td className="px-4 py-2 flex gap-2">
+                  {/* View Button */}
+                  <button
+                    className="text-green-500 hover:text-green-700"
+                    onClick={() => {
+                      setSelectedProject(project);
+                      setIsViewOpen(true);
+                    }}
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
+
+                  {/* Edit Button */}
                   <button
                     className="text-blue-500 hover:text-blue-700"
                     onClick={() => {
@@ -128,6 +115,8 @@ const ProjectMain = () => {
                   >
                     <Edit className="w-4 h-4" />
                   </button>
+
+                  {/* Delete Button */}
                   <button
                     className="text-red-500 hover:text-red-700"
                     onClick={() => handleDelete(project._id)}
@@ -140,7 +129,7 @@ const ProjectMain = () => {
 
             {projects.length === 0 && (
               <tr>
-                <td colSpan={8} className="text-center py-4 text-gray-500">
+                <td colSpan={6} className="text-center py-4 text-gray-500">
                   No projects found.
                 </td>
               </tr>
@@ -153,13 +142,18 @@ const ProjectMain = () => {
       <ProjectAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
-        onProjectAdded={handleProjectAdded}
+        onProjectAdded={fetchProjects}
       />
       <ProjectEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
         project={selectedProject}
-        onProjectUpdated={handleProjectUpdated}
+        onProjectUpdated={fetchProjects}
+      />
+      <ProjectViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        project={selectedProject}
       />
     </div>
   );

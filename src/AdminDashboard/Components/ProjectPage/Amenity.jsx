@@ -1,27 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 import AmenityAdd from "../Common/AmenityAdd";
 import AmenityEdit from "../Common/AmenityEdit";
+import AmenityViewModal from "../../Components/ViewModals/ProjectPage/AmenityView"; 
 
-import {
-  getAmenitiesAPI,
-  deleteAmenityAPI,
-} from "../../../Api";
-
-import { toast } from "react-toastify";
+import { getAmenitiesAPI, deleteAmenityAPI } from "../../../Api";
 import "sweetalert2/dist/sweetalert2.min.css";
 
 const Amenity = () => {
   const [amenities, setAmenities] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false); 
   const [selectedAmenity, setSelectedAmenity] = useState(null);
 
   const token = localStorage.getItem("adminToken");
 
-  // Fetch amenities
   const fetchAmenities = async () => {
     try {
       const data = await getAmenitiesAPI();
@@ -36,7 +33,6 @@ const Amenity = () => {
     fetchAmenities();
   }, []);
 
-  // Delete with confirmation
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -60,7 +56,10 @@ const Amenity = () => {
     }
   };
 
-  // After add or edit
+  // truncate helper
+  const truncate = (text, length = 20) =>
+    text?.length > length ? text.slice(0, length) + "..." : text;
+
   const handleRefresh = () => fetchAmenities();
 
   return (
@@ -101,8 +100,17 @@ const Amenity = () => {
                       className="w-10 h-10 object-cover rounded"
                     />
                   </td>
-                  <td className="px-4 py-2">{a.heading}</td>
+                  <td className="px-4 py-2">{truncate(a.heading)}</td>
                   <td className="px-4 py-2 flex gap-2">
+                    <button
+                      className="text-green-500 hover:text-green-700"
+                      onClick={() => {
+                        setSelectedAmenity(a);
+                        setIsViewOpen(true);
+                      }}
+                    >
+                      <Eye className="w-4 h-4" />
+                    </button>
                     <button
                       className="text-blue-500 hover:text-blue-700"
                       onClick={() => {
@@ -143,6 +151,11 @@ const Amenity = () => {
         onClose={() => setIsEditOpen(false)}
         amenity={selectedAmenity}
         refresh={handleRefresh}
+      />
+      <AmenityViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        amenity={selectedAmenity}
       />
     </div>
   );

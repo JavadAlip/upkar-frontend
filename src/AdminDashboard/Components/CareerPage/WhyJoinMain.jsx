@@ -1,20 +1,19 @@
-
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
-import {
-  getWhyJoinAPI,
-  deleteWhyJoinAPI,
-} from "../../../Api";
+
+import { getWhyJoinAPI, deleteWhyJoinAPI } from "../../../Api";
 
 import WhyJoinAdd from "../Common/WhyJoinAdd";
 import WhyJoinEdit from "../Common/WhyJoinEdit";
+import WhyJoinViewModal from "../../Components/ViewModals/CareerPage/WhyJoinView"; 
 
 const WhyJoinMain = () => {
   const [list, setList] = useState([]);
   const [openAdd, setOpenAdd] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
+  const [openView, setOpenView] = useState(false); 
   const [selected, setSelected] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -54,6 +53,10 @@ const WhyJoinMain = () => {
     }
   };
 
+  // truncate helper
+  const truncate = (text, length = 20) =>
+    text?.length > length ? text.slice(0, length) + "..." : text;
+
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
@@ -72,16 +75,28 @@ const WhyJoinMain = () => {
             <tr>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Title</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Description</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500 w-36">Actions</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {list.length ? (
               list.map((item) => (
                 <tr key={item._id}>
-                  <td className="px-4 py-2">{item.title}</td>
-                  <td className="px-4 py-2 w-[60%]">{item.description}</td>
+                  <td className="px-4 py-2">{truncate(item.title)}</td>
+                  <td className="px-4 py-2 w-[60%]">{truncate(item.description)}</td>
                   <td className="px-4 py-2 flex gap-3">
+                    {/* View Button */}
+                    <button
+                      className="text-green-500 hover:text-green-700"
+                      onClick={() => {
+                        setSelected(item);
+                        setOpenView(true);
+                      }}
+                    >
+                      <Eye className="w-4 h-4" />
+                    </button>
+
+                    {/* Edit Button */}
                     <button
                       className="text-blue-500 hover:text-blue-700"
                       onClick={() => {
@@ -91,6 +106,8 @@ const WhyJoinMain = () => {
                     >
                       <Edit className="w-4 h-4" />
                     </button>
+
+                    {/* Delete Button */}
                     <button
                       className="text-red-500 hover:text-red-700"
                       onClick={() => handleDelete(item._id)}
@@ -114,8 +131,14 @@ const WhyJoinMain = () => {
       {/* Modals */}
       <WhyJoinAdd isOpen={openAdd} onClose={() => setOpenAdd(false)} refresh={refresh} />
       <WhyJoinEdit isOpen={openEdit} onClose={() => setOpenEdit(false)} data={selected} refresh={refresh} />
+      <WhyJoinViewModal
+        isOpen={openView}
+        onClose={() => setOpenView(false)}
+        data={selected}
+      />
     </div>
   );
 };
 
 export default WhyJoinMain;
+

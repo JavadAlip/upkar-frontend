@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast, ToastContainer } from "react-toastify";
 
 import ProjectAdd from "../../Components/Common/ProjectListAdd";
 import ProjectEdit from "../../Components/Common/ProjectListEdit";
+import ProjectViewModal from "../../Components/ViewModals/CompletedProject/ProjectListView";
 import { getAllProjectsList, deleteProjectList } from "../../../Api";
 
 const ProjectsListMain = () => {
   const [projects, setProjects] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -62,6 +64,10 @@ const ProjectsListMain = () => {
     toast.success("Project updated successfully!");
   };
 
+  // Helper to truncate text
+  const truncate = (text, length = 20) =>
+    text?.length > length ? text.slice(0, length) + "..." : text;
+
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
       <ToastContainer position="top-right" autoClose={1500} />
@@ -89,40 +95,53 @@ const ProjectsListMain = () => {
           </thead>
 
           <tbody className="bg-white divide-y divide-gray-200">
-            {projects.map((project) => (
-              <tr key={project._id}>
-                <td className="px-4 py-2">{project.heading}</td>
-                <td className="px-4 py-2">{project.type}</td>
-                <td className="px-4 py-2">{project.location}</td>
-                <td className="px-4 py-2">
-                  <img
-                    src={project.projectImage}
-                    alt=""
-                    className="w-12 h-12 object-cover rounded"
-                  />
-                </td>
-                <td className="px-4 py-2 flex gap-2">
-                  <button
-                    onClick={() => {
-                      setSelectedProject(project);
-                      setIsEditOpen(true);
-                    }}
-                    className="text-blue-500 hover:text-blue-700"
-                  >
-                    <Edit size={18} />
-                  </button>
+            {projects.length ? (
+              projects.map((project) => (
+                <tr key={project._id}>
+                  <td className="px-4 py-2">{truncate(project.heading)}</td>
+                  <td className="px-4 py-2">{truncate(project.type)}</td>
+                  <td className="px-4 py-2">{truncate(project.location)}</td>
+                  <td className="px-4 py-2">
+                    <img
+                      src={project.projectImage}
+                      alt=""
+                      className="w-12 h-12 object-cover rounded"
+                    />
+                  </td>
+                  <td className="px-4 py-2 flex gap-2">
+                    {/* View Button */}
+                    <button
+                      className="text-green-500 hover:text-green-700"
+                      onClick={() => {
+                        setSelectedProject(project);
+                        setIsViewOpen(true);
+                      }}
+                    >
+                      <Eye size={18} />
+                    </button>
 
-                  <button
-                    onClick={() => handleDelete(project._id)}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    <Trash2 size={18} />
-                  </button>
-                </td>
-              </tr>
-            ))}
+                    {/* Edit Button */}
+                    <button
+                      onClick={() => {
+                        setSelectedProject(project);
+                        setIsEditOpen(true);
+                      }}
+                      className="text-blue-500 hover:text-blue-700"
+                    >
+                      <Edit size={18} />
+                    </button>
 
-            {projects.length === 0 && (
+                    {/* Delete Button */}
+                    <button
+                      onClick={() => handleDelete(project._id)}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
               <tr>
                 <td colSpan="5" className="text-center py-4 text-gray-500">
                   No Projects Found.
@@ -146,6 +165,13 @@ const ProjectsListMain = () => {
         onClose={() => setIsEditOpen(false)}
         project={selectedProject}
         onUpdated={handleUpdated}
+      />
+
+      {/* View Modal */}
+      <ProjectViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        project={selectedProject}
       />
     </div>
   );

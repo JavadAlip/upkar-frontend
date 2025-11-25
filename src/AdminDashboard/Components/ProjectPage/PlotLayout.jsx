@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react"; 
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
 import PlotLayoutAdd from "./../Common/PlotLayoutAdd";
 import PlotLayoutEdit from "./../Common/PlotLayoutEdit";
+import PlotLayoutViewModal from "../../Components/ViewModals/ProjectPage/PlotLayoutView"; 
+
 import { getPlotLayout, deletePlotLayout } from "../../../Api";
 
 const PlotLayout = () => {
-  const [layouts, setLayouts] = useState([]); 
+  const [layouts, setLayouts] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
-  const [editLayout, setEditLayout] = useState(null); 
-  // Fetch all layouts on mount
+  const [editLayout, setEditLayout] = useState(null);
+  const [viewLayout, setViewLayout] = useState(null); 
+
   useEffect(() => {
     fetchLayouts();
   }, []);
 
   const fetchLayouts = async () => {
     try {
-      const data = await getPlotLayout(); 
+      const data = await getPlotLayout();
       setLayouts(data || []);
     } catch (error) {
       console.error("Error fetching plot layouts:", error);
@@ -40,7 +43,7 @@ const PlotLayout = () => {
     if (result.isConfirmed) {
       try {
         const token = localStorage.getItem("adminToken");
-        await deletePlotLayout(id, token); 
+        await deletePlotLayout(id, token);
         toast.success("Plot layout deleted successfully!");
         fetchLayouts();
       } catch (error) {
@@ -50,12 +53,15 @@ const PlotLayout = () => {
     }
   };
 
+  // truncate helper
+  const truncate = (text, length = 20) =>
+    text?.length > length ? text.slice(0, length) + "..." : text;
+
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
         <h1 className="text-2xl font-bold">Plot Layout Management</h1>
 
-        {/* Add button always visible */}
         <button
           className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
           onClick={() => setIsAddOpen(true)}
@@ -100,30 +106,34 @@ const PlotLayout = () => {
                             className="w-8 h-8 object-cover rounded"
                           />
                           <div>
-                            <div className="font-semibold">{ic.heading}</div>
+                            <div className="font-semibold">{truncate(ic.heading)}</div>
                             <div className="text-sm text-gray-500">
-                              {ic.subheading}
+                              {truncate(ic.subheading)}
                             </div>
                           </div>
                         </div>
                       ))}
                     </div>
                   </td>
-                  <td className="px-4 py-2">
-                    <div className="flex gap-2">
-                      <button
-                        className="text-blue-500 hover:text-blue-700"
-                        onClick={() => setEditLayout(layout)}
-                      >
-                        <Edit className="w-4 h-4" />
-                      </button>
-                      <button
-                        className="text-red-500 hover:text-red-700"
-                        onClick={() => handleDelete(layout._id)}
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
+                  <td className="px-4 py-2 flex gap-2">
+                    <button
+                      className="text-green-500 hover:text-green-700"
+                      onClick={() => setViewLayout(layout)}
+                    >
+                      <Eye className="w-4 h-4" />
+                    </button>
+                    <button
+                      className="text-blue-500 hover:text-blue-700"
+                      onClick={() => setEditLayout(layout)}
+                    >
+                      <Edit className="w-4 h-4" />
+                    </button>
+                    <button
+                      className="text-red-500 hover:text-red-700"
+                      onClick={() => handleDelete(layout._id)}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -150,6 +160,12 @@ const PlotLayout = () => {
           onUpdate={fetchLayouts}
         />
       )}
+
+      <PlotLayoutViewModal
+        isOpen={!!viewLayout}
+        onClose={() => setViewLayout(null)}
+        layout={viewLayout}
+      />
     </div>
   );
 };

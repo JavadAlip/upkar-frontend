@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react"; 
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import "sweetalert2/dist/sweetalert2.min.css";
 
 import FeatureAdd from "../../Components/Common/FeatureAdd";
 import FeatureEdit from "../../Components/Common/FeatureEdit";
-
+import FeatureViewModal from "../../Components/ViewModals/ProjectPage/FeatureView"; 
 
 import { getAllFeatures, deleteFeature } from "../../../Api";
 
@@ -14,11 +14,11 @@ const Feature = () => {
   const [features, setFeatures] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false); 
   const [selectedFeature, setSelectedFeature] = useState(null);
 
   const token = localStorage.getItem("adminToken");
 
-  // Fetch features on mount
   useEffect(() => {
     fetchFeatures();
   }, []);
@@ -33,7 +33,6 @@ const Feature = () => {
     }
   };
 
-  // Delete feature with confirmation
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -57,7 +56,6 @@ const Feature = () => {
     }
   };
 
-  // After adding or editing a feature, refresh list
   const handleFeatureUpdated = () => {
     fetchFeatures();
     toast.success("Feature updated successfully!");
@@ -67,6 +65,9 @@ const Feature = () => {
     fetchFeatures();
     toast.success("Feature added successfully!");
   };
+
+  const truncate = (text, length = 20) =>
+    text?.length > length ? text.slice(0, length) + "..." : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -81,7 +82,7 @@ const Feature = () => {
         </button>
       </div>
 
-      {/* Features Table */}
+      {/* Table */}
       <div className="overflow-x-auto w-full bg-white rounded shadow">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -97,7 +98,7 @@ const Feature = () => {
             {features.length > 0 ? (
               features.map((feature) => (
                 <tr key={feature._id}>
-                  <td className="px-4 py-2">{feature.description}</td>
+                  <td className="px-4 py-2">{truncate(feature.description)}</td>
                   <td className="px-4 py-2">
                     <img
                       src={feature.mainImage}
@@ -115,13 +116,21 @@ const Feature = () => {
                             className="w-12 h-12 object-cover rounded"
                           />
                         )}
-                        <small>{icon.iconTitle}</small>
+                        <small>{truncate(icon.iconTitle)}</small>
                       </div>
                     ))}
                   </td>
-
                   <td className="px-4 py-2">{new Date(feature.createdAt).toLocaleDateString()}</td>
                   <td className="px-4 py-2 flex gap-2">
+                    <button
+                      className="text-green-500 hover:text-green-700"
+                      onClick={() => {
+                        setSelectedFeature(feature);
+                        setIsViewOpen(true);
+                      }}
+                    >
+                      <Eye className="w-4 h-4" />
+                    </button>
                     <button
                       className="text-blue-500 hover:text-blue-700"
                       onClick={() => {
@@ -163,6 +172,12 @@ const Feature = () => {
         onClose={() => setIsEditOpen(false)}
         feature={selectedFeature}
         onFeatureUpdated={handleFeatureUpdated}
+      />
+
+      <FeatureViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        feature={selectedFeature}
       />
     </div>
   );

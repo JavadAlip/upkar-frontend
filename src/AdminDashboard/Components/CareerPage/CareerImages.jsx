@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
 import CareerImagesAdd from "../Common/CareerImagesAdd";
 import CareerImagesEdit from "../Common/CareerImagesEdit";
+import CareerImagesViewModal from "../../Components/ViewModals/CareerPage/CareerImagesView";
 
 import {
   getCareerImages,
@@ -17,21 +18,20 @@ const CareerImagesMain = () => {
   const [images, setImages] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
   const token = localStorage.getItem("adminToken");
 
-  
   const fetchImages = async () => {
-  try {
-    const res = await getCareerImages(); 
-    setImages(res || []);
-  } catch (err) {
-    console.error("Failed to fetch career images:", err);
-    toast.error("Failed to fetch career images");
-  }
-};
-
+    try {
+      const res = await getCareerImages();
+      setImages(res || []);
+    } catch (err) {
+      console.error("Failed to fetch career images:", err);
+      toast.error("Failed to fetch career images");
+    }
+  };
 
   useEffect(() => {
     fetchImages();
@@ -90,6 +90,10 @@ const CareerImagesMain = () => {
     }
   };
 
+  // Helper to truncate text
+  const truncate = (text, length = 20) =>
+    text?.length > length ? text.slice(0, length) + "..." : text;
+
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
@@ -106,8 +110,12 @@ const CareerImagesMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Images</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500 w-32">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Images
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500 w-32">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -127,8 +135,20 @@ const CareerImagesMain = () => {
                     </div>
                   </td>
                   <td className="px-4 py-2 flex gap-2">
+                    {/* View Button */}
                     <button
-                      className="p-1 text-blue-500 hover:text-blue-700 rounded border border-gray-200 hover:bg-gray-100"
+                      className="p-1 text-green-500 hover:text-green-700 rounded  hover:bg-gray-100"
+                      onClick={() => {
+                        setSelectedImage(item);
+                        setIsViewOpen(true);
+                      }}
+                    >
+                      <Eye className="w-5 h-5" />
+                    </button>
+
+                    {/* Edit Button */}
+                    <button
+                      className="p-1 text-blue-500 hover:text-blue-700 rounded  hover:bg-gray-100"
                       onClick={() => {
                         setSelectedImage(item);
                         setIsEditOpen(true);
@@ -136,8 +156,10 @@ const CareerImagesMain = () => {
                     >
                       <Edit className="w-5 h-5" />
                     </button>
+
+                    {/* Delete Button */}
                     <button
-                      className="p-1 text-red-500 hover:text-red-700 rounded border border-gray-200 hover:bg-gray-100"
+                      className="p-1 text-red-500 hover:text-red-700 rounded  hover:bg-gray-100"
                       onClick={() => handleDelete(item._id)}
                     >
                       <Trash2 className="w-5 h-5" />
@@ -157,12 +179,21 @@ const CareerImagesMain = () => {
       </div>
 
       {/* Modals */}
-      <CareerImagesAdd isOpen={isAddOpen} onClose={() => setIsAddOpen(false)} onAdd={handleAdd} />
+      <CareerImagesAdd
+        isOpen={isAddOpen}
+        onClose={() => setIsAddOpen(false)}
+        onAdd={handleAdd}
+      />
       <CareerImagesEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
         project={selectedImage}
         onUpdate={handleUpdate}
+      />
+      <CareerImagesViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        data={selectedImage}
       />
     </div>
   );

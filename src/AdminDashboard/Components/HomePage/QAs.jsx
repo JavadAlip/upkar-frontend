@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import QAsAdd from "../Common/QAsAdd";
 import QAsEdit from "../Common/QAsEdit";
+import QAsViewModal from "../ViewModals/HomePage/QAsView";
 import { getQuestionsAPI, deleteQuestionAPI } from "../../../Api";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
@@ -10,6 +11,7 @@ const QAs = () => {
   const [qas, setQAs] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedQA, setSelectedQA] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -61,6 +63,11 @@ const QAs = () => {
     toast.success("Question updated successfully!");
   };
 
+  const truncateText = (text) => {
+    if (!text) return "";
+    return text.length > 20 ? text.substring(0, 20) + "..." : text;
+  };
+
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
@@ -86,10 +93,22 @@ const QAs = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {qas.map((qa) => (
               <tr key={qa._id}>
-                <td className="px-4 py-2">{qa.question}</td>
-                <td className="px-4 py-2">{qa.answer}</td>
+                <td className="px-4 py-2">{truncateText(qa.question)}</td>
+                <td className="px-4 py-2">{truncateText(qa.answer)}</td>
                 <td className="px-4 py-2">{new Date(qa.createdAt).toLocaleDateString()}</td>
                 <td className="px-4 py-2 flex gap-2">
+                  {/* View */}
+                  <button
+                    onClick={() => {
+                      setSelectedQA(qa);
+                      setIsViewOpen(true);
+                    }}
+                    className="text-green-600 hover:text-green-800"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
+
+                  {/* Edit */}
                   <button
                     onClick={() => {
                       setSelectedQA(qa);
@@ -99,6 +118,8 @@ const QAs = () => {
                   >
                     <Edit className="w-4 h-4" />
                   </button>
+
+                  {/* Delete */}
                   <button
                     onClick={() => handleDelete(qa._id)}
                     className="text-red-500 hover:text-red-700"
@@ -108,11 +129,18 @@ const QAs = () => {
                 </td>
               </tr>
             ))}
+            {qas.length === 0 && (
+              <tr>
+                <td colSpan={4} className="text-center py-4 text-gray-500">
+                  No Q&As found.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
 
-      {/* Add/Edit Modals */}
+      {/* Add/Edit/View Modals */}
       <QAsAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
@@ -124,8 +152,14 @@ const QAs = () => {
         qa={selectedQA}
         onUpdate={handleQAUpdated}
       />
+      <QAsViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        qa={selectedQA}
+      />
     </div>
   );
 };
 
 export default QAs;
+

@@ -1,12 +1,10 @@
-
-
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import BannerAdd from "../Common/BannerAdd";
 import BannerEdit from "../Common/BannerEdit";
+import BannerView from "../ViewModals/HomePage/BannerView";
 import { getBanners, deleteBanner } from "../../../Api";
 
-// Toastify & SweetAlert2
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
@@ -15,11 +13,11 @@ const Banner = () => {
   const [banners, setBanners] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedBanner, setSelectedBanner] = useState(null);
 
   const token = localStorage.getItem("adminToken");
 
-  // Fetch banners on mount
   useEffect(() => {
     fetchBanners();
   }, []);
@@ -34,7 +32,6 @@ const Banner = () => {
     }
   };
 
-  // Handle delete with SweetAlert2 + Toastify
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -58,13 +55,16 @@ const Banner = () => {
     }
   };
 
-  // After add success, refresh
+  const truncateText = (text) => {
+    if (!text) return "";
+    return text.length > 20 ? text.substring(0, 20) + "..." : text;
+    };
+
   const handleBannerAdded = () => {
     fetchBanners();
     toast.success("Banner added successfully!");
   };
 
-  // After edit success, refresh
   const handleBannerUpdated = () => {
     fetchBanners();
     toast.success("Banner updated successfully!");
@@ -93,11 +93,12 @@ const Banner = () => {
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
             </tr>
           </thead>
+
           <tbody className="bg-white divide-y divide-gray-200">
             {banners.map((banner) => (
               <tr key={banner._id}>
-                <td className="px-4 py-2">{banner.title}</td>
-                <td className="px-4 py-2">{banner.subtitle}</td>
+                <td className="px-4 py-2">{truncateText(banner.title)}</td>
+                <td className="px-4 py-2">{truncateText(banner.subtitle)}</td>
                 <td className="px-4 py-2">
                   <img
                     src={banner.image}
@@ -105,8 +106,23 @@ const Banner = () => {
                     className="w-20 h-12 object-cover rounded"
                   />
                 </td>
-                <td className="px-4 py-2">{new Date(banner.createdAt).toLocaleDateString()}</td>
-                <td className="px-4 py-2 flex gap-2">
+                <td className="px-4 py-2">
+                  {new Date(banner.createdAt).toLocaleDateString()}
+                </td>
+
+                <td className="px-4 py-2 flex gap-3">
+                  {/* View */}
+                  <button
+                    onClick={() => {
+                      setSelectedBanner(banner);
+                      setIsViewOpen(true);
+                    }}
+                    className="text-green-600 hover:text-green-800"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
+
+                  {/* Edit */}
                   <button
                     onClick={() => {
                       setSelectedBanner(banner);
@@ -116,6 +132,8 @@ const Banner = () => {
                   >
                     <Edit className="w-4 h-4" />
                   </button>
+
+                  {/* Delete */}
                   <button
                     onClick={() => handleDelete(banner._id)}
                     className="text-red-500 hover:text-red-700"
@@ -129,17 +147,26 @@ const Banner = () => {
         </table>
       </div>
 
-      {/* Modals */}
+      {/* Add Modal */}
       <BannerAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onBannerAdded={handleBannerAdded}
       />
+
+      {/* Edit Modal */}
       <BannerEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
         banner={selectedBanner}
         onUpdate={handleBannerUpdated}
+      />
+
+      {/* View Modal */}
+      <BannerView
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        banner={selectedBanner}
       />
     </div>
   );

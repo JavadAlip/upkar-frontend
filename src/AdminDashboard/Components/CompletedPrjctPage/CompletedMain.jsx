@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast, ToastContainer } from "react-toastify";
 
 import CompletedProjectAdd from "../../Components/Common/CompletedProjectAdd";
 import CompletedProjectEdit from "../../Components/Common/CompletedProjectEdit";
+import CompletedProjectViewModal from "../../Components/ViewModals/CompletedProject/CompletedProjectView"; 
 
 import {
   getAllCompletedProjects,
@@ -15,6 +16,7 @@ const CompletedProjectMain = () => {
   const [projects, setProjects] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false); 
   const [selectedProject, setSelectedProject] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -23,16 +25,10 @@ const CompletedProjectMain = () => {
     fetchProjects();
   }, []);
 
-  // =====================
-  // FETCH PROJECT LIST
-  // =====================
   const fetchProjects = async () => {
     try {
       const response = await getAllCompletedProjects();
-
-      // backend returns: { success: true, data: [ ... ] }
       const list = Array.isArray(response.data) ? response.data : [];
-
       setProjects(list);
     } catch (error) {
       console.error("Error fetching completed projects:", error);
@@ -40,9 +36,6 @@ const CompletedProjectMain = () => {
     }
   };
 
-  // =====================
-  // DELETE PROJECT
-  // =====================
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
       title: "Are you sure?",
@@ -70,11 +63,15 @@ const CompletedProjectMain = () => {
     fetchProjects();
     toast.success("Project added successfully!");
   };
-  
+
   const handleUpdated = () => {
     fetchProjects();
     toast.success("Project updated successfully!");
   };
+
+  // truncate helper
+  const truncate = (text, length = 20) =>
+    text?.length > length ? text.slice(0, length) + "..." : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -104,8 +101,8 @@ const CompletedProjectMain = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {projects.map((item) => (
               <tr key={item._id}>
-                <td className="px-4 py-2">{item.heading}</td>
-                <td className="px-4 py-2">{item.description}</td>
+                <td className="px-4 py-2">{truncate(item.heading)}</td>
+                <td className="px-4 py-2">{truncate(item.description)}</td>
                 <td className="px-4 py-2">
                   <img
                     src={item.mainImage}
@@ -114,6 +111,18 @@ const CompletedProjectMain = () => {
                   />
                 </td>
                 <td className="px-4 py-2 flex gap-2">
+                  {/* View Button */}
+                  <button
+                    onClick={() => {
+                      setSelectedProject(item);
+                      setIsViewOpen(true);
+                    }}
+                    className="text-green-500 hover:text-green-700"
+                  >
+                    <Eye size={18} />
+                  </button>
+
+                  {/* Edit Button */}
                   <button
                     onClick={() => {
                       setSelectedProject(item);
@@ -124,6 +133,7 @@ const CompletedProjectMain = () => {
                     <Edit size={18} />
                   </button>
 
+                  {/* Delete Button */}
                   <button
                     onClick={() => handleDelete(item._id)}
                     className="text-red-500 hover:text-red-700"
@@ -158,6 +168,13 @@ const CompletedProjectMain = () => {
         onClose={() => setIsEditOpen(false)}
         project={selectedProject}
         onUpdated={handleUpdated}
+      />
+
+      {/* View Modal */}
+      <CompletedProjectViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        project={selectedProject}
       />
     </div>
   );

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import AboutAdd from "../../Components/Common/AboutMainAdd";
 import AboutEdit from "../../Components/Common/AboutMainEdit";
+import AboutMainViewModal from "../../Components/ViewModals/AboutPage/AboutMainView";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { getAllAboutMain, deleteAboutMain } from "../../../Api";
@@ -10,6 +11,7 @@ const AboutMain = () => {
   const [aboutData, setAboutData] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedAbout, setSelectedAbout] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -21,10 +23,9 @@ const AboutMain = () => {
   const fetchAboutData = async () => {
     try {
       const res = await getAllAboutMain(token);
-      console.log("API Response:", res);
       setAboutData(res.aboutMainList || []);
     } catch (error) {
-      console.error("Error fetching about data:", error);
+      console.error(error);
       toast.error("Failed to fetch About data!");
     }
   };
@@ -46,7 +47,7 @@ const AboutMain = () => {
         setAboutData(aboutData.filter((item) => item._id !== id));
         toast.success("About content deleted successfully!");
       } catch (error) {
-        console.error("Error deleting about content:", error);
+        console.error(error);
         toast.error("Failed to delete About content!");
       }
     }
@@ -60,6 +61,11 @@ const AboutMain = () => {
   const handleAboutUpdated = () => {
     fetchAboutData();
     toast.success("About content updated successfully!");
+  };
+
+  const truncateText = (text) => {
+    if (!text) return "";
+    return text.length > 20 ? text.substring(0, 20) + "..." : text;
   };
 
   return (
@@ -80,80 +86,60 @@ const AboutMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
-                Heading
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
-                Plot
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
-                Acres
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
-                Main Images
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
-                Paragraphs
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
-                Created At
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
-                Actions
-              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Heading</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Plot</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Acres</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Main Images</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Paragraphs</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Created At</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
             </tr>
           </thead>
 
           <tbody className="bg-white divide-y divide-gray-200">
             {aboutData.map((item) => (
               <tr key={item._id}>
-                <td className="px-4 py-2">{item.heading}</td>
+                <td className="px-4 py-2">{truncateText(item.heading)}</td>
 
                 <td className="px-4 py-2">
-                  <p className="font-semibold">{item.plotNumber}</p>
-                  <p className="text-sm">{item.plotTitle}</p>
-                  {item.plotImage && (
-                    <img
-                      src={item.plotImage}
-                      className="w-14 h-14 mt-2 rounded object-cover"
-                    />
-                  )}
+                  <p className="font-semibold">{truncateText(item.plotNumber)}</p>
+                  <p className="text-sm">{truncateText(item.plotTitle)}</p>
                 </td>
 
                 <td className="px-4 py-2">
-                  <p className="font-semibold">{item.acresNumber}</p>
-                  <p className="text-sm">{item.acresTitle}</p>
-                  {item.acresImage && (
-                    <img
-                      src={item.acresImage}
-                      className="w-14 h-14 mt-2 rounded object-cover"
-                    />
-                  )}
+                  <p className="font-semibold">{truncateText(item.acresNumber)}</p>
+                  <p className="text-sm">{truncateText(item.acresTitle)}</p>
                 </td>
 
                 <td className="px-4 py-2">
                   <div className="flex gap-2 overflow-x-auto">
                     {item.mainImages?.map((img, i) => (
-                      <img
-                        key={i}
-                        src={img}
-                        className="w-16 h-16 flex-shrink-0 rounded object-cover"
-                      />
+                      <img key={i} src={img} className="w-16 h-16 flex-shrink-0 rounded object-cover" />
                     ))}
                   </div>
                 </td>
 
                 <td className="px-4 py-2">
-                  <p>{item.paragraph1}</p>
-                  <p className="mt-1">{item.paragraph2}</p>
-                  <p className="mt-1">{item.paragraph3}</p>
+                  <p>{truncateText(item.paragraph1)}</p>
+                  <p className="mt-1">{truncateText(item.paragraph2)}</p>
+                  <p className="mt-1">{truncateText(item.paragraph3)}</p>
                 </td>
 
-                <td className="px-4 py-2">
-                  {new Date(item.createdAt).toLocaleDateString()}
-                </td>
+                <td className="px-4 py-2">{new Date(item.createdAt).toLocaleDateString()}</td>
 
                 <td className="px-4 py-2 flex gap-2">
+                  {/* View */}
+                  <button
+                    className="text-green-600 hover:text-green-800"
+                    onClick={() => {
+                      setSelectedAbout(item);
+                      setIsViewOpen(true);
+                    }}
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
+
+                  {/* Edit */}
                   <button
                     className="text-blue-500 hover:text-blue-700"
                     onClick={() => {
@@ -164,6 +150,7 @@ const AboutMain = () => {
                     <Edit className="w-4 h-4" />
                   </button>
 
+                  {/* Delete */}
                   <button
                     className="text-red-500 hover:text-red-700"
                     onClick={() => handleDelete(item._id)}
@@ -197,6 +184,12 @@ const AboutMain = () => {
         onClose={() => setIsEditOpen(false)}
         item={selectedAbout}
         onAboutUpdated={handleAboutUpdated}
+      />
+
+      <AboutMainViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        item={selectedAbout}
       />
     </div>
   );

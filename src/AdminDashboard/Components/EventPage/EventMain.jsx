@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
+import "sweetalert2/dist/sweetalert2.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import EventAdd from "./../Common/EventAdd";
 import EventEdit from "./../Common/EventEdit";
+import EventViewModal from "../../Components/ViewModals/EventPage/EventView"; 
 
 import { getAllEvents, deleteEvent } from "../../../Api";
 
@@ -14,11 +15,11 @@ const EventMain = () => {
   const [events, setEvents] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false); 
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   const token = localStorage.getItem("adminToken");
 
-  // Fetch events on mount
   useEffect(() => {
     fetchEvents();
   }, []);
@@ -26,7 +27,7 @@ const EventMain = () => {
   const fetchEvents = async () => {
     try {
       const data = await getAllEvents();
-      setEvents(data.events || data); // adjust if API response is wrapped
+      setEvents(data.events || data);
     } catch (error) {
       console.error("Error fetching events:", error);
       toast.error("Failed to fetch events!");
@@ -73,6 +74,10 @@ const EventMain = () => {
       year: "numeric",
     });
 
+  // truncate helper
+  const truncate = (text, length = 20) =>
+    text?.length > length ? text.slice(0, length) + "..." : text;
+
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
       <ToastContainer position="top-right" autoClose={2000} />
@@ -95,39 +100,57 @@ const EventMain = () => {
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Location</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Date</th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Image</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500 w-36">Actions</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {events.map((event) => (
-              <tr key={event._id}>
-                <td className="px-4 py-2">{event.eventTitle}</td>
-                <td className="px-4 py-2">{event.eventDescription}</td>
-                <td className="px-4 py-2">{event.eventLocation}</td>
-                <td className="px-4 py-2">{formatDate(event.eventDate)}</td>
-                <td className="px-4 py-2">
-                  <img src={event.eventImage} alt={event.eventTitle} className="w-20 h-12 object-cover rounded" />
-                </td>
-                <td className="px-4 py-2 flex gap-2">
-                  <button
-                    onClick={() => {
-                      setSelectedEvent(event);
-                      setIsEditOpen(true);
-                    }}
-                    className="text-blue-500 hover:text-blue-700"
-                  >
-                    <Edit className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => handleDelete(event._id)}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {events.length === 0 && (
+            {events.length > 0 ? (
+              events.map((event) => (
+                <tr key={event._id}>
+                  <td className="px-4 py-2">{truncate(event.eventTitle)}</td>
+                  <td className="px-4 py-2">{truncate(event.eventDescription)}</td>
+                  <td className="px-4 py-2">{truncate(event.eventLocation)}</td>
+                  <td className="px-4 py-2">{formatDate(event.eventDate)}</td>
+                  <td className="px-4 py-2">
+                    <img src={event.eventImage} alt={event.eventTitle} className="w-20 h-12 object-cover rounded" />
+                  </td>
+                  <td className="px-4 py-2 flex items-center gap-2">
+                    {/* View Button */}
+                    <button
+                      type="button"
+                      className="p-1 text-green-500 hover:text-green-700 rounded  hover:bg-gray-100 flex-shrink-0"
+                      onClick={() => {
+                        setSelectedEvent(event);
+                        setIsViewOpen(true);
+                      }}
+                    >
+                      <Eye className="w-4 h-4" />
+                    </button>
+
+                    {/* Edit Button */}
+                    <button
+                      type="button"
+                      className="p-1 text-blue-500 hover:text-blue-700 rounded  hover:bg-gray-100 flex-shrink-0"
+                      onClick={() => {
+                        setSelectedEvent(event);
+                        setIsEditOpen(true);
+                      }}
+                    >
+                      <Edit className="w-4 h-4" />
+                    </button>
+
+                    {/* Delete Button */}
+                    <button
+                      type="button"
+                      className="p-1 text-red-500 hover:text-red-700 rounded hover:bg-gray-100 flex-shrink-0"
+                      onClick={() => handleDelete(event._id)}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
               <tr>
                 <td colSpan={6} className="text-center py-4 text-gray-500">
                   No Events found.
@@ -138,15 +161,13 @@ const EventMain = () => {
         </table>
       </div>
 
+      {/* Modals */}
       <EventAdd isOpen={isAddOpen} onClose={() => setIsAddOpen(false)} onEventAdded={handleEventAdded} />
-      <EventEdit
-        isOpen={isEditOpen}
-        onClose={() => setIsEditOpen(false)}
-        event={selectedEvent}
-        onUpdate={handleEventUpdated}
-      />
+      <EventEdit isOpen={isEditOpen} onClose={() => setIsEditOpen(false)} event={selectedEvent} onUpdate={handleEventUpdated} />
+      <EventViewModal isOpen={isViewOpen} onClose={() => setIsViewOpen(false)} event={selectedEvent} />
     </div>
   );
 };
 
 export default EventMain;
+

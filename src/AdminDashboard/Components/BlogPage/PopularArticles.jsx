@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast, ToastContainer } from "react-toastify";
 
 import PopularArticleAdd from "../../Components/Common/PopularArticleAdd";
 import PopularArticleEdit from "../../Components/Common/PopularArticleEdit";
+import PopularArticleViewModal from "../../Components/ViewModals/BlogPage/PopularArticleView"; 
 
-import {
-  getAllArticles,
-  deleteArticle,
-} from "../../../Api";
+import { getAllArticles, deleteArticle } from "../../../Api";
 
 const PopularArticlesMain = () => {
   const [articles, setArticles] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false); 
   const [selectedArticle, setSelectedArticle] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -67,6 +66,12 @@ const PopularArticlesMain = () => {
     toast.success("Article updated successfully!");
   };
 
+  // Function to truncate text
+  const truncateText = (text, limit = 20) => {
+    if (!text) return "";
+    return text.length > limit ? text.slice(0, limit) + "..." : text;
+  };
+
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
       <ToastContainer position="top-right" autoClose={1500} />
@@ -95,24 +100,26 @@ const PopularArticlesMain = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {articles.map((article) => (
               <tr key={article._id}>
-                <td className="px-4 py-2">{article.mainDescription}</td>
+                <td className="px-4 py-2">{truncateText(article.mainDescription)}</td>
                 <td className="px-4 py-2">
-                  <img
-                    src={article.mainImage}
-                    alt=""
-                    className="w-20 h-12 object-cover rounded"
-                  />
+                  <img src={article.mainImage} alt="" className="w-20 h-12 object-cover rounded" />
                 </td>
                 <td className="px-4 py-2">
                   {article.subItems.map((sub, idx) => (
                     <div key={idx} className="mb-2 border p-1 rounded">
-                      <p className="font-semibold text-sm">{sub.subHeading}</p>
-                      <p className="text-xs">{sub.subDescription}</p>
-                      <img src={sub.subImage} alt="" className="w-16 h-8 object-cover rounded mt-1" />
+                      <p className="font-semibold text-sm">{truncateText(sub.subHeading)}</p>
+                      <p className="text-xs">{truncateText(sub.subDescription)}</p>
                     </div>
                   ))}
                 </td>
                 <td className="px-4 py-2 flex gap-2">
+                  <button
+                    onClick={() => { setSelectedArticle(article); setIsViewOpen(true); }}
+                    className="text-green-500 hover:text-green-700"
+                  >
+                    <Eye size={18} />
+                  </button>
+
                   <button
                     onClick={() => { setSelectedArticle(article); setIsEditOpen(true); }}
                     className="text-blue-500 hover:text-blue-700"
@@ -152,8 +159,16 @@ const PopularArticlesMain = () => {
         article={selectedArticle}
         onUpdated={handleUpdated}
       />
+
+      {/* View Modal */}
+      <PopularArticleViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        article={selectedArticle}
+      />
     </div>
   );
 };
 
 export default PopularArticlesMain;
+

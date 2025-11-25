@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
@@ -7,11 +7,13 @@ import { getCareerMainAPI, deleteCareerMainAPI } from "../../../Api";
 
 import CareerMainAdd from "../Common/CareerMainAdd";
 import CareerMainEdit from "../Common/CareerMainEdit";
+import CareerMainViewModal from "../../Components/ViewModals/CareerPage/CareerMainView";
 
 const CareerMainManagement = () => {
   const [careerList, setCareerList] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -51,6 +53,10 @@ const CareerMainManagement = () => {
     }
   };
 
+  // truncate helper
+  const truncate = (text, length = 20) =>
+    text?.length > length ? text.slice(0, length) + "..." : text;
+
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
@@ -80,9 +86,20 @@ const CareerMainManagement = () => {
             {careerList.length > 0 ? (
               careerList.map((item) => (
                 <tr key={item._id}>
-                  <td className="px-4 py-2">{item.careerDescription}</td>
-
+                  <td className="px-4 py-2">{truncate(item.careerDescription)}</td>
                   <td className="px-4 py-2 flex gap-2">
+                    {/* View Button */}
+                    <button
+                      className="text-green-500 hover:text-green-700"
+                      onClick={() => {
+                        setSelectedRow(item);
+                        setIsViewOpen(true);
+                      }}
+                    >
+                      <Eye className="w-4 h-4" />
+                    </button>
+
+                    {/* Edit Button */}
                     <button
                       className="text-blue-500 hover:text-blue-700"
                       onClick={() => {
@@ -93,6 +110,7 @@ const CareerMainManagement = () => {
                       <Edit className="w-4 h-4" />
                     </button>
 
+                    {/* Delete Button */}
                     <button
                       className="text-red-500 hover:text-red-700"
                       onClick={() => handleDelete(item._id)}
@@ -124,6 +142,11 @@ const CareerMainManagement = () => {
         onClose={() => setIsEditOpen(false)}
         data={selectedRow}
         refresh={refresh}
+      />
+      <CareerMainViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        career={selectedRow}
       />
     </div>
   );

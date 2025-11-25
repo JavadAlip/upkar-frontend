@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast, ToastContainer } from "react-toastify";
 
 import UpcomingProjectAdd from "../../Components/Common/UpcomingProjectAdd";
 import UpcomingProjectEdit from "../../Components/Common/UpcomingProjectEdit";
+import UpcomingProjectViewModal from "../../Components/ViewModals/UpcomingProject/UpcomingProjectView"; 
 
 import {
   getAllUpcomingProjects,
@@ -15,6 +16,7 @@ const UpcomingProjectMain = () => {
   const [projects, setProjects] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false); 
   const [selectedProject, setSelectedProject] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -23,9 +25,6 @@ const UpcomingProjectMain = () => {
     fetchProjects();
   }, []);
 
-  // =====================
-  // FETCH PROJECT LIST
-  // =====================
   const fetchProjects = async () => {
     try {
       const response = await getAllUpcomingProjects();
@@ -37,9 +36,6 @@ const UpcomingProjectMain = () => {
     }
   };
 
-  // =====================
-  // DELETE PROJECT
-  // =====================
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
       title: "Are you sure?",
@@ -73,6 +69,10 @@ const UpcomingProjectMain = () => {
     toast.success("Project updated successfully!");
   };
 
+  // Truncate text helper
+  const truncate = (text, length = 20) =>
+    text?.length > length ? text.slice(0, length) + "..." : text;
+
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
       <ToastContainer position="top-right" autoClose={1500} />
@@ -91,47 +91,68 @@ const UpcomingProjectMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Heading</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Description</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Image</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Heading
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Description
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Image
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
 
           <tbody className="bg-white divide-y divide-gray-200">
-            {projects.map((item) => (
-              <tr key={item._id}>
-                <td className="px-4 py-2">{item.heading}</td>
-                <td className="px-4 py-2">{item.description}</td>
-                <td className="px-4 py-2">
-                  <img
-                    src={item.mainImage}
-                    alt=""
-                    className="w-20 h-12 object-cover rounded"
-                  />
-                </td>
-                <td className="px-4 py-2 flex gap-2">
-                  <button
-                    onClick={() => {
-                      setSelectedProject(item);
-                      setIsEditOpen(true);
-                    }}
-                    className="text-blue-500 hover:text-blue-700"
-                  >
-                    <Edit size={18} />
-                  </button>
+            {projects.length > 0 ? (
+              projects.map((item) => (
+                <tr key={item._id}>
+                  <td className="px-4 py-2">{truncate(item.heading)}</td>
+                  <td className="px-4 py-2">{truncate(item.description)}</td>
+                  <td className="px-4 py-2">
+                    <img
+                      src={item.mainImage}
+                      alt=""
+                      className="w-20 h-12 object-cover rounded"
+                    />
+                  </td>
+                  <td className="px-4 py-2 flex gap-2">
+                    {/* View Button */}
+                    <button
+                      className="text-green-500 hover:text-green-700"
+                      onClick={() => {
+                        setSelectedProject(item);
+                        setIsViewOpen(true);
+                      }}
+                    >
+                      <Eye className="w-5 h-5" />
+                    </button>
 
-                  <button
-                    onClick={() => handleDelete(item._id)}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    <Trash2 size={18} />
-                  </button>
-                </td>
-              </tr>
-            ))}
+                    {/* Edit Button */}
+                    <button
+                      onClick={() => {
+                        setSelectedProject(item);
+                        setIsEditOpen(true);
+                      }}
+                      className="text-blue-500 hover:text-blue-700"
+                    >
+                      <Edit size={18} />
+                    </button>
 
-            {projects.length === 0 && (
+                    {/* Delete Button */}
+                    <button
+                      onClick={() => handleDelete(item._id)}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
               <tr>
                 <td colSpan="4" className="text-center py-4 text-gray-500">
                   No Upcoming Projects Found.
@@ -155,6 +176,13 @@ const UpcomingProjectMain = () => {
         onClose={() => setIsEditOpen(false)}
         project={selectedProject}
         onUpdated={handleUpdated}
+      />
+
+      {/* View Modal */}
+      <UpcomingProjectViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        project={selectedProject}
       />
     </div>
   );

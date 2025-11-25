@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import QuoteAdd from "../../Components/Common/QuoteAdd";
 import QuoteEdit from "../../Components/Common/QuoteEdit";
+import QuoteViewModal from "../../Components/ViewModals/AboutPage/QuoteView";
 import { getAllQuotes, deleteQuote } from "../../../Api";
+
 const token = localStorage.getItem("adminToken");
 
 const Quote = () => {
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedQuote, setSelectedQuote] = useState(null);
   const [quoteData, setQuoteData] = useState([]);
 
@@ -50,6 +53,11 @@ const Quote = () => {
     }
   };
 
+  const truncateText = (text) => {
+    if (!text) return "";
+    return text.length > 20 ? text.substring(0, 20) + "..." : text;
+  };
+
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
       {/* Header */}
@@ -78,13 +86,23 @@ const Quote = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {quoteData.map((item) => (
               <tr key={item._id}>
-                <td className="px-4 py-2">{item.quoteContent}</td>
-                <td className="px-4 py-2">{item.name}</td>
-                <td className="px-4 py-2">{item.position}</td>
-                <td className="px-4 py-2">
-                  {new Date(item.createdAt).toLocaleDateString()}
-                </td>
+                <td className="px-4 py-2">{truncateText(item.quoteContent)}</td>
+                <td className="px-4 py-2">{truncateText(item.name)}</td>
+                <td className="px-4 py-2">{truncateText(item.position)}</td>
+                <td className="px-4 py-2">{new Date(item.createdAt).toLocaleDateString()}</td>
                 <td className="px-4 py-2 flex gap-2">
+                  {/* View */}
+                  <button
+                    className="text-green-600 hover:text-green-800"
+                    onClick={() => {
+                      setSelectedQuote(item);
+                      setIsViewOpen(true);
+                    }}
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
+
+                  {/* Edit */}
                   <button
                     className="text-blue-500 hover:text-blue-700"
                     onClick={() => {
@@ -94,6 +112,8 @@ const Quote = () => {
                   >
                     <Edit className="w-4 h-4" />
                   </button>
+
+                  {/* Delete */}
                   <button
                     className="text-red-500 hover:text-red-700"
                     onClick={() => handleDelete(item._id)}
@@ -126,6 +146,11 @@ const Quote = () => {
         onClose={() => setIsEditOpen(false)}
         item={selectedQuote}
         onQuoteUpdated={fetchQuotes}
+      />
+      <QuoteViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        item={selectedQuote}
       />
     </div>
   );

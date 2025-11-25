@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast, ToastContainer } from "react-toastify";
 
 import OngoingProjectAdd from "../../Components/Common/OngoingProjectAddList";
 import OngoingProjectEdit from "../../Components/Common/OngoingProjectEditList";
+import OngoingProjectView from "../../Components/ViewModals/OngoingProject/ProjectListView"; 
 
 import {
   getAllOngoingProjectsList,
@@ -15,6 +16,7 @@ const OngoingProjectsListMain = () => {
   const [projects, setProjects] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -66,6 +68,9 @@ const OngoingProjectsListMain = () => {
     toast.success("Project updated successfully!");
   };
 
+  // helper to show first 20 characters
+  const truncate = (text) => (text ? (text.length > 20 ? text.slice(0, 20) + "..." : text) : "");
+
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
       <ToastContainer position="top-right" autoClose={1500} />
@@ -95,9 +100,9 @@ const OngoingProjectsListMain = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {projects.map((project) => (
               <tr key={project._id}>
-                <td className="px-4 py-2">{project.heading}</td>
-                <td className="px-4 py-2">{project.type}</td>
-                <td className="px-4 py-2">{project.location}</td>
+                <td className="px-4 py-2">{truncate(project.heading)}</td>
+                <td className="px-4 py-2">{truncate(project.type)}</td>
+                <td className="px-4 py-2">{truncate(project.location)}</td>
                 <td className="px-4 py-2">
                   <img
                     src={project.projectImage}
@@ -107,10 +112,14 @@ const OngoingProjectsListMain = () => {
                 </td>
                 <td className="px-4 py-2 flex gap-2">
                   <button
-                    onClick={() => {
-                      setSelectedProject(project);
-                      setIsEditOpen(true);
-                    }}
+                    onClick={() => { setSelectedProject(project); setIsViewOpen(true); }}
+                    className="text-green-500 hover:text-green-700"
+                  >
+                    <Eye size={18} />
+                  </button>
+
+                  <button
+                    onClick={() => { setSelectedProject(project); setIsEditOpen(true); }}
                     className="text-blue-500 hover:text-blue-700"
                   >
                     <Edit size={18} />
@@ -151,8 +160,16 @@ const OngoingProjectsListMain = () => {
         project={selectedProject}
         onUpdated={handleUpdated}
       />
+
+      {/* View Modal */}
+      <OngoingProjectView
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        project={selectedProject}
+      />
     </div>
   );
 };
 
 export default OngoingProjectsListMain;
+

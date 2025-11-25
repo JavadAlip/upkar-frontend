@@ -1,21 +1,20 @@
-
-
-
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import VisionMissionAdd from "../Common/VisionMissionAdd";
 import VisionMissionEdit from "../Common/VisionMissionEdit";
+import VisionMissionViewModal from "../ViewModals/HomePage/VisionMissionView";
+
 import { getVisionMission, deleteVisionMission } from "../../../Api";
 
-// Toastify & SweetAlert2
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 
 const VisionMission = () => {
-  const [visionMission, setVisionMission] = useState(null); // only one document
+  const [visionMission, setVisionMission] = useState(null);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
 
   const token = localStorage.getItem("adminToken");
 
@@ -67,9 +66,14 @@ const VisionMission = () => {
     toast.success("Vision & Mission updated successfully!");
   };
 
+  const shortText = (text = "") => {
+    const words = text.split(" ");
+    if (words.length <= 20) return text;
+    return words.slice(0, 20).join(" ") + "...";
+  };
+
   return (
     <div className="flex-1 p-6 bg-gray-100 min-h-screen">
-      {/* Header with Add Button */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
         <h1 className="text-2xl font-bold">Vision & Mission Management</h1>
         {!visionMission && (
@@ -99,13 +103,10 @@ const VisionMission = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {visionMission ? (
               <tr>
-                <td className="px-6 py-4">{visionMission.description}</td>
-                <td className="px-6 py-4">
-                  <strong>{visionMission.missionTitle || "Mission"}:</strong> {visionMission.missionText}
-                </td>
-                <td className="px-6 py-4">
-                  <strong>{visionMission.visionTitle || "Vision"}:</strong> {visionMission.visionText}
-                </td>
+                <td className="px-6 py-4 max-w-xs truncate">{shortText(visionMission.description)}</td>
+                <td className="px-6 py-4 max-w-xs truncate">{shortText(visionMission.missionText)}</td>
+                <td className="px-6 py-4 max-w-xs truncate">{shortText(visionMission.visionText)}</td>
+
                 <td className="px-6 py-4">
                   <img
                     src={visionMission.image}
@@ -113,19 +114,41 @@ const VisionMission = () => {
                     className="w-20 h-12 object-cover rounded"
                   />
                 </td>
-                <td className="px-6 py-4">
-                  {visionMission.stats?.map((stat, index) => (
-                    <div key={index}>{stat.number} - {stat.label}</div>
+
+                {/* Stats Section with tooltip */}
+                <td className="px-6 py-4 max-w-xs">
+                  {visionMission.stats?.slice(0, 2).map((stat, index) => (
+                    <div key={index}>
+                      {stat.number} - {stat.label}
+                    </div>
                   ))}
+                  {visionMission.stats?.length > 2 && (
+                    <span
+                      className="cursor-pointer text-gray-400 ml-1"
+                      title={visionMission.stats.slice(2).map(s => `${s.number} - ${s.label}`).join(", ")}
+                    >
+                      ...
+                    </span>
+                  )}
                 </td>
+
                 <td className="px-6 py-4">{new Date(visionMission.createdAt).toLocaleDateString()}</td>
+
                 <td className="px-6 py-4 flex gap-2">
+                  <button
+                    onClick={() => setIsViewOpen(true)}
+                    className="text-green-600 hover:text-green-800"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
+
                   <button
                     onClick={() => setIsEditOpen(true)}
                     className="text-blue-500 hover:text-blue-700"
                   >
                     <Edit className="w-4 h-4" />
                   </button>
+
                   <button
                     onClick={handleDelete}
                     className="text-red-500 hover:text-red-700"
@@ -151,11 +174,18 @@ const VisionMission = () => {
         onClose={() => setIsAddOpen(false)}
         onSuccess={handleAddSuccess}
       />
+
       <VisionMissionEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
         visionMission={visionMission}
         onSuccess={handleEditSuccess}
+      />
+
+      <VisionMissionViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        data={visionMission}
       />
     </div>
   );

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import AwardsAdd from "../Common/AwardsAdd";
 import AwardsEdit from "../Common/AwardsEdit";
+import AwardsViewModal from "../ViewModals/HomePage/AwardsView";
 import { getAwardsAPI, deleteAwardAPI } from "../../../Api";
-
-// Toastify & SweetAlert2
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
@@ -13,11 +12,11 @@ const Awards = () => {
   const [awards, setAwards] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedAward, setSelectedAward] = useState(null);
 
   const token = localStorage.getItem("adminToken");
 
-  // Fetch awards on mount
   useEffect(() => {
     fetchAwards();
   }, []);
@@ -32,7 +31,6 @@ const Awards = () => {
     }
   };
 
-  // Delete with SweetAlert2 confirmation
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -56,16 +54,19 @@ const Awards = () => {
     }
   };
 
-  // After add success
   const handleAwardAdded = () => {
     fetchAwards();
     toast.success("Award added successfully!");
   };
 
-  // After edit success
   const handleAwardUpdated = () => {
     fetchAwards();
     toast.success("Award updated successfully!");
+  };
+
+  const truncateText = (text) => {
+    if (!text) return "";
+    return text.length > 20 ? text.substring(0, 20) + "..." : text;
   };
 
   return (
@@ -93,7 +94,7 @@ const Awards = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {awards.map((award) => (
               <tr key={award._id}>
-                <td className="px-4 py-2">{award.title}</td>
+                <td className="px-4 py-2">{truncateText(award.title)}</td>
                 <td className="px-4 py-2">
                   <img
                     src={award.image}
@@ -103,6 +104,18 @@ const Awards = () => {
                 </td>
                 <td className="px-4 py-2">{new Date(award.createdAt).toLocaleDateString()}</td>
                 <td className="px-4 py-2 flex gap-2">
+                  {/* View */}
+                  <button
+                    onClick={() => {
+                      setSelectedAward(award);
+                      setIsViewOpen(true);
+                    }}
+                    className="text-green-600 hover:text-green-800"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
+
+                  {/* Edit */}
                   <button
                     onClick={() => {
                       setSelectedAward(award);
@@ -112,6 +125,8 @@ const Awards = () => {
                   >
                     <Edit className="w-4 h-4" />
                   </button>
+
+                  {/* Delete */}
                   <button
                     onClick={() => handleDelete(award._id)}
                     className="text-red-500 hover:text-red-700"
@@ -143,6 +158,11 @@ const Awards = () => {
         onClose={() => setIsEditOpen(false)}
         award={selectedAward}
         onUpdate={handleAwardUpdated}
+      />
+      <AwardsViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        award={selectedAward}
       />
     </div>
   );

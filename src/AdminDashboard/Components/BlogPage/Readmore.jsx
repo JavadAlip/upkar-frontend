@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast, ToastContainer } from "react-toastify";
 
 import ReadMoreAdd from "../../Components/Common/ReadMoreAdd";
 import ReadMoreEdit from "../../Components/Common/ReadMoreEdit";
+import ReadMoreViewModal from "../../Components/ViewModals/BlogPage/ReadMoreView"; 
 import { getAllReadMore, deleteReadMore } from "../../../Api";
 
 const ReadMoreMain = () => {
   const [readMores, setReadMores] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false); 
   const [selectedReadMore, setSelectedReadMore] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -19,7 +21,6 @@ const ReadMoreMain = () => {
     fetchReadMores();
   }, []);
 
-  // ===================== FETCH ALL =====================
   const fetchReadMores = async () => {
     try {
       const res = await getAllReadMore();
@@ -30,7 +31,6 @@ const ReadMoreMain = () => {
     }
   };
 
-  // ===================== DELETE =====================
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
       title: "Are you sure?",
@@ -91,20 +91,20 @@ const ReadMoreMain = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {readMores.map((item) => (
               <tr key={item._id}>
-                <td className="px-4 py-2">{item.description}</td>
+                <td className="px-4 py-2">{item.description.slice(0, 20)}{item.description.length > 20 ? "..." : ""}</td>
                 <td className="px-4 py-2">
-                  <img
-                    src={item.mainImage}
-                    alt=""
-                    className="w-20 h-12 object-cover rounded"
-                  />
+                  <img src={item.mainImage} alt="" className="w-20 h-12 object-cover rounded" />
                 </td>
                 <td className="px-4 py-2 flex gap-2">
                   <button
-                    onClick={() => {
-                      setSelectedReadMore(item);
-                      setIsEditOpen(true);
-                    }}
+                    onClick={() => { setSelectedReadMore(item); setIsViewOpen(true); }}
+                    className="text-green-500 hover:text-green-700"
+                  >
+                    <Eye size={18} />
+                  </button>
+
+                  <button
+                    onClick={() => { setSelectedReadMore(item); setIsEditOpen(true); }}
                     className="text-blue-500 hover:text-blue-700"
                   >
                     <Edit size={18} />
@@ -144,6 +144,13 @@ const ReadMoreMain = () => {
         onClose={() => setIsEditOpen(false)}
         readMore={selectedReadMore}
         onUpdated={handleUpdated}
+      />
+
+      {/* View Modal */}
+      <ReadMoreViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        readMore={selectedReadMore}
       />
     </div>
   );

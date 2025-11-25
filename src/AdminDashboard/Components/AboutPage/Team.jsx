@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import TeamAdd from "../../Components/Common/TeamAdd";
 import TeamEdit from "../../Components/Common/TeamEdit";
+import TeamViewModal from "../../Components/ViewModals/AboutPage/TeamView";
 import { getAllTeamMembers, deleteTeamMember } from "../../../Api";
-const token = localStorage.getItem("adminToken");
 
+const token = localStorage.getItem("adminToken");
 
 const Team = () => {
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false); 
   const [selectedTeam, setSelectedTeam] = useState(null);
   const [teamData, setTeamData] = useState([]);
 
@@ -51,8 +53,12 @@ const Team = () => {
     }
   };
 
+  // truncate helper
+  const truncate = (text, length = 20) => text?.length > length ? text.slice(0, length) + "..." : text;
+
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
+
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
         <h1 className="text-2xl font-bold">Team Management</h1>
@@ -86,12 +92,22 @@ const Team = () => {
                     className="w-14 h-14 rounded object-cover"
                   />
                 </td>
-                <td>{item.memberName}</td>
-                <td>{item.memberPosition}</td>
+                <td className="px-4 py-2">{truncate(item.memberName)}</td>
+                <td className="px-4 py-2">{truncate(item.memberPosition)}</td>
                 <td className="px-4 py-2">
                   {new Date(item.createdAt).toLocaleDateString()}
                 </td>
                 <td className="px-4 py-2 flex gap-2">
+                  <button
+                    className="text-green-500 hover:text-green-700"
+                    onClick={() => {
+                      setSelectedTeam(item);
+                      setIsViewOpen(true); // open view modal
+                    }}
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
+
                   <button
                     className="text-blue-500 hover:text-blue-700"
                     onClick={() => {
@@ -133,6 +149,11 @@ const Team = () => {
         onClose={() => setIsEditOpen(false)}
         item={selectedTeam}
         onTeamUpdated={fetchTeam}
+      />
+      <TeamViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        item={selectedTeam}
       />
     </div>
   );

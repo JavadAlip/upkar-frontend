@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast, ToastContainer } from "react-toastify";
 
 import OngoingProjectAdd from "../../Components/Common/OngoingProjectAdd";
 import OngoingProjectEdit from "../../Components/Common/OngoingProjectEdit";
+import OngoingProjectView from "../../Components/ViewModals/OngoingProject/OngoingProjectView"; 
+
 import { getAllOngoingProjects, deleteOngoingProject } from "../../../Api";
 
 const OngoingProjectMain = () => {
   const [projects, setProjects] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false); 
   const [selectedProject, setSelectedProject] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -74,6 +77,7 @@ const OngoingProjectMain = () => {
           <Plus className="w-4 h-4" /> Add Project
         </button>
       </div>
+
       <div className="overflow-x-auto w-full bg-white rounded shadow">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -87,12 +91,18 @@ const OngoingProjectMain = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {projects.map((item) => (
               <tr key={item._id}>
-                <td className="px-4 py-2">{item.heading}</td>
-                <td className="px-4 py-2">{item.description}</td>
+                <td className="px-4 py-2">{item.heading?.slice(0, 20)}{item.heading?.length > 20 ? "..." : ""}</td>
+                <td className="px-4 py-2">{item.description?.slice(0, 20)}{item.description?.length > 20 ? "..." : ""}</td>
                 <td className="px-4 py-2">
                   <img src={item.mainImage} alt="" className="w-20 h-12 object-cover rounded" />
                 </td>
                 <td className="px-4 py-2 flex gap-2">
+                  <button
+                    onClick={() => { setSelectedProject(item); setIsViewOpen(true); }}
+                    className="text-green-500 hover:text-green-700"
+                  >
+                    <Eye size={18} />
+                  </button>
                   <button
                     onClick={() => { setSelectedProject(item); setIsEditOpen(true); }}
                     className="text-blue-500 hover:text-blue-700"
@@ -118,8 +128,11 @@ const OngoingProjectMain = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Add / Edit / View Modals */}
       <OngoingProjectAdd isOpen={isAddOpen} onClose={() => setIsAddOpen(false)} onAdded={handleAdded} />
       <OngoingProjectEdit isOpen={isEditOpen} onClose={() => setIsEditOpen(false)} project={selectedProject} onUpdated={handleUpdated} />
+      <OngoingProjectView isOpen={isViewOpen} onClose={() => setIsViewOpen(false)} project={selectedProject} />
     </div>
   );
 };

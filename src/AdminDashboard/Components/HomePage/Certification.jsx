@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import CertificationAdd from "../Common/CertificationAdd";
 import CertificationEdit from "../Common/CertificationEdit";
+import CertificationViewModal from "../ViewModals/HomePage/CertificationView";
 import { getCertifications, deleteCertification } from "../../../Api";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
@@ -11,6 +12,7 @@ const Certification = () => {
   const [certifications, setCertifications] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedCert, setSelectedCert] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -60,6 +62,11 @@ const Certification = () => {
     toast.success("Certification updated successfully!");
   };
 
+  const truncateText = (text) => {
+    if (!text) return "";
+    return text.length > 20 ? text.substring(0, 20) + "..." : text;
+  };
+
   return (
     <div className="flex-1 p-6 bg-gray-100 min-h-screen">
       {/* Header */}
@@ -75,20 +82,20 @@ const Certification = () => {
 
       {/* Table */}
       <div className="overflow-x-auto w-full bg-white rounded shadow">
-        <div className="min-w-[800px]">
+        <div className="min-w-[900px]">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50 sticky top-0">
               <tr>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Heading</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Icon</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Created At</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Actions</th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 min-w-[250px]">Heading</th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 min-w-[120px]">Icon</th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 min-w-[140px]">Created At</th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 min-w-[160px]">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {certifications.map((cert) => (
                 <tr key={cert._id}>
-                  <td className="px-6 py-4 whitespace-nowrap">{cert.heading}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">{truncateText(cert.heading)}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <img src={cert.icon} alt={cert.heading} className="w-10 h-10 object-cover rounded" />
                   </td>
@@ -96,6 +103,18 @@ const Certification = () => {
                     {new Date(cert.createdAt).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap flex gap-2">
+                    {/* View */}
+                    <button
+                      onClick={() => {
+                        setSelectedCert(cert);
+                        setIsViewOpen(true);
+                      }}
+                      className="text-green-600 hover:text-green-800"
+                    >
+                      <Eye className="w-4 h-4" />
+                    </button>
+
+                    {/* Edit */}
                     <button
                       onClick={() => {
                         setSelectedCert(cert);
@@ -105,6 +124,8 @@ const Certification = () => {
                     >
                       <Edit className="w-4 h-4" />
                     </button>
+
+                    {/* Delete */}
                     <button
                       onClick={() => handleDelete(cert._id)}
                       className="text-red-500 hover:text-red-700"
@@ -137,6 +158,11 @@ const Certification = () => {
         onClose={() => setIsEditOpen(false)}
         certification={selectedCert}
         onUpdated={handleEditSuccess}
+      />
+      <CertificationViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        certification={selectedCert}
       />
     </div>
   );
