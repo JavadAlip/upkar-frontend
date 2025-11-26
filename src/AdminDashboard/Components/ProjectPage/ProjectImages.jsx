@@ -17,7 +17,7 @@ const ProjectImages = () => {
   const [projects, setProjects] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [isViewOpen, setIsViewOpen] = useState(false); 
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -66,11 +66,11 @@ const ProjectImages = () => {
     if (!token) return console.error("No admin token found");
     const result = await Swal.fire({
       title: "Are you sure?",
-      text: "This will delete the project images!",
+      text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
       confirmButtonText: "Yes, delete it!",
     });
 
@@ -104,8 +104,12 @@ const ProjectImages = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Images</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500 w-36">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Images
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500 w-36">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">

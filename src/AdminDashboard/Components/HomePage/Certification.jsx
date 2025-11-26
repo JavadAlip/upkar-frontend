@@ -31,13 +31,37 @@ const Certification = () => {
     }
   };
 
+  // const handleDelete = async (id) => {
+  //   const result = await Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "This will be deleted permanently!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonText: "Yes, delete it!",
+  //   });
+
+  //   if (result.isConfirmed) {
+  //     try {
+  //       await deleteCertification(id, token);
+  //       setCertifications(certifications.filter((c) => c._id !== id));
+  //       toast.success("Certification deleted successfully!");
+  //     } catch (error) {
+  //       console.error(error);
+  //       toast.error("Failed to delete certification!");
+  //     }
+  //   }
+  // };
+
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
-      text: "This will be deleted permanently!",
+      text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#d33", // red
+      cancelButtonColor: "#28a745", // green
     });
 
     if (result.isConfirmed) {

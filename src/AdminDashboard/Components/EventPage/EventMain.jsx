@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import EventAdd from "./../Common/EventAdd";
 import EventEdit from "./../Common/EventEdit";
-import EventViewModal from "../../Components/ViewModals/EventPage/EventView"; 
+import EventViewModal from "../../Components/ViewModals/EventPage/EventView";
 
 import { getAllEvents, deleteEvent } from "../../../Api";
 
@@ -15,7 +15,7 @@ const EventMain = () => {
   const [events, setEvents] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [isViewOpen, setIsViewOpen] = useState(false); 
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -43,6 +43,8 @@ const EventMain = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
     });
 
     if (result.isConfirmed) {
@@ -95,12 +97,24 @@ const EventMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Event Title</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Description</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Location</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Date</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Image</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500 w-36">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Event Title
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Description
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Location
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Date
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Image
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500 w-36">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -108,11 +122,17 @@ const EventMain = () => {
               events.map((event) => (
                 <tr key={event._id}>
                   <td className="px-4 py-2">{truncate(event.eventTitle)}</td>
-                  <td className="px-4 py-2">{truncate(event.eventDescription)}</td>
+                  <td className="px-4 py-2">
+                    {truncate(event.eventDescription)}
+                  </td>
                   <td className="px-4 py-2">{truncate(event.eventLocation)}</td>
                   <td className="px-4 py-2">{formatDate(event.eventDate)}</td>
                   <td className="px-4 py-2">
-                    <img src={event.eventImage} alt={event.eventTitle} className="w-20 h-12 object-cover rounded" />
+                    <img
+                      src={event.eventImage}
+                      alt={event.eventTitle}
+                      className="w-20 h-12 object-cover rounded"
+                    />
                   </td>
                   <td className="px-4 py-2 flex items-center gap-2">
                     {/* View Button */}
@@ -162,12 +182,24 @@ const EventMain = () => {
       </div>
 
       {/* Modals */}
-      <EventAdd isOpen={isAddOpen} onClose={() => setIsAddOpen(false)} onEventAdded={handleEventAdded} />
-      <EventEdit isOpen={isEditOpen} onClose={() => setIsEditOpen(false)} event={selectedEvent} onUpdate={handleEventUpdated} />
-      <EventViewModal isOpen={isViewOpen} onClose={() => setIsViewOpen(false)} event={selectedEvent} />
+      <EventAdd
+        isOpen={isAddOpen}
+        onClose={() => setIsAddOpen(false)}
+        onEventAdded={handleEventAdded}
+      />
+      <EventEdit
+        isOpen={isEditOpen}
+        onClose={() => setIsEditOpen(false)}
+        event={selectedEvent}
+        onUpdate={handleEventUpdated}
+      />
+      <EventViewModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        event={selectedEvent}
+      />
     </div>
   );
 };
 
 export default EventMain;
-

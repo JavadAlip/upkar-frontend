@@ -5,14 +5,14 @@ import { toast, ToastContainer } from "react-toastify";
 
 import ReadMoreAdd from "../../Components/Common/ReadMoreAdd";
 import ReadMoreEdit from "../../Components/Common/ReadMoreEdit";
-import ReadMoreViewModal from "../../Components/ViewModals/BlogPage/ReadMoreView"; 
+import ReadMoreViewModal from "../../Components/ViewModals/BlogPage/ReadMoreView";
 import { getAllReadMore, deleteReadMore } from "../../../Api";
 
 const ReadMoreMain = () => {
   const [readMores, setReadMores] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [isViewOpen, setIsViewOpen] = useState(false); 
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedReadMore, setSelectedReadMore] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -37,8 +37,8 @@ const ReadMoreMain = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
       confirmButtonText: "Yes, delete it!",
     });
 
@@ -82,29 +82,48 @@ const ReadMoreMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Description</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Image</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Description
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Image
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
 
           <tbody className="bg-white divide-y divide-gray-200">
             {readMores.map((item) => (
               <tr key={item._id}>
-                <td className="px-4 py-2">{item.description.slice(0, 20)}{item.description.length > 20 ? "..." : ""}</td>
                 <td className="px-4 py-2">
-                  <img src={item.mainImage} alt="" className="w-20 h-12 object-cover rounded" />
+                  {item.description.slice(0, 20)}
+                  {item.description.length > 20 ? "..." : ""}
+                </td>
+                <td className="px-4 py-2">
+                  <img
+                    src={item.mainImage}
+                    alt=""
+                    className="w-20 h-12 object-cover rounded"
+                  />
                 </td>
                 <td className="px-4 py-2 flex gap-2">
                   <button
-                    onClick={() => { setSelectedReadMore(item); setIsViewOpen(true); }}
+                    onClick={() => {
+                      setSelectedReadMore(item);
+                      setIsViewOpen(true);
+                    }}
                     className="text-green-500 hover:text-green-700"
                   >
                     <Eye size={18} />
                   </button>
 
                   <button
-                    onClick={() => { setSelectedReadMore(item); setIsEditOpen(true); }}
+                    onClick={() => {
+                      setSelectedReadMore(item);
+                      setIsEditOpen(true);
+                    }}
                     className="text-blue-500 hover:text-blue-700"
                   >
                     <Edit size={18} />

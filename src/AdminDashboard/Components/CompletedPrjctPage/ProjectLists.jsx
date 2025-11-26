@@ -37,8 +37,8 @@ const ProjectsListMain = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
       confirmButtonText: "Yes, delete it!",
     });
 
@@ -86,11 +86,21 @@ const ProjectsListMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Heading</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Type</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Location</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Image</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Heading
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Type
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Location
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Image
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
 

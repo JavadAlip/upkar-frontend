@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react"; 
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import "sweetalert2/dist/sweetalert2.min.css";
 
 import FeatureAdd from "../../Components/Common/FeatureAdd";
 import FeatureEdit from "../../Components/Common/FeatureEdit";
-import FeatureViewModal from "../../Components/ViewModals/ProjectPage/FeatureView"; 
+import FeatureViewModal from "../../Components/ViewModals/ProjectPage/FeatureView";
 
 import { getAllFeatures, deleteFeature } from "../../../Api";
 
@@ -14,7 +14,7 @@ const Feature = () => {
   const [features, setFeatures] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [isViewOpen, setIsViewOpen] = useState(false); 
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedFeature, setSelectedFeature] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -39,8 +39,8 @@ const Feature = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
       confirmButtonText: "Yes, delete it!",
     });
 
@@ -87,11 +87,21 @@ const Feature = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Description</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Main Image</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Icons</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Created At</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Description
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Main Image
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Icons
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Created At
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -120,7 +130,9 @@ const Feature = () => {
                       </div>
                     ))}
                   </td>
-                  <td className="px-4 py-2">{new Date(feature.createdAt).toLocaleDateString()}</td>
+                  <td className="px-4 py-2">
+                    {new Date(feature.createdAt).toLocaleDateString()}
+                  </td>
                   <td className="px-4 py-2 flex gap-2">
                     <button
                       className="text-green-500 hover:text-green-700"

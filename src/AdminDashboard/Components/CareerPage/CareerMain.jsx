@@ -34,11 +34,13 @@ const CareerMainManagement = () => {
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: "Delete?",
-      text: "This will remove the Career Main entry!",
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Delete",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
+      confirmButtonText: "Yes, delete it!",
     });
 
     if (result.isConfirmed) {
@@ -86,7 +88,9 @@ const CareerMainManagement = () => {
             {careerList.length > 0 ? (
               careerList.map((item) => (
                 <tr key={item._id}>
-                  <td className="px-4 py-2">{truncate(item.careerDescription)}</td>
+                  <td className="px-4 py-2">
+                    {truncate(item.careerDescription)}
+                  </td>
                   <td className="px-4 py-2 flex gap-2">
                     {/* View Button */}
                     <button

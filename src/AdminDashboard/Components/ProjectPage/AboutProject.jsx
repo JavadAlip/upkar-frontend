@@ -34,9 +34,11 @@ const AboutProjectManagement = () => {
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
-      text: "This will delete the About Project entry!",
+      text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
       confirmButtonText: "Yes, delete it!",
     });
 
@@ -48,7 +50,9 @@ const AboutProjectManagement = () => {
         fetchProjects();
       } catch (error) {
         console.error(error);
-        toast.error(error.response?.data?.message || "Failed to delete About Project!");
+        toast.error(
+          error.response?.data?.message || "Failed to delete About Project!"
+        );
       }
     }
   };
@@ -75,13 +79,27 @@ const AboutProjectManagement = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">About Heading</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">About Description</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">RE Raising</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">RE Description</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">No Broker Heading</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Builder Heading</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                About Heading
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                About Description
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                RE Raising
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                RE Description
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                No Broker Heading
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Builder Heading
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -97,13 +115,19 @@ const AboutProjectManagement = () => {
                   <td className="px-4 py-2 flex gap-2">
                     <button
                       className="text-green-500 hover:text-green-700"
-                      onClick={() => { setSelectedProject(p); setIsViewOpen(true); }}
+                      onClick={() => {
+                        setSelectedProject(p);
+                        setIsViewOpen(true);
+                      }}
                     >
                       <Eye className="w-4 h-4" />
                     </button>
                     <button
                       className="text-blue-500 hover:text-blue-700"
-                      onClick={() => { setSelectedProject(p); setIsEditOpen(true); }}
+                      onClick={() => {
+                        setSelectedProject(p);
+                        setIsEditOpen(true);
+                      }}
                     >
                       <Edit className="w-4 h-4" />
                     </button>

@@ -36,11 +36,11 @@ const BlogMain = () => {
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
       title: "Are you sure?",
-      text: "This action cannot be undone!",
+      text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
       confirmButtonText: "Yes, delete it!",
     });
 
@@ -67,7 +67,8 @@ const BlogMain = () => {
   };
 
   // helper to truncate text to 20 chars
-  const truncate = (text) => text?.length > 20 ? text.slice(0, 20) + "..." : text;
+  const truncate = (text) =>
+    text?.length > 20 ? text.slice(0, 20) + "..." : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -87,11 +88,21 @@ const BlogMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Heading</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Heading1</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Description</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Image</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Heading
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Heading1
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Description
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Image
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
 
@@ -103,19 +114,29 @@ const BlogMain = () => {
                 <td className="px-4 py-2">{truncate(item.description)}</td>
                 <td className="px-4 py-2">
                   {item.mainImage && (
-                    <img src={item.mainImage} alt="" className="w-20 h-12 object-cover rounded" />
+                    <img
+                      src={item.mainImage}
+                      alt=""
+                      className="w-20 h-12 object-cover rounded"
+                    />
                   )}
                 </td>
                 <td className="px-4 py-2 flex gap-2">
                   <button
-                    onClick={() => { setSelectedBlog(item); setIsViewOpen(true); }}
+                    onClick={() => {
+                      setSelectedBlog(item);
+                      setIsViewOpen(true);
+                    }}
                     className="text-green-500 hover:text-green-700"
                   >
                     <Eye size={18} />
                   </button>
 
                   <button
-                    onClick={() => { setSelectedBlog(item); setIsEditOpen(true); }}
+                    onClick={() => {
+                      setSelectedBlog(item);
+                      setIsEditOpen(true);
+                    }}
                     className="text-blue-500 hover:text-blue-700"
                   >
                     <Edit size={18} />
@@ -168,4 +189,3 @@ const BlogMain = () => {
 };
 
 export default BlogMain;
-

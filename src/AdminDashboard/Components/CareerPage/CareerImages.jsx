@@ -71,11 +71,13 @@ const CareerImagesMain = () => {
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
       title: "Are you sure?",
-      text: "This will delete the career images!",
+      text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Yes, delete it!",
       cancelButtonText: "Cancel",
+       confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
     });
 
     if (confirm.isConfirmed) {

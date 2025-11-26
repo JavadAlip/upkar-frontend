@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react"; 
+import { Plus, Edit, Trash2, Eye } from "lucide-react";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
 import PlotLayoutAdd from "./../Common/PlotLayoutAdd";
 import PlotLayoutEdit from "./../Common/PlotLayoutEdit";
-import PlotLayoutViewModal from "../../Components/ViewModals/ProjectPage/PlotLayoutView"; 
+import PlotLayoutViewModal from "../../Components/ViewModals/ProjectPage/PlotLayoutView";
 
 import { getPlotLayout, deletePlotLayout } from "../../../Api";
 
@@ -13,7 +13,7 @@ const PlotLayout = () => {
   const [layouts, setLayouts] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [editLayout, setEditLayout] = useState(null);
-  const [viewLayout, setViewLayout] = useState(null); 
+  const [viewLayout, setViewLayout] = useState(null);
 
   useEffect(() => {
     fetchLayouts();
@@ -32,11 +32,11 @@ const PlotLayout = () => {
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
-      text: "This will delete the layout!",
+      text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
       confirmButtonText: "Yes, delete it!",
     });
 
@@ -106,7 +106,9 @@ const PlotLayout = () => {
                             className="w-8 h-8 object-cover rounded"
                           />
                           <div>
-                            <div className="font-semibold">{truncate(ic.heading)}</div>
+                            <div className="font-semibold">
+                              {truncate(ic.heading)}
+                            </div>
                             <div className="text-sm text-gray-500">
                               {truncate(ic.subheading)}
                             </div>

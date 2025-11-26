@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 import OurValueAdd from "../../Components/Common/OurValueAdd";
 import OurValueEdit from "../../Components/Common/OurValueEdit";
-import OurValueViewModal from "../../Components/ViewModals/CompletedProject/OurValueView"; 
+import OurValueViewModal from "../../Components/ViewModals/CompletedProject/OurValueView";
 
 import { getAllOurValues, deleteOurValue } from "../../../Api";
 
@@ -13,7 +13,7 @@ const OurValuesMain = () => {
   const [values, setValues] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [isViewOpen, setIsViewOpen] = useState(false); 
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -38,8 +38,8 @@ const OurValuesMain = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
       confirmButtonText: "Yes, delete it!",
     });
 
@@ -87,9 +87,15 @@ const OurValuesMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Title</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Icon</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Title
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Icon
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
 
@@ -98,7 +104,11 @@ const OurValuesMain = () => {
               <tr key={item._id}>
                 <td className="px-4 py-2">{truncate(item.title)}</td>
                 <td className="px-4 py-2">
-                  <img src={item.iconImage} alt="" className="w-12 h-12 object-cover rounded" />
+                  <img
+                    src={item.iconImage}
+                    alt=""
+                    className="w-12 h-12 object-cover rounded"
+                  />
                 </td>
                 <td className="px-4 py-2 flex gap-2">
                   {/* View button */}
@@ -146,7 +156,11 @@ const OurValuesMain = () => {
       </div>
 
       {/* Add Modal */}
-      <OurValueAdd isOpen={isAddOpen} onClose={() => setIsAddOpen(false)} onAdded={handleAdded} />
+      <OurValueAdd
+        isOpen={isAddOpen}
+        onClose={() => setIsAddOpen(false)}
+        onAdded={handleAdded}
+      />
 
       {/* Edit Modal */}
       <OurValueEdit

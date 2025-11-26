@@ -5,18 +5,15 @@ import { toast, ToastContainer } from "react-toastify";
 
 import CompletedProjectAdd from "../../Components/Common/CompletedProjectAdd";
 import CompletedProjectEdit from "../../Components/Common/CompletedProjectEdit";
-import CompletedProjectViewModal from "../../Components/ViewModals/CompletedProject/CompletedProjectView"; 
+import CompletedProjectViewModal from "../../Components/ViewModals/CompletedProject/CompletedProjectView";
 
-import {
-  getAllCompletedProjects,
-  deleteCompletedProject,
-} from "../../../Api";
+import { getAllCompletedProjects, deleteCompletedProject } from "../../../Api";
 
 const CompletedProjectMain = () => {
   const [projects, setProjects] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [isViewOpen, setIsViewOpen] = useState(false); 
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -42,8 +39,8 @@ const CompletedProjectMain = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
       confirmButtonText: "Yes, delete it!",
     });
 
@@ -91,10 +88,18 @@ const CompletedProjectMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Heading</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Description</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Image</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Heading
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Description
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Image
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
 

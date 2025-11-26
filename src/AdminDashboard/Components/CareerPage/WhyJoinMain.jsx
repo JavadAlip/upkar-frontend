@@ -7,13 +7,13 @@ import { getWhyJoinAPI, deleteWhyJoinAPI } from "../../../Api";
 
 import WhyJoinAdd from "../Common/WhyJoinAdd";
 import WhyJoinEdit from "../Common/WhyJoinEdit";
-import WhyJoinViewModal from "../../Components/ViewModals/CareerPage/WhyJoinView"; 
+import WhyJoinViewModal from "../../Components/ViewModals/CareerPage/WhyJoinView";
 
 const WhyJoinMain = () => {
   const [list, setList] = useState([]);
   const [openAdd, setOpenAdd] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
-  const [openView, setOpenView] = useState(false); 
+  const [openView, setOpenView] = useState(false);
   const [selected, setSelected] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -35,10 +35,12 @@ const WhyJoinMain = () => {
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
       title: "Are you sure?",
-      text: "This will delete the item permanently!",
+      text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
     });
 
     if (confirm.isConfirmed) {
@@ -73,9 +75,15 @@ const WhyJoinMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Title</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Description</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500 w-36">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Title
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Description
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500 w-36">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -83,7 +91,9 @@ const WhyJoinMain = () => {
               list.map((item) => (
                 <tr key={item._id}>
                   <td className="px-4 py-2">{truncate(item.title)}</td>
-                  <td className="px-4 py-2 w-[60%]">{truncate(item.description)}</td>
+                  <td className="px-4 py-2 w-[60%]">
+                    {truncate(item.description)}
+                  </td>
                   <td className="px-4 py-2 flex gap-3">
                     {/* View Button */}
                     <button
@@ -129,8 +139,17 @@ const WhyJoinMain = () => {
       </div>
 
       {/* Modals */}
-      <WhyJoinAdd isOpen={openAdd} onClose={() => setOpenAdd(false)} refresh={refresh} />
-      <WhyJoinEdit isOpen={openEdit} onClose={() => setOpenEdit(false)} data={selected} refresh={refresh} />
+      <WhyJoinAdd
+        isOpen={openAdd}
+        onClose={() => setOpenAdd(false)}
+        refresh={refresh}
+      />
+      <WhyJoinEdit
+        isOpen={openEdit}
+        onClose={() => setOpenEdit(false)}
+        data={selected}
+        refresh={refresh}
+      />
       <WhyJoinViewModal
         isOpen={openView}
         onClose={() => setOpenView(false)}
@@ -141,4 +160,3 @@ const WhyJoinMain = () => {
 };
 
 export default WhyJoinMain;
-

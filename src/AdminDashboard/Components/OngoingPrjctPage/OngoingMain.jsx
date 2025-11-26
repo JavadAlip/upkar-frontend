@@ -41,6 +41,8 @@ const OngoingProjectMain = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
+       confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
     });
 
     if (confirm.isConfirmed) {

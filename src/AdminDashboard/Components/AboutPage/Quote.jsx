@@ -36,8 +36,8 @@ const Quote = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
       confirmButtonText: "Yes, delete it!",
     });
 
@@ -76,11 +76,21 @@ const Quote = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Quote</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Name</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Position</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Created At</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Quote
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Name
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Position
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Created At
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -89,7 +99,9 @@ const Quote = () => {
                 <td className="px-4 py-2">{truncateText(item.quoteContent)}</td>
                 <td className="px-4 py-2">{truncateText(item.name)}</td>
                 <td className="px-4 py-2">{truncateText(item.position)}</td>
-                <td className="px-4 py-2">{new Date(item.createdAt).toLocaleDateString()}</td>
+                <td className="px-4 py-2">
+                  {new Date(item.createdAt).toLocaleDateString()}
+                </td>
                 <td className="px-4 py-2 flex gap-2">
                   {/* View */}
                   <button

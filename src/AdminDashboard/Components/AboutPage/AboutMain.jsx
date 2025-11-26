@@ -36,8 +36,8 @@ const AboutMain = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
       confirmButtonText: "Yes, delete it!",
     });
 
@@ -86,13 +86,27 @@ const AboutMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Heading</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Plot</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Acres</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Main Images</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Paragraphs</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Created At</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Heading
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Plot
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Acres
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Main Images
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Paragraphs
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Created At
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
 
@@ -102,19 +116,27 @@ const AboutMain = () => {
                 <td className="px-4 py-2">{truncateText(item.heading)}</td>
 
                 <td className="px-4 py-2">
-                  <p className="font-semibold">{truncateText(item.plotNumber)}</p>
+                  <p className="font-semibold">
+                    {truncateText(item.plotNumber)}
+                  </p>
                   <p className="text-sm">{truncateText(item.plotTitle)}</p>
                 </td>
 
                 <td className="px-4 py-2">
-                  <p className="font-semibold">{truncateText(item.acresNumber)}</p>
+                  <p className="font-semibold">
+                    {truncateText(item.acresNumber)}
+                  </p>
                   <p className="text-sm">{truncateText(item.acresTitle)}</p>
                 </td>
 
                 <td className="px-4 py-2">
                   <div className="flex gap-2 overflow-x-auto">
                     {item.mainImages?.map((img, i) => (
-                      <img key={i} src={img} className="w-16 h-16 flex-shrink-0 rounded object-cover" />
+                      <img
+                        key={i}
+                        src={img}
+                        className="w-16 h-16 flex-shrink-0 rounded object-cover"
+                      />
                     ))}
                   </div>
                 </td>
@@ -125,7 +147,9 @@ const AboutMain = () => {
                   <p className="mt-1">{truncateText(item.paragraph3)}</p>
                 </td>
 
-                <td className="px-4 py-2">{new Date(item.createdAt).toLocaleDateString()}</td>
+                <td className="px-4 py-2">
+                  {new Date(item.createdAt).toLocaleDateString()}
+                </td>
 
                 <td className="px-4 py-2 flex gap-2">
                   {/* View */}

@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 import UpcomingProjectAdd from "../../Components/Common/UpcomingProjectAddList";
 import UpcomingProjectEdit from "../../Components/Common/UpcomingProjectEditList";
-import UpcomingProjectView from "../../Components/ViewModals/UpcomingProject/ProjectListView"; 
+import UpcomingProjectView from "../../Components/ViewModals/UpcomingProject/ProjectListView";
 
 import {
   getAllUpcomingProjectsList,
@@ -16,7 +16,7 @@ const UpcomingProjectsListMain = () => {
   const [projects, setProjects] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [isViewOpen, setIsViewOpen] = useState(false); 
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -41,8 +41,8 @@ const UpcomingProjectsListMain = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#28a745",
       confirmButtonText: "Yes, delete it!",
     });
 
@@ -69,7 +69,8 @@ const UpcomingProjectsListMain = () => {
   };
 
   // function to show first 20 characters
-  const truncate = (text) => text?.length > 20 ? text.slice(0, 20) + "..." : text;
+  const truncate = (text) =>
+    text?.length > 20 ? text.slice(0, 20) + "..." : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -89,11 +90,21 @@ const UpcomingProjectsListMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Heading</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Type</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Location</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Image</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Heading
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Type
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Location
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Image
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
 
