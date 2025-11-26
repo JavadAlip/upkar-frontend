@@ -25,7 +25,8 @@ const FeatureAdd = ({ isOpen, onClose, onFeatureAdded }) => {
   };
 
   const addIcon = () => {
-    if (icons.length < 3) setIcons([...icons, { icon: "", iconTitle: "", file: null }]);
+    if (icons.length < 3)
+      setIcons([...icons, { icon: "", iconTitle: "", file: null }]);
   };
 
   const removeIcon = (index) => {
@@ -67,7 +68,6 @@ const FeatureAdd = ({ isOpen, onClose, onFeatureAdded }) => {
     }
   };
 
-
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50 overflow-auto">
       <div className="bg-white p-6 rounded shadow-md w-full max-w-lg my-6">
@@ -89,43 +89,75 @@ const FeatureAdd = ({ isOpen, onClose, onFeatureAdded }) => {
 
           <div>
             <label className="font-medium">Icons (max 3)</label>
+
             {icons.map((icon, idx) => (
-              <div key={idx} className="flex gap-2 mt-1 items-center">
-                <input
-                  type="text"
-                  placeholder="Icon"
-                  className="border p-2 w-16 rounded"
-                  value={icon.icon}
-                  onChange={(e) => handleIconChange(idx, "icon", e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Icon Title"
-                  className="border p-2 flex-1 rounded"
-                  value={icon.iconTitle}
-                  onChange={(e) => handleIconChange(idx, "iconTitle", e.target.value)}
-                />
-                <input
-                  type="file"
-                  className="border p-1 rounded"
-                  onChange={(e) => handleIconFileChange(idx, e.target.files[0])}
-                />
-                {icons.length > 1 && (
-                  <button type="button" className="text-red-500" onClick={() => removeIcon(idx)}>
-                    ✕
-                  </button>
-                )}
+              <div key={idx} className="flex flex-col gap-1 mt-2">
+                {/* First row: Icon and Icon Title + remove button */}
+                <div className="flex gap-2 items-center flex-wrap">
+                  <input
+                    type="text"
+                    placeholder="Icon"
+                    className="border p-2 w-20 rounded"
+                    value={icon.icon}
+                    onChange={(e) =>
+                      handleIconChange(idx, "icon", e.target.value)
+                    }
+                  />
+                  <input
+                    type="text"
+                    placeholder="Icon Title"
+                    className="border p-2 flex-1 min-w-[120px] rounded"
+                    value={icon.iconTitle}
+                    onChange={(e) =>
+                      handleIconChange(idx, "iconTitle", e.target.value)
+                    }
+                  />
+                  {icons.length > 1 && (
+                    <button
+                      type="button"
+                      className="text-red-500"
+                      onClick={() => removeIcon(idx)}
+                    >
+                      ✕
+                    </button>
+                  )}
+                </div>
+
+                {/* Second row: Full width file input */}
+                <div className="flex flex-col gap-1 w-full">
+                  <input
+                    type="file"
+                    className="border p-2 rounded w-full"
+                    onChange={(e) =>
+                      handleIconFileChange(idx, e.target.files[0])
+                    }
+                  />
+                  {/* {icon.file && (
+                    <span className="text-sm text-gray-600">
+                      Selected file: {icon.file.name}
+                    </span>
+                  )} */}
+                </div>
               </div>
             ))}
+
             {icons.length < 3 && (
-              <button type="button" className="mt-2 px-3 py-1 bg-gray-200 rounded" onClick={addIcon}>
+              <button
+                type="button"
+                className="mt-2 px-3 py-1 bg-gray-200 rounded"
+                onClick={addIcon}
+              >
                 Add Icon
               </button>
             )}
           </div>
 
           <div className="flex justify-end gap-2 mt-4">
-            <button type="button" className="px-4 py-2 bg-gray-300 rounded" onClick={onClose}>
+            <button
+              type="button"
+              className="px-4 py-2 bg-gray-300 rounded"
+              onClick={onClose}
+            >
               Cancel
             </button>
             <button

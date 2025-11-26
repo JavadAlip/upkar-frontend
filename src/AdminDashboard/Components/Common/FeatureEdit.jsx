@@ -4,9 +4,11 @@ import { updateFeature } from "../../../Api";
 
 const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
   const [description, setDescription] = useState("");
-  const [mainImage, setMainImage] = useState(null); // file
-  const [mainImagePreview, setMainImagePreview] = useState(""); // URL
-  const [icons, setIcons] = useState([{ icon: "", iconTitle: "", file: null, preview: "" }]);
+  const [mainImage, setMainImage] = useState(null);
+  const [mainImagePreview, setMainImagePreview] = useState(""); 
+  const [icons, setIcons] = useState([
+    { icon: "", iconTitle: "", file: null, preview: "" },
+  ]);
   const [loading, setLoading] = useState(false);
 
   const token = localStorage.getItem("adminToken");
@@ -19,11 +21,11 @@ const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
       setIcons(
         feature.icons && feature.icons.length
           ? feature.icons.map((icon) => ({
-            icon: icon.icon || "",
-            iconTitle: icon.iconTitle || "",
-            file: null,
-            preview: icon.iconImage || "", // assuming your backend returns icon image URL as `iconImage`
-          }))
+              icon: icon.icon || "",
+              iconTitle: icon.iconTitle || "",
+              file: null,
+              preview: icon.iconImage || "", 
+            }))
           : [{ icon: "", iconTitle: "", file: null, preview: "" }]
       );
     }
@@ -45,7 +47,11 @@ const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
   };
 
   const addIcon = () => {
-    if (icons.length < 3) setIcons([...icons, { icon: "", iconTitle: "", file: null, preview: "" }]);
+    if (icons.length < 3)
+      setIcons([
+        ...icons,
+        { icon: "", iconTitle: "", file: null, preview: "" },
+      ]);
   };
 
   const removeIcon = (index) => {
@@ -53,40 +59,40 @@ const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
   };
 
   const handleSubmit = async () => {
-  if (!description) {
-    toast.error("Description is required!");
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append("description", description);
-  if (mainImage) formData.append("mainImage", mainImage);
-
-  icons.forEach((icon, idx) => {
-    // If user selected a new file, send it
-    if (icon.file) {
-      formData.append(`icon${idx + 1}`, icon.file);
-    } else if (icon.preview) {
-      // If no new file, send existing URL so backend keeps it
-      formData.append(`iconUrl${idx + 1}`, icon.preview);
+    if (!description) {
+      toast.error("Description is required!");
+      return;
     }
 
-    formData.append(`iconTitle${idx + 1}`, icon.iconTitle || "");
-  });
+    const formData = new FormData();
+    formData.append("description", description);
+    if (mainImage) formData.append("mainImage", mainImage);
 
-  try {
-    setLoading(true);
-    await updateFeature(feature._id, formData, token);
-    toast.success("Feature updated successfully!");
-    onFeatureUpdated(); // refresh parent list
-    onClose();
-  } catch (error) {
-    console.error(error);
-    toast.error("Failed to update feature!");
-  } finally {
-    setLoading(false);
-  }
-};
+    icons.forEach((icon, idx) => {
+      // If user selected a new file, send it
+      if (icon.file) {
+        formData.append(`icon${idx + 1}`, icon.file);
+      } else if (icon.preview) {
+        // If no new file, send existing URL so backend keeps it
+        formData.append(`iconUrl${idx + 1}`, icon.preview);
+      }
+
+      formData.append(`iconTitle${idx + 1}`, icon.iconTitle || "");
+    });
+
+    try {
+      setLoading(true);
+      await updateFeature(feature._id, formData, token);
+      toast.success("Feature updated successfully!");
+      onFeatureUpdated(); // refresh parent list
+      onClose();
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to update feature!");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50 overflow-auto">
@@ -104,7 +110,11 @@ const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
           <div>
             <label className="font-medium">Main Image</label>
             {mainImagePreview && (
-              <img src={mainImagePreview} alt="Main" className="w-32 h-20 object-cover rounded mb-2" />
+              <img
+                src={mainImagePreview}
+                alt="Main"
+                className="w-32 h-20 object-cover rounded mb-2"
+              />
             )}
             <input
               type="file"
@@ -116,7 +126,7 @@ const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label className="font-medium">Icons (max 3)</label>
             {icons.map((icon, idx) => (
               <div key={idx} className="flex gap-2 mt-1 items-center">
@@ -154,10 +164,79 @@ const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
                 Add Icon
               </button>
             )}
+          </div> */}
+
+          <div>
+            <label className="font-medium">Icons (max 3)</label>
+            {icons.map((icon, idx) => (
+              <div key={idx} className="flex flex-col gap-1 mt-2">
+                {/* First row: Icon + Icon Title + Remove button */}
+                <div className="flex gap-2 items-center flex-wrap">
+                  <input
+                    type="text"
+                    placeholder="Icon"
+                    className="border p-2 w-16 rounded"
+                    value={icon.icon}
+                    onChange={(e) =>
+                      handleIconChange(idx, "icon", e.target.value)
+                    }
+                  />
+                  <input
+                    type="text"
+                    placeholder="Icon Title"
+                    className="border p-2 flex-1 rounded"
+                    value={icon.iconTitle}
+                    onChange={(e) =>
+                      handleIconChange(idx, "iconTitle", e.target.value)
+                    }
+                  />
+                  {icons.length > 1 && (
+                    <button
+                      type="button"
+                      className="text-red-500"
+                      onClick={() => removeIcon(idx)}
+                    >
+                      ✕
+                    </button>
+                  )}
+                </div>
+
+                {/* Second row: File input + preview, full width of first row */}
+                <div className="flex flex-col gap-1 w-full">
+                  <input
+                    type="file"
+                    className="border p-2 rounded w-full"
+                    onChange={(e) =>
+                      handleIconFileChange(idx, e.target.files[0])
+                    }
+                  />
+                  {icon.preview && (
+                    <img
+                      src={icon.preview}
+                      alt="Icon"
+                      className="w-12 h-12 object-cover rounded mt-1"
+                    />
+                  )}
+                </div>
+              </div>
+            ))}
+            {icons.length < 3 && (
+              <button
+                type="button"
+                className="mt-2 px-3 py-1 bg-gray-200 rounded"
+                onClick={addIcon}
+              >
+                Add Icon
+              </button>
+            )}
           </div>
 
           <div className="flex justify-end gap-2 mt-4">
-            <button type="button" className="px-4 py-2 bg-gray-300 rounded" onClick={onClose}>
+            <button
+              type="button"
+              className="px-4 py-2 bg-gray-300 rounded"
+              onClick={onClose}
+            >
               Cancel
             </button>
             <button
