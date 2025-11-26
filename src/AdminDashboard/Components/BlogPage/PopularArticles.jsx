@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 import PopularArticleAdd from "../../Components/Common/PopularArticleAdd";
 import PopularArticleEdit from "../../Components/Common/PopularArticleEdit";
-import PopularArticleViewModal from "../../Components/ViewModals/BlogPage/PopularArticleView"; 
+import PopularArticleViewModal from "../../Components/ViewModals/BlogPage/PopularArticleView";
 
 import { getAllArticles, deleteArticle } from "../../../Api";
 
@@ -13,7 +13,7 @@ const PopularArticlesMain = () => {
   const [articles, setArticles] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [isViewOpen, setIsViewOpen] = useState(false); 
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
 
   const token = localStorage.getItem("adminToken");
@@ -25,8 +25,7 @@ const PopularArticlesMain = () => {
   const fetchArticles = async () => {
     try {
       const response = await getAllArticles();
-      const list = Array.isArray(response.data) ? response.data : [];
-      setArticles(list);
+      setArticles(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error(error);
       toast.error("Failed to fetch articles!");
@@ -41,94 +40,106 @@ const PopularArticlesMain = () => {
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, delete!",
     });
 
     if (confirm.isConfirmed) {
       try {
         await deleteArticle(id, token);
         setArticles(articles.filter((a) => a._id !== id));
-        toast.success("Article deleted successfully!");
+        toast.success("Deleted successfully!");
       } catch (error) {
         console.error(error);
-        toast.error("Failed to delete article!");
+        toast.error("Failed to delete!");
       }
     }
   };
 
-  const handleAdded = () => {
-    fetchArticles();
-    toast.success("Article added successfully!");
-  };
-
-  const handleUpdated = () => {
-    fetchArticles();
-    toast.success("Article updated successfully!");
-  };
-
-  // Function to truncate text
-  const truncateText = (text, limit = 20) => {
-    if (!text) return "";
-    return text.length > limit ? text.slice(0, limit) + "..." : text;
-  };
+  const truncate = (text, limit = 20) =>
+    text?.length > limit ? text.slice(0, limit) + "..." : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
-      <ToastContainer position="top-right" autoClose={1500} />
+      <ToastContainer autoClose={1500} />
 
       <div className="flex justify-between mb-4">
         <h1 className="text-2xl font-bold">Popular Articles</h1>
         <button
           onClick={() => setIsAddOpen(true)}
-          className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
+          className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded"
         >
           <Plus className="w-4 h-4" /> Add Article
         </button>
       </div>
 
-      <div className="overflow-x-auto w-full bg-white rounded shadow">
+      <div className="overflow-x-auto bg-white rounded shadow">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Main Description</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Main Image</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Sub Items</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2">Main Description</th>
+              <th className="px-4 py-2">Main Image</th>
+              <th className="px-4 py-2">Sub Items</th>
+              <th className="px-4 py-2">Actions</th>
             </tr>
           </thead>
 
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody>
             {articles.map((article) => (
-              <tr key={article._id}>
-                <td className="px-4 py-2">{truncateText(article.mainDescription)}</td>
+              <tr key={article._id} className="border-b">
+                <td className="px-4 py-2">{truncate(article.mainDescription)}</td>
+
                 <td className="px-4 py-2">
-                  <img src={article.mainImage} alt="" className="w-20 h-12 object-cover rounded" />
+                  <img
+                    src={
+                      typeof article.mainImage === "string"
+                        ? article.mainImage
+                        : article.mainImage?.url || ""
+                    }
+                    className="w-20 h-12 object-cover rounded"
+                  />
                 </td>
+
                 <td className="px-4 py-2">
-                  {article.subItems.map((sub, idx) => (
-                    <div key={idx} className="mb-2 border p-1 rounded">
-                      <p className="font-semibold text-sm">{truncateText(sub.subHeading)}</p>
-                      <p className="text-xs">{truncateText(sub.subDescription)}</p>
+                  {article.subItems.map((sub, i) => (
+                    <div key={i} className="border p-1 rounded mb-2">
+                      <p className="font-semibold text-sm">{truncate(sub.subHeading)}</p>
+
+                      <img
+                        src={
+                          typeof sub.subImage === "string"
+                            ? sub.subImage
+                            : sub.subImage?.url || ""
+                        }
+                        className="w-16 h-10 object-cover rounded mt-1"
+                      />
                     </div>
                   ))}
                 </td>
+
                 <td className="px-4 py-2 flex gap-2">
                   <button
-                    onClick={() => { setSelectedArticle(article); setIsViewOpen(true); }}
-                    className="text-green-500 hover:text-green-700"
+                    onClick={() => {
+                      setSelectedArticle(article);
+                      setIsViewOpen(true);
+                    }}
+                    className="text-green-500"
                   >
                     <Eye size={18} />
                   </button>
 
                   <button
-                    onClick={() => { setSelectedArticle(article); setIsEditOpen(true); }}
-                    className="text-blue-500 hover:text-blue-700"
+                    onClick={() => {
+                      setSelectedArticle(article);
+                      setIsEditOpen(true);
+                    }}
+                    className="text-blue-500"
                   >
                     <Edit size={18} />
                   </button>
+
                   <button
                     onClick={() => handleDelete(article._id)}
-                    className="text-red-500 hover:text-red-700"
+                    className="text-red-500"
                   >
                     <Trash2 size={18} />
                   </button>
@@ -138,8 +149,8 @@ const PopularArticlesMain = () => {
 
             {articles.length === 0 && (
               <tr>
-                <td colSpan="4" className="text-center py-4 text-gray-500">
-                  No Articles Found.
+                <td colSpan={4} className="text-center py-4 text-gray-500">
+                  No Articles Found
                 </td>
               </tr>
             )}
@@ -150,17 +161,16 @@ const PopularArticlesMain = () => {
       <PopularArticleAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
-        onAdded={handleAdded}
+        onAdded={fetchArticles}
       />
 
       <PopularArticleEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
         article={selectedArticle}
-        onUpdated={handleUpdated}
+        onUpdated={fetchArticles}
       />
 
-      {/* View Modal */}
       <PopularArticleViewModal
         isOpen={isViewOpen}
         onClose={() => setIsViewOpen(false)}
@@ -171,4 +181,5 @@ const PopularArticlesMain = () => {
 };
 
 export default PopularArticlesMain;
+
 
