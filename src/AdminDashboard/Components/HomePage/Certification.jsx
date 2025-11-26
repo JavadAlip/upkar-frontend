@@ -86,24 +86,41 @@ const Certification = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50 sticky top-0">
               <tr>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 min-w-[250px]">Heading</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 min-w-[120px]">Icon</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 min-w-[140px]">Created At</th>
-                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 min-w-[160px]">Actions</th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 min-w-[250px]">
+                  Heading
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 min-w-[120px]">
+                  Icon
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 min-w-[140px]">
+                  Created At
+                </th>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 min-w-[160px]">
+                  Actions
+                </th>
               </tr>
             </thead>
+
             <tbody className="bg-white divide-y divide-gray-200">
               {certifications.map((cert) => (
                 <tr key={cert._id}>
-                  <td className="px-6 py-4 whitespace-nowrap">{truncateText(cert.heading)}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <img src={cert.icon} alt={cert.heading} className="w-10 h-10 object-cover rounded" />
+                    {truncateText(cert.heading)}
                   </td>
+
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <img
+                      src={cert.icon}
+                      alt={cert.heading}
+                      className="w-10 h-10 object-cover rounded"
+                    />
+                  </td>
+
                   <td className="px-6 py-4 whitespace-nowrap">
                     {new Date(cert.createdAt).toLocaleDateString()}
                   </td>
+
                   <td className="px-6 py-4 whitespace-nowrap flex gap-2">
-                    {/* View */}
                     <button
                       onClick={() => {
                         setSelectedCert(cert);
@@ -114,7 +131,6 @@ const Certification = () => {
                       <Eye className="w-4 h-4" />
                     </button>
 
-                    {/* Edit */}
                     <button
                       onClick={() => {
                         setSelectedCert(cert);
@@ -125,7 +141,6 @@ const Certification = () => {
                       <Edit className="w-4 h-4" />
                     </button>
 
-                    {/* Delete */}
                     <button
                       onClick={() => handleDelete(cert._id)}
                       className="text-red-500 hover:text-red-700"
@@ -135,9 +150,10 @@ const Certification = () => {
                   </td>
                 </tr>
               ))}
+
               {certifications.length === 0 && (
                 <tr>
-                  <td colSpan={4} className="text-center py-4 text-gray-500">
+                  <td colSpan={5} className="text-center py-4 text-gray-500">
                     No Certifications found.
                   </td>
                 </tr>

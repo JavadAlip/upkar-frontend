@@ -12,7 +12,7 @@ const BannerEdit = ({ isOpen, onClose, banner, onUpdate }) => {
       setForm({
         title: banner.title,
         subtitle: banner.subtitle,
-        image: null, // reset file input
+        image: null, 
       });
       setImagePreview(banner.image);
     }

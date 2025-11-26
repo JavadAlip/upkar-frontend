@@ -32,6 +32,7 @@ import OurValues2 from "../Components/UpcomingPrjctPage/OurValues";
 import OngoingMain from "../Components/OngoingPrjctPage/OngoingMain";
 import ProjectLists from "../Components/OngoingPrjctPage/ProjectLists";
 import OurValues from "../Components/OngoingPrjctPage/OurValues";
+import QuoteCertificate from "../Components/HomePage/Quote";
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState("banner");
@@ -94,12 +95,14 @@ const AdminDashboard = () => {
         return <ProjectLists2 />;
       case "upcomingourvalues":
         return <OurValues2 />;
-         case "ongoingmain":
+      case "ongoingmain":
         return <OngoingMain />;
       case "ongoingprojectlists":
         return <ProjectLists />;
       case "ongoingourvalues":
         return <OurValues />;
+      case "quotescertificate":
+        return <QuoteCertificate />;
       default:
         return <div>Welcome Admin</div>;
     }

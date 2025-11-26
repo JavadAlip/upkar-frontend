@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Quote } from "lucide-react";
 
 // const API_URL = "https://upkar-backend.onrender.com/api";
 const API_URL =
@@ -1208,6 +1209,33 @@ export const updateOngoingProjectList = async (id, formData, token) => {
 
 export const deleteOngoingProjectList = async (id, token) => {
   const res = await axios.delete(`${API_URL}/ongoingproject/delete-ongoing-projectlist/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+// Quote
+export const getQuotesAPI = async () => {
+  const res = await axios.get(`${API_URL}/homepage/get-all-quotes`);
+  return res.data;
+};
+
+export const createQuoteAPI = async (data, token) => {
+  const res = await axios.post(`${API_URL}/homepage/create-quote`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+export const updateQuoteAPI = async (id, data, token) => {
+  const res = await axios.put(`${API_URL}/homepage/update-quote/${id}`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+export const deleteQuoteAPI = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/homepage/delete-quote/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return res.data;

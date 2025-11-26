@@ -8,6 +8,7 @@ import Awards from "../Components/HomePage/Awards";
 import ContactUs from "../Components/Common/ContactUs";
 import Navbar from "../Components/Common/NavbarHome";
 import Footer from "../Components/Common/Footer";
+import Quote from "../Components/HomePage/Quote";
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <Projects />
       <GetInTouch />
       <Certification />
+      <Quote/>
       <QnsAns />
       <Awards />
       <ContactUs />

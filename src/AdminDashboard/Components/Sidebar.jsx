@@ -1,5 +1,18 @@
 import React, { useState } from "react";
-import { Home, Info, Folder, Calendar, Briefcase,CheckCircle,Activity,FileText, ChevronDown, Menu, X, Grid } from "lucide-react";
+import {
+  Home,
+  Info,
+  Folder,
+  Calendar,
+  Briefcase,
+  CheckCircle,
+  Activity,
+  FileText,
+  ChevronDown,
+  Menu,
+  X,
+  Grid,
+} from "lucide-react";
 
 const Sidebar = ({ setActiveSection }) => {
   const [openHome, setOpenHome] = useState(false);
@@ -86,6 +99,12 @@ const Sidebar = ({ setActiveSection }) => {
                 onClick={() => setActiveSection("certification")}
               >
                 Certification
+              </button>
+              <button
+                className="text-white p-2 rounded hover:bg-gray-900 text-left"
+                onClick={() => setActiveSection("quotescertificate")}
+              >
+                Quotes
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
