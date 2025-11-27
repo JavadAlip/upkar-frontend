@@ -1,107 +1,107 @@
-import React, { useState } from "react";
-import Sidebar from "../Components/Sidebar";
-import Navbar from "../Components/Navbar";
-import BannerTable from "../Components/HomePage/Banner";
-import VisionMission from "../Components/HomePage/VisionMission";
-import Projects from "../Components/HomePage/Projects";
-import Certification from "../Components/HomePage/Certification";
-import QAs from "../Components/HomePage/QAs";
-import Awards from "../Components/HomePage/Awards";
-import ProjectMain from "../Components/ProjectPage/ProjectMain";
-import Feature from "../Components/ProjectPage/Feature";
-import Amenity from "../Components/ProjectPage/Amenity";
-import PlotLayout from "../Components/ProjectPage/PlotLayout";
-import ProjectImages from "../Components/ProjectPage/ProjectImages";
-import AboutProject from "../Components/ProjectPage/AboutProject";
-import AboutMain from "../Components/AboutPage/AboutMain";
-import Quote from "../Components/AboutPage/Quote";
-import Team from "../Components/AboutPage/Team";
-import EventMain from "../Components/EventPage/EventMain";
-import CareerMain from "../Components/CareerPage/CareerMain";
-import WhyJoinMain from "../Components/CareerPage/WhyJoinMain";
-import CareerImages from "../Components/CareerPage/CareerImages";
-import CompletedMain from "../Components/CompletedPrjctPage/CompletedMain";
-import OurValues1 from "../Components/CompletedPrjctPage/OurValues";
-import ProjectLists1 from "../Components/CompletedPrjctPage/ProjectLists";
-import BlogMain from "../Components/BlogPage/BlogMain";
-import PopularArticles from "../Components/BlogPage/PopularArticles";
-import Readmore from "../Components/BlogPage/Readmore";
-import UpcomingMain from "../Components/UpcomingPrjctPage/UpcomingMain";
-import ProjectLists2 from "../Components/UpcomingPrjctPage/ProjectLists";
-import OurValues2 from "../Components/UpcomingPrjctPage/OurValues";
-import OngoingMain from "../Components/OngoingPrjctPage/OngoingMain";
-import ProjectLists from "../Components/OngoingPrjctPage/ProjectLists";
-import OurValues from "../Components/OngoingPrjctPage/OurValues";
-import QuoteCertificate from "../Components/HomePage/Quote";
+import React, { useState } from 'react';
+import Sidebar from '../Components/Sidebar';
+import Navbar from '../Components/Navbar';
+import BannerTable from '../Components/HomePage/Banner';
+import VisionMission from '../Components/HomePage/VisionMission';
+import Projects from '../Components/HomePage/Projects';
+import Certification from '../Components/HomePage/Certification';
+import QAs from '../Components/HomePage/QAs';
+import Awards from '../Components/HomePage/Awards';
+import ProjectMain from '../Components/ProjectPage/ProjectMain';
+import Feature from '../Components/ProjectPage/Feature';
+import Amenity from '../Components/ProjectPage/Amenity';
+import PlotLayout from '../Components/ProjectPage/PlotLayout';
+import ProjectImages from '../Components/ProjectPage/ProjectImages';
+import AboutProject from '../Components/ProjectPage/AboutProject';
+import AboutMain from '../Components/AboutPage/AboutMain';
+import Quote from '../Components/AboutPage/Quote';
+import Team from '../Components/AboutPage/Team';
+import EventMain from '../Components/EventPage/EventMain';
+import CareerMain from '../Components/CareerPage/CareerMain';
+import WhyJoinMain from '../Components/CareerPage/WhyJoinMain';
+import CareerImages from '../Components/CareerPage/CareerImages';
+import CompletedMain from '../Components/CompletedPrjctPage/CompletedMain';
+import OurValues1 from '../Components/CompletedPrjctPage/OurValues';
+import ProjectLists1 from '../Components/CompletedPrjctPage/ProjectLists';
+import BlogMain from '../Components/BlogPage/BlogMain';
+import PopularArticles from '../Components/BlogPage/PopularArticles';
+import Readmore from '../Components/BlogPage/Readmore';
+import UpcomingMain from '../Components/UpcomingPrjctPage/UpcomingMain';
+import ProjectLists2 from '../Components/UpcomingPrjctPage/ProjectLists';
+import OurValues2 from '../Components/UpcomingPrjctPage/OurValues';
+import OngoingMain from '../Components/OngoingPrjctPage/OngoingMain';
+import ProjectLists from '../Components/OngoingPrjctPage/ProjectLists';
+import OurValues from '../Components/OngoingPrjctPage/OurValues';
+import QuoteCertificate from '../Components/HomePage/Quote';
 
 const AdminDashboard = () => {
-  const [activeSection, setActiveSection] = useState("banner");
+  const [activeSection, setActiveSection] = useState('banner');
 
   const renderSection = () => {
     switch (activeSection) {
-      case "banner":
+      case 'banner':
         return <BannerTable />;
-      case "vision":
+      case 'vision':
         return <VisionMission />;
-      case "projects":
+      case 'projects':
         return <Projects />;
-      case "certification":
+      case 'certification':
         return <Certification />;
-      case "qna":
+      case 'qna':
         return <QAs />;
-      case "awards":
+      case 'awards':
         return <Awards />;
-      case "projectmain":
+      case 'projectmain':
         return <ProjectMain />;
-      case "feature":
+      case 'feature':
         return <Feature />;
-      case "amenity":
+      case 'amenity':
         return <Amenity />;
-      case "plotlayout":
+      case 'plotlayout':
         return <PlotLayout />;
-      case "projectimages":
+      case 'projectimages':
         return <ProjectImages />;
-      case "aboutproject":
+      case 'aboutproject':
         return <AboutProject />;
-      case "aboutmain":
+      case 'aboutmain':
         return <AboutMain />;
-      case "quote":
+      case 'quote':
         return <Quote />;
-      case "team":
+      case 'team':
         return <Team />;
-      case "eventmain":
+      case 'eventmain':
         return <EventMain />;
-      case "careermain":
+      case 'careermain':
         return <CareerMain />;
-      case "whyjoin":
+      case 'whyjoin':
         return <WhyJoinMain />;
-      case "careerimages":
+      case 'careerimages':
         return <CareerImages />;
-      case "completedmain":
+      case 'completedmain':
         return <CompletedMain />;
-      case "ourvalues":
+      case 'ourvalues':
         return <OurValues1 />;
-      case "projectlists":
+      case 'projectlists':
         return <ProjectLists1 />;
-      case "blogsmain":
+      case 'blogsmain':
         return <BlogMain />;
-      case "populararticles":
+      case 'populararticles':
         return <PopularArticles />;
-      case "readmore":
+      case 'readmore':
         return <Readmore />;
-      case "upcomingmain":
+      case 'upcomingmain':
         return <UpcomingMain />;
-      case "upcomingprojectlists":
+      case 'upcomingprojectlists':
         return <ProjectLists2 />;
-      case "upcomingourvalues":
+      case 'upcomingourvalues':
         return <OurValues2 />;
-      case "ongoingmain":
+      case 'ongoingmain':
         return <OngoingMain />;
-      case "ongoingprojectlists":
+      case 'ongoingprojectlists':
         return <ProjectLists />;
-      case "ongoingourvalues":
+      case 'ongoingourvalues':
         return <OurValues />;
-      case "quotescertificate":
+      case 'quotescertificate':
         return <QuoteCertificate />;
       default:
         return <div>Welcome Admin</div>;
@@ -110,15 +110,12 @@ const AdminDashboard = () => {
 
   return (
     <div>
-      {/* Fixed Sidebar */}
       <Sidebar setActiveSection={setActiveSection} />
 
-      {/* Fixed Navbar */}
       <div className="fixed top-0 left-64 right-0 h-16 z-10">
         <Navbar />
       </div>
 
-      {/* Main Content Area */}
       <div className="ml-64 mt-16 p-6 overflow-auto h-screen bg-gray-100">
         {renderSection()}
       </div>

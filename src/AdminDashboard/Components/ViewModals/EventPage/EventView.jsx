@@ -1,5 +1,4 @@
-import React from "react";
-import { X } from "lucide-react";
+import { X } from 'lucide-react';
 
 const EventViewModal = ({ isOpen, onClose, event }) => {
   if (!isOpen || !event) return null;
@@ -7,8 +6,6 @@ const EventViewModal = ({ isOpen, onClose, event }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
       <div className="bg-white w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6 rounded shadow-lg relative">
-
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-3 right-3 text-gray-600 hover:text-black"
@@ -19,35 +16,34 @@ const EventViewModal = ({ isOpen, onClose, event }) => {
         <h2 className="text-xl font-bold mb-4">Event Details</h2>
 
         <div className="space-y-4">
-          {/* Event Title */}
           <div className="p-3 border rounded">
             <strong className="block mb-1 text-gray-700">Event Title:</strong>
             <p>{event.eventTitle}</p>
           </div>
 
-          {/* Event Description */}
           <div className="p-3 border rounded">
-            <strong className="block mb-1 text-gray-700">Event Description:</strong>
+            <strong className="block mb-1 text-gray-700">
+              Event Description:
+            </strong>
             <p>{event.eventDescription}</p>
           </div>
 
-          {/* Event Location */}
           <div className="p-3 border rounded">
             <strong className="block mb-1 text-gray-700">Location:</strong>
             <p>{event.eventLocation}</p>
           </div>
 
-          {/* Event Date */}
           <div className="p-3 border rounded">
             <strong className="block mb-1 text-gray-700">Date:</strong>
-            <p>{new Date(event.eventDate).toLocaleDateString("en-US", {
-              day: "numeric",
-              month: "short",
-              year: "numeric",
-            })}</p>
+            <p>
+              {new Date(event.eventDate).toLocaleDateString('en-US', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+              })}
+            </p>
           </div>
 
-          {/* Event Image */}
           <div className="p-3 border rounded">
             <strong className="block mb-1 text-gray-700">Event Image:</strong>
             <img

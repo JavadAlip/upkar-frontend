@@ -1,5 +1,5 @@
-import React from "react";
-import { X } from "lucide-react";
+import React from 'react';
+import { X } from 'lucide-react';
 
 const PlotLayoutViewModal = ({ isOpen, onClose, layout }) => {
   if (!isOpen || !layout) return null;
@@ -7,8 +7,6 @@ const PlotLayoutViewModal = ({ isOpen, onClose, layout }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
       <div className="bg-white w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6 rounded shadow-lg relative">
-
-        {/* Close button */}
         <button
           onClick={onClose}
           className="absolute top-3 right-3 text-gray-600 hover:text-black"
@@ -19,8 +17,6 @@ const PlotLayoutViewModal = ({ isOpen, onClose, layout }) => {
         <h2 className="text-xl font-bold mb-4">Plot Layout Details</h2>
 
         <div className="space-y-4">
-
-          {/* Main Image */}
           <div className="p-3 border rounded">
             <strong className="block mb-1 text-gray-700">Main Image:</strong>
             <img
@@ -30,7 +26,6 @@ const PlotLayoutViewModal = ({ isOpen, onClose, layout }) => {
             />
           </div>
 
-          {/* Icons */}
           <div className="p-3 border rounded">
             <strong className="block mb-1 text-gray-700">Icons:</strong>
             <div className="flex flex-col gap-2 mt-2">
@@ -43,13 +38,14 @@ const PlotLayoutViewModal = ({ isOpen, onClose, layout }) => {
                   />
                   <div>
                     <div className="font-semibold">{icon.heading}</div>
-                    <div className="text-sm text-gray-500">{icon.subheading}</div>
+                    <div className="text-sm text-gray-500">
+                      {icon.subheading}
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-
         </div>
       </div>
     </div>

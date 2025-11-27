@@ -1,10 +1,6 @@
-
-
 @import url('https://fonts.googleapis.com/css2?family=Santosh:wght@400;700&family=Figtree:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;600&display=swap');
-
-
 
 @tailwind base;
 @tailwind components;
@@ -14,23 +10,21 @@ body {
   font-family: 'Santosh', sans-serif;
 }
 
-
 ::-webkit-scrollbar {
-  height: 8px; /* scrollbar thickness */
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #e5e7eb; /* light gray track */
+  background: #e5e7eb;
   border-radius: 10px;
-  margin-inline: 16px; /* gap from edges */
+  margin-inline: 16px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #9ca3af; /* gray thumb */
+  background: #9ca3af;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6b7280; /* darker on hover */
+  background: #6b7280;
 }
-

@@ -1,5 +1,4 @@
-import React from "react";
-import { X } from "lucide-react";
+import { X } from 'lucide-react';
 
 const AmenityViewModal = ({ isOpen, onClose, amenity }) => {
   if (!isOpen || !amenity) return null;
@@ -7,7 +6,6 @@ const AmenityViewModal = ({ isOpen, onClose, amenity }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
       <div className="bg-white w-full max-w-md p-6 rounded shadow-lg relative">
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-3 right-3 text-gray-600 hover:text-black"
@@ -18,7 +16,6 @@ const AmenityViewModal = ({ isOpen, onClose, amenity }) => {
         <h2 className="text-xl font-bold mb-4">Amenity Details</h2>
 
         <div className="space-y-4">
-          {/* Icon */}
           <div className="p-3 border rounded text-center">
             <strong className="block mb-1 text-gray-700">Icon:</strong>
             <img
@@ -28,7 +25,6 @@ const AmenityViewModal = ({ isOpen, onClose, amenity }) => {
             />
           </div>
 
-          {/* Heading */}
           <div className="p-3 border rounded">
             <strong className="block mb-1 text-gray-700">Heading:</strong>
             <p>{amenity.heading}</p>

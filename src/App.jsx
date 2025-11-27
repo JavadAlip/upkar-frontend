@@ -1,20 +1,20 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./Components/Common/Layout";
-import Home from "./Pages/Home";
-import AboutUs from "./Pages/AboutUs";
-import CompletedPrjcts from "./Pages/CompletedPrjcts";
-import UpcomingPrjcts from "./Pages/UpcomingPrjcts";
-import OngoingPrjcts from "./Pages/OngoingPrjcts";
-import Project from "./Pages/Project";
-import Event from "./Pages/Event";
-import Career from "./Pages/Career";
-import Blogs from "./Pages/Blogs";
-import AdminDashboard from "./AdminDashboard/Pages/AdminDashboard";
-import AdminLogin from "./AdminDashboard/Pages/AdminLogin";
-import ProtectedRoute from "./AdminDashboard/Components/ProtectedRoute";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './Components/Common/Layout';
+import Home from './Pages/Home';
+import AboutUs from './Pages/AboutUs';
+import CompletedPrjcts from './Pages/CompletedPrjcts';
+import UpcomingPrjcts from './Pages/UpcomingPrjcts';
+import OngoingPrjcts from './Pages/OngoingPrjcts';
+import Project from './Pages/Project';
+import Event from './Pages/Event';
+import Career from './Pages/Career';
+import Blogs from './Pages/Blogs';
+import AdminDashboard from './AdminDashboard/Pages/AdminDashboard';
+import AdminLogin from './AdminDashboard/Pages/AdminLogin';
+import ProtectedRoute from './AdminDashboard/Components/ProtectedRoute';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
   return (

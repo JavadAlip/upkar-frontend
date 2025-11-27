@@ -1,19 +1,16 @@
-import React from "react";
-import { X } from "lucide-react";
+import { X } from 'lucide-react';
 
 const CertificationViewModal = ({ isOpen, onClose, certification }) => {
   if (!isOpen || !certification) return null;
 
   const truncateText = (text) => {
-    if (!text) return "";
-    return text.length > 20 ? text.substring(0, 20) + "..." : text;
+    if (!text) return '';
+    return text.length > 20 ? text.substring(0, 20) + '...' : text;
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
       <div className="bg-white w-full max-w-md max-h-[90vh] overflow-y-auto p-6 rounded shadow-lg relative">
-
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-3 right-3 text-gray-600 hover:text-black"
@@ -21,13 +18,16 @@ const CertificationViewModal = ({ isOpen, onClose, certification }) => {
           <X className="w-5 h-5" />
         </button>
 
-        <h2 className="text-xl font-bold mb-4">{truncateText(certification.heading)}</h2>
+        <h2 className="text-xl font-bold mb-4">
+          {truncateText(certification.heading)}
+        </h2>
 
         <div className="space-y-4">
-
           <div className="p-3 border rounded">
             <strong className="block mb-1 text-gray-700">Heading:</strong>
-            <p className="text-gray-900">{truncateText(certification.heading)}</p>
+            <p className="text-gray-900">
+              {truncateText(certification.heading)}
+            </p>
           </div>
 
           {certification.icon && (
@@ -43,9 +43,10 @@ const CertificationViewModal = ({ isOpen, onClose, certification }) => {
 
           <div className="p-3 border rounded">
             <strong className="block mb-1 text-gray-700">Created At:</strong>
-            <p className="text-gray-900">{new Date(certification.createdAt).toLocaleString()}</p>
+            <p className="text-gray-900">
+              {new Date(certification.createdAt).toLocaleString()}
+            </p>
           </div>
-
         </div>
       </div>
     </div>

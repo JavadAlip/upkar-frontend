@@ -1,5 +1,4 @@
-import React from "react";
-import { X } from "lucide-react";
+import { X } from 'lucide-react';
 
 const QuoteViewModal = ({ isOpen, onClose, quote }) => {
   if (!isOpen || !quote) return null;
@@ -7,8 +6,6 @@ const QuoteViewModal = ({ isOpen, onClose, quote }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
       <div className="bg-white w-full max-w-md max-h-[90vh] overflow-y-auto p-6 rounded shadow-lg relative">
-
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-3 right-3 text-gray-600 hover:text-black"
@@ -26,7 +23,9 @@ const QuoteViewModal = ({ isOpen, onClose, quote }) => {
 
           <div className="p-3 border rounded">
             <strong className="block mb-1 text-gray-700">Created At:</strong>
-            <p className="text-gray-900">{new Date(quote.createdAt).toLocaleString()}</p>
+            <p className="text-gray-900">
+              {new Date(quote.createdAt).toLocaleString()}
+            </p>
           </div>
         </div>
       </div>

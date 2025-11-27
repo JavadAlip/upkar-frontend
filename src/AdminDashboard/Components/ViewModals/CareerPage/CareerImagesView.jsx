@@ -1,5 +1,4 @@
-import React from "react";
-import { X } from "lucide-react";
+import { X } from 'lucide-react';
 
 const CareerImagesViewModal = ({ isOpen, onClose, data }) => {
   if (!isOpen || !data) return null;
@@ -7,7 +6,6 @@ const CareerImagesViewModal = ({ isOpen, onClose, data }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
       <div className="bg-white w-full max-w-lg max-h-[90vh] overflow-y-auto p-6 rounded shadow-lg relative">
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-3 right-3 text-gray-600 hover:text-black"
@@ -15,11 +13,9 @@ const CareerImagesViewModal = ({ isOpen, onClose, data }) => {
           <X className="w-5 h-5" />
         </button>
 
-        {/* Modal Title */}
         <h2 className="text-xl font-bold mb-4">Career Images Details</h2>
 
         <div className="space-y-4">
-          {/* Images */}
           <div className="p-3 border rounded">
             <strong className="block mb-1 text-gray-700">Images:</strong>
             <div className="flex flex-wrap gap-2 mt-2">
@@ -34,7 +30,6 @@ const CareerImagesViewModal = ({ isOpen, onClose, data }) => {
             </div>
           </div>
 
-          {/* Created At */}
           {data.createdAt && (
             <div className="p-3 border rounded">
               <strong className="block mb-1 text-gray-700">Created At:</strong>

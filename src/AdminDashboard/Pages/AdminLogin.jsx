@@ -1,31 +1,31 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AdminLogin = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setError('');
 
     try {
       const res = await axios.post(
-        "https://upkar-backend.onrender.com/api/admin/login", 
+        'https://upkar-backend.onrender.com/api/admin/login',
         {
           username,
           password,
         }
       );
 
-      localStorage.setItem("adminToken", res.data.token);
-      navigate("/admin-dashboard"); 
+      localStorage.setItem('adminToken', res.data.token);
+      navigate('/admin-dashboard');
     } catch (err) {
       setError(
-        err.response?.data?.message || "Login failed. Please try again."
+        err.response?.data?.message || 'Login failed. Please try again.'
       );
     }
   };

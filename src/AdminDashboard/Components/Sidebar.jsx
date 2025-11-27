@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Home,
   Info,
@@ -11,8 +11,7 @@ import {
   ChevronDown,
   Menu,
   X,
-  Grid,
-} from "lucide-react";
+} from 'lucide-react';
 
 const Sidebar = ({ setActiveSection }) => {
   const [openHome, setOpenHome] = useState(false);
@@ -28,7 +27,6 @@ const Sidebar = ({ setActiveSection }) => {
 
   return (
     <>
-      {/* Hamburger button for small screens */}
       <div className="md:hidden fixed top-4 left-4 z-20">
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -42,22 +40,19 @@ const Sidebar = ({ setActiveSection }) => {
         </button>
       </div>
 
-      {/* Sidebar */}
       <div
         className={`
           fixed top-0 left-0 h-screen bg-black text-white flex flex-col w-64
           transform transition-transform duration-300
-          ${mobileOpen ? "translate-x-0" : "-translate-x-full"}
+          ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
           md:translate-x-0 md:w-64
           z-10
         `}
       >
-        {/* Sidebar Header */}
         <h2 className="text-2xl font-bold p-4 border-b border-gray-700 flex-shrink-0">
           Admin
         </h2>
 
-        {/* Scrollable Menu Items */}
         <div className="flex-1 flex flex-col p-4 gap-2 overflow-y-auto">
           {/* Home Page Dropdown */}
           <button
@@ -70,7 +65,7 @@ const Sidebar = ({ setActiveSection }) => {
             </span>
             <ChevronDown
               className={`w-4 h-4 transform transition-transform ${
-                openHome ? "rotate-180" : ""
+                openHome ? 'rotate-180' : ''
               }`}
             />
           </button>
@@ -78,43 +73,43 @@ const Sidebar = ({ setActiveSection }) => {
             <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("banner")}
+                onClick={() => setActiveSection('banner')}
               >
                 Banner
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("vision")}
+                onClick={() => setActiveSection('vision')}
               >
                 Vision Mission
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("projects")}
+                onClick={() => setActiveSection('projects')}
               >
                 Projects
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("certification")}
+                onClick={() => setActiveSection('certification')}
               >
                 Certification
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("quotescertificate")}
+                onClick={() => setActiveSection('quotescertificate')}
               >
                 Quotes
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("qna")}
+                onClick={() => setActiveSection('qna')}
               >
                 Q&A
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("awards")}
+                onClick={() => setActiveSection('awards')}
               >
                 Awards
               </button>
@@ -132,7 +127,7 @@ const Sidebar = ({ setActiveSection }) => {
             </span>
             <ChevronDown
               className={`w-4 h-4 transform transition-transform ${
-                openProject ? "rotate-180" : ""
+                openProject ? 'rotate-180' : ''
               }`}
             />
           </button>
@@ -140,37 +135,37 @@ const Sidebar = ({ setActiveSection }) => {
             <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("projectmain")}
+                onClick={() => setActiveSection('projectmain')}
               >
                 Project Main
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("feature")}
+                onClick={() => setActiveSection('feature')}
               >
                 Feature
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("plotlayout")}
+                onClick={() => setActiveSection('plotlayout')}
               >
                 Plot Layout
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("amenity")}
+                onClick={() => setActiveSection('amenity')}
               >
                 Amenities
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("aboutproject")}
+                onClick={() => setActiveSection('aboutproject')}
               >
                 About Project
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("projectimages")}
+                onClick={() => setActiveSection('projectimages')}
               >
                 Project Image
               </button>
@@ -188,7 +183,7 @@ const Sidebar = ({ setActiveSection }) => {
             </span>
             <ChevronDown
               className={`w-4 h-4 transform transition-transform ${
-                openAbout ? "rotate-180" : ""
+                openAbout ? 'rotate-180' : ''
               }`}
             />
           </button>
@@ -196,19 +191,19 @@ const Sidebar = ({ setActiveSection }) => {
             <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("aboutmain")}
+                onClick={() => setActiveSection('aboutmain')}
               >
                 About Main
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("quote")}
+                onClick={() => setActiveSection('quote')}
               >
                 Quote
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("team")}
+                onClick={() => setActiveSection('team')}
               >
                 Team
               </button>
@@ -226,7 +221,7 @@ const Sidebar = ({ setActiveSection }) => {
             </span>
             <ChevronDown
               className={`w-4 h-4 transform transition-transform ${
-                openEvent ? "rotate-180" : ""
+                openEvent ? 'rotate-180' : ''
               }`}
             />
           </button>
@@ -234,7 +229,7 @@ const Sidebar = ({ setActiveSection }) => {
             <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("eventmain")}
+                onClick={() => setActiveSection('eventmain')}
               >
                 Event Main
               </button>
@@ -252,7 +247,7 @@ const Sidebar = ({ setActiveSection }) => {
             </span>
             <ChevronDown
               className={`w-4 h-4 transform transition-transform ${
-                openCareer ? "rotate-180" : ""
+                openCareer ? 'rotate-180' : ''
               }`}
             />
           </button>
@@ -260,19 +255,19 @@ const Sidebar = ({ setActiveSection }) => {
             <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("careermain")}
+                onClick={() => setActiveSection('careermain')}
               >
                 Career Main
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("whyjoin")}
+                onClick={() => setActiveSection('whyjoin')}
               >
                 Why join
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("careerimages")}
+                onClick={() => setActiveSection('careerimages')}
               >
                 Career Images
               </button>
@@ -290,7 +285,7 @@ const Sidebar = ({ setActiveSection }) => {
             </span>
             <ChevronDown
               className={`w-4 h-4 transform transition-transform ${
-                openCompleted ? "rotate-180" : ""
+                openCompleted ? 'rotate-180' : ''
               }`}
             />
           </button>
@@ -298,19 +293,19 @@ const Sidebar = ({ setActiveSection }) => {
             <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("completedmain")}
+                onClick={() => setActiveSection('completedmain')}
               >
                 Completed Main
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("ourvalues")}
+                onClick={() => setActiveSection('ourvalues')}
               >
                 Our Values
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("projectlists")}
+                onClick={() => setActiveSection('projectlists')}
               >
                 Project Lists
               </button>
@@ -328,7 +323,7 @@ const Sidebar = ({ setActiveSection }) => {
             </span>
             <ChevronDown
               className={`w-4 h-4 transform transition-transform ${
-                openUpcoming ? "rotate-180" : ""
+                openUpcoming ? 'rotate-180' : ''
               }`}
             />
           </button>
@@ -336,19 +331,19 @@ const Sidebar = ({ setActiveSection }) => {
             <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("upcomingmain")}
+                onClick={() => setActiveSection('upcomingmain')}
               >
                 Upcoming Main
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("upcomingourvalues")}
+                onClick={() => setActiveSection('upcomingourvalues')}
               >
                 Our Values
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("upcomingprojectlists")}
+                onClick={() => setActiveSection('upcomingprojectlists')}
               >
                 Project Lists
               </button>
@@ -366,7 +361,7 @@ const Sidebar = ({ setActiveSection }) => {
             </span>
             <ChevronDown
               className={`w-4 h-4 transform transition-transform ${
-                openOngoing ? "rotate-180" : ""
+                openOngoing ? 'rotate-180' : ''
               }`}
             />
           </button>
@@ -374,19 +369,19 @@ const Sidebar = ({ setActiveSection }) => {
             <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("ongoingmain")}
+                onClick={() => setActiveSection('ongoingmain')}
               >
                 Ongoing Main
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("ongoingourvalues")}
+                onClick={() => setActiveSection('ongoingourvalues')}
               >
                 Our Values
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("ongoingprojectlists")}
+                onClick={() => setActiveSection('ongoingprojectlists')}
               >
                 Project Lists
               </button>
@@ -404,7 +399,7 @@ const Sidebar = ({ setActiveSection }) => {
             </span>
             <ChevronDown
               className={`w-4 h-4 transform transition-transform ${
-                openBlog ? "rotate-180" : ""
+                openBlog ? 'rotate-180' : ''
               }`}
             />
           </button>
@@ -412,19 +407,19 @@ const Sidebar = ({ setActiveSection }) => {
             <div className="flex flex-col ml-4 mt-2 gap-2 text-sm">
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("blogsmain")}
+                onClick={() => setActiveSection('blogsmain')}
               >
                 Blogs Main
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("populararticles")}
+                onClick={() => setActiveSection('populararticles')}
               >
                 Popular Articles
               </button>
               <button
                 className="text-white p-2 rounded hover:bg-gray-900 text-left"
-                onClick={() => setActiveSection("readmore")}
+                onClick={() => setActiveSection('readmore')}
               >
                 Read More
               </button>
@@ -432,8 +427,6 @@ const Sidebar = ({ setActiveSection }) => {
           )}
         </div>
       </div>
-
-      {/* Overlay for mobile when sidebar open */}
       {mobileOpen && (
         <div
           className="fixed inset-0 bg-black opacity-50 z-0 md:hidden"
