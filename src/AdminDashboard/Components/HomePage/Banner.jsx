@@ -72,12 +72,12 @@ const Banner = () => {
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
-        <h1 className="text-2xl font-bold">Banner Management</h1>
+        <h1 className="text-2xl font-bold">Banners</h1>
         <button
           onClick={() => setIsAddOpen(true)}
-          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         >
-          <Plus className="w-4 h-4" /> Add Banner
+          <Plus className="w-4 h-4" /> Add
         </button>
       </div>
 

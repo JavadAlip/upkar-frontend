@@ -73,7 +73,7 @@ const Certification = () => {
   return (
     <div className="flex-1 p-6 bg-gray-100 min-h-screen">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Certifications Management</h1>
+        <h1 className="text-2xl font-bold">Certifications</h1>
         <button
           onClick={() => setIsAddOpen(true)}
           className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"

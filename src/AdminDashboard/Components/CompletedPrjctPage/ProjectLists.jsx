@@ -71,12 +71,12 @@ const ProjectsListMain = () => {
       <ToastContainer position="top-right" autoClose={1500} />
 
       <div className="flex justify-between mb-4">
-        <h1 className="text-2xl font-bold">Projects List</h1>
+        <h1 className="text-2xl font-bold">Projects Lists</h1>
         <button
           onClick={() => setIsAddOpen(true)}
           className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         >
-          <Plus className="w-4 h-4" /> Add Project
+          <Plus className="w-4 h-4" /> Add
         </button>
       </div>
 
