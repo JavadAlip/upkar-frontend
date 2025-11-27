@@ -84,7 +84,7 @@ const EventMain = () => {
         <h1 className="text-2xl font-bold">Event Management</h1>
         <button
           onClick={() => setIsAddOpen(true)}
-          className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
+          className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         >
           <Plus className="w-4 h-4" /> Add Event
         </button>

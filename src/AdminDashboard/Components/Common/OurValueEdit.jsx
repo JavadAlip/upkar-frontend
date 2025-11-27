@@ -60,7 +60,7 @@ const OurValueEdit = ({ isOpen, onClose, value, onUpdated }) => {
             >
               Cancel
             </button>
-            <button className="px-4 py-2 bg-orange-500 text-white rounded">
+            <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">
               {loading ? 'Updating...' : 'Update'}
             </button>
           </div>

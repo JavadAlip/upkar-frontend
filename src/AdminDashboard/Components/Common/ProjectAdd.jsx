@@ -136,7 +136,7 @@ const ProjectAdd = ({ isOpen, onClose, onProjectAdded }) => {
             <button
               type="submit"
               disabled={loading}
-              className="px-4 py-2 bg-orange-500 text-white rounded"
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
               {loading ? 'Adding...' : 'Add'}
             </button>
