@@ -19,7 +19,7 @@ const AboutUs = () => {
       <AboutCertification />
       <Gallery />
       <AboutGetInTouch />
-      <Footer/>
+      <Footer />
     </>
   );
 };

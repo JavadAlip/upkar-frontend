@@ -16,7 +16,6 @@ import ProtectedRoute from "./AdminDashboard/Components/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 export default function App() {
   return (
     <Router>
@@ -33,21 +32,20 @@ export default function App() {
         theme="colored"
       />
       <Routes>
-
         <Route
           path="/*"
           element={
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/aboutus" element={<AboutUs />} />
-                <Route path="/completed-projects" element={<CompletedPrjcts />}/>
-                <Route path="/upcoming-projects" element={<UpcomingPrjcts />}/>
-                <Route path="/ongoing-projects" element={<OngoingPrjcts />}/>
-                <Route path="/project" element={<Project />} />
-                <Route path="/events" element={<Event />} />
-                <Route path="/careers" element={<Career />} />
-                <Route path="/blogs" element={<Blogs />} />
-              </Routes>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/aboutus" element={<AboutUs />} />
+              <Route path="/completed-projects" element={<CompletedPrjcts />} />
+              <Route path="/upcoming-projects" element={<UpcomingPrjcts />} />
+              <Route path="/ongoing-projects" element={<OngoingPrjcts />} />
+              <Route path="/project" element={<Project />} />
+              <Route path="/events" element={<Event />} />
+              <Route path="/careers" element={<Career />} />
+              <Route path="/blogs" element={<Blogs />} />
+            </Routes>
           }
         />
 
@@ -65,4 +63,3 @@ export default function App() {
     </Router>
   );
 }
-

@@ -35,13 +35,11 @@ const Quote = () => {
         }}
       >
         <div className="relative w-[90%] bg-gradient-to-b from-white/50 via-white/30 via-white/20 to-white/0 backdrop-blur-lg border border-white/20 rounded-[23px] px-4 lg:px-10 py-10 sm:py-12 md:py-20 lg:py-24 text-center shadow-lg">
-
           <div className="absolute top-10 left-10 flex gap-2 opacity-90">
             <img src={QuoteUp} alt="quote up" className="w-6 lg:w-8" />
             <img src={QuoteUp} alt="quote up" className="w-6 lg:w-8" />
           </div>
 
-          {/* Quote Text */}
           <p className="text-center mt-8 text-white text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] leading-snug sm:leading-tight md:leading-tight lg:leading-[1.2] max-w-[60%] font-[Figtree] mx-auto">
             {latestQuote.text}
           </p>
@@ -50,7 +48,6 @@ const Quote = () => {
             <img src={QuoteDown} alt="quote down" className="w-6 lg:w-8" />
             <img src={QuoteDown} alt="quote down" className="w-6 lg:w-8" />
           </div>
-
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
-
 import React, { useEffect, useState } from "react";
-import { getAllBlogMain } from "../../Api"; 
+import { getAllBlogMain } from "../../Api";
 import addEnq from "../../assets/Icons/fullArticle.png";
 import Phone from "../../assets/Icons/Phone.png";
 import Mail from "../../assets/Icons/mail.png";
@@ -31,27 +30,20 @@ const BlogMain = () => {
   return (
     <div className="w-full py-16 px-4 font-figtree">
       <div className="max-w-6xl mx-auto">
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          
-          {/* LEFT SECTION */}
           <div>
-            {/* Heading */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-black text-center font-figtree mb-8 sm:mb-12 md:mb-16 lg:mb-[100px] text-left">
               <span className="font-semibold">{blogData.heading}</span>
             </h2>
 
-            {/* Heading1 */}
             <p className="font-figtree font-medium text-base sm:text-lg md:text-xl lg:text-[24px] text-primaryText text-center leading-[1.4] sm:leading-[1.3] lg:leading-[1.2] mb-6 sm:mb-8 lg:mb-[40px]">
               {blogData.heading1}
             </p>
 
-            {/* Description */}
             <p className="font-figtree font-extralight text-base sm:text-lg md:text-xl lg:text-[24px] text-primaryText text-center leading-[1.4] sm:leading-[1.3] lg:leading-[1.2] mb-6 sm:mb-8 lg:mb-[40px]">
               {blogData.description}
             </p>
 
-            {/* Enquiry Button */}
             <div className="flex justify-center lg:justify-center">
               <img
                 src={addEnq}
@@ -61,18 +53,14 @@ const BlogMain = () => {
             </div>
           </div>
 
-          {/* RIGHT SECTION */}
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
-
-              {/* Dynamic Image */}
               <img
                 src={blogData.mainImage}
                 alt="Blog Main"
                 className="w-full h-auto object-cover"
               />
 
-              {/* Contact Icons */}
               <div className="absolute top-24 -right-4 bg-white rounded-2xl p-4 shadow-lg flex flex-col gap-6">
                 <button className="hover:scale-110 transition-transform duration-300">
                   <img src={Phone} alt="Phone" className="w-6 h-6" />

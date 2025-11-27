@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getAllOngoingProjects } from "../../Api"; 
+import { getAllOngoingProjects } from "../../Api";
 import addEnq from "../../assets/Icons/addEnq.png";
 import Phone from "../../assets/Icons/Phone.png";
 import Mail from "../../assets/Icons/mail.png";
 import Whatsapp from "../../assets/Icons/whatsapp.png";
 
 const OngoingMain = () => {
-  const [project, setProject] = useState(null); 
+  const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const OngoingMain = () => {
       try {
         const res = await getAllOngoingProjects();
         if (res.success && res.data.length > 0) {
-          setProject(res.data[0]); 
+          setProject(res.data[0]);
         }
       } catch (error) {
         console.error("Error fetching ongoing projects:", error);
@@ -60,7 +60,6 @@ const OngoingMain = () => {
             </div>
           </div>
 
-          {/* Right Section - Image with Contact Icons */}
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
               <img

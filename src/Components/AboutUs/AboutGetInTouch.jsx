@@ -1,27 +1,24 @@
-import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
-
-
+import React, { useState } from "react";
+import { ArrowRight } from "lucide-react";
 const AboutGetInTouch = () => {
-
   const [formData, setFormData] = useState({
-    projectType: '',
-    preferredEstate: '',
-    name: '',
-    email: '',
-    phone: '',
-    existingCustomer: ''
+    projectType: "",
+    preferredEstate: "",
+    name: "",
+    email: "",
+    phone: "",
+    existingCustomer: "",
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = () => {
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
   };
 
   return (
@@ -32,7 +29,6 @@ const AboutGetInTouch = () => {
 
       <div className="flex flex-col items-center">
         <div className="p-8 md:p-12 space-y-6 w-full">
-
           <div>
             <select
               name="projectType"

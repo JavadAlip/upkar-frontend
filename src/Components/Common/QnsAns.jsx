@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
-import { getQuestionsAPI } from '../../Api';
-import { toast } from 'react-toastify';
+import React, { useState, useEffect } from "react";
+import { ChevronDown, ChevronUp, ArrowRight } from "lucide-react";
+import { getQuestionsAPI } from "../../Api";
+import { toast } from "react-toastify";
 
 const QnsAns = () => {
   const [openIndex, setOpenIndex] = useState(-1);
   const [faqs, setFaqs] = useState([]);
-  const token = localStorage.getItem('adminToken');
+  const token = localStorage.getItem("adminToken");
 
   useEffect(() => {
     fetchFAQs();
@@ -17,8 +17,8 @@ const QnsAns = () => {
       const data = await getQuestionsAPI(token);
       setFaqs(data);
     } catch (error) {
-      console.error('Error fetching FAQs:', error);
-      toast.error('Failed to fetch Q&As!');
+      console.error("Error fetching FAQs:", error);
+      toast.error("Failed to fetch Q&As!");
     }
   };
 
@@ -29,7 +29,6 @@ const QnsAns = () => {
   return (
     <div className="w-full bg-white px-4 lg:px-24 py-6 sm:py-8 md:py-10 lg:py-12 font-[Figtree]">
       <div className="grid grid-cols-1 lg:grid-cols-2 items-start">
-        {/* Left Section */}
         <div className="text-left p-4 flex flex-col justify-between h-full">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight">
             Invest smarter with <br />
@@ -55,7 +54,6 @@ const QnsAns = () => {
           </div>
         </div>
 
-        {/* Right Section - FAQ Accordion */}
         <div className="space-y-4">
           {faqs.length === 0 && (
             <p className="text-gray-500 text-center py-6">No Q&As found.</p>
@@ -64,7 +62,9 @@ const QnsAns = () => {
             <div
               key={index}
               className={`border rounded-2xl transition-all ${
-                openIndex === index ? 'bg-gray-100 border-gray-200' : 'bg-white border-gray-200'
+                openIndex === index
+                  ? "bg-gray-100 border-gray-200"
+                  : "bg-white border-gray-200"
               }`}
             >
               <button

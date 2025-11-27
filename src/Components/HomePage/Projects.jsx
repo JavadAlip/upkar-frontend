@@ -24,7 +24,6 @@ const Projects = () => {
     fetchProjects();
   }, []);
 
-  // Helper function to get button image based on project type
   const getButtonImage = (type) => {
     switch (type?.toLowerCase()) {
       case "ongoing":
@@ -38,7 +37,6 @@ const Projects = () => {
     }
   };
 
-  // Helper function to get button text based on project type
   const getButtonText = (type) => {
     switch (type?.toLowerCase()) {
       case "ongoing":
@@ -89,33 +87,55 @@ const Projects = () => {
         <span style={{ fontWeight: 500 }}>Projects</span>
       </h2>
 
-      {/* Desktop View */}
       <div className="space-y-20 hidden lg:block">
         {projects.map((project, index) => {
           const isEven = index % 2 === 0;
 
           return (
-            <div key={project._id} className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              {/* Text Content - Left side for even, Right side for odd */}
-              <div className={`space-y-6 ${!isEven ? 'order-2' : ''}`}>
+            <div
+              key={project._id}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
+            >
+              <div className={`space-y-6 ${!isEven ? "order-2" : ""}`}>
                 <h2
                   className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-800 leading-tight"
-                  style={{ fontFamily: "'Noto Serif JP', serif", fontWeight: 300, fontSize: '48px', color: '#000000' }}
+                  style={{
+                    fontFamily: "'Noto Serif JP', serif",
+                    fontWeight: 300,
+                    fontSize: "48px",
+                    color: "#000000",
+                  }}
                   dangerouslySetInnerHTML={{ __html: project.heading }}
                 />
 
                 <p
                   className="text-sm sm:text-base lg:text-xl"
-                  style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '20px', color: '#000000', lineHeight: '1.2' }}
+                  style={{
+                    fontFamily: "'Figtree', sans-serif",
+                    fontWeight: 300,
+                    fontSize: "20px",
+                    color: "#000000",
+                    lineHeight: "1.2",
+                  }}
                 >
                   {project.description}
                 </p>
 
-                <ul className={`space-y-2 text-sm sm:text-base lg:text-lg ${!isEven ? 'pl-80' : ''}`}>
+                <ul
+                  className={`space-y-2 text-sm sm:text-base lg:text-lg ${
+                    !isEven ? "pl-80" : ""
+                  }`}
+                >
                   {project.bulletPoints?.map((point, idx) => (
                     <li
                       key={idx}
-                      style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 300, fontSize: '18px', color: '#000000', lineHeight: '1.6' }}
+                      style={{
+                        fontFamily: "'Figtree', sans-serif",
+                        fontWeight: 300,
+                        fontSize: "18px",
+                        color: "#000000",
+                        lineHeight: "1.6",
+                      }}
                       className="flex items-start"
                     >
                       <span className="mr-2 flex-shrink-0">•</span>
@@ -124,7 +144,7 @@ const Projects = () => {
                   ))}
                 </ul>
 
-                <div className={`mt-4 ${!isEven ? 'pl-64' : ''}`}>
+                <div className={`mt-4 ${!isEven ? "pl-64" : ""}`}>
                   <img
                     src={getButtonImage(project.type)}
                     alt={getButtonText(project.type)}
@@ -133,24 +153,31 @@ const Projects = () => {
                 </div>
               </div>
 
-              {/* Image with Overlapping Text Box */}
-              <div className={`relative ${!isEven ? 'order-1' : ''}`}>
+              <div className={`relative ${!isEven ? "order-1" : ""}`}>
                 <div className="rounded-2xl overflow-hidden shadow-xl">
-                  <img src={project.image} alt={project.heading} className="w-full h-full object-cover" />
+                  <img
+                    src={project.image}
+                    alt={project.heading}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
                 <div
-                  className={`absolute ${isEven ? '-bottom-6 -left-56 right-4' : 'bottom-10 -right-56'} bg-white rounded-lg shadow-lg p-6`}
-                  style={{ maxWidth: isEven ? '77%' : '430px' }}
+                  className={`absolute ${
+                    isEven
+                      ? "-bottom-6 -left-56 right-4"
+                      : "bottom-10 -right-56"
+                  } bg-white rounded-lg shadow-lg p-6`}
+                  style={{ maxWidth: isEven ? "77%" : "430px" }}
                 >
                   <p
                     style={{
                       fontFamily: "'Figtree', sans-serif",
                       fontWeight: 300,
-                      fontSize: '16px',
-                      color: '#000000',
-                      lineHeight: '1.6',
-                      margin: 0
+                      fontSize: "16px",
+                      color: "#000000",
+                      lineHeight: "1.6",
+                      margin: 0,
                     }}
                   >
                     {project.boxMessage}
@@ -165,7 +192,10 @@ const Projects = () => {
       {/* Mobile View */}
       <div className="space-y-12 sm:space-y-16 block lg:hidden">
         {projects.map((project) => (
-          <div key={project._id} className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center pb-10 sm:pb-12">
+          <div
+            key={project._id}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center pb-10 sm:pb-12"
+          >
             <div className="space-y-6">
               <h2
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight"
@@ -199,21 +229,25 @@ const Projects = () => {
 
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-xl">
-                <img src={project.image} alt={project.heading} className="w-full h-64 sm:h-80 md:h-full object-cover" />
+                <img
+                  src={project.image}
+                  alt={project.heading}
+                  className="w-full h-64 sm:h-80 md:h-full object-cover"
+                />
               </div>
 
               <div
                 className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[85%] sm:w-[75%] md:w-[65%] bg-white rounded-lg shadow-lg p-3 sm:p-4"
-                style={{ maxWidth: '77%' }}
+                style={{ maxWidth: "77%" }}
               >
                 <p
                   style={{
                     fontFamily: "'Figtree', sans-serif",
                     fontWeight: 300,
-                    fontSize: '16px',
-                    color: '#000000',
-                    lineHeight: '1.6',
-                    margin: 0
+                    fontSize: "16px",
+                    color: "#000000",
+                    lineHeight: "1.6",
+                    margin: 0,
                   }}
                 >
                   {project.boxMessage}

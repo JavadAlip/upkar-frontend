@@ -1,24 +1,22 @@
-import React from 'react';
+import React from "react";
 import Footerimg from "../../assets/Footer.png";
 import { FaLinkedin, FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="w-full bg-[#050F27] text-white py-10 lg:py-12 px-4 lg:px-10 font-[Figtree]">
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-
-        {/* Left - Description */}
         <div className="md:col-span-1 flex flex-col">
           <p className="font-[Figtree] text-[20px] font-light leading-[1] text-white">
-            Stay connected, explore opportunities,<br />
-            and invest with confidence. Your real<br />
+            Stay connected, explore opportunities,
+            <br />
+            and invest with confidence. Your real
+            <br />
             estate success starts here.
           </p>
-          {/* Social Icons */}
+
           <div className="flex gap-4 mt-6">
             <a href="#" className="hover:text-gray-300 transition-colors">
               <FaLinkedin className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -35,7 +33,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Middle - Other Links (now shifted to center) */}
         <div className="md:col-span-1 md:ml-20 lg:ml-52">
           <ul className="space-y-2 font-[figtree] font-normal text-[17px]">
             <li>
@@ -73,8 +70,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Right - About Us Links (moved to far right) */}
-
         <div className="md:col-span-1 lg:ml-11">
           <ul className="space-y-2 inline-block text-left font-[Figtree] text-[17px] text-white">
             <li>
@@ -111,18 +106,20 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-
-
       </div>
 
       <div className="pt-8 flex flex-col items-center gap-8 lg:gap-12 w-full">
         <p className="text-center text-sm sm:text-base md:text-lg font-light">
-          All Rights Reserved 2025 | <span className="font-bold">Upkar Groups</span>
+          All Rights Reserved 2025 |{" "}
+          <span className="font-bold">Upkar Groups</span>
         </p>
 
-        <img src={Footerimg} alt="Upkar Logo" className="w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] object-contain" />
+        <img
+          src={Footerimg}
+          alt="Upkar Logo"
+          className="w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] object-contain"
+        />
       </div>
-
     </footer>
   );
 };

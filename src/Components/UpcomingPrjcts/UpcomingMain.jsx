@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getAllUpcomingProjects } from "../../Api"; 
+import { getAllUpcomingProjects } from "../../Api";
 import addEnq from "../../assets/Icons/addEnq.png";
 import Phone from "../../assets/Icons/Phone.png";
 import Mail from "../../assets/Icons/mail.png";
 import Whatsapp from "../../assets/Icons/whatsapp.png";
 
 const UpcomingMain = () => {
-  const [project, setProject] = useState(null); 
+  const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const UpcomingMain = () => {
       try {
         const res = await getAllUpcomingProjects();
         if (res.success && res.data.length > 0) {
-          setProject(res.data[0]); 
+          setProject(res.data[0]);
         }
       } catch (error) {
         console.error("Error fetching upcoming projects:", error);
@@ -38,7 +38,6 @@ const UpcomingMain = () => {
     <div className="w-full py-16 px-4 font-figtree">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Section - Content */}
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-black font-figtree mb-8 sm:mb-12 md:mb-16 lg:mb-[100px] text-left">
               {project.heading.split(" ")[0]}{" "}
@@ -60,7 +59,6 @@ const UpcomingMain = () => {
             </div>
           </div>
 
-          {/* Right Section - Image with Contact Icons */}
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
               <img

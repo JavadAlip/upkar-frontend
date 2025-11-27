@@ -11,7 +11,7 @@ const ReadMore = () => {
   const fetchReadMore = async () => {
     try {
       const res = await getAllReadMore();
-      setArticles(res.data); 
+      setArticles(res.data);
     } catch (error) {
       console.error("Error fetching readmore:", error);
     }
@@ -25,12 +25,9 @@ const ReadMore = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {articles.map((article) => (
-          <div 
-            key={article._id}
-            className="group cursor-pointer"
-          >
+          <div key={article._id} className="group cursor-pointer">
             <div className="rounded-2xl overflow-hidden mb-4 aspect-[4/3]">
-              <img 
+              <img
                 src={article.mainImage}
                 alt={article.description}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"

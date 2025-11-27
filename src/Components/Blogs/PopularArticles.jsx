@@ -30,7 +30,6 @@ const PopularArticles = () => {
       </h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
         <div className="space-y-4">
           <div className="relative rounded-3xl overflow-hidden h-96 group cursor-pointer">
             <img
@@ -40,8 +39,6 @@ const PopularArticles = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           </div>
-
-          {/* MAIN DESCRIPTION */}
           <h3 className="text-[20px] font-figtree font-medium text-center px-4">
             {articleData.mainDescription}
           </h3>
@@ -53,7 +50,6 @@ const PopularArticles = () => {
               key={index}
               className="flex flex-col sm:flex-row gap-4 group cursor-pointer"
             >
-              {/* Sub Image */}
               <div className="w-full sm:w-32 h-64 sm:h-32 flex-shrink-0 rounded-2xl overflow-hidden">
                 <img
                   src={item.subImage}
@@ -62,7 +58,6 @@ const PopularArticles = () => {
                 />
               </div>
 
-              {/* Sub Heading + Description */}
               <div className="flex-1 flex flex-col justify-center">
                 <h4 className="text-[20px] font-figtree font-semibold mb-2 transition-colors">
                   {item.subHeading}
@@ -75,7 +70,6 @@ const PopularArticles = () => {
             </div>
           ))}
         </div>
-
       </div>
     </div>
   );

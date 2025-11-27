@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllProjectMain } from "../../Api"; 
+import { getAllProjectMain } from "../../Api";
 import Phone from "../../assets/Icons/Phone.png";
 import Mail from "../../assets/Icons/mail.png";
 import Whatsapp from "../../assets/Icons/whatsapp.png";
@@ -45,14 +45,13 @@ const PrjctMain = () => {
   return (
     <div className="w-full py-16 px-4 font-figtree">
       <div className="max-w-6xl mx-auto space-y-16">
-
-        {/* Top Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-          {/* Left Text + Thumbnails */}
           <div className="space-y-8">
             <h2 className="leading-tight text-[48px] text-black font-figtree font-light">
-              {heading.split(" ").slice(0, heading.split(" ").length - 2).join(" ")}{" "}
+              {heading
+                .split(" ")
+                .slice(0, heading.split(" ").length - 2)
+                .join(" ")}{" "}
               <span className="font-figtree font-semibold">
                 {heading.split(" ").slice(-2).join(" ")}
               </span>
@@ -62,7 +61,6 @@ const PrjctMain = () => {
               {description}
             </p>
 
-            {/* Thumbnail Grid */}
             <div className="relative">
               <div className="grid grid-cols-4 gap-3">
                 {mainImages.map((img, index) => (
@@ -80,33 +78,52 @@ const PrjctMain = () => {
                 ))}
               </div>
 
-              {/* White Gradient Overlay */}
               <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
               <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"></div>
             </div>
 
-            {/* Arrow Navigation */}
             <div className="flex justify-center gap-4 items-center">
               <button
-                onClick={() => setCurrentImageIndex(prev => (prev === 0 ? mainImages.length - 1 : prev - 1))}
+                onClick={() =>
+                  setCurrentImageIndex((prev) =>
+                    prev === 0 ? mainImages.length - 1 : prev - 1
+                  )
+                }
                 className="w-9 h-9 rounded-full border-2 border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-all duration-300"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
                   <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
               </button>
               <button
-                onClick={() => setCurrentImageIndex(prev => (prev === mainImages.length - 1 ? 0 : prev + 1))}
+                onClick={() =>
+                  setCurrentImageIndex((prev) =>
+                    prev === mainImages.length - 1 ? 0 : prev + 1
+                  )
+                }
                 className="w-9 h-9 rounded-full bg-black flex items-center justify-center hover:bg-gray-800 transition-all duration-300"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="2"
+                >
                   <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
               </button>
             </div>
           </div>
 
-          {/* Right Dynamic Main Image + Contact Icons */}
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
               <img
@@ -115,15 +132,22 @@ const PrjctMain = () => {
                 className="w-full h-auto object-cover"
               />
               <div className="absolute top-24 -right-4 bg-white rounded-2xl p-4 shadow-lg flex flex-col gap-6">
-                <img src={Phone} alt="Phone" className="w-6 h-6 cursor-pointer" />
+                <img
+                  src={Phone}
+                  alt="Phone"
+                  className="w-6 h-6 cursor-pointer"
+                />
                 <img src={Mail} alt="Mail" className="w-6 h-6 cursor-pointer" />
-                <img src={Whatsapp} alt="WhatsApp" className="w-6 h-6 cursor-pointer" />
+                <img
+                  src={Whatsapp}
+                  alt="WhatsApp"
+                  className="w-6 h-6 cursor-pointer"
+                />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Customer Stats */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center">
           <div className="space-y-6">
             <h3 className="leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-black font-figtree">
@@ -150,7 +174,6 @@ const PrjctMain = () => {
                 </p>
               </div>
 
-              {/* Globe/World Icon */}
               <div className="sm:w-32 sm:h-48 rounded-full flex items-center justify-center">
                 <img
                   src={global}
@@ -179,9 +202,6 @@ const PrjctMain = () => {
           </div>
         </div>
 
-       
-
-        {/* Bottom Global Image */}
         <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl">
           <img
             src={PrjctMain6}

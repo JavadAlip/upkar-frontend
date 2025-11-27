@@ -23,10 +23,7 @@ const CareerMain = () => {
   return (
     <div className="w-full bg-white py-8 md:py-16 px-4">
       <div className="max-w-6xl mx-auto space-y-12 md:space-y-16">
-
-        {/* Top Section - Heading and CTA */}
         <div className="text-center space-y-6 md:space-y-8">
-          {/* Title */}
           <h2 className="text-3xl md:text-4xl lg:text-[48px]">
             <span className="font-[Figtree] font-light text-black">
               Careers at{" "}
@@ -36,12 +33,10 @@ const CareerMain = () => {
             </span>
           </h2>
 
-          {/* Dynamic Description */}
           <p className="font-[Figtree] font-light text-base md:text-lg lg:text-[20px] text-[#050F27] leading-[1.4] max-w-4xl mx-auto px-2 whitespace-pre-line">
             {careerDescription || "Loading career description..."}
           </p>
 
-          {/* Join Us Button */}
           <div className="flex justify-center pt-2">
             <a href="/your-link" className="inline-block">
               <img
@@ -52,7 +47,6 @@ const CareerMain = () => {
             </a>
           </div>
         </div>
-
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { getAllFeatures } from '../../Api'; 
+import React, { useState, useEffect } from "react";
+import { getAllFeatures } from "../../Api";
 
 const Features = () => {
   const [featuresData, setFeaturesData] = useState(null);
@@ -30,13 +30,11 @@ const Features = () => {
       <div className="max-w-7xl mx-auto">
         <div className="bg-[#000814] rounded-3xl p-8 lg:p-12">
           <div className="flex flex-col lg:flex-row gap-6 items-start">
-            {/* LEFT SIDE — Text and Image */}
             <div className="lg:w-5/12 flex flex-col justify-center">
               <p className="text-white text-[20px] sm:text-[24px] font-light font-[Figtree] text-center mb-6">
                 {description}
               </p>
 
-              {/* Main Image */}
               <div className="relative rounded-2xl overflow-hidden">
                 <img
                   src={mainImage}
@@ -46,7 +44,6 @@ const Features = () => {
               </div>
             </div>
 
-            {/* RIGHT SIDE — Feature Cards */}
             <div className="lg:w-7/12 grid grid-cols-3 gap-3 sm:gap-2">
               {icons.map((feature, index) => (
                 <div
@@ -58,9 +55,7 @@ const Features = () => {
                     alt={feature.iconTitle}
                     className="w-48 h-52 sm:w-32 sm:h-40 md:w-40 md:h-48 lg:w-48 lg:h-52 -mb-5 object-contain rounded-2xl"
                   />
-                  <h3
-                    className="text-white font-light font-[Figtree] text-base sm:text-lg md:text-xl lg:text-[24px]"
-                  >
+                  <h3 className="text-white font-light font-[Figtree] text-base sm:text-lg md:text-xl lg:text-[24px]">
                     {feature.iconTitle}
                   </h3>
                 </div>

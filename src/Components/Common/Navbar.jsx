@@ -14,7 +14,6 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white shadow-md py-4 px-4 lg:px-10 flex items-center justify-between relative font-figtree">
-      {/* Logo */}
       <div className="flex items-center">
         <Link to="/">
           <img
@@ -25,7 +24,6 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {/* Desktop Menu */}
       <ul className="hidden lg-nav:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center">
         <li>
           <Link
@@ -52,7 +50,7 @@ const Navbar = () => {
             }}
             className="relative"
           >
-             <Link
+            <Link
               to="/ongoing-projects"
               className="text-black hover:text-gray-600 transition-colors duration-300 flex items-center"
             >
@@ -63,15 +61,6 @@ const Navbar = () => {
                 }`}
               />
             </Link>
-
-            {/* <span className="text-black hover:text-gray-600 transition-colors duration-300 flex items-center">
-              Ongoing
-              <ChevronDown
-                className={`ml-1 w-4 h-4 transition-transform duration-300 ${
-                  ongoingOpen ? "rotate-180 text-gray-600" : "text-gray-500"
-                }`}
-              />
-            </span> */}
 
             {ongoingOpen && (
               <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
@@ -88,7 +77,6 @@ const Navbar = () => {
 
         <li>
           <Link
-          
             to="/upcoming-projects"
             className="text-black hover:text-gray-600 transition-colors duration-300"
           >
@@ -137,14 +125,6 @@ const Navbar = () => {
           </div>
         </li>
 
-        {/* <li>
-          <a
-            href="#"
-            className="text-black hover:text-gray-600 transition-colors duration-300"
-          >
-            Commercial
-          </a>
-        </li> */}
         <li>
           <Link
             to="/events"
@@ -201,7 +181,6 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Hamburger Icon */}
       <button
         className="lg-nav:hidden text-gray-700 focus:outline-none"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -231,7 +210,7 @@ const Navbar = () => {
                 Upcoming
               </Link>
             </li>
-            
+
             <li>
               <Link
                 to="/ongoing-projects"
@@ -283,25 +262,6 @@ const Navbar = () => {
               </div>
             </li>
 
-            {/* {["Commercial", "Events", "Blogs", "Careers"].map((item) => (
-                            <li key={item}>
-                                <a
-                                    href="#"
-                                    className="block text-black hover:text-gray-600 transition-colors"
-                                >
-                                    {item}
-                                </a>
-                            </li>
-                        ))} */}
-
-            {/* <li>
-              <a
-                href="#"
-                className="block text-black hover:text-gray-600 transition-colors"
-              >
-                Commercial
-              </a>
-            </li> */}
             <li>
               <Link
                 to="/events"
@@ -328,7 +288,6 @@ const Navbar = () => {
               </Link>
             </li>
 
-            {/* Contact Button - Mobile */}
             <li>
               <Link
                 to="/"

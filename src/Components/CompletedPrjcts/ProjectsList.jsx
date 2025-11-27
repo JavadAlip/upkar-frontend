@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Search } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { Search } from "lucide-react";
 import { FiChevronDown } from "react-icons/fi";
-import { getAllProjectsList } from '../../Api'; 
+import { getAllProjectsList } from "../../Api";
 
 const ProjectsList = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedStatus, setSelectedStatus] = useState('All');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedStatus, setSelectedStatus] = useState("All");
   const [currentPage, setCurrentPage] = useState(0);
   const [projects, setProjects] = useState([]);
 
@@ -15,7 +15,7 @@ const ProjectsList = () => {
       try {
         const res = await getAllProjectsList();
         if (res.success) {
-          setProjects(res.data); 
+          setProjects(res.data);
         }
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -25,17 +25,17 @@ const ProjectsList = () => {
     fetchProjects();
   }, []);
 
-  // Filter projects based on search and selections
-  const filteredProjects = projects.filter(project => {
+  const filteredProjects = projects.filter((project) => {
     const matchesSearch =
       project.heading.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.location.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'All' || project.type === selectedCategory;
-    const matchesStatus = selectedStatus === 'All' || project.type === selectedStatus; 
+    const matchesCategory =
+      selectedCategory === "All" || project.type === selectedCategory;
+    const matchesStatus =
+      selectedStatus === "All" || project.type === selectedStatus;
     return matchesSearch && matchesCategory && matchesStatus;
   });
 
-  // Pagination
   const projectsPerPage = 9;
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
   const startIndex = currentPage * projectsPerPage;
@@ -45,13 +45,13 @@ const ProjectsList = () => {
   return (
     <div className="w-full py-16 px-4">
       <div className="max-w-6xl mx-auto">
-
-        {/* Filter Section */}
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Search Input */}
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <Search
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
+                size={20}
+              />
               <input
                 type="text"
                 placeholder="Search Projects"
@@ -61,7 +61,6 @@ const ProjectsList = () => {
               />
             </div>
 
-            {/* Category Dropdown */}
             <div className="relative w-full">
               <select
                 value={selectedCategory}
@@ -79,7 +78,6 @@ const ProjectsList = () => {
               />
             </div>
 
-            {/* Status Dropdown */}
             <div className="relative w-full">
               <select
                 value={selectedStatus}
@@ -99,14 +97,12 @@ const ProjectsList = () => {
           </div>
         </div>
 
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {currentProjects.map((project) => (
             <div
               key={project._id}
               className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
             >
-              {/* Project Image */}
               <div className="relative overflow-hidden rounded-t-xl">
                 <img
                   src={project.projectImage}
@@ -115,7 +111,6 @@ const ProjectsList = () => {
                 />
               </div>
 
-              {/* Project Info */}
               <div className="p-5">
                 <h3
                   className="text-[20px] font-medium text-black"
@@ -163,7 +158,6 @@ const ProjectsList = () => {
           ))}
         </div>
 
-        {/* Pagination Dots */}
         {totalPages > 1 && (
           <div className="flex justify-center items-center gap-2 pb-8">
             {Array.from({ length: totalPages }, (_, index) => (
@@ -172,11 +166,11 @@ const ProjectsList = () => {
                 onClick={() => setCurrentPage(index)}
                 className={`transition-all duration-300 rounded-full ${
                   currentPage === index
-                    ? 'bg-black h-3 w-8'
-                    : 'bg-gray-300 h-3 w-3 hover:bg-gray-400'
+                    ? "bg-black h-3 w-8"
+                    : "bg-gray-300 h-3 w-3 hover:bg-gray-400"
                 }`}
                 aria-label={`Go to page ${index + 1}`}
-                aria-current={currentPage === index ? 'page' : undefined}
+                aria-current={currentPage === index ? "page" : undefined}
               />
             ))}
           </div>

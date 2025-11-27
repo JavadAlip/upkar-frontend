@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { getCertifications } from '../../Api'; 
+import React, { useState, useEffect } from "react";
+import { getCertifications } from "../../Api";
 
 const Certification = () => {
   const [certifications, setCertifications] = useState([]);
@@ -20,12 +20,9 @@ const Certification = () => {
 
   return (
     <div className="w-full pt-6 sm:pt-8 md:pt-10 lg:pt-12 font-[Figtree]">
-
       <div className="bg-gray-100 py-10 sm:py-14 lg:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-16">
-
-            {/* Certifications Title */}
             <div className="lg:flex-shrink-0 text-center lg:text-left w-full lg:w-auto">
               <h2
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight"
@@ -35,11 +32,12 @@ const Certification = () => {
               </h2>
             </div>
 
-            {/* Certifications Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 w-full lg:flex-1">
               {certifications.map((cert, index) => (
-                <div key={index} className="flex flex-col items-center justify-center text-center">
-                  {/* Icon */}
+                <div
+                  key={index}
+                  className="flex flex-col items-center justify-center text-center"
+                >
                   <div className="mb-3">
                     <img
                       src={cert.icon}
@@ -48,7 +46,6 @@ const Certification = () => {
                     />
                   </div>
 
-                  {/* Title */}
                   <p
                     className="text-black text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-tight"
                     style={{

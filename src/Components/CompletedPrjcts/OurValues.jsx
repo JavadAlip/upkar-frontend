@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Value1 from "../../assets/UbkarHabit.png";
-import { getAllOurValues } from "../../Api"; 
+import { getAllOurValues } from "../../Api";
 
 const OurValues = () => {
   const [values, setValues] = useState([]);
@@ -21,21 +21,17 @@ const OurValues = () => {
   return (
     <div className="w-full bg-white py-16 px-4 font-figtree">
       <div className="max-w-6xl mx-auto">
-
-        {/* Section Title */}
         <h2 className="text-4xl md:text-5xl mb-16 text-black font-figtree">
           <span className="font-light">Our </span>
           <span className="font-semibold">Values!</span>
         </h2>
 
-        {/* Values Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16">
           {values.map((value) => (
             <div
-              key={value._id} 
+              key={value._id}
               className="flex flex-col items-center justify-center space-y-4 group cursor-pointer"
             >
-              {/* Image Icon */}
               <div
                 className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
                 style={{
@@ -59,7 +55,6 @@ const OurValues = () => {
                 />
               </div>
 
-              {/* Title */}
               <p className="font-satoshi font-medium text-[20px] text-black text-center">
                 {value.title}
               </p>
@@ -67,7 +62,6 @@ const OurValues = () => {
           ))}
         </div>
 
-        {/* Image Section */}
         <div className="relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl">
           <img
             src={Value1}

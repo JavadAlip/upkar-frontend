@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getPlotLayout } from "../../Api"; 
+import { getPlotLayout } from "../../Api";
 import brousche from "../../assets/Icons/brousche.png";
 import plotEnq from "../../assets/Icons/plotEnq.png";
 import Plot2 from "../../assets/Plot2.png";
@@ -8,12 +8,11 @@ const PlotLayout = () => {
   const [plotData, setPlotData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch API data
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await getPlotLayout();
-        setPlotData(res); 
+        setPlotData(res);
       } catch (err) {
         console.error("Error loading plot layout:", err);
       } finally {
@@ -30,18 +29,14 @@ const PlotLayout = () => {
   return (
     <div className="w-full bg-white py-12 px-4 sm:py-16 sm:px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Section Title */}
         <h2 className="mb-10 sm:mb-12 text-3xl sm:text-4xl md:text-[48px] font-[Figtree] text-[#050F27]">
           <span className="font-semibold">Plot</span>{" "}
           <span className="font-light">layout</span>
         </h2>
 
-        {/* Loop through all layouts */}
         {plotData.map((layout) => (
           <div key={layout._id} className="mb-16">
-            {/* Main Grid Layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-              {/* Left Side - Dynamic Icons */}
               <div className="space-y-4 max-w-md mx-auto lg:mx-0">
                 {layout.icons.map((detail) => (
                   <div
@@ -49,18 +44,17 @@ const PlotLayout = () => {
                     className="bg-white rounded-lg p-4 border border-gray-300 hover:border-gray-400 transition-all duration-300"
                   >
                     <div className="flex items-center gap-3 mb-1">
-                      {/* ICON IMAGE */}
                       <img
                         src={detail.icon}
                         alt={detail.heading}
                         className="w-9 h-9 object-contain flex-shrink-0"
                       />
-                      {/* HEADING */}
+
                       <p className="font-[Figtree] font-light text-[18px] sm:text-[20px] text-black">
                         {detail.heading}
                       </p>
                     </div>
-                    {/* SUBHEADING */}
+
                     <p className="font-[Figtree] font-semibold text-[18px] sm:text-[20px] text-black ml-12">
                       {detail.subheading}
                     </p>
@@ -68,14 +62,13 @@ const PlotLayout = () => {
                 ))}
               </div>
 
-              {/* Right Side - PLOT MAIN IMAGE */}
               <div className="relative bg-white rounded-2xl p-4">
                 <img
                   src={layout.mainImage}
                   alt="Plot Layout"
                   className="w-full h-64 sm:h-72 md:h-80 object-contain rounded-xl"
                 />
-                {/* Brochure Button */}
+
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
                   <img
                     src={brousche}
@@ -88,10 +81,9 @@ const PlotLayout = () => {
           </div>
         ))}
 
-        {/* Bottom Section */}
         <div className="relative rounded-3xl overflow-hidden shadow-xl mt-8 sm:mt-12 h-96 sm:h-[500px] md:h-[600px]">
           <img
-            src={Plot2} 
+            src={Plot2}
             alt="Project View"
             className="w-full h-full object-cover"
           />

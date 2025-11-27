@@ -9,7 +9,6 @@ const NavbarHome = () => {
   const [completedOpen, setCompletedOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Static links with paths
   const staticLinks = [
     { name: "Commercial", path: "/" },
     { name: "Events", path: "/events" },
@@ -19,7 +18,6 @@ const NavbarHome = () => {
 
   return (
     <nav className="bg-white shadow-md p-4 flex items-center justify-between relative">
-      {/* Logo */}
       <div className="flex items-center">
         <Link to="/">
           <img
@@ -30,7 +28,6 @@ const NavbarHome = () => {
         </Link>
       </div>
 
-      {/* Desktop Menu */}
       <ul className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center">
         <li>
           <Link
@@ -41,7 +38,6 @@ const NavbarHome = () => {
           </Link>
         </li>
 
-        {/* Ongoing Dropdown */}
         <li className="relative flex items-center space-x-1 cursor-pointer">
           <div
             onMouseEnter={() => {
@@ -89,7 +85,6 @@ const NavbarHome = () => {
           </Link>
         </li>
 
-        {/* Completed Dropdown */}
         <li className="relative flex items-center space-x-1 cursor-pointer">
           <div
             onMouseEnter={() => {
@@ -131,7 +126,6 @@ const NavbarHome = () => {
           </div>
         </li>
 
-        {/* Static Links */}
         {staticLinks.map((item) => (
           <li key={item.name}>
             <Link
@@ -144,7 +138,6 @@ const NavbarHome = () => {
         ))}
       </ul>
 
-      {/* Navbar Last Image */}
       <div className="hidden md:block">
         <img
           src={navbarLast}
@@ -153,7 +146,6 @@ const NavbarHome = () => {
         />
       </div>
 
-      {/* Hamburger Icon */}
       <button
         className="md:hidden text-gray-700 focus:outline-none"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -175,7 +167,6 @@ const NavbarHome = () => {
               </Link>
             </li>
 
-            {/* Ongoing Dropdown Mobile */}
             <li>
               <button
                 className="w-full flex justify-between items-center text-gray-700 hover:text-blue-600"
@@ -211,7 +202,6 @@ const NavbarHome = () => {
               </Link>
             </li>
 
-            {/* Completed Dropdown Mobile */}
             <li>
               <div>
                 <div className="flex items-center justify-between">
@@ -252,7 +242,6 @@ const NavbarHome = () => {
               </div>
             </li>
 
-            {/* Static Links Mobile */}
             {staticLinks.map((item) => (
               <li key={item.name}>
                 <Link

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getBanners } from "../../Api"; 
+import { getBanners } from "../../Api";
 import Connect from "../../assets/Icons/connect.png";
 import Phone from "../../assets/Icons/Phone.png";
 import Mail from "../../assets/Icons/mail.png";
@@ -15,7 +15,7 @@ const HomeMain = () => {
     const fetchBanner = async () => {
       try {
         const data = await getBanners(token);
-        // Assuming the first banner is main banner
+
         if (data && data.length > 0) setBanner(data[0]);
       } catch (error) {
         console.error("Error fetching banners:", error);
@@ -29,7 +29,6 @@ const HomeMain = () => {
     <div className="w-full flex flex-col justify-center items-center px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
       <div className="relative w-full group cursor-pointer mb-6 lg:mb-12">
         <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
-          {/* Banner Image */}
           <img
             src={banner?.image || ""}
             alt={banner?.title || "Home Main"}
@@ -39,17 +38,17 @@ const HomeMain = () => {
           <div className="absolute inset-0 bg-black/10 bg-gradient-to-t from-black/90 via-black/30 to-transparent rounded-[30px]"></div>
 
           <div className="absolute inset-0 flex flex-col justify-end px-4 sm:px-8 md:px-12 lg:px-16 pb-12 sm:pb-16 md:pb-24">
-            {/* Dynamic Title */}
             <h1
               className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[64px] mb-4 sm:mb-6"
               style={{ fontFamily: "'Figtree', sans-serif" }}
             >
-              <span className="font-semibold">{banner?.title?.split("\n")[0]}</span>
+              <span className="font-semibold">
+                {banner?.title?.split("\n")[0]}
+              </span>
               <br />
               <span className="font-bold">{banner?.title?.split("\n")[1]}</span>
             </h1>
 
-            {/* Dynamic Subtitle */}
             <p
               className="text-white max-w-md sm:max-w-lg md:max-w-xl text-base sm:text-lg md:text-xl lg:text-2xl mb-6 hidden sm:block"
               style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 400 }}
@@ -71,11 +70,14 @@ const HomeMain = () => {
               <p className="text-black text-[10px] sm:text-[12px] md:text-[14px] font-normal">
                 RERA & BMRDA Approved Projects
               </p>
-              <img src={AboveIcon} alt="Above Icon" className="w-6 sm:w-8 md:w-10 h-auto" />
+              <img
+                src={AboveIcon}
+                alt="Above Icon"
+                className="w-6 sm:w-8 md:w-10 h-auto"
+              />
             </div>
           </div>
 
-          {/* Connect Button - Mobile */}
           <div className="md:hidden absolute bottom-3 right-2">
             <img
               src={Connect}
@@ -84,7 +86,6 @@ const HomeMain = () => {
             />
           </div>
 
-          {/* Right Floating Contact Buttons */}
           <div className="absolute top-6 sm:top-11 -right-2 sm:-right-4 bg-white rounded-xl sm:rounded-2xl p-2 sm:p-4 shadow-lg flex flex-col gap-3 sm:gap-6">
             <button className="hover:scale-110 transition-transform duration-300">
               <img src={Phone} alt="Phone" className="w-4 h-4 sm:w-6 sm:h-6" />
@@ -93,13 +94,15 @@ const HomeMain = () => {
               <img src={Mail} alt="Mail" className="w-4 h-4 sm:w-6 sm:h-6" />
             </button>
             <button className="hover:scale-110 transition-transform duration-300">
-              <img src={Whatsapp} alt="WhatsApp" className="w-4 h-4 sm:w-6 sm:h-6" />
+              <img
+                src={Whatsapp}
+                alt="WhatsApp"
+                className="w-4 h-4 sm:w-6 sm:h-6"
+              />
             </button>
           </div>
         </div>
       </div>
-
-      {/* Rest of your static content remains same */}
     </div>
   );
 };

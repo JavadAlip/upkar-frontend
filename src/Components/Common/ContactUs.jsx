@@ -1,28 +1,19 @@
-import React from 'react';
+import React from "react";
 import contactBtn from "../../assets/Icons/contactBtn.png";
 
-
 const ContactUs = () => {
-  
   return (
     <div className="w-full bg-white py-12 sm:py-16 px-4 font-[Figtree]">
       <div className="max-w-6xl mx-auto text-center">
-
-        {/* Heading */}
         <h2 className="mb-6 sm:mb-8">
-          <span
-            className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black leading-tight font-light font-['Noto_Serif_JP']"
-          >
+          <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black leading-tight font-light font-['Noto_Serif_JP']">
             Ready to Find Your
           </span>
-          <span
-            className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black leading-tight font-bold font-['Noto_Serif_JP']"
-          >
+          <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black leading-tight font-bold font-['Noto_Serif_JP']">
             Dream Property?
           </span>
         </h2>
 
-        {/* Button */}
         <div className="flex justify-center">
           <div className="mt-4 inline-block">
             <img
@@ -32,7 +23,6 @@ const ContactUs = () => {
             />
           </div>
         </div>
-
       </div>
     </div>
   );

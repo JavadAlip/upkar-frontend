@@ -19,11 +19,11 @@ const Home = () => {
       <Projects />
       <GetInTouch />
       <Certification />
-      <Quote/>
+      <Quote />
       <QnsAns />
       <Awards />
       <ContactUs />
-      <Footer/>
+      <Footer />
     </>
   );
 };

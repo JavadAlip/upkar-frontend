@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MapPin } from "lucide-react";
-import { getAllEvents } from "../../Api"; 
+import { getAllEvents } from "../../Api";
 const Events = () => {
   const [events, setEvents] = useState([]);
 
@@ -15,7 +15,6 @@ const Events = () => {
     };
     fetchEvents();
   }, []);
-
 
   const formatEventDate = (dateString) => {
     const date = new Date(dateString);
@@ -41,7 +40,6 @@ const Events = () => {
                 key={event._id}
                 className="flex flex-col lg:flex-row gap-4 md:gap-8 items-start"
               >
-                {/* Left Side - Image */}
                 <div className="w-full lg:w-1/3 flex-shrink-0">
                   <div className="relative shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <img
@@ -50,7 +48,6 @@ const Events = () => {
                       className="w-full h-40 md:h-48 lg:h-56 object-cover hover:scale-105 transition-transform duration-300"
                     />
 
-                    {/* Date Box */}
                     <div className="absolute bottom-2 right-2 md:bottom-[-10px] md:right-[-80px] bg-white px-4 md:px-8 py-3 md:py-6 rounded-lg md:rounded-2xl shadow-md">
                       <p className="text-center leading-tight font-[Figtree] text-lg md:text-2xl lg:text-4xl font-light text-[#050F27]">
                         {day} {month}
@@ -63,7 +60,6 @@ const Events = () => {
                   </div>
                 </div>
 
-                {/* Right Side - Content */}
                 <div
                   className="w-full lg:w-2/3 space-y-2 md:space-y-4 border border-[#DADADA] lg:border-l-0 p-3 md:p-4 lg:pl-32 rounded lg:rounded-none"
                   style={{ backgroundColor: "#fff" }}
@@ -112,9 +108,7 @@ const Events = () => {
             );
           })}
           {events.length === 0 && (
-            <p className="text-center text-gray-500 py-10">
-              No events found.
-            </p>
+            <p className="text-center text-gray-500 py-10">No events found.</p>
           )}
         </div>
       </div>

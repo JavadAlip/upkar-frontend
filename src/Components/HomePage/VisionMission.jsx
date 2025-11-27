@@ -29,7 +29,6 @@ const VisionMission = () => {
   return (
     <div className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-        {/* Left Section */}
         <div className="space-y-8">
           <h2
             className="mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-[48px]"
@@ -39,13 +38,11 @@ const VisionMission = () => {
             <span className="font-light">& Mission</span>
           </h2>
 
-          {/* Dynamic Description */}
           <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
             {visionMission?.description ||
               "Our core values are centered on integrity and trust, upholding transparency and ethical practices in every interaction. We are driven by a commitment to quality and craftsmanship."}
           </p>
 
-          {/* Our Mission Accordion */}
           <div className="border-t border-gray-300 pt-6">
             <button
               onClick={() => setMissionOpen(!missionOpen)}
@@ -68,7 +65,6 @@ const VisionMission = () => {
             )}
           </div>
 
-          {/* Our Vision Accordion */}
           <div className="border-t border-gray-300 pt-6">
             <button
               onClick={() => setVisionOpen(!visionOpen)}
@@ -91,7 +87,6 @@ const VisionMission = () => {
             )}
           </div>
 
-          {/* Know More Button */}
           <div className="mt-8">
             <img
               src={aboutArrow}
@@ -101,7 +96,6 @@ const VisionMission = () => {
           </div>
         </div>
 
-        {/* Right Section */}
         <div className="relative">
           <div className="rounded-2xl overflow-hidden shadow-xl">
             <img
@@ -139,7 +133,6 @@ const VisionMission = () => {
         </div>
       </div>
 
-      {/* Stats Section */}
       <div className="w-full max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 mt-20 lg:mt-28 border-t border-[#1A2235]/10">
         {visionMission?.stats?.map((stat, index) => (
           <div
@@ -166,7 +159,6 @@ const VisionMission = () => {
         ))}
       </div>
 
-      {/* Map & CTA Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mt-12 lg:mt-16 items-center">
         <div className="rounded-2xl overflow-hidden shadow-xl">
           <img

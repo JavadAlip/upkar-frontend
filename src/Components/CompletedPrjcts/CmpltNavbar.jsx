@@ -7,7 +7,6 @@ import navbarLast from "../../assets/navbarLast.png";
 const CmpltNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Static links mapped with routes
   const staticLinks = [
     { name: "Commercial", path: "/" },
     { name: "Events", path: "/events" },
@@ -17,7 +16,6 @@ const CmpltNavbar = () => {
 
   return (
     <nav className="bg-white shadow-md p-4 flex items-center justify-between relative font-figtree">
-      {/* Logo */}
       <div className="flex items-center">
         <Link to="/">
           <img
@@ -63,7 +61,6 @@ const CmpltNavbar = () => {
           </Link>
         </li>
 
-        {/* Static Links */}
         {staticLinks.map((item) => (
           <li key={item.name}>
             <Link
@@ -75,7 +72,6 @@ const CmpltNavbar = () => {
           </li>
         ))}
 
-        {/* Contact Button */}
         <li>
           <Link
             to="/"
@@ -86,7 +82,6 @@ const CmpltNavbar = () => {
         </li>
       </ul>
 
-      {/* NavbarLast Image - Desktop Only */}
       <div className="hidden md:block">
         <img
           src={navbarLast}
@@ -95,7 +90,6 @@ const CmpltNavbar = () => {
         />
       </div>
 
-      {/* Hamburger Icon */}
       <button
         className="md:hidden text-gray-700 focus:outline-none"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -157,7 +151,6 @@ const CmpltNavbar = () => {
               </li>
             ))}
 
-            {/* Contact Button - Mobile */}
             <li>
               <Link
                 to="/"
