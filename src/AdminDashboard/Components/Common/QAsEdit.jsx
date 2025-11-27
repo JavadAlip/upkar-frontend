@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { updateQuestionAPI } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { updateQuestionAPI } from '../../../Api';
 
 const QAsEdit = ({ isOpen, onClose, qa, onUpdate }) => {
-  const [form, setForm] = useState({ question: "", answer: "" });
+  const [form, setForm] = useState({ question: '', answer: '' });
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     if (qa) {
       setForm({
-        question: qa.question || "",
-        answer: qa.answer || "",
+        question: qa.question || '',
+        answer: qa.answer || '',
       });
     }
   }, [qa]);
@@ -23,15 +23,16 @@ const QAsEdit = ({ isOpen, onClose, qa, onUpdate }) => {
   };
 
   const handleSubmit = async () => {
-    if (!form.question || !form.answer) return alert("Question and Answer are required!");
+    if (!form.question || !form.answer)
+      return alert('Question and Answer are required!');
     try {
       setLoading(true);
       await updateQuestionAPI(qa._id, form, token);
-      onUpdate(); // refresh list
-      onClose(); // close modal
+      onUpdate();
+      onClose();
     } catch (error) {
-      console.error("Error updating Q&A:", error);
-      alert("Failed to update Q&A.");
+      console.error('Error updating Q&A:', error);
+      alert('Failed to update Q&A.');
     } finally {
       setLoading(false);
     }
@@ -58,17 +59,14 @@ const QAsEdit = ({ isOpen, onClose, qa, onUpdate }) => {
         />
 
         <div className="flex justify-end gap-2">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 bg-gray-300 rounded"
-          >
+          <button onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">
             Cancel
           </button>
           <button
             onClick={handleSubmit}
             className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
           >
-            {loading ? "Updating..." : "Update"}
+            {loading ? 'Updating...' : 'Update'}
           </button>
         </div>
       </div>

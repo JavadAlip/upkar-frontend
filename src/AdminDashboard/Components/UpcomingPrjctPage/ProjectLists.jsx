@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-import { toast, ToastContainer } from "react-toastify";
-
-import UpcomingProjectAdd from "../../Components/Common/UpcomingProjectAddList";
-import UpcomingProjectEdit from "../../Components/Common/UpcomingProjectEditList";
-import UpcomingProjectView from "../../Components/ViewModals/UpcomingProject/ProjectListView";
-
+import React, { useEffect, useState } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
+import UpcomingProjectAdd from '../../Components/Common/UpcomingProjectAddList';
+import UpcomingProjectEdit from '../../Components/Common/UpcomingProjectEditList';
+import UpcomingProjectView from '../../Components/ViewModals/UpcomingProject/ProjectListView';
 import {
   getAllUpcomingProjectsList,
   deleteUpcomingProjectList,
-} from "../../../Api";
+} from '../../../Api';
 
 const UpcomingProjectsListMain = () => {
   const [projects, setProjects] = useState([]);
@@ -19,7 +17,7 @@ const UpcomingProjectsListMain = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchProjects();
@@ -30,47 +28,46 @@ const UpcomingProjectsListMain = () => {
       const data = await getAllUpcomingProjectsList();
       setProjects(data.data || data);
     } catch (error) {
-      console.error("Error fetching projects:", error);
-      toast.error("Failed to fetch Upcoming Projects!");
+      console.error('Error fetching projects:', error);
+      toast.error('Failed to fetch Upcoming Projects!');
     }
   };
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
       try {
         await deleteUpcomingProjectList(id, token);
         setProjects(projects.filter((p) => p._id !== id));
-        toast.success("Project deleted successfully!");
+        toast.success('Project deleted successfully!');
       } catch (error) {
-        console.error("Error deleting:", error);
-        toast.error("Failed to delete project!");
+        console.error('Error deleting:', error);
+        toast.error('Failed to delete project!');
       }
     }
   };
 
   const handleAdded = () => {
     fetchProjects();
-    toast.success("Project added successfully!");
+    toast.success('Project added successfully!');
   };
 
   const handleUpdated = () => {
     fetchProjects();
-    toast.success("Project updated successfully!");
+    toast.success('Project updated successfully!');
   };
 
-  // function to show first 20 characters
   const truncate = (text) =>
-    text?.length > 20 ? text.slice(0, 20) + "..." : text;
+    text?.length > 20 ? text.slice(0, 20) + '...' : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -125,7 +122,7 @@ const UpcomingProjectsListMain = () => {
                   <button
                     onClick={() => {
                       setSelectedProject(project);
-                      setIsViewOpen(true); // open view modal
+                      setIsViewOpen(true);
                     }}
                     className="text-green-500 hover:text-green-700"
                   >
@@ -163,14 +160,12 @@ const UpcomingProjectsListMain = () => {
         </table>
       </div>
 
-      {/* Add Modal */}
       <UpcomingProjectAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onAdded={handleAdded}
       />
 
-      {/* Edit Modal */}
       <UpcomingProjectEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
@@ -178,7 +173,6 @@ const UpcomingProjectsListMain = () => {
         onUpdated={handleUpdated}
       />
 
-      {/* View Modal */}
       <UpcomingProjectView
         isOpen={isViewOpen}
         onClose={() => setIsViewOpen(false)}

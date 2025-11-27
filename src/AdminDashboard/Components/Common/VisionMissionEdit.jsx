@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { createOrUpdateVisionMission } from "../../../Api";
-import { toast } from "react-toastify";
+import React, { useState, useEffect } from 'react';
+import { createOrUpdateVisionMission } from '../../../Api';
+import { toast } from 'react-toastify';
 
 const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
-  const [description, setDescription] = useState("");
-  const [missionText, setMissionText] = useState("");
-  const [visionText, setVisionText] = useState("");
-  const [totalExperience, setTotalExperience] = useState(""); 
-  const [stats, setStats] = useState([{ number: "", label: "" }]);
+  const [description, setDescription] = useState('');
+  const [missionText, setMissionText] = useState('');
+  const [visionText, setVisionText] = useState('');
+  const [totalExperience, setTotalExperience] = useState('');
+  const [stats, setStats] = useState([{ number: '', label: '' }]);
   const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState("");
+  const [imagePreview, setImagePreview] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     if (visionMission) {
-      setDescription(visionMission.description || "");
-      setMissionText(visionMission.missionText || "");
-      setVisionText(visionMission.visionText || "");
-      setTotalExperience(visionMission.totalExperience || ""); 
+      setDescription(visionMission.description || '');
+      setMissionText(visionMission.missionText || '');
+      setVisionText(visionMission.visionText || '');
+      setTotalExperience(visionMission.totalExperience || '');
       setStats(
         visionMission.stats?.length
           ? visionMission.stats
-          : [{ number: "", label: "" }]
+          : [{ number: '', label: '' }]
       );
-      setImagePreview(visionMission.image || "");
+      setImagePreview(visionMission.image || '');
     }
   }, [visionMission]);
 
@@ -37,7 +37,7 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
     setStats(newStats);
   };
 
-  const addStatField = () => setStats([...stats, { number: "", label: "" }]);
+  const addStatField = () => setStats([...stats, { number: '', label: '' }]);
   const removeStatField = (index) =>
     setStats(stats.filter((_, i) => i !== index));
 
@@ -53,26 +53,26 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
     e.preventDefault();
 
     if (!description || !missionText || !visionText || !totalExperience) {
-      return toast.error("All fields are required!");
+      return toast.error('All fields are required!');
     }
 
     const formData = new FormData();
-    formData.append("description", description);
-    formData.append("missionText", missionText);
-    formData.append("visionText", visionText);
-    formData.append("totalExperience", totalExperience); // ⬅️ NEW
-    if (image) formData.append("image", image);
-    formData.append("stats", JSON.stringify(stats));
+    formData.append('description', description);
+    formData.append('missionText', missionText);
+    formData.append('visionText', visionText);
+    formData.append('totalExperience', totalExperience);
+    if (image) formData.append('image', image);
+    formData.append('stats', JSON.stringify(stats));
 
     try {
       setLoading(true);
       await createOrUpdateVisionMission(formData, token);
-      toast.success("Vision & Mission updated successfully!");
+      toast.success('Vision & Mission updated successfully!');
       onSuccess();
       onClose();
     } catch (error) {
       console.error(error);
-      toast.error("Failed to update Vision & Mission!");
+      toast.error('Failed to update Vision & Mission!');
     } finally {
       setLoading(false);
     }
@@ -108,7 +108,6 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
             rows={3}
           />
 
-          {/* NEW Total Experience Field */}
           <input
             type="text"
             placeholder="Total Experience (Ex: 10+ Years of Experience)"
@@ -144,7 +143,7 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
                   placeholder="Number"
                   value={stat.number}
                   onChange={(e) =>
-                    handleStatChange(index, "number", e.target.value)
+                    handleStatChange(index, 'number', e.target.value)
                   }
                   className="border p-1 rounded w-1/3"
                 />
@@ -153,7 +152,7 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
                   placeholder="Label"
                   value={stat.label}
                   onChange={(e) =>
-                    handleStatChange(index, "label", e.target.value)
+                    handleStatChange(index, 'label', e.target.value)
                   }
                   className="border p-1 rounded w-2/3"
                 />
@@ -192,7 +191,7 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
               disabled={loading}
               className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
             >
-              {loading ? "Updating..." : "Update"}
+              {loading ? 'Updating...' : 'Update'}
             </button>
           </div>
         </form>

@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-import { toast, ToastContainer } from "react-toastify";
-
-import PopularArticleAdd from "../../Components/Common/PopularArticleAdd";
-import PopularArticleEdit from "../../Components/Common/PopularArticleEdit";
-import PopularArticleViewModal from "../../Components/ViewModals/BlogPage/PopularArticleView";
-
-import { getAllArticles, deleteArticle } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
+import PopularArticleAdd from '../../Components/Common/PopularArticleAdd';
+import PopularArticleEdit from '../../Components/Common/PopularArticleEdit';
+import PopularArticleViewModal from '../../Components/ViewModals/BlogPage/PopularArticleView';
+import { getAllArticles, deleteArticle } from '../../../Api';
 
 const PopularArticlesMain = () => {
   const [articles, setArticles] = useState([]);
@@ -16,7 +14,7 @@ const PopularArticlesMain = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchArticles();
@@ -28,35 +26,35 @@ const PopularArticlesMain = () => {
       setArticles(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error(error);
-      toast.error("Failed to fetch articles!");
+      toast.error('Failed to fetch articles!');
     }
   };
 
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete!',
     });
 
     if (confirm.isConfirmed) {
       try {
         await deleteArticle(id, token);
         setArticles(articles.filter((a) => a._id !== id));
-        toast.success("Deleted successfully!");
+        toast.success('Deleted successfully!');
       } catch (error) {
         console.error(error);
-        toast.error("Failed to delete!");
+        toast.error('Failed to delete!');
       }
     }
   };
 
   const truncate = (text, limit = 20) =>
-    text?.length > limit ? text.slice(0, limit) + "..." : text;
+    text?.length > limit ? text.slice(0, limit) + '...' : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -86,14 +84,16 @@ const PopularArticlesMain = () => {
           <tbody>
             {articles.map((article) => (
               <tr key={article._id} className="border-b">
-                <td className="px-4 py-2">{truncate(article.mainDescription)}</td>
+                <td className="px-4 py-2">
+                  {truncate(article.mainDescription)}
+                </td>
 
                 <td className="px-4 py-2">
                   <img
                     src={
-                      typeof article.mainImage === "string"
+                      typeof article.mainImage === 'string'
                         ? article.mainImage
-                        : article.mainImage?.url || ""
+                        : article.mainImage?.url || ''
                     }
                     className="w-20 h-12 object-cover rounded"
                   />
@@ -102,13 +102,15 @@ const PopularArticlesMain = () => {
                 <td className="px-4 py-2">
                   {article.subItems.map((sub, i) => (
                     <div key={i} className="border p-1 rounded mb-2">
-                      <p className="font-semibold text-sm">{truncate(sub.subHeading)}</p>
+                      <p className="font-semibold text-sm">
+                        {truncate(sub.subHeading)}
+                      </p>
 
                       <img
                         src={
-                          typeof sub.subImage === "string"
+                          typeof sub.subImage === 'string'
                             ? sub.subImage
-                            : sub.subImage?.url || ""
+                            : sub.subImage?.url || ''
                         }
                         className="w-16 h-10 object-cover rounded mt-1"
                       />
@@ -181,5 +183,3 @@ const PopularArticlesMain = () => {
 };
 
 export default PopularArticlesMain;
-
-

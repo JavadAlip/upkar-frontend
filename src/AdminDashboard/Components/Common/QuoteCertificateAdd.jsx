@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { createQuoteAPI } from "../../../Api";
+import React, { useState } from 'react';
+import { createQuoteAPI } from '../../../Api';
 
 const QuoteCertificateAdd = ({ isOpen, onClose, onQuoteAdded }) => {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!text) return alert("Quote text is required!");
+    if (!text) return alert('Quote text is required!');
 
     try {
       setLoading(true);
@@ -17,8 +17,8 @@ const QuoteCertificateAdd = ({ isOpen, onClose, onQuoteAdded }) => {
       onQuoteAdded();
       onClose();
     } catch (error) {
-      console.error("Error creating quote:", error);
-      alert("Failed to create quote.");
+      console.error('Error creating quote:', error);
+      alert('Failed to create quote.');
     } finally {
       setLoading(false);
     }
@@ -50,7 +50,7 @@ const QuoteCertificateAdd = ({ isOpen, onClose, onQuoteAdded }) => {
               disabled={loading}
               className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
             >
-              {loading ? "Saving..." : "Add"}
+              {loading ? 'Saving...' : 'Add'}
             </button>
           </div>
         </form>
@@ -60,4 +60,3 @@ const QuoteCertificateAdd = ({ isOpen, onClose, onQuoteAdded }) => {
 };
 
 export default QuoteCertificateAdd;
-

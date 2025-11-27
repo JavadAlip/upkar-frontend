@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { updateAwardAPI } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { updateAwardAPI } from '../../../Api';
 
 const AwardsEdit = ({ isOpen, onClose, award, onUpdate }) => {
-  const [form, setForm] = useState({ title: "", image: null });
-  const [imagePreview, setImagePreview] = useState("");
+  const [form, setForm] = useState({ title: '', image: null });
+  const [imagePreview, setImagePreview] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     if (award) {
@@ -30,19 +30,19 @@ const AwardsEdit = ({ isOpen, onClose, award, onUpdate }) => {
   };
 
   const handleSubmit = async () => {
-    if (!form.title) return alert("Title is required!");
+    if (!form.title) return alert('Title is required!');
     try {
       setLoading(true);
       const formData = new FormData();
-      formData.append("title", form.title);
-      if (form.image) formData.append("image", form.image);
+      formData.append('title', form.title);
+      if (form.image) formData.append('image', form.image);
 
       await updateAwardAPI(award._id, formData, token);
-      onUpdate(); // refresh parent list
+      onUpdate();
       onClose();
     } catch (error) {
-      console.error("Error updating award:", error);
-      alert("Failed to update award.");
+      console.error('Error updating award:', error);
+      alert('Failed to update award.');
     } finally {
       setLoading(false);
     }
@@ -59,7 +59,9 @@ const AwardsEdit = ({ isOpen, onClose, award, onUpdate }) => {
           className="border p-2 w-full mb-3 rounded"
           placeholder="Title"
         />
-        <label className="block mb-2 font-medium text-sm text-gray-700">Award Image</label>
+        <label className="block mb-2 font-medium text-sm text-gray-700">
+          Award Image
+        </label>
         <input
           type="file"
           accept="image/*"
@@ -81,7 +83,7 @@ const AwardsEdit = ({ isOpen, onClose, award, onUpdate }) => {
             onClick={handleSubmit}
             className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
           >
-            {loading ? "Updating..." : "Update"}
+            {loading ? 'Updating...' : 'Update'}
           </button>
         </div>
       </div>

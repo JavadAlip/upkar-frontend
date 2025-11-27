@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { createCertification } from "../../../Api";
+import React, { useState } from 'react';
+import { createCertification } from '../../../Api';
 
 const CertificationAdd = ({ isOpen, onClose, onAdded }) => {
-  const [heading, setHeading] = useState("");
+  const [heading, setHeading] = useState('');
   const [icon, setIcon] = useState(null);
   const [loading, setLoading] = useState(false);
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   if (!isOpen) return null;
 
@@ -13,12 +13,12 @@ const CertificationAdd = ({ isOpen, onClose, onAdded }) => {
     e.preventDefault();
 
     if (!heading || !icon) {
-      return alert("Heading, and Icon are required!");
+      return alert('Heading, and Icon are required!');
     }
 
     const formData = new FormData();
-    formData.append("heading", heading);
-    formData.append("icon", icon);
+    formData.append('heading', heading);
+    formData.append('icon', icon);
 
     try {
       setLoading(true);
@@ -27,7 +27,7 @@ const CertificationAdd = ({ isOpen, onClose, onAdded }) => {
       onClose();
     } catch (error) {
       console.error(error);
-      alert("Failed to create certification.");
+      alert('Failed to create certification.');
     } finally {
       setLoading(false);
     }
@@ -39,7 +39,6 @@ const CertificationAdd = ({ isOpen, onClose, onAdded }) => {
         <h2 className="text-xl font-semibold mb-4">Add Certification</h2>
 
         <form onSubmit={handleSubmit}>
-          {/* Heading */}
           <input
             type="text"
             placeholder="Heading"
@@ -48,9 +47,6 @@ const CertificationAdd = ({ isOpen, onClose, onAdded }) => {
             onChange={(e) => setHeading(e.target.value)}
           />
 
-          
-
-          {/* Icon Upload */}
           <input
             type="file"
             accept="image/*"
@@ -58,7 +54,6 @@ const CertificationAdd = ({ isOpen, onClose, onAdded }) => {
             onChange={(e) => setIcon(e.target.files[0])}
           />
 
-          {/* Buttons */}
           <div className="flex justify-end gap-2">
             <button
               type="button"
@@ -73,7 +68,7 @@ const CertificationAdd = ({ isOpen, onClose, onAdded }) => {
               disabled={loading}
               className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
             >
-              {loading ? "Uploading..." : "Add"}
+              {loading ? 'Uploading...' : 'Add'}
             </button>
           </div>
         </form>

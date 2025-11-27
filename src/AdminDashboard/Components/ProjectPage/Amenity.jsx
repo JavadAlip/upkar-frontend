@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-import { toast } from "react-toastify";
-
-import AmenityAdd from "../Common/AmenityAdd";
-import AmenityEdit from "../Common/AmenityEdit";
-import AmenityViewModal from "../../Components/ViewModals/ProjectPage/AmenityView";
-
-import { getAmenitiesAPI, deleteAmenityAPI } from "../../../Api";
-import "sweetalert2/dist/sweetalert2.min.css";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
+import AmenityAdd from '../Common/AmenityAdd';
+import AmenityEdit from '../Common/AmenityEdit';
+import AmenityViewModal from '../../Components/ViewModals/ProjectPage/AmenityView';
+import { getAmenitiesAPI, deleteAmenityAPI } from '../../../Api';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const Amenity = () => {
   const [amenities, setAmenities] = useState([]);
@@ -17,15 +15,15 @@ const Amenity = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedAmenity, setSelectedAmenity] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   const fetchAmenities = async () => {
     try {
       const data = await getAmenitiesAPI();
       setAmenities(data);
     } catch (error) {
-      console.error("Error fetching amenities:", error);
-      toast.error("Failed to fetch amenities!");
+      console.error('Error fetching amenities:', error);
+      toast.error('Failed to fetch amenities!');
     }
   };
 
@@ -35,30 +33,29 @@ const Amenity = () => {
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
       try {
         await deleteAmenityAPI(id, token);
         fetchAmenities();
-        toast.success("Amenity deleted successfully!");
+        toast.success('Amenity deleted successfully!');
       } catch (error) {
-        console.error("Error deleting amenity:", error);
-        toast.error("Failed to delete amenity!");
+        console.error('Error deleting amenity:', error);
+        toast.error('Failed to delete amenity!');
       }
     }
   };
 
-  // truncate helper
   const truncate = (text, length = 20) =>
-    text?.length > length ? text.slice(0, length) + "..." : text;
+    text?.length > length ? text.slice(0, length) + '...' : text;
 
   const handleRefresh = () => fetchAmenities();
 
@@ -140,7 +137,6 @@ const Amenity = () => {
         </table>
       </div>
 
-      {/* Modals */}
       <AmenityAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}

@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { updateAboutProjectAPI } from "../../../Api";
-import { toast } from "react-toastify";
+import React, { useState, useEffect } from 'react';
+import { updateAboutProjectAPI } from '../../../Api';
+import { toast } from 'react-toastify';
 
 const AboutProjectEdit = ({ isOpen, onClose, project, refresh }) => {
   const [formData, setFormData] = useState({
-    aboutHeading: "",
-    aboutDescription: "",
-    reRaising: "",
-    reRadescription: "",
-    noBrokerHeading: "",
-    builderHeading: "",
+    aboutHeading: '',
+    aboutDescription: '',
+    reRaising: '',
+    reRadescription: '',
+    noBrokerHeading: '',
+    builderHeading: '',
   });
   const [loading, setLoading] = useState(false);
 
@@ -19,19 +19,22 @@ const AboutProjectEdit = ({ isOpen, onClose, project, refresh }) => {
 
   if (!isOpen) return null;
 
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem("adminToken"); // Make sure token exists
-      await updateAboutProjectAPI(project._id, formData, token); // Send JSON + token
-      toast.success("About Project updated successfully!");
+      const token = localStorage.getItem('adminToken');
+      await updateAboutProjectAPI(project._id, formData, token);
+      toast.success('About Project updated successfully!');
       refresh();
       onClose();
     } catch (error) {
       console.error(error);
-      toast.error(error.response?.data?.message || "Failed to update About Project");
+      toast.error(
+        error.response?.data?.message || 'Failed to update About Project'
+      );
     } finally {
       setLoading(false);
     }
@@ -91,13 +94,15 @@ const AboutProjectEdit = ({ isOpen, onClose, project, refresh }) => {
             className="border p-2 w-full rounded"
           />
           <div className="flex justify-end gap-2 mt-3">
-            <button className="px-4 py-2 bg-gray-300 rounded" onClick={onClose}>Cancel</button>
+            <button className="px-4 py-2 bg-gray-300 rounded" onClick={onClose}>
+              Cancel
+            </button>
             <button
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
               onClick={handleSubmit}
               disabled={loading}
             >
-              {loading ? "Updating..." : "Update"}
+              {loading ? 'Updating...' : 'Update'}
             </button>
           </div>
         </div>

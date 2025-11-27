@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { updateProjectMain } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { updateProjectMain } from '../../../Api';
 
 const ProjectMainEdit = ({ isOpen, onClose, project, onProjectUpdated }) => {
   const [formData, setFormData] = useState({
-    heading: "",
-    description: "",
+    heading: '',
+    description: '',
     mainImages: [null, null, null],
-    customerHeading: "",
-    customerDescription: "",
-    ratingText: "",
+    customerHeading: '',
+    customerDescription: '',
+    ratingText: '',
   });
 
-  const [imagePreviews, setImagePreviews] = useState(["", "", ""]);
+  const [imagePreviews, setImagePreviews] = useState(['', '', '']);
   const [loading, setLoading] = useState(false);
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     if (project) {
       setFormData({
-        heading: project.heading || "",
-        description: project.description || "",
+        heading: project.heading || '',
+        description: project.description || '',
         mainImages: [null, null, null],
-        customerHeading: project.customerHeading || "",
-        customerDescription: project.customerDescription || "",
-        ratingText: project.ratingText || "",
+        customerHeading: project.customerHeading || '',
+        customerDescription: project.customerDescription || '',
+        ratingText: project.ratingText || '',
       });
-      setImagePreviews(project.mainImages || ["", "", ""]);
+      setImagePreviews(project.mainImages || ['', '', '']);
     }
   }, [project]);
 
@@ -33,12 +33,14 @@ const ProjectMainEdit = ({ isOpen, onClose, project, onProjectUpdated }) => {
 
   const handleChange = (e, index = null) => {
     const { name, value, files } = e.target;
-    if (name === "mainImages" && index !== null) {
+    if (name === 'mainImages' && index !== null) {
       const newImages = [...formData.mainImages];
       const newPreviews = [...imagePreviews];
       const file = files[0];
       newImages[index] = file;
-      newPreviews[index] = file ? URL.createObjectURL(file) : imagePreviews[index];
+      newPreviews[index] = file
+        ? URL.createObjectURL(file)
+        : imagePreviews[index];
       setFormData({ ...formData, mainImages: newImages });
       setImagePreviews(newPreviews);
     } else {
@@ -48,27 +50,27 @@ const ProjectMainEdit = ({ isOpen, onClose, project, onProjectUpdated }) => {
 
   const handleSubmit = async () => {
     if (!formData.heading || !formData.description)
-      return alert("Heading and description are required!");
+      return alert('Heading and description are required!');
 
     const form = new FormData();
-    form.append("heading", formData.heading);
-    form.append("description", formData.description);
-    form.append("customerHeading", formData.customerHeading);
-    form.append("customerDescription", formData.customerDescription);
-    form.append("ratingText", formData.ratingText);
+    form.append('heading', formData.heading);
+    form.append('description', formData.description);
+    form.append('customerHeading', formData.customerHeading);
+    form.append('customerDescription', formData.customerDescription);
+    form.append('ratingText', formData.ratingText);
 
     formData.mainImages.forEach((img) => {
-      if (img) form.append("mainImages", img);
+      if (img) form.append('mainImages', img);
     });
 
     try {
       setLoading(true);
       await updateProjectMain(project._id, form, token);
-      onProjectUpdated(); 
-      onClose();          
+      onProjectUpdated();
+      onClose();
     } catch (error) {
-      console.error("Error updating project:", error);
-      alert("Failed to update project.");
+      console.error('Error updating project:', error);
+      alert('Failed to update project.');
     } finally {
       setLoading(false);
     }
@@ -161,7 +163,7 @@ const ProjectMainEdit = ({ isOpen, onClose, project, onProjectUpdated }) => {
               disabled={loading}
               className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
             >
-              {loading ? "Updating..." : "Update"}
+              {loading ? 'Updating...' : 'Update'}
             </button>
           </div>
         </form>
@@ -171,4 +173,3 @@ const ProjectMainEdit = ({ isOpen, onClose, project, onProjectUpdated }) => {
 };
 
 export default ProjectMainEdit;
-  

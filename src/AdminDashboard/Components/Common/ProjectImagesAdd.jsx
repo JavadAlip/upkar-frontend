@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const ProjectImagesAdd = ({ isOpen, onClose, onAdd }) => {
   const [files, setFiles] = useState([]);
@@ -29,7 +29,10 @@ const ProjectImagesAdd = ({ isOpen, onClose, onAdd }) => {
           <button className="px-4 py-2 bg-gray-300 rounded" onClick={onClose}>
             Cancel
           </button>
-          <button className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600" onClick={handleSubmit}>
+          <button
+            className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
+            onClick={handleSubmit}
+          >
             Add
           </button>
         </div>

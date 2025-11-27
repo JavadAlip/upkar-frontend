@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { updateUpcomingProject } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { updateUpcomingProject } from '../../../Api';
 
 const UpcomingProjectEdit = ({ isOpen, onClose, project, onUpdated }) => {
   const [form, setForm] = useState({
-    heading: "",
-    description: "",
+    heading: '',
+    description: '',
     mainImage: null,
   });
-  const [preview, setPreview] = useState("");
+  const [preview, setPreview] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     if (project) {
@@ -45,7 +45,7 @@ const UpcomingProjectEdit = ({ isOpen, onClose, project, onUpdated }) => {
       onClose();
     } catch (error) {
       console.log(error);
-      alert("Failed to update project.");
+      alert('Failed to update project.');
     } finally {
       setLoading(false);
     }
@@ -91,7 +91,7 @@ const UpcomingProjectEdit = ({ isOpen, onClose, project, onUpdated }) => {
             onClick={handleSubmit}
             className="px-4 py-2 bg-green-500 text-white rounded"
           >
-            {loading ? "Updating..." : "Update"}
+            {loading ? 'Updating...' : 'Update'}
           </button>
         </div>
       </div>

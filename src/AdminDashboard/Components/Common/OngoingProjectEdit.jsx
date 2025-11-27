@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { updateOngoingProject } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { updateOngoingProject } from '../../../Api';
 
 const OngoingProjectEdit = ({ isOpen, onClose, project, onUpdated }) => {
   const [form, setForm] = useState({
-    heading: "",
-    description: "",
+    heading: '',
+    description: '',
     mainImage: null,
   });
-  const [preview, setPreview] = useState("");
+  const [preview, setPreview] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     if (project) {
@@ -21,7 +21,8 @@ const OngoingProjectEdit = ({ isOpen, onClose, project, onUpdated }) => {
 
   if (!isOpen) return null;
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -32,7 +33,9 @@ const OngoingProjectEdit = ({ isOpen, onClose, project, onUpdated }) => {
 
   const handleSubmit = async () => {
     const fd = new FormData();
-    Object.keys(form).forEach((key) => form[key] !== null && fd.append(key, form[key]));
+    Object.keys(form).forEach(
+      (key) => form[key] !== null && fd.append(key, form[key])
+    );
 
     try {
       setLoading(true);
@@ -41,7 +44,7 @@ const OngoingProjectEdit = ({ isOpen, onClose, project, onUpdated }) => {
       onClose();
     } catch (error) {
       console.error(error);
-      alert("Failed to update project.");
+      alert('Failed to update project.');
     } finally {
       setLoading(false);
     }
@@ -67,7 +70,11 @@ const OngoingProjectEdit = ({ isOpen, onClose, project, onUpdated }) => {
         />
         <input type="file" accept="image/*" onChange={handleImageChange} />
         {preview && (
-          <img src={preview} alt="" className="w-full h-32 object-cover rounded my-2" />
+          <img
+            src={preview}
+            alt=""
+            className="w-full h-32 object-cover rounded my-2"
+          />
         )}
         <div className="flex justify-end gap-2">
           <button onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">
@@ -77,7 +84,7 @@ const OngoingProjectEdit = ({ isOpen, onClose, project, onUpdated }) => {
             onClick={handleSubmit}
             className="px-4 py-2 bg-green-500 text-white rounded"
           >
-            {loading ? "Updating..." : "Update"}
+            {loading ? 'Updating...' : 'Update'}
           </button>
         </div>
       </div>

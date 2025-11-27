@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-import { toast, ToastContainer } from "react-toastify";
-
-import OngoingProjectAdd from "../../Components/Common/OngoingProjectAddList";
-import OngoingProjectEdit from "../../Components/Common/OngoingProjectEditList";
-import OngoingProjectView from "../../Components/ViewModals/OngoingProject/ProjectListView";
-
+import React, { useEffect, useState } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
+import OngoingProjectAdd from '../../Components/Common/OngoingProjectAddList';
+import OngoingProjectEdit from '../../Components/Common/OngoingProjectEditList';
+import OngoingProjectView from '../../Components/ViewModals/OngoingProject/ProjectListView';
 import {
   getAllOngoingProjectsList,
   deleteOngoingProjectList,
-} from "../../../Api";
+} from '../../../Api';
 
 const OngoingProjectsListMain = () => {
   const [projects, setProjects] = useState([]);
@@ -19,7 +17,7 @@ const OngoingProjectsListMain = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchProjects();
@@ -30,47 +28,46 @@ const OngoingProjectsListMain = () => {
       const data = await getAllOngoingProjectsList();
       setProjects(data.data || data);
     } catch (error) {
-      console.error("Error fetching ongoing projects:", error);
-      toast.error("Failed to fetch Ongoing Projects!");
+      console.error('Error fetching ongoing projects:', error);
+      toast.error('Failed to fetch Ongoing Projects!');
     }
   };
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
       try {
         await deleteOngoingProjectList(id, token);
         setProjects(projects.filter((p) => p._id !== id));
-        toast.success("Project deleted successfully!");
+        toast.success('Project deleted successfully!');
       } catch (error) {
-        console.error("Error deleting:", error);
-        toast.error("Failed to delete project!");
+        console.error('Error deleting:', error);
+        toast.error('Failed to delete project!');
       }
     }
   };
 
   const handleAdded = () => {
     fetchProjects();
-    toast.success("Project added successfully!");
+    toast.success('Project added successfully!');
   };
 
   const handleUpdated = () => {
     fetchProjects();
-    toast.success("Project updated successfully!");
+    toast.success('Project updated successfully!');
   };
 
-  // helper to show first 20 characters
   const truncate = (text) =>
-    text ? (text.length > 20 ? text.slice(0, 20) + "..." : text) : "";
+    text ? (text.length > 20 ? text.slice(0, 20) + '...' : text) : '';
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -163,14 +160,12 @@ const OngoingProjectsListMain = () => {
         </table>
       </div>
 
-      {/* Add Modal */}
       <OngoingProjectAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onAdded={handleAdded}
       />
 
-      {/* Edit Modal */}
       <OngoingProjectEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
@@ -178,7 +173,6 @@ const OngoingProjectsListMain = () => {
         onUpdated={handleUpdated}
       />
 
-      {/* View Modal */}
       <OngoingProjectView
         isOpen={isViewOpen}
         onClose={() => setIsViewOpen(false)}

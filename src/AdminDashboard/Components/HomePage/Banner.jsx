@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import BannerAdd from "../Common/BannerAdd";
-import BannerEdit from "../Common/BannerEdit";
-import BannerView from "../ViewModals/HomePage/BannerView";
-import { getBanners, deleteBanner } from "../../../Api";
-
-import { toast } from "react-toastify";
-import Swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import BannerAdd from '../Common/BannerAdd';
+import BannerEdit from '../Common/BannerEdit';
+import BannerView from '../ViewModals/HomePage/BannerView';
+import { getBanners, deleteBanner } from '../../../Api';
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const Banner = () => {
   const [banners, setBanners] = useState([]);
@@ -16,7 +15,7 @@ const Banner = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedBanner, setSelectedBanner] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchBanners();
@@ -27,47 +26,47 @@ const Banner = () => {
       const data = await getBanners(token);
       setBanners(data);
     } catch (error) {
-      console.error("Error fetching banners:", error);
-      toast.error("Failed to fetch banners!");
+      console.error('Error fetching banners:', error);
+      toast.error('Failed to fetch banners!');
     }
   };
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
       try {
         await deleteBanner(id, token);
         setBanners(banners.filter((banner) => banner._id !== id));
-        toast.success("Banner deleted successfully!");
+        toast.success('Banner deleted successfully!');
       } catch (error) {
-        console.error("Error deleting banner:", error);
-        toast.error("Failed to delete banner!");
+        console.error('Error deleting banner:', error);
+        toast.error('Failed to delete banner!');
       }
     }
   };
 
   const truncateText = (text) => {
-    if (!text) return "";
-    return text.length > 20 ? text.substring(0, 20) + "..." : text;
-    };
+    if (!text) return '';
+    return text.length > 20 ? text.substring(0, 20) + '...' : text;
+  };
 
   const handleBannerAdded = () => {
     fetchBanners();
-    toast.success("Banner added successfully!");
+    toast.success('Banner added successfully!');
   };
 
   const handleBannerUpdated = () => {
     fetchBanners();
-    toast.success("Banner updated successfully!");
+    toast.success('Banner updated successfully!');
   };
 
   return (
@@ -86,11 +85,21 @@ const Banner = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Title</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Subtitle</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Image</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Created At</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Title
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Subtitle
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Image
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Created At
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
 
@@ -111,7 +120,6 @@ const Banner = () => {
                 </td>
 
                 <td className="px-4 py-2 flex gap-3">
-                  {/* View */}
                   <button
                     onClick={() => {
                       setSelectedBanner(banner);
@@ -122,7 +130,6 @@ const Banner = () => {
                     <Eye className="w-4 h-4" />
                   </button>
 
-                  {/* Edit */}
                   <button
                     onClick={() => {
                       setSelectedBanner(banner);
@@ -133,7 +140,6 @@ const Banner = () => {
                     <Edit className="w-4 h-4" />
                   </button>
 
-                  {/* Delete */}
                   <button
                     onClick={() => handleDelete(banner._id)}
                     className="text-red-500 hover:text-red-700"
@@ -147,14 +153,12 @@ const Banner = () => {
         </table>
       </div>
 
-      {/* Add Modal */}
       <BannerAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onBannerAdded={handleBannerAdded}
       />
 
-      {/* Edit Modal */}
       <BannerEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
@@ -162,7 +166,6 @@ const Banner = () => {
         onUpdate={handleBannerUpdated}
       />
 
-      {/* View Modal */}
       <BannerView
         isOpen={isViewOpen}
         onClose={() => setIsViewOpen(false)}

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { createAboutProjectAPI } from "../../../Api";
-import { toast } from "react-toastify";
+import React, { useState } from 'react';
+import { createAboutProjectAPI } from '../../../Api';
+import { toast } from 'react-toastify';
 
 const AboutProjectAdd = ({ isOpen, onClose, refresh }) => {
   const [formData, setFormData] = useState({
-    aboutHeading: "",
-    aboutDescription: "",
-    reRaising: "",
-    reRadescription: "",
-    noBrokerHeading: "",
-    builderHeading: "",
+    aboutHeading: '',
+    aboutDescription: '',
+    reRaising: '',
+    reRadescription: '',
+    noBrokerHeading: '',
+    builderHeading: '',
   });
   const [loading, setLoading] = useState(false);
 
@@ -22,22 +22,24 @@ const AboutProjectAdd = ({ isOpen, onClose, refresh }) => {
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem("adminToken"); // Make sure token exists
-      await createAboutProjectAPI(formData, token); // Send JSON
-      toast.success("About Project added successfully!");
+      const token = localStorage.getItem('adminToken');
+      await createAboutProjectAPI(formData, token);
+      toast.success('About Project added successfully!');
       refresh();
       onClose();
       setFormData({
-        aboutHeading: "",
-        aboutDescription: "",
-        reRaising: "",
-        reRadescription: "",
-        noBrokerHeading: "",
-        builderHeading: "",
+        aboutHeading: '',
+        aboutDescription: '',
+        reRaising: '',
+        reRadescription: '',
+        noBrokerHeading: '',
+        builderHeading: '',
       });
     } catch (error) {
       console.error(error);
-      toast.error(error.response?.data?.message || "Failed to add About Project");
+      toast.error(
+        error.response?.data?.message || 'Failed to add About Project'
+      );
     } finally {
       setLoading(false);
     }
@@ -105,7 +107,7 @@ const AboutProjectAdd = ({ isOpen, onClose, refresh }) => {
               onClick={handleSubmit}
               disabled={loading}
             >
-              {loading ? "Adding..." : "Add"}
+              {loading ? 'Adding...' : 'Add'}
             </button>
           </div>
         </div>

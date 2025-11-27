@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-import { toast } from "react-toastify";
-
-import { getWhyJoinAPI, deleteWhyJoinAPI } from "../../../Api";
-
-import WhyJoinAdd from "../Common/WhyJoinAdd";
-import WhyJoinEdit from "../Common/WhyJoinEdit";
-import WhyJoinViewModal from "../../Components/ViewModals/CareerPage/WhyJoinView";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
+import { getWhyJoinAPI, deleteWhyJoinAPI } from '../../../Api';
+import WhyJoinAdd from '../Common/WhyJoinAdd';
+import WhyJoinEdit from '../Common/WhyJoinEdit';
+import WhyJoinViewModal from '../../Components/ViewModals/CareerPage/WhyJoinView';
 
 const WhyJoinMain = () => {
   const [list, setList] = useState([]);
@@ -16,7 +14,7 @@ const WhyJoinMain = () => {
   const [openView, setOpenView] = useState(false);
   const [selected, setSelected] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   const refresh = async () => {
     try {
@@ -24,7 +22,7 @@ const WhyJoinMain = () => {
       setList(res.data || []);
     } catch (error) {
       console.error(error);
-      toast.error("Failed to fetch Why Join Us");
+      toast.error('Failed to fetch Why Join Us');
     }
   };
 
@@ -34,30 +32,29 @@ const WhyJoinMain = () => {
 
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: "Yes, delete it!",
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
+      confirmButtonText: 'Yes, delete it!',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
     });
 
     if (confirm.isConfirmed) {
       try {
         await deleteWhyJoinAPI(id, token);
-        toast.success("Deleted successfully!");
+        toast.success('Deleted successfully!');
         refresh();
       } catch (error) {
         console.error(error);
-        toast.error("Delete failed!");
+        toast.error('Delete failed!');
       }
     }
   };
 
-  // truncate helper
   const truncate = (text, length = 20) =>
-    text?.length > length ? text.slice(0, length) + "..." : text;
+    text?.length > length ? text.slice(0, length) + '...' : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -117,7 +114,6 @@ const WhyJoinMain = () => {
                       <Edit className="w-4 h-4" />
                     </button>
 
-                    {/* Delete Button */}
                     <button
                       className="text-red-500 hover:text-red-700"
                       onClick={() => handleDelete(item._id)}
@@ -138,7 +134,6 @@ const WhyJoinMain = () => {
         </table>
       </div>
 
-      {/* Modals */}
       <WhyJoinAdd
         isOpen={openAdd}
         onClose={() => setOpenAdd(false)}

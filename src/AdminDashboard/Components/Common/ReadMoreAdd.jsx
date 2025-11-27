@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import { createReadMore } from "../../../Api";
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { createReadMore } from '../../../Api';
 
 const ReadMoreAdd = ({ isOpen, onClose, onAdded }) => {
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
   const [mainImage, setMainImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -12,28 +12,28 @@ const ReadMoreAdd = ({ isOpen, onClose, onAdded }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!description || !mainImage) {
-      toast.error("Description and Image are required!");
+      toast.error('Description and Image are required!');
       return;
     }
 
     const fd = new FormData();
-    fd.append("description", description);
-    fd.append("mainImage", mainImage);
+    fd.append('description', description);
+    fd.append('mainImage', mainImage);
 
     try {
       setLoading(true);
-      const token = localStorage.getItem("adminToken");
+      const token = localStorage.getItem('adminToken');
       const res = await createReadMore(fd, token);
       if (res.success) {
-        toast.success("ReadMore added successfully!");
+        toast.success('ReadMore added successfully!');
         onAdded();
         onClose();
-        setDescription("");
+        setDescription('');
         setMainImage(null);
-      } else toast.error(res.message || "Failed to add ReadMore");
+      } else toast.error(res.message || 'Failed to add ReadMore');
     } catch (err) {
       console.error(err);
-      toast.error("Something went wrong!");
+      toast.error('Something went wrong!');
     } finally {
       setLoading(false);
     }
@@ -50,11 +50,25 @@ const ReadMoreAdd = ({ isOpen, onClose, onAdded }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <input type="file" accept="image/*" onChange={(e) => setMainImage(e.target.files[0])} />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setMainImage(e.target.files[0])}
+          />
           <div className="flex justify-end gap-2 mt-4">
-            <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">Cancel</button>
-            <button type="submit" disabled={loading} className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600">
-              {loading ? "Adding..." : "Add"}
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 bg-gray-300 rounded"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
+            >
+              {loading ? 'Adding...' : 'Add'}
             </button>
           </div>
         </form>

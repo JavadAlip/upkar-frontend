@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import CertificationAdd from "../Common/CertificationAdd";
-import CertificationEdit from "../Common/CertificationEdit";
-import CertificationViewModal from "../ViewModals/HomePage/CertificationView";
-import { getCertifications, deleteCertification } from "../../../Api";
-import { toast } from "react-toastify";
-import Swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import CertificationAdd from '../Common/CertificationAdd';
+import CertificationEdit from '../Common/CertificationEdit';
+import CertificationViewModal from '../ViewModals/HomePage/CertificationView';
+import { getCertifications, deleteCertification } from '../../../Api';
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const Certification = () => {
   const [certifications, setCertifications] = useState([]);
@@ -15,7 +15,7 @@ const Certification = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedCert, setSelectedCert] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchCertifications();
@@ -27,73 +27,51 @@ const Certification = () => {
       setCertifications(data);
     } catch (error) {
       console.error(error);
-      toast.error("Failed to fetch certifications!");
+      toast.error('Failed to fetch certifications!');
     }
   };
 
-  // const handleDelete = async (id) => {
-  //   const result = await Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "This will be deleted permanently!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonText: "Yes, delete it!",
-  //   });
-
-  //   if (result.isConfirmed) {
-  //     try {
-  //       await deleteCertification(id, token);
-  //       setCertifications(certifications.filter((c) => c._id !== id));
-  //       toast.success("Certification deleted successfully!");
-  //     } catch (error) {
-  //       console.error(error);
-  //       toast.error("Failed to delete certification!");
-  //     }
-  //   }
-  // };
-
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-      confirmButtonColor: "#d33", // red
-      cancelButtonColor: "#28a745", // green
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
     });
 
     if (result.isConfirmed) {
       try {
         await deleteCertification(id, token);
         setCertifications(certifications.filter((c) => c._id !== id));
-        toast.success("Certification deleted successfully!");
+        toast.success('Certification deleted successfully!');
       } catch (error) {
         console.error(error);
-        toast.error("Failed to delete certification!");
+        toast.error('Failed to delete certification!');
       }
     }
   };
 
   const handleAddSuccess = () => {
     fetchCertifications();
-    toast.success("Certification added successfully!");
+    toast.success('Certification added successfully!');
   };
 
   const handleEditSuccess = () => {
     fetchCertifications();
-    toast.success("Certification updated successfully!");
+    toast.success('Certification updated successfully!');
   };
 
   const truncateText = (text) => {
-    if (!text) return "";
-    return text.length > 20 ? text.substring(0, 20) + "..." : text;
+    if (!text) return '';
+    return text.length > 20 ? text.substring(0, 20) + '...' : text;
   };
 
   return (
     <div className="flex-1 p-6 bg-gray-100 min-h-screen">
-      {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Certifications Management</h1>
         <button
@@ -104,7 +82,6 @@ const Certification = () => {
         </button>
       </div>
 
-      {/* Table */}
       <div className="overflow-x-auto w-full bg-white rounded shadow">
         <div className="min-w-[900px]">
           <table className="min-w-full divide-y divide-gray-200">
@@ -187,7 +164,6 @@ const Certification = () => {
         </div>
       </div>
 
-      {/* Modals */}
       <CertificationAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}

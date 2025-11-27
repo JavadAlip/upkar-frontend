@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-import { toast, ToastContainer } from "react-toastify";
-
-import OurValueAdd from "../../Components/Common/OurValueAdd";
-import OurValueEdit from "../../Components/Common/OurValueEdit";
-import OurValueViewModal from "../../Components/ViewModals/CompletedProject/OurValueView";
-
-import { getAllOurValues, deleteOurValue } from "../../../Api";
+import React, { useEffect, useState } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
+import OurValueAdd from '../../Components/Common/OurValueAdd';
+import OurValueEdit from '../../Components/Common/OurValueEdit';
+import OurValueViewModal from '../../Components/ViewModals/CompletedProject/OurValueView';
+import { getAllOurValues, deleteOurValue } from '../../../Api';
 
 const OurValuesMain = () => {
   const [values, setValues] = useState([]);
@@ -16,7 +14,7 @@ const OurValuesMain = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchValues();
@@ -27,47 +25,46 @@ const OurValuesMain = () => {
       const data = await getAllOurValues();
       setValues(data.data || data);
     } catch (error) {
-      console.error("Error fetching values:", error);
-      toast.error("Failed to fetch Our Values!");
+      console.error('Error fetching values:', error);
+      toast.error('Failed to fetch Our Values!');
     }
   };
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
       try {
         await deleteOurValue(id, token);
         setValues(values.filter((v) => v._id !== id));
-        toast.success("Value deleted successfully!");
+        toast.success('Value deleted successfully!');
       } catch (error) {
-        console.error("Error deleting:", error);
-        toast.error("Failed to delete value!");
+        console.error('Error deleting:', error);
+        toast.error('Failed to delete value!');
       }
     }
   };
 
   const handleAdded = () => {
     fetchValues();
-    toast.success("Value added successfully!");
+    toast.success('Value added successfully!');
   };
 
   const handleUpdated = () => {
     fetchValues();
-    toast.success("Value updated successfully!");
+    toast.success('Value updated successfully!');
   };
 
-  // helper to truncate text
   const truncate = (text, length = 20) =>
-    text?.length > length ? text.slice(0, length) + "..." : text;
+    text?.length > length ? text.slice(0, length) + '...' : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -111,7 +108,6 @@ const OurValuesMain = () => {
                   />
                 </td>
                 <td className="px-4 py-2 flex gap-2">
-                  {/* View button */}
                   <button
                     className="text-green-500 hover:text-green-700"
                     onClick={() => {
@@ -122,7 +118,6 @@ const OurValuesMain = () => {
                     <Eye size={18} />
                   </button>
 
-                  {/* Edit button */}
                   <button
                     onClick={() => {
                       setSelectedValue(item);
@@ -133,7 +128,6 @@ const OurValuesMain = () => {
                     <Edit size={18} />
                   </button>
 
-                  {/* Delete button */}
                   <button
                     onClick={() => handleDelete(item._id)}
                     className="text-red-500 hover:text-red-700"
@@ -155,14 +149,12 @@ const OurValuesMain = () => {
         </table>
       </div>
 
-      {/* Add Modal */}
       <OurValueAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onAdded={handleAdded}
       />
 
-      {/* Edit Modal */}
       <OurValueEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
@@ -170,7 +162,6 @@ const OurValuesMain = () => {
         onUpdated={handleUpdated}
       />
 
-      {/* View Modal */}
       <OurValueViewModal
         isOpen={isViewOpen}
         onClose={() => setIsViewOpen(false)}

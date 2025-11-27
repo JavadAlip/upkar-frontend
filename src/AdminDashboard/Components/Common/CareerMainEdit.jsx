@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-import { updateCareerMainAPI } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { updateCareerMainAPI } from '../../../Api';
 
 const CareerMainEdit = ({ isOpen, onClose, data, refresh }) => {
-  const [careerDescription, setCareerDescription] = useState("");
+  const [careerDescription, setCareerDescription] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -14,26 +14,22 @@ const CareerMainEdit = ({ isOpen, onClose, data, refresh }) => {
 
   const handleSubmit = async () => {
     if (!careerDescription.trim()) {
-      toast.error("Career description is required");
+      toast.error('Career description is required');
       return;
     }
 
     try {
       setLoading(true);
-      const token = localStorage.getItem("adminToken");
+      const token = localStorage.getItem('adminToken');
 
-      await updateCareerMainAPI(
-        data._id,
-        { careerDescription },
-        token
-      );
+      await updateCareerMainAPI(data._id, { careerDescription }, token);
 
-      toast.success("Career Main updated successfully!");
-      refresh(); // refresh table
+      toast.success('Career Main updated successfully!');
+      refresh();
       onClose();
     } catch (error) {
       console.error(error);
-      toast.error(error.response?.data?.message || "Update failed!");
+      toast.error(error.response?.data?.message || 'Update failed!');
     } finally {
       setLoading(false);
     }
@@ -53,10 +49,7 @@ const CareerMainEdit = ({ isOpen, onClose, data, refresh }) => {
         />
 
         <div className="flex justify-end gap-2 mt-3">
-          <button
-            className="px-4 py-2 bg-gray-300 rounded"
-            onClick={onClose}
-          >
+          <button className="px-4 py-2 bg-gray-300 rounded" onClick={onClose}>
             Cancel
           </button>
           <button
@@ -64,7 +57,7 @@ const CareerMainEdit = ({ isOpen, onClose, data, refresh }) => {
             onClick={handleSubmit}
             disabled={loading}
           >
-            {loading ? "Updating..." : "Update"}
+            {loading ? 'Updating...' : 'Update'}
           </button>
         </div>
       </div>

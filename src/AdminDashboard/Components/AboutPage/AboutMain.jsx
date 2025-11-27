@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import AboutAdd from "../../Components/Common/AboutMainAdd";
-import AboutEdit from "../../Components/Common/AboutMainEdit";
-import AboutMainViewModal from "../../Components/ViewModals/AboutPage/AboutMainView";
-import Swal from "sweetalert2";
-import { toast } from "react-toastify";
-import { getAllAboutMain, deleteAboutMain } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import AboutAdd from '../../Components/Common/AboutMainAdd';
+import AboutEdit from '../../Components/Common/AboutMainEdit';
+import AboutMainViewModal from '../../Components/ViewModals/AboutPage/AboutMainView';
+import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
+import { getAllAboutMain, deleteAboutMain } from '../../../Api';
 
 const AboutMain = () => {
   const [aboutData, setAboutData] = useState([]);
@@ -14,7 +14,7 @@ const AboutMain = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedAbout, setSelectedAbout] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchAboutData();
@@ -26,51 +26,50 @@ const AboutMain = () => {
       setAboutData(res.aboutMainList || []);
     } catch (error) {
       console.error(error);
-      toast.error("Failed to fetch About data!");
+      toast.error('Failed to fetch About data!');
     }
   };
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
       try {
         await deleteAboutMain(id, token);
         setAboutData(aboutData.filter((item) => item._id !== id));
-        toast.success("About content deleted successfully!");
+        toast.success('About content deleted successfully!');
       } catch (error) {
         console.error(error);
-        toast.error("Failed to delete About content!");
+        toast.error('Failed to delete About content!');
       }
     }
   };
 
   const handleAboutAdded = () => {
     fetchAboutData();
-    toast.success("About content added successfully!");
+    toast.success('About content added successfully!');
   };
 
   const handleAboutUpdated = () => {
     fetchAboutData();
-    toast.success("About content updated successfully!");
+    toast.success('About content updated successfully!');
   };
 
   const truncateText = (text) => {
-    if (!text) return "";
-    return text.length > 20 ? text.substring(0, 20) + "..." : text;
+    if (!text) return '';
+    return text.length > 20 ? text.substring(0, 20) + '...' : text;
   };
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
-      {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
         <h1 className="text-2xl font-bold">About Main Management</h1>
         <button
@@ -81,7 +80,6 @@ const AboutMain = () => {
         </button>
       </div>
 
-      {/* Table */}
       <div className="overflow-x-auto w-full bg-white rounded shadow">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -174,7 +172,6 @@ const AboutMain = () => {
                     <Edit className="w-4 h-4" />
                   </button>
 
-                  {/* Delete */}
                   <button
                     className="text-red-500 hover:text-red-700"
                     onClick={() => handleDelete(item._id)}
@@ -196,7 +193,6 @@ const AboutMain = () => {
         </table>
       </div>
 
-      {/* Modals */}
       <AboutAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-import { toast } from "react-toastify";
-import TeamAdd from "../../Components/Common/TeamAdd";
-import TeamEdit from "../../Components/Common/TeamEdit";
-import TeamViewModal from "../../Components/ViewModals/AboutPage/TeamView";
-import { getAllTeamMembers, deleteTeamMember } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
+import TeamAdd from '../../Components/Common/TeamAdd';
+import TeamEdit from '../../Components/Common/TeamEdit';
+import TeamViewModal from '../../Components/ViewModals/AboutPage/TeamView';
+import { getAllTeamMembers, deleteTeamMember } from '../../../Api';
 
-const token = localStorage.getItem("adminToken");
+const token = localStorage.getItem('adminToken');
 
 const Team = () => {
   const [isAddOpen, setIsAddOpen] = useState(false);
@@ -22,7 +22,7 @@ const Team = () => {
       setTeamData(res.members || []);
     } catch (error) {
       console.error(error);
-      toast.error("Failed to fetch team members.");
+      toast.error('Failed to fetch team members.');
     }
   };
 
@@ -32,34 +32,32 @@ const Team = () => {
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
       try {
         await deleteTeamMember(id, token);
-        toast.success("Team member deleted successfully!");
+        toast.success('Team member deleted successfully!');
         fetchTeam();
       } catch (error) {
         console.error(error);
-        toast.error("Failed to delete team member.");
+        toast.error('Failed to delete team member.');
       }
     }
   };
 
-  // truncate helper
   const truncate = (text, length = 20) =>
-    text?.length > length ? text.slice(0, length) + "..." : text;
+    text?.length > length ? text.slice(0, length) + '...' : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
-      {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
         <h1 className="text-2xl font-bold">Team Management</h1>
         <button
@@ -70,7 +68,6 @@ const Team = () => {
         </button>
       </div>
 
-      {/* Table */}
       <div className="overflow-x-auto w-full bg-white rounded shadow">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -112,7 +109,7 @@ const Team = () => {
                     className="text-green-500 hover:text-green-700"
                     onClick={() => {
                       setSelectedTeam(item);
-                      setIsViewOpen(true); // open view modal
+                      setIsViewOpen(true);
                     }}
                   >
                     <Eye className="w-4 h-4" />
@@ -148,7 +145,6 @@ const Team = () => {
         </table>
       </div>
 
-      {/* Modals */}
       <TeamAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}

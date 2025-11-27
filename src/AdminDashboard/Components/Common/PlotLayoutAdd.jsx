@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import { createPlotLayout } from "../../../Api"; 
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { createPlotLayout } from '../../../Api';
 
 const PlotLayoutAdd = ({ isOpen, onClose, onAdd }) => {
   const [mainImage, setMainImage] = useState(null);
-  const [mainImagePreview, setMainImagePreview] = useState("");
-  const [icons, setIcons] = useState([{ file: null, preview: "", heading: "", subheading: "" }]);
+  const [mainImagePreview, setMainImagePreview] = useState('');
+  const [icons, setIcons] = useState([
+    { file: null, preview: '', heading: '', subheading: '' },
+  ]);
   const [loading, setLoading] = useState(false);
 
   if (!isOpen) return null;
@@ -24,32 +26,33 @@ const PlotLayoutAdd = ({ isOpen, onClose, onAdd }) => {
   };
 
   const addIconField = () => {
-    setIcons([...icons, { file: null, preview: "", heading: "", subheading: "" }]);
+    setIcons([
+      ...icons,
+      { file: null, preview: '', heading: '', subheading: '' },
+    ]);
   };
 
   const handleSubmit = async () => {
     if (!mainImage) {
-      toast.error("Main image is required!");
+      toast.error('Main image is required!');
       return;
     }
 
-    const token = localStorage.getItem("adminToken");
+    const token = localStorage.getItem('adminToken');
     if (!token) {
-      toast.error("You must be logged in!");
+      toast.error('You must be logged in!');
       return;
     }
 
     const formData = new FormData();
-    formData.append("mainImage", mainImage);
+    formData.append('mainImage', mainImage);
 
-    // Append icon files
     icons.forEach((icon) => {
-      if (icon.file) formData.append("icons", icon.file);
+      if (icon.file) formData.append('icons', icon.file);
     });
 
-    // Append icon headings/subheadings
     formData.append(
-      "icons",
+      'icons',
       JSON.stringify(
         icons.map((ic) => ({ heading: ic.heading, subheading: ic.subheading }))
       )
@@ -58,16 +61,18 @@ const PlotLayoutAdd = ({ isOpen, onClose, onAdd }) => {
     try {
       setLoading(true);
       const data = await createPlotLayout(formData, token);
-      toast.success(data.message || "Plot layout added successfully!");
-      if (onAdd) onAdd(); 
+      toast.success(data.message || 'Plot layout added successfully!');
+      if (onAdd) onAdd();
       onClose();
       // Reset form
       setMainImage(null);
-      setMainImagePreview("");
-      setIcons([{ file: null, preview: "", heading: "", subheading: "" }]);
+      setMainImagePreview('');
+      setIcons([{ file: null, preview: '', heading: '', subheading: '' }]);
     } catch (error) {
       console.error(error.response?.data || error.message);
-      toast.error(error.response?.data?.message || "Failed to add plot layout!");
+      toast.error(
+        error.response?.data?.message || 'Failed to add plot layout!'
+      );
     } finally {
       setLoading(false);
     }
@@ -80,28 +85,79 @@ const PlotLayoutAdd = ({ isOpen, onClose, onAdd }) => {
         <div className="flex flex-col gap-3">
           <div>
             <label className="font-medium">Main Image</label>
-            {mainImagePreview && <img src={mainImagePreview} alt="Main" className="w-32 h-20 object-cover rounded mb-2" />}
-            <input type="file" className="border p-2 w-full rounded" onChange={(e) => {
-              setMainImage(e.target.files[0]);
-              setMainImagePreview(URL.createObjectURL(e.target.files[0]));
-            }} />
+            {mainImagePreview && (
+              <img
+                src={mainImagePreview}
+                alt="Main"
+                className="w-32 h-20 object-cover rounded mb-2"
+              />
+            )}
+            <input
+              type="file"
+              className="border p-2 w-full rounded"
+              onChange={(e) => {
+                setMainImage(e.target.files[0]);
+                setMainImagePreview(URL.createObjectURL(e.target.files[0]));
+              }}
+            />
           </div>
 
           <label className="font-medium">Icons</label>
           {icons.map((ic, index) => (
-            <div key={index} className="flex flex-col gap-2 border p-2 rounded mb-2">
-              {ic.preview && <img src={ic.preview} alt="Icon" className="w-16 h-16 object-cover rounded mb-1" />}
-              <input type="file" className="border p-1 w-full rounded" onChange={(e) => handleIconFileChange(index, e.target.files[0])} />
-              <input type="text" placeholder="Heading" className="border p-1 w-full rounded" value={ic.heading} onChange={(e) => handleIconChange(index, "heading", e.target.value)} />
-              <input type="text" placeholder="Subheading" className="border p-1 w-full rounded" value={ic.subheading} onChange={(e) => handleIconChange(index, "subheading", e.target.value)} />
+            <div
+              key={index}
+              className="flex flex-col gap-2 border p-2 rounded mb-2"
+            >
+              {ic.preview && (
+                <img
+                  src={ic.preview}
+                  alt="Icon"
+                  className="w-16 h-16 object-cover rounded mb-1"
+                />
+              )}
+              <input
+                type="file"
+                className="border p-1 w-full rounded"
+                onChange={(e) => handleIconFileChange(index, e.target.files[0])}
+              />
+              <input
+                type="text"
+                placeholder="Heading"
+                className="border p-1 w-full rounded"
+                value={ic.heading}
+                onChange={(e) =>
+                  handleIconChange(index, 'heading', e.target.value)
+                }
+              />
+              <input
+                type="text"
+                placeholder="Subheading"
+                className="border p-1 w-full rounded"
+                value={ic.subheading}
+                onChange={(e) =>
+                  handleIconChange(index, 'subheading', e.target.value)
+                }
+              />
             </div>
           ))}
-          <button type="button" className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 w-max mb-3" onClick={addIconField}>+ Add Icon</button>
+          <button
+            type="button"
+            className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 w-max mb-3"
+            onClick={addIconField}
+          >
+            + Add Icon
+          </button>
 
           <div className="flex justify-end gap-2 mt-3">
-            <button className="px-4 py-2 bg-gray-300 rounded" onClick={onClose}>Cancel</button>
-            <button className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600" onClick={handleSubmit} disabled={loading}>
-              {loading ? "Adding..." : "Add"}
+            <button className="px-4 py-2 bg-gray-300 rounded" onClick={onClose}>
+              Cancel
+            </button>
+            <button
+              className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? 'Adding...' : 'Add'}
             </button>
           </div>
         </div>

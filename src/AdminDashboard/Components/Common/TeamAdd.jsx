@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import { createTeamMember } from "../../../Api";
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { createTeamMember } from '../../../Api';
 
 const TeamAdd = ({ isOpen, onClose, onTeamAdded }) => {
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   const [form, setForm] = useState({
-    memberName: "",
-    memberPosition: "",
+    memberName: '',
+    memberPosition: '',
     image: null,
   });
 
@@ -17,23 +17,23 @@ const TeamAdd = ({ isOpen, onClose, onTeamAdded }) => {
 
   const handleSubmit = async () => {
     if (!form.memberName || !form.memberPosition || !form.image) {
-      return toast.error("All fields including image are required!");
+      return toast.error('All fields including image are required!');
     }
 
     const formData = new FormData();
-    formData.append("memberName", form.memberName);
-    formData.append("memberPosition", form.memberPosition);
-    formData.append("memberImage", form.image); // ⭐ MUST MATCH BACKEND
+    formData.append('memberName', form.memberName);
+    formData.append('memberPosition', form.memberPosition);
+    formData.append('memberImage', form.image);
 
     try {
       setLoading(true);
       await createTeamMember(formData, token);
-      toast.success("Team member added successfully!");
+      toast.success('Team member added successfully!');
       onTeamAdded();
       onClose();
     } catch (error) {
       console.error(error);
-      toast.error("Failed to add team member.");
+      toast.error('Failed to add team member.');
     } finally {
       setLoading(false);
     }
@@ -67,9 +67,7 @@ const TeamAdd = ({ isOpen, onClose, onTeamAdded }) => {
             type="file"
             className="border p-2 w-full rounded"
             accept="image/*"
-            onChange={(e) =>
-              setForm({ ...form, image: e.target.files[0] })
-            }
+            onChange={(e) => setForm({ ...form, image: e.target.files[0] })}
           />
 
           <div className="flex justify-end gap-2">
@@ -81,7 +79,7 @@ const TeamAdd = ({ isOpen, onClose, onTeamAdded }) => {
               onClick={handleSubmit}
               className="px-4 py-2 bg-orange-500 text-white rounded"
             >
-              {loading ? "Adding..." : "Add"}
+              {loading ? 'Adding...' : 'Add'}
             </button>
           </div>
         </div>

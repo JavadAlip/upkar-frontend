@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-
-import ProjectImagesAdd from "../../Components/Common/ProjectImagesAdd";
-import ProjectImagesEdit from "../../Components/Common/ProjectImagesEdit";
-import ProjectImagesViewModal from "../../Components/ViewModals/ProjectPage/ProjectImagesView";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import ProjectImagesAdd from '../../Components/Common/ProjectImagesAdd';
+import ProjectImagesEdit from '../../Components/Common/ProjectImagesEdit';
+import ProjectImagesViewModal from '../../Components/ViewModals/ProjectPage/ProjectImagesView';
 
 import {
   getProjectImagesAPI,
   createProjectImagesAPI,
   updateProjectImagesAPI,
   deleteProjectImagesAPI,
-} from "../../../Api";
+} from '../../../Api';
 
 const ProjectImages = () => {
   const [projects, setProjects] = useState([]);
@@ -20,15 +19,15 @@ const ProjectImages = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   const fetchProjects = async () => {
-    if (!token) return console.error("No admin token found");
+    if (!token) return console.error('No admin token found');
     try {
       const data = await getProjectImagesAPI(token);
       setProjects(data);
     } catch (err) {
-      console.error("Failed to fetch project images:", err);
+      console.error('Failed to fetch project images:', err);
     }
   };
 
@@ -37,41 +36,41 @@ const ProjectImages = () => {
   }, []);
 
   const handleAddProject = async (newProject) => {
-    if (!token) return console.error("No admin token found");
+    if (!token) return console.error('No admin token found');
     try {
       const formData = new FormData();
-      newProject.images.forEach((img) => formData.append("images", img));
+      newProject.images.forEach((img) => formData.append('images', img));
       await createProjectImagesAPI(formData, token);
       fetchProjects();
       setIsAddOpen(false);
     } catch (err) {
-      console.error("Failed to add project images:", err);
+      console.error('Failed to add project images:', err);
     }
   };
 
   const handleUpdateProject = async (updatedProject) => {
-    if (!token) return console.error("No admin token found");
+    if (!token) return console.error('No admin token found');
     try {
       const formData = new FormData();
-      updatedProject.images.forEach((img) => formData.append("images", img));
+      updatedProject.images.forEach((img) => formData.append('images', img));
       await updateProjectImagesAPI(selectedProject._id, formData, token);
       fetchProjects();
       setIsEditOpen(false);
     } catch (err) {
-      console.error("Failed to update project images:", err);
+      console.error('Failed to update project images:', err);
     }
   };
 
   const handleDeleteProject = async (id) => {
-    if (!token) return console.error("No admin token found");
+    if (!token) return console.error('No admin token found');
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
@@ -79,14 +78,13 @@ const ProjectImages = () => {
         await deleteProjectImagesAPI(id, token);
         fetchProjects();
       } catch (err) {
-        console.error("Failed to delete project images:", err);
+        console.error('Failed to delete project images:', err);
       }
     }
   };
 
-  // helper to truncate text (if needed)
   const truncate = (text, length = 20) =>
-    text?.length > length ? text.slice(0, length) + "..." : text;
+    text?.length > length ? text.slice(0, length) + '...' : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -140,7 +138,6 @@ const ProjectImages = () => {
                     <Eye className="w-4 h-4" />
                   </button>
 
-                  {/* Edit Button */}
                   <button
                     type="button"
                     className="p-1 text-blue-500 hover:text-blue-700 rounded  hover:bg-gray-100 flex-shrink-0"
@@ -152,7 +149,6 @@ const ProjectImages = () => {
                     <Edit className="w-4 h-4" />
                   </button>
 
-                  {/* Delete Button */}
                   <button
                     type="button"
                     className="p-1 text-red-500 hover:text-red-700 rounded  hover:bg-gray-100 flex-shrink-0"
@@ -167,7 +163,6 @@ const ProjectImages = () => {
         </table>
       </div>
 
-      {/* Modals */}
       <ProjectImagesAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}

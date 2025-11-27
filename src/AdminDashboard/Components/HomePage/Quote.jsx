@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import QuoteAdd from "../Common/QuoteCertificateAdd";
-import QuoteEdit from "../Common/QuoteEditCertificate";
-import QuoteViewModal from "../../Components/ViewModals/HomePage/QuoteView";
-import { getQuotesAPI, deleteQuoteAPI } from "../../../Api";
-import Swal from "sweetalert2";
-import { toast } from "react-toastify";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import QuoteAdd from '../Common/QuoteCertificateAdd';
+import QuoteEdit from '../Common/QuoteEditCertificate';
+import QuoteViewModal from '../../Components/ViewModals/HomePage/QuoteView';
+import { getQuotesAPI, deleteQuoteAPI } from '../../../Api';
+import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 
 const QuoteMain = () => {
   const [quotes, setQuotes] = useState([]);
@@ -14,7 +14,7 @@ const QuoteMain = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedQuote, setSelectedQuote] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchQuotes();
@@ -25,47 +25,47 @@ const QuoteMain = () => {
       const data = await getQuotesAPI();
       setQuotes(data);
     } catch (error) {
-      console.error("Error fetching quotes:", error);
-      toast.error("Failed to fetch quotes!");
+      console.error('Error fetching quotes:', error);
+      toast.error('Failed to fetch quotes!');
     }
   };
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
       try {
         await deleteQuoteAPI(id, token);
         setQuotes(quotes.filter((q) => q._id !== id));
-        toast.success("Quote deleted successfully!");
+        toast.success('Quote deleted successfully!');
       } catch (error) {
-        console.error("Error deleting quote:", error);
-        toast.error("Failed to delete quote!");
+        console.error('Error deleting quote:', error);
+        toast.error('Failed to delete quote!');
       }
     }
   };
 
   const handleQuoteAdded = () => {
     fetchQuotes();
-    toast.success("Quote added successfully!");
+    toast.success('Quote added successfully!');
   };
 
   const handleQuoteUpdated = () => {
     fetchQuotes();
-    toast.success("Quote updated successfully!");
+    toast.success('Quote updated successfully!');
   };
 
   const truncateText = (text) => {
-    if (!text) return "";
-    return text.length > 50 ? text.substring(0, 50) + "..." : text;
+    if (!text) return '';
+    return text.length > 50 ? text.substring(0, 50) + '...' : text;
   };
 
   return (
@@ -146,7 +146,6 @@ const QuoteMain = () => {
         </table>
       </div>
 
-      {/* Add/Edit/View Modals */}
       <QuoteAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}

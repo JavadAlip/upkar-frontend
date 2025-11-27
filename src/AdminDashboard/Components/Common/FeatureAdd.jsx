@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import { createFeature } from "../../../Api";
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { createFeature } from '../../../Api';
 
 const FeatureAdd = ({ isOpen, onClose, onFeatureAdded }) => {
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
   const [mainImage, setMainImage] = useState(null);
-  const [icons, setIcons] = useState([{ icon: "", iconTitle: "", file: null }]);
+  const [icons, setIcons] = useState([{ icon: '', iconTitle: '', file: null }]);
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   if (!isOpen) return null;
 
@@ -26,7 +26,7 @@ const FeatureAdd = ({ isOpen, onClose, onFeatureAdded }) => {
 
   const addIcon = () => {
     if (icons.length < 3)
-      setIcons([...icons, { icon: "", iconTitle: "", file: null }]);
+      setIcons([...icons, { icon: '', iconTitle: '', file: null }]);
   };
 
   const removeIcon = (index) => {
@@ -35,34 +35,32 @@ const FeatureAdd = ({ isOpen, onClose, onFeatureAdded }) => {
 
   const handleSubmit = async () => {
     if (!description || !mainImage) {
-      toast.error("Description and Main Image are required!");
+      toast.error('Description and Main Image are required!');
       return;
     }
 
     const formData = new FormData();
-    formData.append("description", description);
-    formData.append("mainImage", mainImage);
+    formData.append('description', description);
+    formData.append('mainImage', mainImage);
 
-    // Add icons + icon titles
     icons.forEach((icon, idx) => {
       if (icon.file) formData.append(`icon${idx + 1}`, icon.file);
-      formData.append(`iconTitle${idx + 1}`, icon.iconTitle || "");
+      formData.append(`iconTitle${idx + 1}`, icon.iconTitle || '');
     });
 
     try {
       setLoading(true);
       await createFeature(formData, token);
-      toast.success("Feature added successfully!");
-      onFeatureAdded(); // refresh parent list
+      toast.success('Feature added successfully!');
+      onFeatureAdded();
       onClose();
 
-      // reset form
-      setDescription("");
+      setDescription('');
       setMainImage(null);
-      setIcons([{ icon: "", iconTitle: "", file: null }]);
+      setIcons([{ icon: '', iconTitle: '', file: null }]);
     } catch (error) {
       console.error(error);
-      toast.error("Failed to add feature!");
+      toast.error('Failed to add feature!');
     } finally {
       setLoading(false);
     }
@@ -92,7 +90,6 @@ const FeatureAdd = ({ isOpen, onClose, onFeatureAdded }) => {
 
             {icons.map((icon, idx) => (
               <div key={idx} className="flex flex-col gap-1 mt-2">
-                {/* First row: Icon and Icon Title + remove button */}
                 <div className="flex gap-2 items-center flex-wrap">
                   <input
                     type="text"
@@ -100,7 +97,7 @@ const FeatureAdd = ({ isOpen, onClose, onFeatureAdded }) => {
                     className="border p-2 w-20 rounded"
                     value={icon.icon}
                     onChange={(e) =>
-                      handleIconChange(idx, "icon", e.target.value)
+                      handleIconChange(idx, 'icon', e.target.value)
                     }
                   />
                   <input
@@ -109,7 +106,7 @@ const FeatureAdd = ({ isOpen, onClose, onFeatureAdded }) => {
                     className="border p-2 flex-1 min-w-[120px] rounded"
                     value={icon.iconTitle}
                     onChange={(e) =>
-                      handleIconChange(idx, "iconTitle", e.target.value)
+                      handleIconChange(idx, 'iconTitle', e.target.value)
                     }
                   />
                   {icons.length > 1 && (
@@ -123,7 +120,6 @@ const FeatureAdd = ({ isOpen, onClose, onFeatureAdded }) => {
                   )}
                 </div>
 
-                {/* Second row: Full width file input */}
                 <div className="flex flex-col gap-1 w-full">
                   <input
                     type="file"
@@ -132,11 +128,6 @@ const FeatureAdd = ({ isOpen, onClose, onFeatureAdded }) => {
                       handleIconFileChange(idx, e.target.files[0])
                     }
                   />
-                  {/* {icon.file && (
-                    <span className="text-sm text-gray-600">
-                      Selected file: {icon.file.name}
-                    </span>
-                  )} */}
                 </div>
               </div>
             ))}
@@ -166,7 +157,7 @@ const FeatureAdd = ({ isOpen, onClose, onFeatureAdded }) => {
               onClick={handleSubmit}
               disabled={loading}
             >
-              {loading ? "Adding..." : "Add"}
+              {loading ? 'Adding...' : 'Add'}
             </button>
           </div>
         </div>

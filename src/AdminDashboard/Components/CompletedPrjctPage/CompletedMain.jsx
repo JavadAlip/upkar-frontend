@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-import { toast, ToastContainer } from "react-toastify";
-
-import CompletedProjectAdd from "../../Components/Common/CompletedProjectAdd";
-import CompletedProjectEdit from "../../Components/Common/CompletedProjectEdit";
-import CompletedProjectViewModal from "../../Components/ViewModals/CompletedProject/CompletedProjectView";
-
-import { getAllCompletedProjects, deleteCompletedProject } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
+import CompletedProjectAdd from '../../Components/Common/CompletedProjectAdd';
+import CompletedProjectEdit from '../../Components/Common/CompletedProjectEdit';
+import CompletedProjectViewModal from '../../Components/ViewModals/CompletedProject/CompletedProjectView';
+import { getAllCompletedProjects, deleteCompletedProject } from '../../../Api';
 
 const CompletedProjectMain = () => {
   const [projects, setProjects] = useState([]);
@@ -16,7 +14,7 @@ const CompletedProjectMain = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchProjects();
@@ -28,47 +26,46 @@ const CompletedProjectMain = () => {
       const list = Array.isArray(response.data) ? response.data : [];
       setProjects(list);
     } catch (error) {
-      console.error("Error fetching completed projects:", error);
-      toast.error("Failed to fetch projects!");
+      console.error('Error fetching completed projects:', error);
+      toast.error('Failed to fetch projects!');
     }
   };
 
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (confirm.isConfirmed) {
       try {
         await deleteCompletedProject(id, token);
         setProjects(projects.filter((p) => p._id !== id));
-        toast.success("Project deleted successfully!");
+        toast.success('Project deleted successfully!');
       } catch (error) {
-        console.error("Error deleting:", error);
-        toast.error("Failed to delete project!");
+        console.error('Error deleting:', error);
+        toast.error('Failed to delete project!');
       }
     }
   };
 
   const handleAdded = () => {
     fetchProjects();
-    toast.success("Project added successfully!");
+    toast.success('Project added successfully!');
   };
 
   const handleUpdated = () => {
     fetchProjects();
-    toast.success("Project updated successfully!");
+    toast.success('Project updated successfully!');
   };
 
-  // truncate helper
   const truncate = (text, length = 20) =>
-    text?.length > length ? text.slice(0, length) + "..." : text;
+    text?.length > length ? text.slice(0, length) + '...' : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -116,7 +113,6 @@ const CompletedProjectMain = () => {
                   />
                 </td>
                 <td className="px-4 py-2 flex gap-2">
-                  {/* View Button */}
                   <button
                     onClick={() => {
                       setSelectedProject(item);
@@ -127,7 +123,6 @@ const CompletedProjectMain = () => {
                     <Eye size={18} />
                   </button>
 
-                  {/* Edit Button */}
                   <button
                     onClick={() => {
                       setSelectedProject(item);
@@ -138,7 +133,6 @@ const CompletedProjectMain = () => {
                     <Edit size={18} />
                   </button>
 
-                  {/* Delete Button */}
                   <button
                     onClick={() => handleDelete(item._id)}
                     className="text-red-500 hover:text-red-700"
@@ -160,14 +154,12 @@ const CompletedProjectMain = () => {
         </table>
       </div>
 
-      {/* Add Modal */}
       <CompletedProjectAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onAdded={handleAdded}
       />
 
-      {/* Edit Modal */}
       <CompletedProjectEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
@@ -175,7 +167,6 @@ const CompletedProjectMain = () => {
         onUpdated={handleUpdated}
       />
 
-      {/* View Modal */}
       <CompletedProjectViewModal
         isOpen={isViewOpen}
         onClose={() => setIsViewOpen(false)}

@@ -1,19 +1,21 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import { createArticle } from "../../../Api";
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { createArticle } from '../../../Api';
 
 const PopularArticleAdd = ({ isOpen, onClose, onAdded }) => {
   const [form, setForm] = useState({
-    mainDescription: "",
+    mainDescription: '',
     mainImage: null,
-    subItems: [{ subHeading: "", subDescription: "", subImage: null }],
+    subItems: [{ subHeading: '', subDescription: '', subImage: null }],
   });
   const [loading, setLoading] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const handleMainImageChange = (e) => setForm({ ...form, mainImage: e.target.files[0] });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleMainImageChange = (e) =>
+    setForm({ ...form, mainImage: e.target.files[0] });
 
   const handleSubItemChange = (index, key, value) => {
     const newSubItems = [...form.subItems];
@@ -21,12 +23,16 @@ const PopularArticleAdd = ({ isOpen, onClose, onAdded }) => {
     setForm({ ...form, subItems: newSubItems });
   };
 
-  const handleSubImageChange = (index, file) => handleSubItemChange(index, "subImage", file);
+  const handleSubImageChange = (index, file) =>
+    handleSubItemChange(index, 'subImage', file);
 
   const addSubItem = () =>
     setForm({
       ...form,
-      subItems: [...form.subItems, { subHeading: "", subDescription: "", subImage: null }],
+      subItems: [
+        ...form.subItems,
+        { subHeading: '', subDescription: '', subImage: null },
+      ],
     });
 
   const removeSubItem = (index) => {
@@ -38,35 +44,38 @@ const PopularArticleAdd = ({ isOpen, onClose, onAdded }) => {
     e.preventDefault();
 
     if (!form.mainDescription || !form.mainImage) {
-      toast.error("Main Description and Image are required!");
+      toast.error('Main Description and Image are required!');
       return;
     }
 
     const fd = new FormData();
-    fd.append("mainDescription", form.mainDescription);
-    fd.append("mainImage", form.mainImage);
+    fd.append('mainDescription', form.mainDescription);
+    fd.append('mainImage', form.mainImage);
 
-    // Append subItems as arrays
     form.subItems.forEach((sub) => {
-      fd.append("subHeading[]", sub.subHeading);
-      fd.append("subDescription[]", sub.subDescription);
-      if (sub.subImage) fd.append("subImages", sub.subImage);
+      fd.append('subHeading[]', sub.subHeading);
+      fd.append('subDescription[]', sub.subDescription);
+      if (sub.subImage) fd.append('subImages', sub.subImage);
     });
 
     try {
       setLoading(true);
-      const token = localStorage.getItem("adminToken");
+      const token = localStorage.getItem('adminToken');
       const res = await createArticle(fd, token);
 
       if (res.success) {
-        toast.success("Article added successfully!");
+        toast.success('Article added successfully!');
         onAdded();
         onClose();
-        setForm({ mainDescription: "", mainImage: null, subItems: [{ subHeading: "", subDescription: "", subImage: null }] });
-      } else toast.error(res.message || "Failed to add article");
+        setForm({
+          mainDescription: '',
+          mainImage: null,
+          subItems: [{ subHeading: '', subDescription: '', subImage: null }],
+        });
+      } else toast.error(res.message || 'Failed to add article');
     } catch (err) {
       console.error(err);
-      toast.error("Something went wrong!");
+      toast.error('Something went wrong!');
     } finally {
       setLoading(false);
     }
@@ -86,22 +95,33 @@ const PopularArticleAdd = ({ isOpen, onClose, onAdded }) => {
             onChange={handleChange}
           />
 
-          <input type="file" accept="image/*" onChange={(e) => handleMainImageChange(e)} />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => handleMainImageChange(e)}
+          />
 
           <h3 className="mt-4 font-semibold">Sub Items</h3>
           {form.subItems.map((sub, i) => (
-            <div key={i} className="border p-2 rounded flex flex-col gap-2 relative">
+            <div
+              key={i}
+              className="border p-2 rounded flex flex-col gap-2 relative"
+            >
               <input
                 type="text"
                 placeholder="Sub Heading"
                 value={sub.subHeading}
-                onChange={(e) => handleSubItemChange(i, "subHeading", e.target.value)}
+                onChange={(e) =>
+                  handleSubItemChange(i, 'subHeading', e.target.value)
+                }
                 className="border p-1 rounded"
               />
               <textarea
                 placeholder="Sub Description"
                 value={sub.subDescription}
-                onChange={(e) => handleSubItemChange(i, "subDescription", e.target.value)}
+                onChange={(e) =>
+                  handleSubItemChange(i, 'subDescription', e.target.value)
+                }
                 className="border p-1 rounded"
               />
               <input
@@ -121,14 +141,28 @@ const PopularArticleAdd = ({ isOpen, onClose, onAdded }) => {
             </div>
           ))}
 
-          <button type="button" onClick={addSubItem} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 mt-2">
+          <button
+            type="button"
+            onClick={addSubItem}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 mt-2"
+          >
             + Add Sub Item
           </button>
 
           <div className="flex justify-end gap-2 mt-4">
-            <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">Cancel</button>
-            <button type="submit" className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600" disabled={loading}>
-              {loading ? "Adding..." : "Add"}
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 bg-gray-300 rounded"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
+              disabled={loading}
+            >
+              {loading ? 'Adding...' : 'Add'}
             </button>
           </div>
         </form>

@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-import { updateProjectList } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { updateProjectList } from '../../../Api';
 
 const ProjectEdit = ({ isOpen, onClose, project, onUpdated }) => {
   const [form, setForm] = useState({
-    heading: "",
-    type: "",
-    location: "",
+    heading: '',
+    type: '',
+    location: '',
     projectImage: null,
   });
   const [loading, setLoading] = useState(false);
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     if (project) {
@@ -25,19 +25,21 @@ const ProjectEdit = ({ isOpen, onClose, project, onUpdated }) => {
 
   if (!isOpen) return null;
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const handleImageChange = (e) => setForm({ ...form, projectImage: e.target.files[0] });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleImageChange = (e) =>
+    setForm({ ...form, projectImage: e.target.files[0] });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.heading || !form.type || !form.location)
-      return toast.error("Heading, Type, and Location are required!");
+      return toast.error('Heading, Type, and Location are required!');
 
     const fd = new FormData();
-    fd.append("heading", form.heading);
-    fd.append("type", form.type);
-    fd.append("location", form.location);
-    if (form.projectImage) fd.append("projectImage", form.projectImage);
+    fd.append('heading', form.heading);
+    fd.append('type', form.type);
+    fd.append('location', form.location);
+    if (form.projectImage) fd.append('projectImage', form.projectImage);
 
     try {
       setLoading(true);
@@ -46,7 +48,7 @@ const ProjectEdit = ({ isOpen, onClose, project, onUpdated }) => {
       onClose();
     } catch (error) {
       console.error(error);
-      toast.error("Failed to update project.");
+      toast.error('Failed to update project.');
     } finally {
       setLoading(false);
     }
@@ -80,11 +82,15 @@ const ProjectEdit = ({ isOpen, onClose, project, onUpdated }) => {
           />
           <input type="file" accept="image/*" onChange={handleImageChange} />
           <div className="flex justify-end gap-2">
-            <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 bg-gray-300 rounded"
+            >
               Cancel
             </button>
             <button className="px-4 py-2 bg-orange-500 text-white rounded">
-              {loading ? "Updating..." : "Update"}
+              {loading ? 'Updating...' : 'Update'}
             </button>
           </div>
         </form>

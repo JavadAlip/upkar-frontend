@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import AwardsAdd from "../Common/AwardsAdd";
-import AwardsEdit from "../Common/AwardsEdit";
-import AwardsViewModal from "../ViewModals/HomePage/AwardsView";
-import { getAwardsAPI, deleteAwardAPI } from "../../../Api";
-import { toast } from "react-toastify";
-import Swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import AwardsAdd from '../Common/AwardsAdd';
+import AwardsEdit from '../Common/AwardsEdit';
+import AwardsViewModal from '../ViewModals/HomePage/AwardsView';
+import { getAwardsAPI, deleteAwardAPI } from '../../../Api';
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const Awards = () => {
   const [awards, setAwards] = useState([]);
@@ -15,7 +15,7 @@ const Awards = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedAward, setSelectedAward] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchAwards();
@@ -26,47 +26,47 @@ const Awards = () => {
       const data = await getAwardsAPI();
       setAwards(data);
     } catch (error) {
-      console.error("Error fetching awards:", error);
-      toast.error("Failed to fetch awards!");
+      console.error('Error fetching awards:', error);
+      toast.error('Failed to fetch awards!');
     }
   };
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
       try {
         await deleteAwardAPI(id, token);
         setAwards(awards.filter((award) => award._id !== id));
-        toast.success("Award deleted successfully!");
+        toast.success('Award deleted successfully!');
       } catch (error) {
-        console.error("Error deleting award:", error);
-        toast.error("Failed to delete award!");
+        console.error('Error deleting award:', error);
+        toast.error('Failed to delete award!');
       }
     }
   };
 
   const handleAwardAdded = () => {
     fetchAwards();
-    toast.success("Award added successfully!");
+    toast.success('Award added successfully!');
   };
 
   const handleAwardUpdated = () => {
     fetchAwards();
-    toast.success("Award updated successfully!");
+    toast.success('Award updated successfully!');
   };
 
   const truncateText = (text) => {
-    if (!text) return "";
-    return text.length > 20 ? text.substring(0, 20) + "..." : text;
+    if (!text) return '';
+    return text.length > 20 ? text.substring(0, 20) + '...' : text;
   };
 
   return (
@@ -114,7 +114,6 @@ const Awards = () => {
                   {new Date(award.createdAt).toLocaleDateString()}
                 </td>
                 <td className="px-4 py-2 flex gap-2">
-                  {/* View */}
                   <button
                     onClick={() => {
                       setSelectedAward(award);
@@ -125,7 +124,6 @@ const Awards = () => {
                     <Eye className="w-4 h-4" />
                   </button>
 
-                  {/* Edit */}
                   <button
                     onClick={() => {
                       setSelectedAward(award);
@@ -136,7 +134,6 @@ const Awards = () => {
                     <Edit className="w-4 h-4" />
                   </button>
 
-                  {/* Delete */}
                   <button
                     onClick={() => handleDelete(award._id)}
                     className="text-red-500 hover:text-red-700"
@@ -157,7 +154,6 @@ const Awards = () => {
         </table>
       </div>
 
-      {/* Modals */}
       <AwardsAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}

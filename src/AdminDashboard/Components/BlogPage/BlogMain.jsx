@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-import { toast, ToastContainer } from "react-toastify";
-
-import BlogMainAdd from "../../Components/Common/BlogMainAdd";
-import BlogMainEdit from "../../Components/Common/BlogMainEdit";
-import BlogMainViewModal from "../../Components/ViewModals/BlogPage/BlogMainView";
-
-import { getAllBlogMain, deleteBlogMain } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
+import BlogMainAdd from '../../Components/Common/BlogMainAdd';
+import BlogMainEdit from '../../Components/Common/BlogMainEdit';
+import BlogMainViewModal from '../../Components/ViewModals/BlogPage/BlogMainView';
+import { getAllBlogMain, deleteBlogMain } from '../../../Api';
 
 const BlogMain = () => {
   const [blogs, setBlogs] = useState([]);
@@ -16,7 +14,7 @@ const BlogMain = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchBlogs();
@@ -29,46 +27,45 @@ const BlogMain = () => {
       setBlogs(list);
     } catch (error) {
       console.error(error);
-      toast.error("Failed to fetch blogs!");
+      toast.error('Failed to fetch blogs!');
     }
   };
 
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (confirm.isConfirmed) {
       try {
         await deleteBlogMain(id, token);
         setBlogs(blogs.filter((b) => b._id !== id));
-        toast.success("Blog deleted successfully!");
+        toast.success('Blog deleted successfully!');
       } catch (error) {
         console.error(error);
-        toast.error("Failed to delete blog!");
+        toast.error('Failed to delete blog!');
       }
     }
   };
 
   const handleAdded = () => {
     fetchBlogs();
-    toast.success("Blog added successfully!");
+    toast.success('Blog added successfully!');
   };
 
   const handleUpdated = () => {
     fetchBlogs();
-    toast.success("Blog updated successfully!");
+    toast.success('Blog updated successfully!');
   };
 
-  // helper to truncate text to 20 chars
   const truncate = (text) =>
-    text?.length > 20 ? text.slice(0, 20) + "..." : text;
+    text?.length > 20 ? text.slice(0, 20) + '...' : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -163,14 +160,12 @@ const BlogMain = () => {
         </table>
       </div>
 
-      {/* Add Modal */}
       <BlogMainAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onAdded={handleAdded}
       />
 
-      {/* Edit Modal */}
       <BlogMainEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
@@ -178,7 +173,6 @@ const BlogMain = () => {
         onUpdated={handleUpdated}
       />
 
-      {/* View Modal */}
       <BlogMainViewModal
         isOpen={isViewOpen}
         onClose={() => setIsViewOpen(false)}

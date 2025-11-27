@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-import { toast, ToastContainer } from "react-toastify";
-
-import ProjectAdd from "../../Components/Common/ProjectListAdd";
-import ProjectEdit from "../../Components/Common/ProjectListEdit";
-import ProjectViewModal from "../../Components/ViewModals/CompletedProject/ProjectListView";
-import { getAllProjectsList, deleteProjectList } from "../../../Api";
+import React, { useEffect, useState } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
+import ProjectAdd from '../../Components/Common/ProjectListAdd';
+import ProjectEdit from '../../Components/Common/ProjectListEdit';
+import ProjectViewModal from '../../Components/ViewModals/CompletedProject/ProjectListView';
+import { getAllProjectsList, deleteProjectList } from '../../../Api';
 
 const ProjectsListMain = () => {
   const [projects, setProjects] = useState([]);
@@ -15,7 +14,7 @@ const ProjectsListMain = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchProjects();
@@ -26,47 +25,46 @@ const ProjectsListMain = () => {
       const data = await getAllProjectsList();
       setProjects(data.data || data);
     } catch (error) {
-      console.error("Error fetching projects:", error);
-      toast.error("Failed to fetch Projects List!");
+      console.error('Error fetching projects:', error);
+      toast.error('Failed to fetch Projects List!');
     }
   };
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
       try {
         await deleteProjectList(id, token);
         setProjects(projects.filter((p) => p._id !== id));
-        toast.success("Project deleted successfully!");
+        toast.success('Project deleted successfully!');
       } catch (error) {
-        console.error("Error deleting:", error);
-        toast.error("Failed to delete project!");
+        console.error('Error deleting:', error);
+        toast.error('Failed to delete project!');
       }
     }
   };
 
   const handleAdded = () => {
     fetchProjects();
-    toast.success("Project added successfully!");
+    toast.success('Project added successfully!');
   };
 
   const handleUpdated = () => {
     fetchProjects();
-    toast.success("Project updated successfully!");
+    toast.success('Project updated successfully!');
   };
 
-  // Helper to truncate text
   const truncate = (text, length = 20) =>
-    text?.length > length ? text.slice(0, length) + "..." : text;
+    text?.length > length ? text.slice(0, length) + '...' : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -119,7 +117,6 @@ const ProjectsListMain = () => {
                     />
                   </td>
                   <td className="px-4 py-2 flex gap-2">
-                    {/* View Button */}
                     <button
                       className="text-green-500 hover:text-green-700"
                       onClick={() => {
@@ -130,7 +127,6 @@ const ProjectsListMain = () => {
                       <Eye size={18} />
                     </button>
 
-                    {/* Edit Button */}
                     <button
                       onClick={() => {
                         setSelectedProject(project);
@@ -141,7 +137,6 @@ const ProjectsListMain = () => {
                       <Edit size={18} />
                     </button>
 
-                    {/* Delete Button */}
                     <button
                       onClick={() => handleDelete(project._id)}
                       className="text-red-500 hover:text-red-700"
@@ -162,14 +157,12 @@ const ProjectsListMain = () => {
         </table>
       </div>
 
-      {/* Add Modal */}
       <ProjectAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onAdded={handleAdded}
       />
 
-      {/* Edit Modal */}
       <ProjectEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
@@ -177,7 +170,6 @@ const ProjectsListMain = () => {
         onUpdated={handleUpdated}
       />
 
-      {/* View Modal */}
       <ProjectViewModal
         isOpen={isViewOpen}
         onClose={() => setIsViewOpen(false)}

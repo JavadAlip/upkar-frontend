@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-import { toast } from "react-toastify";
-
-import PlotLayoutAdd from "./../Common/PlotLayoutAdd";
-import PlotLayoutEdit from "./../Common/PlotLayoutEdit";
-import PlotLayoutViewModal from "../../Components/ViewModals/ProjectPage/PlotLayoutView";
-
-import { getPlotLayout, deletePlotLayout } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
+import PlotLayoutAdd from './../Common/PlotLayoutAdd';
+import PlotLayoutEdit from './../Common/PlotLayoutEdit';
+import PlotLayoutViewModal from '../../Components/ViewModals/ProjectPage/PlotLayoutView';
+import { getPlotLayout, deletePlotLayout } from '../../../Api';
 
 const PlotLayout = () => {
   const [layouts, setLayouts] = useState([]);
@@ -24,38 +22,37 @@ const PlotLayout = () => {
       const data = await getPlotLayout();
       setLayouts(data || []);
     } catch (error) {
-      console.error("Error fetching plot layouts:", error);
-      toast.error("Failed to fetch plot layouts!");
+      console.error('Error fetching plot layouts:', error);
+      toast.error('Failed to fetch plot layouts!');
     }
   };
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
       try {
-        const token = localStorage.getItem("adminToken");
+        const token = localStorage.getItem('adminToken');
         await deletePlotLayout(id, token);
-        toast.success("Plot layout deleted successfully!");
+        toast.success('Plot layout deleted successfully!');
         fetchLayouts();
       } catch (error) {
-        console.error("Error deleting plot layout:", error);
-        toast.error("Failed to delete plot layout!");
+        console.error('Error deleting plot layout:', error);
+        toast.error('Failed to delete plot layout!');
       }
     }
   };
 
-  // truncate helper
   const truncate = (text, length = 20) =>
-    text?.length > length ? text.slice(0, length) + "..." : text;
+    text?.length > length ? text.slice(0, length) + '...' : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -148,7 +145,6 @@ const PlotLayout = () => {
         </div>
       )}
 
-      {/* Modals */}
       <PlotLayoutAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}

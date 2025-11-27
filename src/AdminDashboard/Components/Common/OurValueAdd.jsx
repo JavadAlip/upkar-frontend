@@ -1,21 +1,24 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import { createOurValue } from "../../../Api";
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { createOurValue } from '../../../Api';
 
 const OurValueAdd = ({ isOpen, onClose, onAdded }) => {
-  const [form, setForm] = useState({ title: "", iconImage: null });
+  const [form, setForm] = useState({ title: '', iconImage: null });
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   if (!isOpen) return null;
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const handleImageChange = (e) => setForm({ ...form, iconImage: e.target.files[0] });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleImageChange = (e) =>
+    setForm({ ...form, iconImage: e.target.files[0] });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.title || !form.iconImage) return toast.error("All fields are required!");
+    if (!form.title || !form.iconImage)
+      return toast.error('All fields are required!');
 
     const fd = new FormData();
     Object.keys(form).forEach((key) => fd.append(key, form[key]));
@@ -27,7 +30,7 @@ const OurValueAdd = ({ isOpen, onClose, onAdded }) => {
       onClose();
     } catch (error) {
       console.error(error);
-      toast.error("Failed to add value.");
+      toast.error('Failed to add value.');
     } finally {
       setLoading(false);
     }
@@ -46,11 +49,15 @@ const OurValueAdd = ({ isOpen, onClose, onAdded }) => {
           />
           <input type="file" accept="image/*" onChange={handleImageChange} />
           <div className="flex justify-end gap-2">
-            <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 bg-gray-300 rounded"
+            >
               Cancel
             </button>
             <button className="px-4 py-2 bg-orange-500 text-white rounded">
-              {loading ? "Adding..." : "Add"}
+              {loading ? 'Adding...' : 'Add'}
             </button>
           </div>
         </form>

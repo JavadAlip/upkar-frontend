@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-import { updateOurValue } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { updateOurValue } from '../../../Api';
 
 const OurValueEdit = ({ isOpen, onClose, value, onUpdated }) => {
-  const [form, setForm] = useState({ title: "", iconImage: null });
+  const [form, setForm] = useState({ title: '', iconImage: null });
   const [loading, setLoading] = useState(false);
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     if (value) setForm({ title: value.title, iconImage: null });
@@ -13,16 +13,18 @@ const OurValueEdit = ({ isOpen, onClose, value, onUpdated }) => {
 
   if (!isOpen) return null;
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const handleImageChange = (e) => setForm({ ...form, iconImage: e.target.files[0] });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleImageChange = (e) =>
+    setForm({ ...form, iconImage: e.target.files[0] });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.title) return toast.error("Title is required!");
+    if (!form.title) return toast.error('Title is required!');
 
     const fd = new FormData();
-    fd.append("title", form.title);
-    if (form.iconImage) fd.append("iconImage", form.iconImage);
+    fd.append('title', form.title);
+    if (form.iconImage) fd.append('iconImage', form.iconImage);
 
     try {
       setLoading(true);
@@ -31,7 +33,7 @@ const OurValueEdit = ({ isOpen, onClose, value, onUpdated }) => {
       onClose();
     } catch (error) {
       console.error(error);
-      toast.error("Failed to update value.");
+      toast.error('Failed to update value.');
     } finally {
       setLoading(false);
     }
@@ -51,11 +53,15 @@ const OurValueEdit = ({ isOpen, onClose, value, onUpdated }) => {
           />
           <input type="file" accept="image/*" onChange={handleImageChange} />
           <div className="flex justify-end gap-2">
-            <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 bg-gray-300 rounded"
+            >
               Cancel
             </button>
             <button className="px-4 py-2 bg-orange-500 text-white rounded">
-              {loading ? "Updating..." : "Update"}
+              {loading ? 'Updating...' : 'Update'}
             </button>
           </div>
         </form>

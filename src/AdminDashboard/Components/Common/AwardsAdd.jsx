@@ -1,29 +1,29 @@
-import React, { useState } from "react";
-import { createAwardAPI } from "../../../Api";
+import React, { useState } from 'react';
+import { createAwardAPI } from '../../../Api';
 
 const AwardsAdd = ({ isOpen, onClose, onAwardAdded }) => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || !image) return alert("Title and image are required!");
+    if (!title || !image) return alert('Title and image are required!');
 
     const formData = new FormData();
-    formData.append("title", title);
-    formData.append("image", image);
+    formData.append('title', title);
+    formData.append('image', image);
 
     try {
       setLoading(true);
       await createAwardAPI(formData, token);
       onAwardAdded(); // refresh list
-      onClose();      // close modal
+      onClose(); // close modal
     } catch (error) {
-      console.error("Error creating award:", error);
-      alert("Failed to create award.");
+      console.error('Error creating award:', error);
+      alert('Failed to create award.');
     } finally {
       setLoading(false);
     }
@@ -62,7 +62,7 @@ const AwardsAdd = ({ isOpen, onClose, onAwardAdded }) => {
               disabled={loading}
               className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
             >
-              {loading ? "Uploading..." : "Add"}
+              {loading ? 'Uploading...' : 'Add'}
             </button>
           </div>
         </form>

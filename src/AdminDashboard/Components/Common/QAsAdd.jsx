@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import { createQuestionAPI } from "../../../Api";
+import React, { useState } from 'react';
+import { createQuestionAPI } from '../../../Api';
 
 const QAsAdd = ({ isOpen, onClose, onQAAdded }) => {
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
+  const [question, setQuestion] = useState('');
+  const [answer, setAnswer] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!question || !answer) return alert("Question and Answer are required!");
+    if (!question || !answer) return alert('Question and Answer are required!');
 
     try {
       setLoading(true);
       await createQuestionAPI({ question, answer }, token);
-      onQAAdded(); // refresh list
-      onClose(); // close modal
+      onQAAdded();
+      onClose();
     } catch (error) {
-      console.error("Error creating Q&A:", error);
-      alert("Failed to create Q&A.");
+      console.error('Error creating Q&A:', error);
+      alert('Failed to create Q&A.');
     } finally {
       setLoading(false);
     }
@@ -58,7 +58,7 @@ const QAsAdd = ({ isOpen, onClose, onQAAdded }) => {
               disabled={loading}
               className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
             >
-              {loading ? "Saving..." : "Add"}
+              {loading ? 'Saving...' : 'Add'}
             </button>
           </div>
         </form>

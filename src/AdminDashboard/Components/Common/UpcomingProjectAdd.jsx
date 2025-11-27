@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import { createUpcomingProject } from "../../../Api";
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { createUpcomingProject } from '../../../Api';
 
 const UpcomingProjectAdd = ({ isOpen, onClose, onAdded }) => {
   const [form, setForm] = useState({
-    heading: "",
-    description: "",
+    heading: '',
+    description: '',
     mainImage: null,
   });
   const [loading, setLoading] = useState(false);
@@ -22,37 +22,37 @@ const UpcomingProjectAdd = ({ isOpen, onClose, onAdded }) => {
     e.preventDefault();
 
     if (!form.heading || !form.description || !form.mainImage) {
-      toast.error("All fields are required!");
+      toast.error('All fields are required!');
       return;
     }
 
     try {
       setLoading(true);
       const fd = new FormData();
-      fd.append("heading", form.heading);
-      fd.append("description", form.description);
-      fd.append("mainImage", form.mainImage);
+      fd.append('heading', form.heading);
+      fd.append('description', form.description);
+      fd.append('mainImage', form.mainImage);
 
-      const token = localStorage.getItem("adminToken");
+      const token = localStorage.getItem('adminToken');
 
       if (!token) {
-        toast.error("Token missing or expired!");
+        toast.error('Token missing or expired!');
         return;
       }
 
       const res = await createUpcomingProject(fd, token);
 
       if (res.success) {
-        toast.success("Project added successfully!");
+        toast.success('Project added successfully!');
         onAdded();
         onClose();
-        setForm({ heading: "", description: "", mainImage: null });
+        setForm({ heading: '', description: '', mainImage: null });
       } else {
-        toast.error(res.message || "Failed to add project");
+        toast.error(res.message || 'Failed to add project');
       }
     } catch (error) {
       console.error(error);
-      toast.error(error.response?.data?.message || "Invalid or expired token");
+      toast.error(error.response?.data?.message || 'Invalid or expired token');
     } finally {
       setLoading(false);
     }
@@ -96,7 +96,7 @@ const UpcomingProjectAdd = ({ isOpen, onClose, onAdded }) => {
               className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
               disabled={loading}
             >
-              {loading ? "Adding..." : "Add"}
+              {loading ? 'Adding...' : 'Add'}
             </button>
           </div>
         </form>

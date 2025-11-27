@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-import { toast, ToastContainer } from "react-toastify";
-
-import ReadMoreAdd from "../../Components/Common/ReadMoreAdd";
-import ReadMoreEdit from "../../Components/Common/ReadMoreEdit";
-import ReadMoreViewModal from "../../Components/ViewModals/BlogPage/ReadMoreView";
-import { getAllReadMore, deleteReadMore } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
+import ReadMoreAdd from '../../Components/Common/ReadMoreAdd';
+import ReadMoreEdit from '../../Components/Common/ReadMoreEdit';
+import ReadMoreViewModal from '../../Components/ViewModals/BlogPage/ReadMoreView';
+import { getAllReadMore, deleteReadMore } from '../../../Api';
 
 const ReadMoreMain = () => {
   const [readMores, setReadMores] = useState([]);
@@ -15,7 +14,7 @@ const ReadMoreMain = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedReadMore, setSelectedReadMore] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchReadMores();
@@ -27,41 +26,41 @@ const ReadMoreMain = () => {
       setReadMores(Array.isArray(res.data) ? res.data : []);
     } catch (error) {
       console.error(error);
-      toast.error("Failed to fetch ReadMore items!");
+      toast.error('Failed to fetch ReadMore items!');
     }
   };
 
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (confirm.isConfirmed) {
       try {
         await deleteReadMore(id, token);
         setReadMores(readMores.filter((item) => item._id !== id));
-        toast.success("Deleted successfully!");
+        toast.success('Deleted successfully!');
       } catch (err) {
         console.error(err);
-        toast.error("Failed to delete!");
+        toast.error('Failed to delete!');
       }
     }
   };
 
   const handleAdded = () => {
     fetchReadMores();
-    toast.success("ReadMore added!");
+    toast.success('ReadMore added!');
   };
 
   const handleUpdated = () => {
     fetchReadMores();
-    toast.success("ReadMore updated!");
+    toast.success('ReadMore updated!');
   };
 
   return (
@@ -99,7 +98,7 @@ const ReadMoreMain = () => {
               <tr key={item._id}>
                 <td className="px-4 py-2">
                   {item.description.slice(0, 20)}
-                  {item.description.length > 20 ? "..." : ""}
+                  {item.description.length > 20 ? '...' : ''}
                 </td>
                 <td className="px-4 py-2">
                   <img
@@ -150,14 +149,12 @@ const ReadMoreMain = () => {
         </table>
       </div>
 
-      {/* Add Modal */}
       <ReadMoreAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onAdded={handleAdded}
       />
 
-      {/* Edit Modal */}
       <ReadMoreEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
@@ -165,7 +162,6 @@ const ReadMoreMain = () => {
         onUpdated={handleUpdated}
       />
 
-      {/* View Modal */}
       <ReadMoreViewModal
         isOpen={isViewOpen}
         onClose={() => setIsViewOpen(false)}

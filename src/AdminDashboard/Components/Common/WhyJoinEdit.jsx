@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-import { updateWhyJoinAPI } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { updateWhyJoinAPI } from '../../../Api';
 
 const WhyJoinEdit = ({ isOpen, onClose, data, refresh }) => {
-  const [form, setForm] = useState({ title: "", description: "" });
+  const [form, setForm] = useState({ title: '', description: '' });
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -12,25 +12,26 @@ const WhyJoinEdit = ({ isOpen, onClose, data, refresh }) => {
 
   if (!isOpen) return null;
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async () => {
     if (!form.title.trim() || !form.description.trim()) {
-      toast.error("Title and Description are required");
+      toast.error('Title and Description are required');
       return;
     }
 
     try {
       setLoading(true);
-      const token = localStorage.getItem("adminToken");
+      const token = localStorage.getItem('adminToken');
 
       await updateWhyJoinAPI(data._id, form, token);
-      toast.success("Why Join Us updated successfully!");
+      toast.success('Why Join Us updated successfully!');
       refresh();
       onClose();
     } catch (error) {
       console.error(error);
-      toast.error(error.response?.data?.message || "Update failed!");
+      toast.error(error.response?.data?.message || 'Update failed!');
     } finally {
       setLoading(false);
     }
@@ -68,7 +69,7 @@ const WhyJoinEdit = ({ isOpen, onClose, data, refresh }) => {
             onClick={handleSubmit}
             disabled={loading}
           >
-            {loading ? "Updating..." : "Update"}
+            {loading ? 'Updating...' : 'Update'}
           </button>
         </div>
       </div>

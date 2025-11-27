@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import { createQuote } from "../../../Api";
-const token = localStorage.getItem("adminToken");
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { createQuote } from '../../../Api';
+const token = localStorage.getItem('adminToken');
 
 const QuoteAdd = ({ isOpen, onClose, onQuoteAdded }) => {
   const [form, setForm] = useState({
-    quoteContent: "",
-    name: "",
-    position: "",
+    quoteContent: '',
+    name: '',
+    position: '',
   });
   const [loading, setLoading] = useState(false);
 
@@ -15,17 +15,17 @@ const QuoteAdd = ({ isOpen, onClose, onQuoteAdded }) => {
 
   const handleSubmit = async () => {
     if (!form.quoteContent || !form.name || !form.position)
-      return toast.error("All fields are required!");
+      return toast.error('All fields are required!');
 
     try {
       setLoading(true);
-      await createQuote(form, token); 
-      toast.success("Quote added successfully!");
+      await createQuote(form, token);
+      toast.success('Quote added successfully!');
       onQuoteAdded();
       onClose();
     } catch (error) {
       console.error(error);
-      toast.error("Failed to add quote.");
+      toast.error('Failed to add quote.');
     } finally {
       setLoading(false);
     }
@@ -65,7 +65,7 @@ const QuoteAdd = ({ isOpen, onClose, onQuoteAdded }) => {
               onClick={handleSubmit}
               className="px-4 py-2 bg-orange-500 text-white rounded"
             >
-              {loading ? "Adding..." : "Add"}
+              {loading ? 'Adding...' : 'Add'}
             </button>
           </div>
         </div>

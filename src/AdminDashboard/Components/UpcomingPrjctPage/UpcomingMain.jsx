@@ -1,25 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-import { toast, ToastContainer } from "react-toastify";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
+import UpcomingProjectAdd from '../../Components/Common/UpcomingProjectAdd';
+import UpcomingProjectEdit from '../../Components/Common/UpcomingProjectEdit';
+import UpcomingProjectViewModal from '../../Components/ViewModals/UpcomingProject/UpcomingProjectView';
 
-import UpcomingProjectAdd from "../../Components/Common/UpcomingProjectAdd";
-import UpcomingProjectEdit from "../../Components/Common/UpcomingProjectEdit";
-import UpcomingProjectViewModal from "../../Components/ViewModals/UpcomingProject/UpcomingProjectView"; 
-
-import {
-  getAllUpcomingProjects,
-  deleteUpcomingProject,
-} from "../../../Api";
+import { getAllUpcomingProjects, deleteUpcomingProject } from '../../../Api';
 
 const UpcomingProjectMain = () => {
   const [projects, setProjects] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [isViewOpen, setIsViewOpen] = useState(false); 
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchProjects();
@@ -31,47 +27,46 @@ const UpcomingProjectMain = () => {
       const list = Array.isArray(response.data) ? response.data : [];
       setProjects(list);
     } catch (error) {
-      console.error("Error fetching upcoming projects:", error);
-      toast.error("Failed to fetch projects!");
+      console.error('Error fetching upcoming projects:', error);
+      toast.error('Failed to fetch projects!');
     }
   };
 
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-       confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (confirm.isConfirmed) {
       try {
         await deleteUpcomingProject(id, token);
         setProjects(projects.filter((p) => p._id !== id));
-        toast.success("Project deleted successfully!");
+        toast.success('Project deleted successfully!');
       } catch (error) {
-        console.error("Error deleting:", error);
-        toast.error("Failed to delete project!");
+        console.error('Error deleting:', error);
+        toast.error('Failed to delete project!');
       }
     }
   };
 
   const handleAdded = () => {
     fetchProjects();
-    toast.success("Project added successfully!");
+    toast.success('Project added successfully!');
   };
 
   const handleUpdated = () => {
     fetchProjects();
-    toast.success("Project updated successfully!");
+    toast.success('Project updated successfully!');
   };
 
-  // Truncate text helper
   const truncate = (text, length = 20) =>
-    text?.length > length ? text.slice(0, length) + "..." : text;
+    text?.length > length ? text.slice(0, length) + '...' : text;
 
   return (
     <div className="flex-1 p-4 sm:p-6 bg-gray-100 min-h-screen">
@@ -120,7 +115,6 @@ const UpcomingProjectMain = () => {
                     />
                   </td>
                   <td className="px-4 py-2 flex gap-2">
-                    {/* View Button */}
                     <button
                       className="text-green-500 hover:text-green-700"
                       onClick={() => {
@@ -131,7 +125,6 @@ const UpcomingProjectMain = () => {
                       <Eye className="w-5 h-5" />
                     </button>
 
-                    {/* Edit Button */}
                     <button
                       onClick={() => {
                         setSelectedProject(item);
@@ -142,7 +135,6 @@ const UpcomingProjectMain = () => {
                       <Edit size={18} />
                     </button>
 
-                    {/* Delete Button */}
                     <button
                       onClick={() => handleDelete(item._id)}
                       className="text-red-500 hover:text-red-700"
@@ -163,14 +155,12 @@ const UpcomingProjectMain = () => {
         </table>
       </div>
 
-      {/* Add Modal */}
       <UpcomingProjectAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onAdded={handleAdded}
       />
 
-      {/* Edit Modal */}
       <UpcomingProjectEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
@@ -178,7 +168,6 @@ const UpcomingProjectMain = () => {
         onUpdated={handleUpdated}
       />
 
-      {/* View Modal */}
       <UpcomingProjectViewModal
         isOpen={isViewOpen}
         onClose={() => setIsViewOpen(false)}

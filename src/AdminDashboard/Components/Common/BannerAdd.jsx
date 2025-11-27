@@ -1,29 +1,29 @@
-import React, { useState } from "react";
-import { createBanner } from "../../../Api";
+import React, { useState } from 'react';
+import { createBanner } from '../../../Api';
 
 const BannerAdd = ({ isOpen, onClose, onBannerAdded }) => {
-  const [title, setTitle] = useState("");
-  const [subtitle, setSubtitle] = useState("");
+  const [title, setTitle] = useState('');
+  const [subtitle, setSubtitle] = useState('');
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || !image) return alert("Title and image are required!");
+    if (!title || !image) return alert('Title and image are required!');
     const formData = new FormData();
-    formData.append("title", title);
-    formData.append("subtitle", subtitle);
-    formData.append("image", image);
+    formData.append('title', title);
+    formData.append('subtitle', subtitle);
+    formData.append('image', image);
 
     try {
       setLoading(true);
       await createBanner(formData, token);
-      onBannerAdded(); // refresh banners list
+      onBannerAdded();
       onClose();
     } catch (error) {
-      console.error("Error creating banner:", error);
-      alert("Failed to create banner.");
+      console.error('Error creating banner:', error);
+      alert('Failed to create banner.');
     } finally {
       setLoading(false);
     }
@@ -69,7 +69,7 @@ const BannerAdd = ({ isOpen, onClose, onBannerAdded }) => {
               disabled={loading}
               className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
             >
-              {loading ? "Uploading..." : "Add"}
+              {loading ? 'Uploading...' : 'Add'}
             </button>
           </div>
         </form>

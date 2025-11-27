@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { updateCertification } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { updateCertification } from '../../../Api';
 
 const CertificationEdit = ({ isOpen, onClose, certification, onUpdated }) => {
-  const [heading, setHeading] = useState("");
-  const [iconPreview, setIconPreview] = useState("");
+  const [heading, setHeading] = useState('');
+  const [iconPreview, setIconPreview] = useState('');
   const [iconFile, setIconFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     if (certification) {
-      setHeading(certification.heading || "");
-      setIconPreview(certification.icon || "");
+      setHeading(certification.heading || '');
+      setIconPreview(certification.icon || '');
       setIconFile(null);
     }
   }, [certification]);
@@ -20,11 +20,11 @@ const CertificationEdit = ({ isOpen, onClose, certification, onUpdated }) => {
   if (!isOpen) return null;
 
   const handleSubmit = async () => {
-    if (!heading.trim()) return alert("Heading is required");
+    if (!heading.trim()) return alert('Heading is required');
 
     const formData = new FormData();
-    formData.append("heading", heading);
-    if (iconFile) formData.append("icon", iconFile);
+    formData.append('heading', heading);
+    if (iconFile) formData.append('icon', iconFile);
 
     try {
       setLoading(true);
@@ -33,7 +33,7 @@ const CertificationEdit = ({ isOpen, onClose, certification, onUpdated }) => {
       onClose();
     } catch (err) {
       console.error(err);
-      alert("Update failed");
+      alert('Update failed');
     } finally {
       setLoading(false);
     }
@@ -59,10 +59,19 @@ const CertificationEdit = ({ isOpen, onClose, certification, onUpdated }) => {
           className="border p-2 w-full mb-3 rounded"
         />
 
-        <input type="file" accept="image/*" onChange={handleIconChange} className="mb-3" />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleIconChange}
+          className="mb-3"
+        />
 
         {iconPreview && (
-          <img src={iconPreview} alt="Preview" className="w-full h-24 object-cover rounded mb-3" />
+          <img
+            src={iconPreview}
+            alt="Preview"
+            className="w-full h-24 object-cover rounded mb-3"
+          />
         )}
 
         <div className="flex justify-end gap-2">
@@ -73,7 +82,7 @@ const CertificationEdit = ({ isOpen, onClose, certification, onUpdated }) => {
             onClick={handleSubmit}
             className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
           >
-            {loading ? "Updating..." : "Update"}
+            {loading ? 'Updating...' : 'Update'}
           </button>
         </div>
       </div>

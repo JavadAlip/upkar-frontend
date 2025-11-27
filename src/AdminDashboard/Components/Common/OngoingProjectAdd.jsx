@@ -1,47 +1,49 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import { createOngoingProject } from "../../../Api";
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { createOngoingProject } from '../../../Api';
 
 const OngoingProjectAdd = ({ isOpen, onClose, onAdded }) => {
   const [form, setForm] = useState({
-    heading: "",
-    description: "",
+    heading: '',
+    description: '',
     mainImage: null,
   });
   const [loading, setLoading] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const handleImageChange = (e) => setForm({ ...form, mainImage: e.target.files[0] });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleImageChange = (e) =>
+    setForm({ ...form, mainImage: e.target.files[0] });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.heading || !form.description || !form.mainImage) {
-      return toast.error("All fields are required!");
+      return toast.error('All fields are required!');
     }
 
     const fd = new FormData();
-    fd.append("heading", form.heading);
-    fd.append("description", form.description);
-    fd.append("mainImage", form.mainImage);
+    fd.append('heading', form.heading);
+    fd.append('description', form.description);
+    fd.append('mainImage', form.mainImage);
 
-    const token = localStorage.getItem("adminToken");
+    const token = localStorage.getItem('adminToken');
 
     try {
       setLoading(true);
       const res = await createOngoingProject(fd, token);
       if (res.success) {
-        toast.success("Project added successfully!");
+        toast.success('Project added successfully!');
         onAdded();
         onClose();
-        setForm({ heading: "", description: "", mainImage: null });
+        setForm({ heading: '', description: '', mainImage: null });
       } else {
-        toast.error(res.message || "Failed to add project");
+        toast.error(res.message || 'Failed to add project');
       }
     } catch (error) {
       console.error(error);
-      toast.error(error.response?.data?.message || "Something went wrong");
+      toast.error(error.response?.data?.message || 'Something went wrong');
     } finally {
       setLoading(false);
     }
@@ -68,7 +70,11 @@ const OngoingProjectAdd = ({ isOpen, onClose, onAdded }) => {
           />
           <input type="file" accept="image/*" onChange={handleImageChange} />
           <div className="flex justify-end gap-2 mt-2">
-            <button type="button" onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 bg-gray-300 rounded"
+            >
               Cancel
             </button>
             <button
@@ -76,7 +82,7 @@ const OngoingProjectAdd = ({ isOpen, onClose, onAdded }) => {
               className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
               disabled={loading}
             >
-              {loading ? "Adding..." : "Add"}
+              {loading ? 'Adding...' : 'Add'}
             </button>
           </div>
         </form>

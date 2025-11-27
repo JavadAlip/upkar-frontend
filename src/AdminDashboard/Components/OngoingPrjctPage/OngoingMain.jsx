@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import Swal from "sweetalert2";
-import { toast, ToastContainer } from "react-toastify";
-
-import OngoingProjectAdd from "../../Components/Common/OngoingProjectAdd";
-import OngoingProjectEdit from "../../Components/Common/OngoingProjectEdit";
-import OngoingProjectView from "../../Components/ViewModals/OngoingProject/OngoingProjectView"; 
-
-import { getAllOngoingProjects, deleteOngoingProject } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
+import OngoingProjectAdd from '../../Components/Common/OngoingProjectAdd';
+import OngoingProjectEdit from '../../Components/Common/OngoingProjectEdit';
+import OngoingProjectView from '../../Components/ViewModals/OngoingProject/OngoingProjectView';
+import { getAllOngoingProjects, deleteOngoingProject } from '../../../Api';
 
 const OngoingProjectMain = () => {
   const [projects, setProjects] = useState([]);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [isViewOpen, setIsViewOpen] = useState(false); 
+  const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchProjects();
@@ -28,43 +26,43 @@ const OngoingProjectMain = () => {
       setProjects(res.data || []);
     } catch (error) {
       console.error(error);
-      toast.error("Failed to fetch projects!");
+      toast.error('Failed to fetch projects!');
     }
   };
 
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-       confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
     });
 
     if (confirm.isConfirmed) {
       try {
         await deleteOngoingProject(id, token);
         setProjects(projects.filter((p) => p._id !== id));
-        toast.success("Project deleted successfully!");
+        toast.success('Project deleted successfully!');
       } catch (error) {
         console.error(error);
-        toast.error("Failed to delete project!");
+        toast.error('Failed to delete project!');
       }
     }
   };
 
   const handleAdded = () => {
     fetchProjects();
-    toast.success("Project added successfully!");
+    toast.success('Project added successfully!');
   };
 
   const handleUpdated = () => {
     fetchProjects();
-    toast.success("Project updated successfully!");
+    toast.success('Project updated successfully!');
   };
 
   return (
@@ -84,29 +82,53 @@ const OngoingProjectMain = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Heading</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Description</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Image</th>
-              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Actions</th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Heading
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Description
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Image
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {projects.map((item) => (
               <tr key={item._id}>
-                <td className="px-4 py-2">{item.heading?.slice(0, 20)}{item.heading?.length > 20 ? "..." : ""}</td>
-                <td className="px-4 py-2">{item.description?.slice(0, 20)}{item.description?.length > 20 ? "..." : ""}</td>
                 <td className="px-4 py-2">
-                  <img src={item.mainImage} alt="" className="w-20 h-12 object-cover rounded" />
+                  {item.heading?.slice(0, 20)}
+                  {item.heading?.length > 20 ? '...' : ''}
+                </td>
+                <td className="px-4 py-2">
+                  {item.description?.slice(0, 20)}
+                  {item.description?.length > 20 ? '...' : ''}
+                </td>
+                <td className="px-4 py-2">
+                  <img
+                    src={item.mainImage}
+                    alt=""
+                    className="w-20 h-12 object-cover rounded"
+                  />
                 </td>
                 <td className="px-4 py-2 flex gap-2">
                   <button
-                    onClick={() => { setSelectedProject(item); setIsViewOpen(true); }}
+                    onClick={() => {
+                      setSelectedProject(item);
+                      setIsViewOpen(true);
+                    }}
                     className="text-green-500 hover:text-green-700"
                   >
                     <Eye size={18} />
                   </button>
                   <button
-                    onClick={() => { setSelectedProject(item); setIsEditOpen(true); }}
+                    onClick={() => {
+                      setSelectedProject(item);
+                      setIsEditOpen(true);
+                    }}
                     className="text-blue-500 hover:text-blue-700"
                   >
                     <Edit size={18} />
@@ -131,10 +153,22 @@ const OngoingProjectMain = () => {
         </table>
       </div>
 
-      {/* Add / Edit / View Modals */}
-      <OngoingProjectAdd isOpen={isAddOpen} onClose={() => setIsAddOpen(false)} onAdded={handleAdded} />
-      <OngoingProjectEdit isOpen={isEditOpen} onClose={() => setIsEditOpen(false)} project={selectedProject} onUpdated={handleUpdated} />
-      <OngoingProjectView isOpen={isViewOpen} onClose={() => setIsViewOpen(false)} project={selectedProject} />
+      <OngoingProjectAdd
+        isOpen={isAddOpen}
+        onClose={() => setIsAddOpen(false)}
+        onAdded={handleAdded}
+      />
+      <OngoingProjectEdit
+        isOpen={isEditOpen}
+        onClose={() => setIsEditOpen(false)}
+        project={selectedProject}
+        onUpdated={handleUpdated}
+      />
+      <OngoingProjectView
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        project={selectedProject}
+      />
     </div>
   );
 };

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-import { updateTeamMember } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { updateTeamMember } from '../../../Api';
 
-const token = localStorage.getItem("adminToken");
+const token = localStorage.getItem('adminToken');
 
 const TeamEdit = ({ isOpen, onClose, item, onTeamUpdated }) => {
   const [form, setForm] = useState({
-    memberName: "",
-    memberPosition: "",
+    memberName: '',
+    memberPosition: '',
     memberImage: null,
   });
 
@@ -27,28 +27,28 @@ const TeamEdit = ({ isOpen, onClose, item, onTeamUpdated }) => {
 
   const handleSubmit = async () => {
     if (!form.memberName || !form.memberPosition) {
-      return toast.error("Name & position are required!");
+      return toast.error('Name & position are required!');
     }
 
     try {
       setLoading(true);
 
       const formData = new FormData();
-      formData.append("memberName", form.memberName);
-      formData.append("memberPosition", form.memberPosition);
+      formData.append('memberName', form.memberName);
+      formData.append('memberPosition', form.memberPosition);
 
       if (form.memberImage) {
-        formData.append("memberImage", form.memberImage);
+        formData.append('memberImage', form.memberImage);
       }
 
       await updateTeamMember(item._id, formData, token);
 
-      toast.success("Team member updated!");
+      toast.success('Team member updated!');
       onTeamUpdated();
       onClose();
     } catch (error) {
       console.error(error);
-      toast.error("Failed to update team member.");
+      toast.error('Failed to update team member.');
     } finally {
       setLoading(false);
     }
@@ -93,7 +93,7 @@ const TeamEdit = ({ isOpen, onClose, item, onTeamUpdated }) => {
               onClick={handleSubmit}
               className="px-4 py-2 bg-orange-500 text-white rounded"
             >
-              {loading ? "Updating..." : "Update"}
+              {loading ? 'Updating...' : 'Update'}
             </button>
           </div>
         </div>

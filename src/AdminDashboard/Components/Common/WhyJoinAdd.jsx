@@ -1,33 +1,34 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import { createWhyJoinAPI } from "../../../Api";
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { createWhyJoinAPI } from '../../../Api';
 
 const WhyJoinAdd = ({ isOpen, onClose, refresh }) => {
-  const [form, setForm] = useState({ title: "", description: "" });
+  const [form, setForm] = useState({ title: '', description: '' });
   const [loading, setLoading] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async () => {
     if (!form.title.trim() || !form.description.trim()) {
-      toast.error("Title and Description are required");
+      toast.error('Title and Description are required');
       return;
     }
 
     try {
       setLoading(true);
-      const token = localStorage.getItem("adminToken");
+      const token = localStorage.getItem('adminToken');
 
       await createWhyJoinAPI(form, token);
-      toast.success("Why Join Us added successfully!");
+      toast.success('Why Join Us added successfully!');
       refresh();
       onClose();
-      setForm({ title: "", description: "" });
+      setForm({ title: '', description: '' });
     } catch (error) {
       console.error(error);
-      toast.error(error.response?.data?.message || "Failed to add Why Join Us");
+      toast.error(error.response?.data?.message || 'Failed to add Why Join Us');
     } finally {
       setLoading(false);
     }
@@ -65,7 +66,7 @@ const WhyJoinAdd = ({ isOpen, onClose, refresh }) => {
             onClick={handleSubmit}
             disabled={loading}
           >
-            {loading ? "Adding..." : "Add"}
+            {loading ? 'Adding...' : 'Add'}
           </button>
         </div>
       </div>

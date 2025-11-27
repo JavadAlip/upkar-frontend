@@ -1,30 +1,29 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import { createAboutMain } from "../../../Api.js";
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { createAboutMain } from '../../../Api.js';
 
 const AboutMainAdd = ({ isOpen, onClose, onAboutAdded }) => {
   const [form, setForm] = useState({
-    heading: "",
-    plotNumber: "",
-    plotTitle: "",
-    acresNumber: "",
-    acresTitle: "",
-    paragraph1: "",
-    paragraph2: "",
-    paragraph3: "",
+    heading: '',
+    plotNumber: '',
+    plotTitle: '',
+    acresNumber: '',
+    acresTitle: '',
+    paragraph1: '',
+    paragraph2: '',
+    paragraph3: '',
   });
 
   const [plotImage, setPlotImage] = useState(null);
   const [acresImage, setAcresImage] = useState(null);
   const [mainImages, setMainImages] = useState([]);
 
-  // Preview states
-  const [plotPreview, setPlotPreview] = useState("");
-  const [acresPreview, setAcresPreview] = useState("");
+  const [plotPreview, setPlotPreview] = useState('');
+  const [acresPreview, setAcresPreview] = useState('');
   const [mainPreview, setMainPreview] = useState([]);
 
   const [loading, setLoading] = useState(false);
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   if (!isOpen) return null;
 
@@ -34,10 +33,10 @@ const AboutMainAdd = ({ isOpen, onClose, onAboutAdded }) => {
     const formData = new FormData();
     Object.keys(form).forEach((key) => formData.append(key, form[key]));
 
-    if (plotImage) formData.append("plotImage", plotImage);
-    if (acresImage) formData.append("acresImage", acresImage);
+    if (plotImage) formData.append('plotImage', plotImage);
+    if (acresImage) formData.append('acresImage', acresImage);
 
-    mainImages.forEach((file) => formData.append("mainImages", file));
+    mainImages.forEach((file) => formData.append('mainImages', file));
 
     try {
       setLoading(true);
@@ -46,7 +45,7 @@ const AboutMainAdd = ({ isOpen, onClose, onAboutAdded }) => {
       onClose();
     } catch (error) {
       console.error(error);
-      toast.error("Failed to add About content!");
+      toast.error('Failed to add About content!');
     } finally {
       setLoading(false);
     }
@@ -58,7 +57,6 @@ const AboutMainAdd = ({ isOpen, onClose, onAboutAdded }) => {
         <h2 className="text-xl font-semibold mb-4">Add About Main</h2>
 
         <form className="space-y-3" onSubmit={handleSubmit}>
-          {/* TEXT FIELDS */}
           <input
             type="text"
             placeholder="Heading"
@@ -83,7 +81,6 @@ const AboutMainAdd = ({ isOpen, onClose, onAboutAdded }) => {
             onChange={(e) => setForm({ ...form, plotTitle: e.target.value })}
           />
 
-          {/* PLOT IMAGE */}
           <label className="block font-medium">Plot Image</label>
           <input
             type="file"
@@ -94,10 +91,12 @@ const AboutMainAdd = ({ isOpen, onClose, onAboutAdded }) => {
             }}
           />
           {plotPreview && (
-            <img src={plotPreview} className="w-20 h-20 rounded object-cover mt-2" />
+            <img
+              src={plotPreview}
+              className="w-20 h-20 rounded object-cover mt-2"
+            />
           )}
 
-          {/* ACRES FIELDS */}
           <input
             type="text"
             placeholder="Acres Number"
@@ -114,7 +113,6 @@ const AboutMainAdd = ({ isOpen, onClose, onAboutAdded }) => {
             onChange={(e) => setForm({ ...form, acresTitle: e.target.value })}
           />
 
-          {/* ACRES IMAGE */}
           <label className="block font-medium">Acres Image</label>
           <input
             type="file"
@@ -125,10 +123,12 @@ const AboutMainAdd = ({ isOpen, onClose, onAboutAdded }) => {
             }}
           />
           {acresPreview && (
-            <img src={acresPreview} className="w-20 h-20 rounded object-cover mt-2" />
+            <img
+              src={acresPreview}
+              className="w-20 h-20 rounded object-cover mt-2"
+            />
           )}
 
-          {/* MULTIPLE MAIN IMAGES */}
           <label className="block font-medium">Main Images (Multiple)</label>
           <input
             type="file"
@@ -137,16 +137,13 @@ const AboutMainAdd = ({ isOpen, onClose, onAboutAdded }) => {
             onChange={(e) => {
               const files = Array.from(e.target.files);
 
-              // Append new files instead of replacing
               setMainImages((prev) => [...prev, ...files]);
 
-              // Add new previews without deleting old ones
               const newPreviews = files.map((f) => URL.createObjectURL(f));
               setMainPreview((prev) => [...prev, ...newPreviews]);
             }}
           />
 
-          {/* MAIN IMAGES PREVIEW GRID */}
           {mainPreview.length > 0 && (
             <div className="grid grid-cols-3 gap-2 mt-2">
               {mainPreview.map((src, i) => (
@@ -159,7 +156,6 @@ const AboutMainAdd = ({ isOpen, onClose, onAboutAdded }) => {
             </div>
           )}
 
-          {/* PARAGRAPHS */}
           <textarea
             placeholder="Paragraph 1"
             className="border p-2 w-full rounded"
@@ -181,9 +177,12 @@ const AboutMainAdd = ({ isOpen, onClose, onAboutAdded }) => {
             onChange={(e) => setForm({ ...form, paragraph3: e.target.value })}
           />
 
-          {/* BUTTONS */}
           <div className="flex justify-end gap-2 mt-3">
-            <button type="button" onClick={onClose} className="px-4 py-2 border rounded">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 border rounded"
+            >
               Cancel
             </button>
             <button
@@ -191,7 +190,7 @@ const AboutMainAdd = ({ isOpen, onClose, onAboutAdded }) => {
               disabled={loading}
               className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
             >
-              {loading ? "Adding..." : "Add"}
+              {loading ? 'Adding...' : 'Add'}
             </button>
           </div>
         </form>

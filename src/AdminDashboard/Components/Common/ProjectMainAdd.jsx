@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { createProjectMain } from "../../../Api"; 
-import { toast } from "react-toastify";
+import React, { useState } from 'react';
+import { createProjectMain } from '../../../Api';
+import { toast } from 'react-toastify';
 
 const ProjectMainAdd = ({ isOpen, onClose, onProjectAdded }) => {
-  const [heading, setHeading] = useState("");
-  const [description, setDescription] = useState("");
+  const [heading, setHeading] = useState('');
+  const [description, setDescription] = useState('');
   const [mainImages, setMainImages] = useState([null, null, null]);
-  const [customerHeading, setCustomerHeading] = useState("");
-  const [customerDescription, setCustomerDescription] = useState("");
-  const [ratingText, setRatingText] = useState("");
+  const [customerHeading, setCustomerHeading] = useState('');
+  const [customerDescription, setCustomerDescription] = useState('');
+  const [ratingText, setRatingText] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   if (!isOpen) return null;
 
@@ -25,26 +25,26 @@ const ProjectMainAdd = ({ isOpen, onClose, onProjectAdded }) => {
     e.preventDefault();
 
     if (!heading || !description || mainImages.some((f) => !f)) {
-      return toast.error("All main images and fields are required!");
+      return toast.error('All main images and fields are required!');
     }
 
     const formData = new FormData();
-    formData.append("heading", heading);
-    formData.append("description", description);
-    mainImages.forEach((img) => formData.append("mainImages", img));
-    formData.append("customerHeading", customerHeading);
-    formData.append("customerDescription", customerDescription);
-    formData.append("ratingText", ratingText);
+    formData.append('heading', heading);
+    formData.append('description', description);
+    mainImages.forEach((img) => formData.append('mainImages', img));
+    formData.append('customerHeading', customerHeading);
+    formData.append('customerDescription', customerDescription);
+    formData.append('ratingText', ratingText);
 
     try {
       setLoading(true);
       await createProjectMain(formData, token);
-      toast.success("Project created successfully!");
-      onProjectAdded(); // refresh list in parent
-      onClose(); // close modal
+      toast.success('Project created successfully!');
+      onProjectAdded();
+      onClose();
     } catch (error) {
-      console.error("Error creating project:", error);
-      toast.error("Failed to create project!");
+      console.error('Error creating project:', error);
+      toast.error('Failed to create project!');
     } finally {
       setLoading(false);
     }
@@ -115,7 +115,7 @@ const ProjectMainAdd = ({ isOpen, onClose, onProjectAdded }) => {
               disabled={loading}
               className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
             >
-              {loading ? "Uploading..." : "Add"}
+              {loading ? 'Uploading...' : 'Add'}
             </button>
           </div>
         </form>

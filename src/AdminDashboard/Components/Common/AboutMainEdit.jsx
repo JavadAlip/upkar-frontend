@@ -1,45 +1,45 @@
-import React, { useState, useEffect } from "react";
-import { updateAboutMain } from "../../../Api";
-import { toast } from "react-toastify";
+import React, { useState, useEffect } from 'react';
+import { updateAboutMain } from '../../../Api';
+import { toast } from 'react-toastify';
 
 const AboutMainEdit = ({ isOpen, onClose, item, onAboutUpdated }) => {
   const [form, setForm] = useState({
-    heading: "",
-    plotNumber: "",
-    plotTitle: "",
-    acresNumber: "",
-    acresTitle: "",
-    paragraph1: "",
-    paragraph2: "",
-    paragraph3: "",
+    heading: '',
+    plotNumber: '',
+    plotTitle: '',
+    acresNumber: '',
+    acresTitle: '',
+    paragraph1: '',
+    paragraph2: '',
+    paragraph3: '',
   });
 
   const [plotImage, setPlotImage] = useState(null);
   const [acresImage, setAcresImage] = useState(null);
   const [newMainImages, setNewMainImages] = useState([]);
   const [deletedImages, setDeletedImages] = useState([]);
-  const [plotPreview, setPlotPreview] = useState("");
-  const [acresPreview, setAcresPreview] = useState("");
+  const [plotPreview, setPlotPreview] = useState('');
+  const [acresPreview, setAcresPreview] = useState('');
   const [mainPreview, setMainPreview] = useState([]);
   const [selectedForDeletion, setSelectedForDeletion] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     if (item) {
       setForm({
-        heading: item.heading || "",
-        plotNumber: item.plotNumber || "",
-        plotTitle: item.plotTitle || "",
-        acresNumber: item.acresNumber || "",
-        acresTitle: item.acresTitle || "",
-        paragraph1: item.paragraph1 || "",
-        paragraph2: item.paragraph2 || "",
-        paragraph3: item.paragraph3 || "",
+        heading: item.heading || '',
+        plotNumber: item.plotNumber || '',
+        plotTitle: item.plotTitle || '',
+        acresNumber: item.acresNumber || '',
+        acresTitle: item.acresTitle || '',
+        paragraph1: item.paragraph1 || '',
+        paragraph2: item.paragraph2 || '',
+        paragraph3: item.paragraph3 || '',
       });
-      setPlotPreview(item.plotImage || "");
-      setAcresPreview(item.acresImage || "");
+      setPlotPreview(item.plotImage || '');
+      setAcresPreview(item.acresImage || '');
       setMainPreview(item.mainImages || []);
       setNewMainImages([]);
       setDeletedImages([]);
@@ -73,10 +73,8 @@ const AboutMainEdit = ({ isOpen, onClose, item, onAboutUpdated }) => {
 
     selectedForDeletion.forEach((index) => {
       if (index < totalExisting) {
-        // Existing image
         updatedDeleted.push(item.mainImages[index]);
       } else {
-        // New image
         const newIndex = index - totalExisting;
         updatedNewImages.splice(newIndex, 1);
       }
@@ -112,10 +110,10 @@ const AboutMainEdit = ({ isOpen, onClose, item, onAboutUpdated }) => {
   const handleSubmit = async () => {
     const formData = new FormData();
     Object.keys(form).forEach((key) => formData.append(key, form[key]));
-    if (plotImage) formData.append("plotImage", plotImage);
-    if (acresImage) formData.append("acresImage", acresImage);
-    newMainImages.forEach((img) => formData.append("mainImages", img));
-    deletedImages.forEach((imgUrl) => formData.append("deletedImages", imgUrl));
+    if (plotImage) formData.append('plotImage', plotImage);
+    if (acresImage) formData.append('acresImage', acresImage);
+    newMainImages.forEach((img) => formData.append('mainImages', img));
+    deletedImages.forEach((imgUrl) => formData.append('deletedImages', imgUrl));
 
     try {
       setLoading(true);
@@ -124,7 +122,7 @@ const AboutMainEdit = ({ isOpen, onClose, item, onAboutUpdated }) => {
       onClose();
     } catch (error) {
       console.error(error);
-      toast.error("Failed to update About content!");
+      toast.error('Failed to update About content!');
     } finally {
       setLoading(false);
     }
@@ -166,7 +164,10 @@ const AboutMainEdit = ({ isOpen, onClose, item, onAboutUpdated }) => {
             }}
           />
           {plotPreview && (
-            <img src={plotPreview} className="w-full h-32 object-cover rounded" />
+            <img
+              src={plotPreview}
+              className="w-full h-32 object-cover rounded"
+            />
           )}
 
           <input
@@ -193,7 +194,10 @@ const AboutMainEdit = ({ isOpen, onClose, item, onAboutUpdated }) => {
             }}
           />
           {acresPreview && (
-            <img src={acresPreview} className="w-full h-32 object-cover rounded" />
+            <img
+              src={acresPreview}
+              className="w-full h-32 object-cover rounded"
+            />
           )}
 
           <label className="block font-medium">Main Images (Multiple)</label>
@@ -256,7 +260,7 @@ const AboutMainEdit = ({ isOpen, onClose, item, onAboutUpdated }) => {
               disabled={loading}
               className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
             >
-              {loading ? "Updating..." : "Update"}
+              {loading ? 'Updating...' : 'Update'}
             </button>
           </div>
         </div>

@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-import { updateFeature } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { updateFeature } from '../../../Api';
 
 const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
   const [mainImage, setMainImage] = useState(null);
-  const [mainImagePreview, setMainImagePreview] = useState(""); 
+  const [mainImagePreview, setMainImagePreview] = useState('');
   const [icons, setIcons] = useState([
-    { icon: "", iconTitle: "", file: null, preview: "" },
+    { icon: '', iconTitle: '', file: null, preview: '' },
   ]);
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     if (feature) {
-      setDescription(feature.description || "");
-      setMainImagePreview(feature.mainImage || "");
-      setMainImage(null); // user can replace it
+      setDescription(feature.description || '');
+      setMainImagePreview(feature.mainImage || '');
+      setMainImage(null);
       setIcons(
         feature.icons && feature.icons.length
           ? feature.icons.map((icon) => ({
-              icon: icon.icon || "",
-              iconTitle: icon.iconTitle || "",
+              icon: icon.icon || '',
+              iconTitle: icon.iconTitle || '',
               file: null,
-              preview: icon.iconImage || "", 
+              preview: icon.iconImage || '',
             }))
-          : [{ icon: "", iconTitle: "", file: null, preview: "" }]
+          : [{ icon: '', iconTitle: '', file: null, preview: '' }]
       );
     }
   }, [feature]);
@@ -50,7 +50,7 @@ const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
     if (icons.length < 3)
       setIcons([
         ...icons,
-        { icon: "", iconTitle: "", file: null, preview: "" },
+        { icon: '', iconTitle: '', file: null, preview: '' },
       ]);
   };
 
@@ -60,35 +60,33 @@ const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
 
   const handleSubmit = async () => {
     if (!description) {
-      toast.error("Description is required!");
+      toast.error('Description is required!');
       return;
     }
 
     const formData = new FormData();
-    formData.append("description", description);
-    if (mainImage) formData.append("mainImage", mainImage);
+    formData.append('description', description);
+    if (mainImage) formData.append('mainImage', mainImage);
 
     icons.forEach((icon, idx) => {
-      // If user selected a new file, send it
       if (icon.file) {
         formData.append(`icon${idx + 1}`, icon.file);
       } else if (icon.preview) {
-        // If no new file, send existing URL so backend keeps it
         formData.append(`iconUrl${idx + 1}`, icon.preview);
       }
 
-      formData.append(`iconTitle${idx + 1}`, icon.iconTitle || "");
+      formData.append(`iconTitle${idx + 1}`, icon.iconTitle || '');
     });
 
     try {
       setLoading(true);
       await updateFeature(feature._id, formData, token);
-      toast.success("Feature updated successfully!");
-      onFeatureUpdated(); // refresh parent list
+      toast.success('Feature updated successfully!');
+      onFeatureUpdated();
       onClose();
     } catch (error) {
       console.error(error);
-      toast.error("Failed to update feature!");
+      toast.error('Failed to update feature!');
     } finally {
       setLoading(false);
     }
@@ -126,51 +124,10 @@ const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
             />
           </div>
 
-          {/* <div>
-            <label className="font-medium">Icons (max 3)</label>
-            {icons.map((icon, idx) => (
-              <div key={idx} className="flex gap-2 mt-1 items-center">
-                <input
-                  type="text"
-                  placeholder="Icon"
-                  className="border p-2 w-16 rounded"
-                  value={icon.icon}
-                  onChange={(e) => handleIconChange(idx, "icon", e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Icon Title"
-                  className="border p-2 flex-1 rounded"
-                  value={icon.iconTitle}
-                  onChange={(e) => handleIconChange(idx, "iconTitle", e.target.value)}
-                />
-                {icon.preview && (
-                  <img src={icon.preview} alt="Icon" className="w-12 h-12 object-cover rounded" />
-                )}
-                <input
-                  type="file"
-                  className="border p-1 rounded"
-                  onChange={(e) => handleIconFileChange(idx, e.target.files[0])}
-                />
-                {icons.length > 1 && (
-                  <button type="button" className="text-red-500" onClick={() => removeIcon(idx)}>
-                    ✕
-                  </button>
-                )}
-              </div>
-            ))}
-            {icons.length < 3 && (
-              <button type="button" className="mt-2 px-3 py-1 bg-gray-200 rounded" onClick={addIcon}>
-                Add Icon
-              </button>
-            )}
-          </div> */}
-
           <div>
             <label className="font-medium">Icons (max 3)</label>
             {icons.map((icon, idx) => (
               <div key={idx} className="flex flex-col gap-1 mt-2">
-                {/* First row: Icon + Icon Title + Remove button */}
                 <div className="flex gap-2 items-center flex-wrap">
                   <input
                     type="text"
@@ -178,7 +135,7 @@ const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
                     className="border p-2 w-16 rounded"
                     value={icon.icon}
                     onChange={(e) =>
-                      handleIconChange(idx, "icon", e.target.value)
+                      handleIconChange(idx, 'icon', e.target.value)
                     }
                   />
                   <input
@@ -187,7 +144,7 @@ const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
                     className="border p-2 flex-1 rounded"
                     value={icon.iconTitle}
                     onChange={(e) =>
-                      handleIconChange(idx, "iconTitle", e.target.value)
+                      handleIconChange(idx, 'iconTitle', e.target.value)
                     }
                   />
                   {icons.length > 1 && (
@@ -201,7 +158,6 @@ const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
                   )}
                 </div>
 
-                {/* Second row: File input + preview, full width of first row */}
                 <div className="flex flex-col gap-1 w-full">
                   <input
                     type="file"
@@ -245,7 +201,7 @@ const FeatureEdit = ({ isOpen, onClose, feature, onFeatureUpdated }) => {
               onClick={handleSubmit}
               disabled={loading}
             >
-              {loading ? "Updating..." : "Update"}
+              {loading ? 'Updating...' : 'Update'}
             </button>
           </div>
         </div>

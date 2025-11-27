@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { updateAmenityAPI } from "../../../Api";
+import React, { useState, useEffect } from 'react';
+import { updateAmenityAPI } from '../../../Api';
 
 const AmenityEdit = ({ isOpen, onClose, amenity, refresh }) => {
   const [icon, setIcon] = useState(null);
-  const [heading, setHeading] = useState("");
+  const [heading, setHeading] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     if (amenity) {
-      setHeading(amenity.heading || "");
-      setIcon(null); // new file optional
+      setHeading(amenity.heading || '');
+      setIcon(null);
     }
   }, [amenity]);
 
   if (!isOpen) return null;
 
   const handleSubmit = async () => {
-    if (!heading) return alert("Heading is required!");
+    if (!heading) return alert('Heading is required!');
 
     const formData = new FormData();
-    formData.append("heading", heading);
-    if (icon) formData.append("icon", icon);
+    formData.append('heading', heading);
+    if (icon) formData.append('icon', icon);
 
     try {
       setLoading(true);
@@ -30,8 +30,8 @@ const AmenityEdit = ({ isOpen, onClose, amenity, refresh }) => {
       refresh();
       onClose();
     } catch (error) {
-      console.error("Error updating amenity:", error);
-      alert("Failed to update amenity.");
+      console.error('Error updating amenity:', error);
+      alert('Failed to update amenity.');
     } finally {
       setLoading(false);
     }
@@ -64,7 +64,7 @@ const AmenityEdit = ({ isOpen, onClose, amenity, refresh }) => {
             className="px-4 py-2 bg-blue-500 text-white rounded"
             onClick={handleSubmit}
           >
-            {loading ? "Updating..." : "Update"}
+            {loading ? 'Updating...' : 'Update'}
           </button>
         </div>
       </div>

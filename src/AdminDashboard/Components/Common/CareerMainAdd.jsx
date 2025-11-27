@@ -1,32 +1,32 @@
-import React, { useState } from "react";
-import { toast } from "react-toastify";
-import { createCareerMainAPI } from "../../../Api";
+import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import { createCareerMainAPI } from '../../../Api';
 
 const CareerMainAdd = ({ isOpen, onClose, refresh }) => {
-  const [careerDescription, setCareerDescription] = useState("");
+  const [careerDescription, setCareerDescription] = useState('');
   const [loading, setLoading] = useState(false);
 
   if (!isOpen) return null;
 
   const handleSubmit = async () => {
     if (!careerDescription.trim()) {
-      toast.error("Career description is required");
+      toast.error('Career description is required');
       return;
     }
 
     try {
       setLoading(true);
-      const token = localStorage.getItem("adminToken");
+      const token = localStorage.getItem('adminToken');
 
       await createCareerMainAPI({ careerDescription }, token);
 
-      toast.success("Career Main added successfully!");
+      toast.success('Career Main added successfully!');
       refresh(); // refresh table
       onClose();
-      setCareerDescription(""); // clear form
+      setCareerDescription(''); // clear form
     } catch (error) {
       console.error(error);
-      toast.error(error.response?.data?.message || "Failed to add Career Main");
+      toast.error(error.response?.data?.message || 'Failed to add Career Main');
     } finally {
       setLoading(false);
     }
@@ -46,10 +46,7 @@ const CareerMainAdd = ({ isOpen, onClose, refresh }) => {
         />
 
         <div className="flex justify-end gap-2 mt-3">
-          <button
-            className="px-4 py-2 bg-gray-300 rounded"
-            onClick={onClose}
-          >
+          <button className="px-4 py-2 bg-gray-300 rounded" onClick={onClose}>
             Cancel
           </button>
           <button
@@ -57,7 +54,7 @@ const CareerMainAdd = ({ isOpen, onClose, refresh }) => {
             onClick={handleSubmit}
             disabled={loading}
           >
-            {loading ? "Adding..." : "Add"}
+            {loading ? 'Adding...' : 'Add'}
           </button>
         </div>
       </div>

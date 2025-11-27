@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { createOrUpdateVisionMission } from "../../../Api";
-import { toast } from "react-toastify";
+import React, { useState } from 'react';
+import { createOrUpdateVisionMission } from '../../../Api';
+import { toast } from 'react-toastify';
 
 const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
-  const [description, setDescription] = useState("");
-  const [missionText, setMissionText] = useState("");
-  const [visionText, setVisionText] = useState("");
-  const [totalExperience, setTotalExperience] = useState(""); 
-  const [stats, setStats] = useState([{ number: "", label: "" }]);
+  const [description, setDescription] = useState('');
+  const [missionText, setMissionText] = useState('');
+  const [visionText, setVisionText] = useState('');
+  const [totalExperience, setTotalExperience] = useState('');
+  const [stats, setStats] = useState([{ number: '', label: '' }]);
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   if (!isOpen) return null;
 
@@ -22,7 +22,7 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
   };
 
   const addStatField = () => {
-    setStats([...stats, { number: "", label: "" }]);
+    setStats([...stats, { number: '', label: '' }]);
   };
 
   const removeStatField = (index) => {
@@ -33,27 +33,35 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!description || !missionText || !visionText || !totalExperience || !image) {
-      return toast.error("All fields including image & experience are required!");
+    if (
+      !description ||
+      !missionText ||
+      !visionText ||
+      !totalExperience ||
+      !image
+    ) {
+      return toast.error(
+        'All fields including image & experience are required!'
+      );
     }
 
     const formData = new FormData();
-    formData.append("description", description);
-    formData.append("missionText", missionText);
-    formData.append("visionText", visionText);
-    formData.append("totalExperience", totalExperience); // ⬅️ NEW FIELD
-    formData.append("image", image);
-    formData.append("stats", JSON.stringify(stats));
+    formData.append('description', description);
+    formData.append('missionText', missionText);
+    formData.append('visionText', visionText);
+    formData.append('totalExperience', totalExperience);
+    formData.append('image', image);
+    formData.append('stats', JSON.stringify(stats));
 
     try {
       setLoading(true);
       await createOrUpdateVisionMission(formData, token);
-      toast.success("Vision & Mission added successfully!");
+      toast.success('Vision & Mission added successfully!');
       onSuccess();
       onClose();
     } catch (error) {
       console.error(error);
-      toast.error("Failed to add Vision & Mission!");
+      toast.error('Failed to add Vision & Mission!');
     } finally {
       setLoading(false);
     }
@@ -65,7 +73,6 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
         <h2 className="text-xl font-semibold mb-4">Add Vision & Mission</h2>
 
         <form onSubmit={handleSubmit} className="space-y-3">
-
           <textarea
             placeholder="Description"
             className="border p-2 w-full rounded"
@@ -87,7 +94,6 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
             onChange={(e) => setVisionText(e.target.value)}
           />
 
-          {/* NEW FIELD */}
           <input
             type="text"
             placeholder="Total Experience (Ex: 10+ Years of Experience)"
@@ -113,7 +119,7 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
                   placeholder="Number"
                   value={stat.number}
                   onChange={(e) =>
-                    handleStatChange(index, "number", e.target.value)
+                    handleStatChange(index, 'number', e.target.value)
                   }
                   className="border p-1 rounded w-1/3"
                 />
@@ -122,7 +128,7 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
                   placeholder="Label"
                   value={stat.label}
                   onChange={(e) =>
-                    handleStatChange(index, "label", e.target.value)
+                    handleStatChange(index, 'label', e.target.value)
                   }
                   className="border p-1 rounded w-2/3"
                 />
@@ -162,10 +168,9 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
               disabled={loading}
               className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600"
             >
-              {loading ? "Saving..." : "Add"}
+              {loading ? 'Saving...' : 'Add'}
             </button>
           </div>
-
         </form>
       </div>
     </div>

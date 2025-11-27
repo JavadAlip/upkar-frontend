@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import QAsAdd from "../Common/QAsAdd";
-import QAsEdit from "../Common/QAsEdit";
-import QAsViewModal from "../ViewModals/HomePage/QAsView";
-import { getQuestionsAPI, deleteQuestionAPI } from "../../../Api";
-import Swal from "sweetalert2";
-import { toast } from "react-toastify";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import QAsAdd from '../Common/QAsAdd';
+import QAsEdit from '../Common/QAsEdit';
+import QAsViewModal from '../ViewModals/HomePage/QAsView';
+import { getQuestionsAPI, deleteQuestionAPI } from '../../../Api';
+import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 
 const QAs = () => {
   const [qas, setQAs] = useState([]);
@@ -14,7 +14,7 @@ const QAs = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedQA, setSelectedQA] = useState(null);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchQAs();
@@ -25,47 +25,47 @@ const QAs = () => {
       const data = await getQuestionsAPI(token);
       setQAs(data);
     } catch (error) {
-      console.error("Error fetching Q&As:", error);
-      toast.error("Failed to fetch Q&As!");
+      console.error('Error fetching Q&As:', error);
+      toast.error('Failed to fetch Q&As!');
     }
   };
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
       try {
         await deleteQuestionAPI(id, token);
         setQAs(qas.filter((qa) => qa._id !== id));
-        toast.success("Question deleted successfully!");
+        toast.success('Question deleted successfully!');
       } catch (error) {
-        console.error("Error deleting question:", error);
-        toast.error("Failed to delete question!");
+        console.error('Error deleting question:', error);
+        toast.error('Failed to delete question!');
       }
     }
   };
 
   const handleQAAdded = () => {
     fetchQAs();
-    toast.success("Question added successfully!");
+    toast.success('Question added successfully!');
   };
 
   const handleQAUpdated = () => {
     fetchQAs();
-    toast.success("Question updated successfully!");
+    toast.success('Question updated successfully!');
   };
 
   const truncateText = (text) => {
-    if (!text) return "";
-    return text.length > 20 ? text.substring(0, 20) + "..." : text;
+    if (!text) return '';
+    return text.length > 20 ? text.substring(0, 20) + '...' : text;
   };
 
   return (
@@ -107,7 +107,6 @@ const QAs = () => {
                   {new Date(qa.createdAt).toLocaleDateString()}
                 </td>
                 <td className="px-4 py-2 flex gap-2">
-                  {/* View */}
                   <button
                     onClick={() => {
                       setSelectedQA(qa);
@@ -118,7 +117,6 @@ const QAs = () => {
                     <Eye className="w-4 h-4" />
                   </button>
 
-                  {/* Edit */}
                   <button
                     onClick={() => {
                       setSelectedQA(qa);
@@ -150,7 +148,6 @@ const QAs = () => {
         </table>
       </div>
 
-      {/* Add/Edit/View Modals */}
       <QAsAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}

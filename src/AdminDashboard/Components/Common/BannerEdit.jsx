@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { editBanner } from "../../../Api"; 
+import React, { useState, useEffect } from 'react';
+import { editBanner } from '../../../Api';
 
 const BannerEdit = ({ isOpen, onClose, banner, onUpdate }) => {
-  const [form, setForm] = useState({ title: "", subtitle: "", image: null });
-  const [imagePreview, setImagePreview] = useState("");
+  const [form, setForm] = useState({ title: '', subtitle: '', image: null });
+  const [imagePreview, setImagePreview] = useState('');
 
-  const token = localStorage.getItem("adminToken"); 
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     if (banner) {
       setForm({
         title: banner.title,
         subtitle: banner.subtitle,
-        image: null, 
+        image: null,
       });
       setImagePreview(banner.image);
     }
@@ -35,16 +35,16 @@ const BannerEdit = ({ isOpen, onClose, banner, onUpdate }) => {
   const handleSubmit = async () => {
     try {
       const formData = new FormData();
-      formData.append("title", form.title);
-      formData.append("subtitle", form.subtitle);
-      if (form.image) formData.append("image", form.image);
+      formData.append('title', form.title);
+      formData.append('subtitle', form.subtitle);
+      if (form.image) formData.append('image', form.image);
 
-      await editBanner(banner._id, formData, token); 
+      await editBanner(banner._id, formData, token);
 
-      onUpdate(); // refresh banners in parent
-      onClose();  // close modal
+      onUpdate();
+      onClose();
     } catch (error) {
-      console.error("Error updating banner:", error);
+      console.error('Error updating banner:', error);
     }
   };
 
@@ -53,7 +53,6 @@ const BannerEdit = ({ isOpen, onClose, banner, onUpdate }) => {
       <div className="bg-white p-6 rounded-lg w-[400px]">
         <h2 className="text-lg font-semibold mb-4">Edit Banner</h2>
 
-        {/* Title */}
         <input
           name="title"
           value={form.title}
@@ -62,7 +61,6 @@ const BannerEdit = ({ isOpen, onClose, banner, onUpdate }) => {
           placeholder="Title"
         />
 
-        {/* Subtitle */}
         <input
           name="subtitle"
           value={form.subtitle}
@@ -71,7 +69,6 @@ const BannerEdit = ({ isOpen, onClose, banner, onUpdate }) => {
           placeholder="Subtitle"
         />
 
-        {/* Image Upload */}
         <label className="block mb-2 font-medium text-sm text-gray-700">
           Banner Image
         </label>
@@ -89,7 +86,6 @@ const BannerEdit = ({ isOpen, onClose, banner, onUpdate }) => {
           />
         )}
 
-        {/* Buttons */}
         <div className="flex justify-end gap-2">
           <button onClick={onClose} className="px-4 py-1 border rounded">
             Cancel
@@ -97,7 +93,7 @@ const BannerEdit = ({ isOpen, onClose, banner, onUpdate }) => {
           <button
             onClick={handleSubmit}
             className="px-4 py-1 bg-green-500 text-white rounded"
-          > 
+          >
             Update
           </button>
         </div>

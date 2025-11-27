@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
-import VisionMissionAdd from "../Common/VisionMissionAdd";
-import VisionMissionEdit from "../Common/VisionMissionEdit";
-import VisionMissionViewModal from "../ViewModals/HomePage/VisionMissionView";
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2, Eye } from 'lucide-react';
+import VisionMissionAdd from '../Common/VisionMissionAdd';
+import VisionMissionEdit from '../Common/VisionMissionEdit';
+import VisionMissionViewModal from '../ViewModals/HomePage/VisionMissionView';
 
-import { getVisionMission, deleteVisionMission } from "../../../Api";
+import { getVisionMission, deleteVisionMission } from '../../../Api';
 
-import { toast } from "react-toastify";
-import Swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const VisionMission = () => {
   const [visionMission, setVisionMission] = useState(null);
@@ -16,7 +16,7 @@ const VisionMission = () => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isViewOpen, setIsViewOpen] = useState(false);
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchVisionMission();
@@ -27,8 +27,8 @@ const VisionMission = () => {
       const data = await getVisionMission(token);
       setVisionMission(data);
     } catch (error) {
-      console.error("Error fetching Vision & Mission:", error);
-      toast.error("Failed to fetch Vision & Mission!");
+      console.error('Error fetching Vision & Mission:', error);
+      toast.error('Failed to fetch Vision & Mission!');
     }
   };
 
@@ -36,41 +36,41 @@ const VisionMission = () => {
     if (!visionMission) return;
 
     const result = await Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#28a745",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
     });
 
     if (result.isConfirmed) {
       try {
         await deleteVisionMission(token);
         setVisionMission(null);
-        toast.success("Vision & Mission deleted successfully!");
+        toast.success('Vision & Mission deleted successfully!');
       } catch (error) {
-        console.error("Error deleting Vision & Mission:", error);
-        toast.error("Failed to delete Vision & Mission!");
+        console.error('Error deleting Vision & Mission:', error);
+        toast.error('Failed to delete Vision & Mission!');
       }
     }
   };
 
   const handleAddSuccess = () => {
     fetchVisionMission();
-    toast.success("Vision & Mission added successfully!");
+    toast.success('Vision & Mission added successfully!');
   };
 
   const handleEditSuccess = () => {
     fetchVisionMission();
-    toast.success("Vision & Mission updated successfully!");
+    toast.success('Vision & Mission updated successfully!');
   };
 
-  const shortText = (text = "") => {
-    const words = text.split(" ");
+  const shortText = (text = '') => {
+    const words = text.split(' ');
     if (words.length <= 20) return text;
-    return words.slice(0, 20).join(" ") + "...";
+    return words.slice(0, 20).join(' ') + '...';
   };
 
   return (
@@ -88,7 +88,6 @@ const VisionMission = () => {
         )}
       </div>
 
-      {/* Table */}
       <div className="overflow-x-auto w-full bg-white rounded shadow">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
@@ -143,7 +142,6 @@ const VisionMission = () => {
                   />
                 </td>
 
-                {/* Stats */}
                 <td className="px-6 py-4 max-w-xs">
                   {visionMission.stats?.slice(0, 2).map((stat, index) => (
                     <div key={index}>
@@ -157,16 +155,15 @@ const VisionMission = () => {
                       title={visionMission.stats
                         .slice(2)
                         .map((s) => `${s.number} - ${s.label}`)
-                        .join(", ")}
+                        .join(', ')}
                     >
                       ...
                     </span>
                   )}
                 </td>
 
-                {/* ⭐ NEW EXPERIENCE COLUMN */}
                 <td className="px-6 py-4">
-                  {visionMission.totalExperience || "—"}
+                  {visionMission.totalExperience || '—'}
                 </td>
 
                 <td className="px-6 py-4">
@@ -207,7 +204,6 @@ const VisionMission = () => {
         </table>
       </div>
 
-      {/* Modals */}
       <VisionMissionAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}

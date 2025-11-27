@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 const ProjectImagesEdit = ({ isOpen, onClose, project, onUpdate }) => {
   const [files, setFiles] = useState([]);
@@ -32,7 +32,10 @@ const ProjectImagesEdit = ({ isOpen, onClose, project, onUpdate }) => {
           <button className="px-4 py-2 bg-gray-300 rounded" onClick={onClose}>
             Cancel
           </button>
-          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" onClick={handleSubmit}>
+          <button
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            onClick={handleSubmit}
+          >
             Update
           </button>
         </div>
