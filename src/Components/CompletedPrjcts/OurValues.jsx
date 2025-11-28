@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Value1 from "../../assets/UbkarHabit.png";
-import { getAllOurValues } from "../../Api";
+import React, { useEffect, useState } from 'react';
+import { getAllOurValues } from '../../Api';
 
 const OurValues = () => {
   const [values, setValues] = useState([]);
@@ -11,7 +10,7 @@ const OurValues = () => {
         const res = await getAllOurValues();
         setValues(res.data);
       } catch (error) {
-        console.error("Failed to fetch values:", error);
+        console.error('Failed to fetch values:', error);
       }
     };
 
@@ -35,22 +34,22 @@ const OurValues = () => {
               <div
                 className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
                 style={{
-                  width: "64px",
-                  height: "64px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  width: '64px',
+                  height: '64px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
               >
                 <img
                   src={value.iconImage}
                   alt={value.title}
                   style={{
-                    maxWidth: "64px",
-                    maxHeight: "64px",
-                    width: "auto",
-                    height: "auto",
-                    objectFit: "contain",
+                    maxWidth: '64px',
+                    maxHeight: '64px',
+                    width: 'auto',
+                    height: 'auto',
+                    objectFit: 'contain',
                   }}
                 />
               </div>
@@ -60,14 +59,6 @@ const OurValues = () => {
               </p>
             </div>
           ))}
-        </div>
-
-        <div className="relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl">
-          <img
-            src={Value1}
-            alt="Upkar Habitat"
-            className="w-full h-auto object-cover"
-          />
         </div>
       </div>
     </div>

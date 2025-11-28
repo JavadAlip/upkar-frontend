@@ -1305,3 +1305,47 @@ export const deleteQuoteAPI = async (id, token) => {
   });
   return res.data;
 };
+
+// Value images
+export const getValueImages = async () => {
+  const res = await axios.get(`${API_URL}/completedproject/get-value-images`);
+  return res.data;
+};
+
+export const createValueImage = async (formData, token) => {
+  const res = await axios.post(
+    `${API_URL}/completedproject/create-value-image`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
+  return res.data;
+};
+
+export const editValueImage = async (id, formData, token) => {
+  const res = await axios.put(
+    `${API_URL}/completedproject/update-value-image/${id}`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
+  return res.data;
+};
+
+export const deleteValueImage = async (id, token) => {
+  const res = await axios.delete(
+    `${API_URL}/completedproject/delete-value-image/${id}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+  return res.data;
+};

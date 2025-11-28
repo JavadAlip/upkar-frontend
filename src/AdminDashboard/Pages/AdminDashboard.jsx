@@ -33,6 +33,7 @@ import OngoingMain from '../Components/OngoingPrjctPage/OngoingMain';
 import ProjectLists from '../Components/OngoingPrjctPage/ProjectLists';
 import OurValues from '../Components/OngoingPrjctPage/OurValues';
 import QuoteCertificate from '../Components/HomePage/Quote';
+import ValueImages from '../Components/CompletedPrjctPage/ValueImages';
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('banner');
@@ -103,20 +104,21 @@ const AdminDashboard = () => {
         return <OurValues />;
       case 'quotescertificate':
         return <QuoteCertificate />;
+      case 'valueimages':
+        return <ValueImages />;
       default:
         return <div>Welcome Admin</div>;
     }
   };
-
   return (
     <div>
       <Sidebar setActiveSection={setActiveSection} />
 
-      <div className="fixed top-0 left-64 right-0 h-16 z-10">
+      <div className="fixed top-0 sm:left-64 left-0 right-0 h-16 z-10">
         <Navbar />
       </div>
 
-      <div className="ml-64 mt-16 p-6 overflow-auto h-screen bg-gray-100">
+      <div className="sm:ml-64 ml-0 mt-16 p-6 overflow-auto min-h-screen bg-gray-100">
         {renderSection()}
       </div>
     </div>

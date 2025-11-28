@@ -5,15 +5,14 @@ import { toast } from 'react-toastify';
 
 const Navbar = () => {
   const navigate = useNavigate();
-
   const handleLogout = () => {
     Swal.fire({
       title: 'Are you sure?',
       text: 'You will be logged out of the admin dashboard!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
       confirmButtonText: 'Yes, Logout!',
       cancelButtonText: 'Cancel',
     }).then((result) => {
@@ -26,9 +25,12 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full h-16 bg-white shadow flex items-center justify-between px-6">
-      <h1 className="text-xl font-bold text-gray-800">Admin Dashboard</h1>
-      <div>
+    <div className="w-full h-16 bg-white shadow flex items-center px-6">
+      <h1 className="hidden sm:block text-2xl font-bold text-black">
+        ADMIN DASHBOARD
+      </h1>
+
+      <div className="flex-1 flex justify-end">
         <button
           onClick={handleLogout}
           className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
