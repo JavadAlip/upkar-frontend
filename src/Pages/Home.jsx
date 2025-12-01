@@ -10,6 +10,7 @@ import Navbar from '../Components/Common/NavbarHome';
 import Footer from '../Components/Common/Footer';
 import Quote from '../Components/HomePage/Quote';
 import TreeSection from '../Components/HomePage/TreeSection';
+import Map from '../Components/HomePage/Map';
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <HomeMain />
       <TreeSection />
       <VisionMission />
+      <Map />
       <Projects />
       <GetInTouch />
       <Certification />

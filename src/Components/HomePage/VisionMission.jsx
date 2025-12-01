@@ -3,8 +3,6 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import Vision3 from '../../assets/Vision3.png';
 import visionExp from '../../assets/visionExp1.png';
 import aboutArrow from '../../assets/Icons/aboutArrow.png';
-import ProjectBtn from '../../assets/Icons/ProjectBtn.png';
-import Map from '../../assets/map.png';
 import { getVisionMission } from '../../Api';
 import axios from 'axios';
 
@@ -157,30 +155,6 @@ const VisionMission = () => {
             )}
           </div>
         ))}
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mt-12 lg:mt-16 items-center">
-        <div className="rounded-2xl overflow-hidden shadow-xl">
-          <img
-            src={Map}
-            alt="Location Map"
-            className="w-full h-60 sm:h-72 md:h-80 lg:h-[400px] object-cover"
-          />
-        </div>
-
-        <div className="space-y-4 sm:space-y-6">
-          <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
-            Explore our portfolio of exceptional properties and take the first
-            step toward a new life.
-          </p>
-          <div className="mt-4">
-            <img
-              src={ProjectBtn}
-              alt="Explore Projects"
-              className="w-36 sm:w-40 md:w-48 lg:w-56 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-        </div>
       </div>
     </div>
   );
