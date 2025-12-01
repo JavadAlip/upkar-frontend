@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import QuoteUp from "../../assets/Icons/VectorUp.png";
-import QuoteDown from "../../assets/Icons/VectorDown.png";
-import { getAllQuotes } from "../../Api";
+import React, { useEffect, useState } from 'react';
+import QuoteUp from '../../assets/Icons/VectorUp.png';
+import QuoteDown from '../../assets/Icons/VectorDown.png';
+import { getAllQuotes } from '../../Api';
 
 const Quote = () => {
   const [quote, setQuote] = useState(null);
@@ -10,13 +10,13 @@ const Quote = () => {
     const fetchQuote = async () => {
       try {
         const res = await getAllQuotes();
-        console.log("QUOTE API RESPONSE ===>", res);
+        console.log('QUOTE API RESPONSE ===>', res);
 
         if (res?.quotes?.length > 0) {
           setQuote(res.quotes[0]);
         }
       } catch (error) {
-        console.error("Error fetching quote:", error);
+        console.error('Error fetching quote:', error);
       }
     };
 

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import QuoteUp from "../../assets/Icons/VectorUp.png";
-import QuoteDown from "../../assets/Icons/VectorDown.png";
-import CertificationImage from "../../assets/Certification.png";
-import { getQuotesAPI } from "../../Api";
+import React, { useState, useEffect } from 'react';
+import QuoteUp from '../../assets/Icons/VectorUp.png';
+import QuoteDown from '../../assets/Icons/VectorDown.png';
+import CertificationImage from '../../assets/Certification.png';
+import { getQuotesAPI } from '../../Api';
 
 const Quote = () => {
   const [latestQuote, setLatestQuote] = useState(null);
@@ -18,7 +18,7 @@ const Quote = () => {
         setLatestQuote(data[data.length - 1]);
       }
     } catch (error) {
-      console.error("Error fetching quotes:", error);
+      console.error('Error fetching quotes:', error);
     }
   };
 
@@ -30,8 +30,8 @@ const Quote = () => {
         className="px-4 lg:px-10 py-10 sm:py-12 md:py-20 lg:py-24 relative rounded-[23px] overflow-hidden flex justify-center items-center"
         style={{
           backgroundImage: `url(${CertificationImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       >
         <div className="relative w-[90%] bg-gradient-to-b from-white/50 via-white/30 via-white/20 to-white/0 backdrop-blur-lg border border-white/20 rounded-[23px] px-4 lg:px-10 py-10 sm:py-12 md:py-20 lg:py-24 text-center shadow-lg">

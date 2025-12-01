@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import EmailIcon from "@mui/icons-material/Email";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import { getAllAboutMain } from "../../Api";
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import EmailIcon from '@mui/icons-material/Email';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { getAllAboutMain } from '../../Api';
 
 const MainSection = () => {
   const [data, setData] = useState(null);
@@ -13,12 +13,12 @@ const MainSection = () => {
     const fetchData = async () => {
       try {
         const res = await getAllAboutMain();
-        console.log("ABOUT MAIN RESPONSE ===>", res);
+        console.log('ABOUT MAIN RESPONSE ===>', res);
         if (res?.aboutMainList?.length > 0) {
           setData(res.aboutMainList[0]);
         }
       } catch (err) {
-        console.error("Error fetching About Main:", err);
+        console.error('Error fetching About Main:', err);
       }
     };
     fetchData();
@@ -43,8 +43,8 @@ const MainSection = () => {
         <div className="flex flex-col items-center text-center">
           {/* Dynamic Heading */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light mb-6 leading-tight">
-            {data.heading?.split("|")[0]} <br />
-            <span className="font-bold">{data.heading?.split("|")[1]}</span>
+            {data.heading?.split('|')[0]} <br />
+            <span className="font-bold">{data.heading?.split('|')[1]}</span>
           </h2>
 
           {/* Explore Button */}
@@ -67,8 +67,8 @@ const MainSection = () => {
               className="rounded-2xl overflow-hidden relative h-44 sm:h-52 shadow-md"
               style={{
                 backgroundImage: `url(${data.plotImage})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
               }}
             >
               <div className="absolute inset-0 bg-black/40"></div>
@@ -85,8 +85,8 @@ const MainSection = () => {
               className="rounded-2xl overflow-hidden relative h-44 sm:h-52 shadow-md"
               style={{
                 backgroundImage: `url(${data.acresImage})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
               }}
             >
               <div className="absolute inset-0 bg-black/40"></div>
@@ -100,14 +100,13 @@ const MainSection = () => {
           </div>
         </div>
 
-        {/* RIGHT SECTION (SLIDER) */}
         <div className="relative w-full">
           <div className="rounded-[2rem] overflow-hidden shadow-lg relative h-[420px] sm:h-[500px] lg:h-[560px]">
             {images.map((img, index) => (
               <div
                 key={index}
                 className={`absolute inset-0 transition-opacity duration-700 ${
-                  index === current ? "opacity-100" : "opacity-0"
+                  index === current ? 'opacity-100' : 'opacity-0'
                 }`}
               >
                 <img
@@ -130,7 +129,6 @@ const MainSection = () => {
               </button>
             </div>
 
-            {/* Slider Arrows */}
             <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-4 z-30">
               <button
                 onClick={prevSlide}
@@ -149,7 +147,6 @@ const MainSection = () => {
         </div>
       </div>
 
-      {/* Paragraphs */}
       <div className="mx-auto max-w-[95%] lg:max-w-[85%] text-center pt-10">
         <p className="text-[#050F27] text-lg lg:text-[24px] font-light leading-relaxed mb-4">
           {data.paragraph1}

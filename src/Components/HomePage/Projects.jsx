@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { getProjects } from "../../Api";
-import ProjectBtn1 from "../../assets/Icons/projectBtn1.png";
-import ProjectBtn2 from "../../assets/Icons/projectBtn2.png";
-import ProjectBtn3 from "../../assets/Icons/projectBtn3.png";
+import React, { useState, useEffect } from 'react';
+import { getProjects } from '../../Api';
+import ProjectBtn1 from '../../assets/Icons/projectBtn1.png';
+import ProjectBtn2 from '../../assets/Icons/projectBtn2.png';
+import ProjectBtn3 from '../../assets/Icons/projectBtn3.png';
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -11,12 +11,12 @@ const Projects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const token = localStorage.getItem("adminToken");
+        const token = localStorage.getItem('adminToken');
         const data = await getProjects(token);
         setProjects(data);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching projects:", error);
+        console.error('Error fetching projects:', error);
         setLoading(false);
       }
     };
@@ -26,11 +26,11 @@ const Projects = () => {
 
   const getButtonImage = (type) => {
     switch (type?.toLowerCase()) {
-      case "ongoing":
+      case 'ongoing':
         return ProjectBtn1;
-      case "upcoming":
+      case 'upcoming':
         return ProjectBtn2;
-      case "completed":
+      case 'completed':
         return ProjectBtn3;
       default:
         return ProjectBtn1;
@@ -39,14 +39,14 @@ const Projects = () => {
 
   const getButtonText = (type) => {
     switch (type?.toLowerCase()) {
-      case "ongoing":
-        return "Explore Ongoing Projects";
-      case "upcoming":
-        return "Explore Upcoming Projects";
-      case "completed":
-        return "Explore Completed Projects";
+      case 'ongoing':
+        return 'Explore Ongoing Projects';
+      case 'upcoming':
+        return 'Explore Upcoming Projects';
+      case 'completed':
+        return 'Explore Completed Projects';
       default:
-        return "Explore Projects";
+        return 'Explore Projects';
     }
   };
 
@@ -96,14 +96,14 @@ const Projects = () => {
               key={project._id}
               className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
             >
-              <div className={`space-y-6 ${!isEven ? "order-2" : ""}`}>
+              <div className={`space-y-6 ${!isEven ? 'order-2' : ''}`}>
                 <h2
                   className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-800 leading-tight"
                   style={{
                     fontFamily: "'Noto Serif JP', serif",
                     fontWeight: 300,
-                    fontSize: "48px",
-                    color: "#000000",
+                    fontSize: '48px',
+                    color: '#000000',
                   }}
                   dangerouslySetInnerHTML={{ __html: project.heading }}
                 />
@@ -113,9 +113,9 @@ const Projects = () => {
                   style={{
                     fontFamily: "'Figtree', sans-serif",
                     fontWeight: 300,
-                    fontSize: "20px",
-                    color: "#000000",
-                    lineHeight: "1.2",
+                    fontSize: '20px',
+                    color: '#000000',
+                    lineHeight: '1.2',
                   }}
                 >
                   {project.description}
@@ -123,7 +123,7 @@ const Projects = () => {
 
                 <ul
                   className={`space-y-2 text-sm sm:text-base lg:text-lg ${
-                    !isEven ? "pl-80" : ""
+                    !isEven ? 'pl-80' : ''
                   }`}
                 >
                   {project.bulletPoints?.map((point, idx) => (
@@ -132,9 +132,9 @@ const Projects = () => {
                       style={{
                         fontFamily: "'Figtree', sans-serif",
                         fontWeight: 300,
-                        fontSize: "18px",
-                        color: "#000000",
-                        lineHeight: "1.6",
+                        fontSize: '18px',
+                        color: '#000000',
+                        lineHeight: '1.6',
                       }}
                       className="flex items-start"
                     >
@@ -144,7 +144,7 @@ const Projects = () => {
                   ))}
                 </ul>
 
-                <div className={`mt-4 ${!isEven ? "pl-64" : ""}`}>
+                <div className={`mt-4 ${!isEven ? 'pl-64' : ''}`}>
                   <img
                     src={getButtonImage(project.type)}
                     alt={getButtonText(project.type)}
@@ -153,7 +153,7 @@ const Projects = () => {
                 </div>
               </div>
 
-              <div className={`relative ${!isEven ? "order-1" : ""}`}>
+              <div className={`relative ${!isEven ? 'order-1' : ''}`}>
                 <div className="rounded-2xl overflow-hidden shadow-xl">
                   <img
                     src={project.image}
@@ -165,18 +165,18 @@ const Projects = () => {
                 <div
                   className={`absolute ${
                     isEven
-                      ? "-bottom-6 -left-56 right-4"
-                      : "bottom-10 -right-56"
+                      ? '-bottom-6 -left-56 right-4'
+                      : 'bottom-10 -right-56'
                   } bg-white rounded-lg shadow-lg p-6`}
-                  style={{ maxWidth: isEven ? "77%" : "430px" }}
+                  style={{ maxWidth: isEven ? '77%' : '430px' }}
                 >
                   <p
                     style={{
                       fontFamily: "'Figtree', sans-serif",
                       fontWeight: 300,
-                      fontSize: "16px",
-                      color: "#000000",
-                      lineHeight: "1.6",
+                      fontSize: '16px',
+                      color: '#000000',
+                      lineHeight: '1.6',
                       margin: 0,
                     }}
                   >
@@ -238,15 +238,15 @@ const Projects = () => {
 
               <div
                 className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[85%] sm:w-[75%] md:w-[65%] bg-white rounded-lg shadow-lg p-3 sm:p-4"
-                style={{ maxWidth: "77%" }}
+                style={{ maxWidth: '77%' }}
               >
                 <p
                   style={{
                     fontFamily: "'Figtree', sans-serif",
                     fontWeight: 300,
-                    fontSize: "16px",
-                    color: "#000000",
-                    lineHeight: "1.6",
+                    fontSize: '16px',
+                    color: '#000000',
+                    lineHeight: '1.6',
                     margin: 0,
                   }}
                 >
