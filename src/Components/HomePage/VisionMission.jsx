@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import Vision3 from "../../assets/Vision3.png";
-import visionExp from "../../assets/visionExp1.png";
-import aboutArrow from "../../assets/Icons/aboutArrow.png";
-import ProjectBtn from "../../assets/Icons/ProjectBtn.png";
-import Map from "../../assets/map.png";
-import { getVisionMission } from "../../Api";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import Vision3 from '../../assets/Vision3.png';
+import visionExp from '../../assets/visionExp1.png';
+import aboutArrow from '../../assets/Icons/aboutArrow.png';
+import ProjectBtn from '../../assets/Icons/ProjectBtn.png';
+import Map from '../../assets/map.png';
+import { getVisionMission } from '../../Api';
+import axios from 'axios';
 
 const VisionMission = () => {
   const [visionMission, setVisionMission] = useState(null);
   const [missionOpen, setMissionOpen] = useState(false);
   const [visionOpen, setVisionOpen] = useState(false);
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,14 +20,14 @@ const VisionMission = () => {
         const data = await getVisionMission(token);
         setVisionMission(data);
       } catch (error) {
-        console.error("Error fetching Vision & Mission:", error);
+        console.error('Error fetching Vision & Mission:', error);
       }
     };
     fetchData();
   }, [token]);
 
   return (
-    <div className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
+    <div className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 mt-10 md:mt-14 lg:mt-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
         <div className="space-y-8">
           <h2
@@ -40,7 +40,7 @@ const VisionMission = () => {
 
           <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
             {visionMission?.description ||
-              "Our core values are centered on integrity and trust, upholding transparency and ethical practices in every interaction. We are driven by a commitment to quality and craftsmanship."}
+              'Our core values are centered on integrity and trust, upholding transparency and ethical practices in every interaction. We are driven by a commitment to quality and craftsmanship.'}
           </p>
 
           <div className="border-t border-gray-300 pt-6">
@@ -60,7 +60,7 @@ const VisionMission = () => {
             {missionOpen && (
               <p className="mt-4 text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                 {visionMission?.missionText ||
-                  "It is to consistently deliver exceptional homes and build lasting relationships based on trust, quality, and a commitment to customer satisfaction."}
+                  'It is to consistently deliver exceptional homes and build lasting relationships based on trust, quality, and a commitment to customer satisfaction.'}
               </p>
             )}
           </div>
@@ -82,7 +82,7 @@ const VisionMission = () => {
             {visionOpen && (
               <p className="mt-4 text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                 {visionMission?.visionText ||
-                  "To be the most trusted and innovative real estate developer, creating sustainable communities that enhance the quality of life for generations to come."}
+                  'To be the most trusted and innovative real estate developer, creating sustainable communities that enhance the quality of life for generations to come.'}
               </p>
             )}
           </div>
@@ -112,19 +112,19 @@ const VisionMission = () => {
                 />
                 <div className="absolute font-[Figtree] inset-0 flex flex-col justify-center items-center text-start px-2">
                   <h3 className="text-3xl sm:text-3xl md:text-6xl font-bold text-white">
-                    {visionMission?.totalExperience?.split(" ")[0] ||
+                    {visionMission?.totalExperience?.split(' ')[0] ||
                       visionMission?.stats?.[0]?.number ||
-                      "10+"}
+                      '10+'}
                   </h3>
                   <p className="text-xs sm:text-sm md:text-base font-[Figtree] text-white font-medium leading-snug whitespace-pre-line">
                     {visionMission?.totalExperience
                       ?.replace(
-                        visionMission?.totalExperience?.split(" ")[0],
-                        ""
+                        visionMission?.totalExperience?.split(' ')[0],
+                        ''
                       )
                       .trim() ||
                       visionMission?.stats?.[0]?.label ||
-                      "Years of experience"}
+                      'Years of experience'}
                   </p>
                 </div>
               </div>

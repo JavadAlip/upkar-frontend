@@ -114,6 +114,12 @@ const Sidebar = ({ setActiveSection }) => {
               >
                 Awards
               </button>
+              <button
+                onClick={() => setActiveSection('tree')}
+                className="p-2 hover:bg-blue-800 rounded text-left"
+              >
+                Tree
+              </button>
             </div>
           )}
 
