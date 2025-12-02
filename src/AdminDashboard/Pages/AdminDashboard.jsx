@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../Components/Sidebar';
 import Navbar from '../Components/Navbar';
 import BannerTable from '../Components/HomePage/Banner';
@@ -38,6 +38,20 @@ import TreeSection from '../Components/HomePage/Tree';
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('banner');
+
+  useEffect(() => {
+    window.history.pushState(null, '', window.location.href);
+
+    const handlePopState = () => {
+      window.history.pushState(null, '', window.location.href);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
 
   const renderSection = () => {
     switch (activeSection) {
@@ -113,6 +127,7 @@ const AdminDashboard = () => {
         return <div>Welcome Admin</div>;
     }
   };
+
   return (
     <div>
       <Sidebar setActiveSection={setActiveSection} />

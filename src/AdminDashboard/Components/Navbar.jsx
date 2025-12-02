@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 const Navbar = () => {
   const navigate = useNavigate();
+
   const handleLogout = () => {
     Swal.fire({
       title: 'Are you sure?',
@@ -18,7 +19,7 @@ const Navbar = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.removeItem('adminToken');
-        navigate('/admin-login');
+        navigate('/admin-login', { replace: true });
         toast.success('Logged out successfully!');
       }
     });
