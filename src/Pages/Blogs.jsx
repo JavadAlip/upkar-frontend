@@ -1,9 +1,8 @@
-import BlogMain from "../Components/Blogs/BlogMain";
-import PopularArticles from "../Components/Blogs/PopularArticles";
-import ReadMore from "../Components/Blogs/ReadMore";
-import JoinTeam from "../Components/Career/JoinTeam";
-import Footer from "../Components/Common/Footer";
-import CmpltNavbar from "../Components/CompletedPrjcts/CmpltNavbar";
+import BlogMain from '../Components/Blogs/BlogMain';
+import PopularArticles from '../Components/Blogs/PopularArticles';
+import ReadMore from '../Components/Blogs/ReadMore';
+import JoinTeam from '../Components/Career/JoinTeam';
+import CmpltNavbar from '../Components/CompletedPrjcts/CmpltNavbar';
 
 const Blogs = () => {
   return (
@@ -13,7 +12,6 @@ const Blogs = () => {
       <PopularArticles />
       <ReadMore />
       <JoinTeam />
-      <Footer />
     </>
   );
 };

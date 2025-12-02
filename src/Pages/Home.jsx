@@ -7,7 +7,6 @@ import QnsAns from '../Components/Common/QnsAns';
 import Awards from '../Components/HomePage/Awards';
 import ContactUs from '../Components/Common/ContactUs';
 import Navbar from '../Components/Common/NavbarHome';
-import Footer from '../Components/Common/Footer';
 import Quote from '../Components/HomePage/Quote';
 import TreeSection from '../Components/HomePage/TreeSection';
 import Map from '../Components/HomePage/Map';
@@ -27,7 +26,6 @@ const Home = () => {
       <QnsAns />
       <Awards />
       <ContactUs />
-      <Footer />
     </>
   );
 };
