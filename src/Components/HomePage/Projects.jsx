@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { getProjects } from '../../Api';
 import ProjectBtn1 from '../../assets/Icons/projectBtn1.png';
 import ProjectBtn2 from '../../assets/Icons/projectBtn2.png';
@@ -50,6 +51,19 @@ const Projects = () => {
     }
   };
 
+  const getProjectLink = (type) => {
+    switch (type?.toLowerCase()) {
+      case 'ongoing':
+        return '/ongoing-projects';
+      case 'upcoming':
+        return '/upcoming-projects';
+      case 'completed':
+        return '/completed-projects';
+      default:
+        return '/projects';
+    }
+  };
+
   if (loading) {
     return (
       <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
@@ -87,6 +101,7 @@ const Projects = () => {
         <span style={{ fontWeight: 500 }}>Projects</span>
       </h2>
 
+      {/* Desktop View */}
       <div className="space-y-20 hidden lg:block">
         {projects.map((project, index) => {
           const isEven = index % 2 === 0;
@@ -145,11 +160,13 @@ const Projects = () => {
                 </ul>
 
                 <div className={`mt-4 ${!isEven ? 'pl-64' : ''}`}>
-                  <img
-                    src={getButtonImage(project.type)}
-                    alt={getButtonText(project.type)}
-                    className="w-45 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
-                  />
+                  <Link to={getProjectLink(project.type)}>
+                    <img
+                      src={getButtonImage(project.type)}
+                      alt={getButtonText(project.type)}
+                      className="w-45 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
+                    />
+                  </Link>
                 </div>
               </div>
 
@@ -219,11 +236,13 @@ const Projects = () => {
               </ul>
 
               <div className="mt-4">
-                <img
-                  src={getButtonImage(project.type)}
-                  alt={getButtonText(project.type)}
-                  className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
-                />
+                <Link to={getProjectLink(project.type)}>
+                  <img
+                    src={getButtonImage(project.type)}
+                    alt={getButtonText(project.type)}
+                    className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
+                  />
+                </Link>
               </div>
             </div>
 

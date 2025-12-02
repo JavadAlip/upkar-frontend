@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { getAllProjectMain } from "../../Api";
-import Phone from "../../assets/Icons/Phone.png";
-import Mail from "../../assets/Icons/mail.png";
-import Whatsapp from "../../assets/Icons/whatsapp.png";
-import enqNow from "../../assets/Icons/enqNow.png";
-import global from "../../assets/Icons/sustainability.png";
-import PrjctMain6 from "../../assets/PrjctMain6.png";
+import React, { useState, useEffect } from 'react';
+import { getAllProjectMain } from '../../Api';
+import Phone from '../../assets/Icons/Phone.png';
+import Mail from '../../assets/Icons/mail.png';
+import Whatsapp from '../../assets/Icons/whatsapp.png';
+import enqNow from '../../assets/Icons/enqNow.png';
+import global from '../../assets/Icons/sustainability.png';
+import PrjctMain6 from '../../assets/PrjctMain6.png';
+import { Link } from 'react-router-dom';
 
 const PrjctMain = () => {
   const [projectData, setProjectData] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     const fetchProjectMain = async () => {
@@ -18,7 +19,7 @@ const PrjctMain = () => {
         const data = await getAllProjectMain(token);
         if (data && data.length > 0) setProjectData(data[0]);
       } catch (err) {
-        console.error("Error fetching project main data:", err);
+        console.error('Error fetching project main data:', err);
       }
     };
 
@@ -37,9 +38,9 @@ const PrjctMain = () => {
   } = projectData;
 
   const customerAvatars = [
-    "https://i.pravatar.cc/150?img=1",
-    "https://i.pravatar.cc/150?img=2",
-    "https://i.pravatar.cc/150?img=3",
+    'https://i.pravatar.cc/150?img=1',
+    'https://i.pravatar.cc/150?img=2',
+    'https://i.pravatar.cc/150?img=3',
   ];
 
   return (
@@ -49,11 +50,11 @@ const PrjctMain = () => {
           <div className="space-y-8">
             <h2 className="leading-tight text-[48px] text-black font-figtree font-light">
               {heading
-                .split(" ")
-                .slice(0, heading.split(" ").length - 2)
-                .join(" ")}{" "}
+                .split(' ')
+                .slice(0, heading.split(' ').length - 2)
+                .join(' ')}{' '}
               <span className="font-figtree font-semibold">
-                {heading.split(" ").slice(-2).join(" ")}
+                {heading.split(' ').slice(-2).join(' ')}
               </span>
             </h2>
 
@@ -195,9 +196,12 @@ const PrjctMain = () => {
                 alt="Enquire Now"
                 className="cursor-pointer w-auto h-10 sm:h-12 md:h-[50px]"
               />
-              <button className="font-satoshi font-normal text-base sm:text-lg md:text-xl lg:text-2xl text-upkarText hover:underline transition-all sm:ml-auto md:ml-8 lg:ml-16">
+              <Link
+                to="/aboutus"
+                className="font-satoshi font-normal text-base sm:text-lg md:text-xl lg:text-2xl text-upkarText hover:underline transition-all sm:ml-auto md:ml-8 lg:ml-16"
+              >
                 More about us!
-              </button>
+              </Link>
             </div>
           </div>
         </div>

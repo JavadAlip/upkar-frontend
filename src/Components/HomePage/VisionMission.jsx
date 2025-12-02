@@ -5,6 +5,7 @@ import visionExp from '../../assets/visionExp1.png';
 import aboutArrow from '../../assets/Icons/aboutArrow.png';
 import { getVisionMission } from '../../Api';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const VisionMission = () => {
   const [visionMission, setVisionMission] = useState(null);
@@ -86,11 +87,13 @@ const VisionMission = () => {
           </div>
 
           <div className="mt-8">
-            <img
-              src={aboutArrow}
-              alt="Know more about us"
-              className="w-40 sm:w-45 md:w-50 lg:w-56 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
-            />
+            <Link to="/aboutus">
+              <img
+                src={aboutArrow}
+                alt="Know more about us"
+                className="w-40 sm:w-45 md:w-50 lg:w-56 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
+              />
+            </Link>
           </div>
         </div>
 

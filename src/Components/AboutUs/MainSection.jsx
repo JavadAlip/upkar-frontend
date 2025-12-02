@@ -4,6 +4,7 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { getAllAboutMain } from '../../Api';
+import { Link } from 'react-router-dom';
 
 const MainSection = () => {
   const [data, setData] = useState(null);
@@ -39,16 +40,14 @@ const MainSection = () => {
   return (
     <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 font-[Figtree]">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* LEFT SECTION */}
         <div className="flex flex-col items-center text-center">
-          {/* Dynamic Heading */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light mb-6 leading-tight">
             {data.heading?.split('|')[0]} <br />
             <span className="font-bold">{data.heading?.split('|')[1]}</span>
           </h2>
 
-          {/* Explore Button */}
-          <button
+          <Link
+            to="/project"
             aria-label="Explore Projects"
             className="inline-flex items-center bg-[#050F27] rounded-full shadow-md mb-10 transition-colors hover:bg-[#0b2444]"
           >
@@ -58,11 +57,9 @@ const MainSection = () => {
             <span className="relative -mr-1 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center border-2 border-[#071334]">
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#071334]" />
             </span>
-          </button>
+          </Link>
 
-          {/* Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
-            {/* Plot Card */}
             <div
               className="rounded-2xl overflow-hidden relative h-44 sm:h-52 shadow-md"
               style={{
@@ -80,7 +77,6 @@ const MainSection = () => {
               </div>
             </div>
 
-            {/* Acres Card */}
             <div
               className="rounded-2xl overflow-hidden relative h-44 sm:h-52 shadow-md"
               style={{
@@ -116,7 +112,6 @@ const MainSection = () => {
               </div>
             ))}
 
-            {/* Contact Icons */}
             <div className="absolute top-10 right-0 py-3 w-14 sm:w-16 bg-white flex flex-col items-center gap-1 rounded-tl-[0.8rem] rounded-bl-[0.8rem] shadow-md z-20">
               <button className="p-2 sm:p-3 rounded-full">
                 <LocalPhoneIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#050F27]" />

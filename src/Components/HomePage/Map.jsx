@@ -1,11 +1,10 @@
-import React from 'react';
 import ProjectBtn from '../../assets/Icons/ProjectBtn.png';
+import { Link } from 'react-router-dom';
 
 const Map = () => {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 lg:px-10 mt-12 lg:mt-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-        {/* Google Map Embed */}
         <div className="rounded-2xl overflow-hidden shadow-xl">
           <iframe
             title="Upkar Towers Location"
@@ -24,11 +23,13 @@ const Map = () => {
           </p>
 
           <div className="mt-4">
-            <img
-              src={ProjectBtn}
-              alt="Explore Projects"
-              className="w-36 sm:w-40 md:w-48 lg:w-56 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
-            />
+            <Link to="/project">
+              <img
+                src={ProjectBtn}
+                alt="Explore Projects"
+                className="w-36 sm:w-40 md:w-48 lg:w-56 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
+              />
+            </Link>
           </div>
         </div>
       </div>

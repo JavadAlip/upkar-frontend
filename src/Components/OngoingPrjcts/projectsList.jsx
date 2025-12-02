@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Search } from "lucide-react";
-import { FiChevronDown } from "react-icons/fi";
-import { getAllOngoingProjectsList } from "../../Api";
+import React, { useEffect, useState } from 'react';
+import { Search } from 'lucide-react';
+import { FiChevronDown } from 'react-icons/fi';
+import { getAllOngoingProjectsList } from '../../Api';
 const ProjectsList = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedStatus, setSelectedStatus] = useState("All");
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedStatus, setSelectedStatus] = useState('All');
   const [currentPage, setCurrentPage] = useState(0);
   const [projects, setProjects] = useState([]);
 
@@ -17,7 +17,7 @@ const ProjectsList = () => {
           setProjects(res.data);
         }
       } catch (error) {
-        console.error("Error fetching upcoming projects:", error);
+        console.error('Error fetching upcoming projects:', error);
       }
     };
 
@@ -29,9 +29,9 @@ const ProjectsList = () => {
       project.heading.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.location.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory =
-      selectedCategory === "All" || project.type === selectedCategory;
+      selectedCategory === 'All' || project.type === selectedCategory;
     const matchesStatus =
-      selectedStatus === "All" || project.type === selectedStatus;
+      selectedStatus === 'All' || project.type === selectedStatus;
     return matchesSearch && matchesCategory && matchesStatus;
   });
 
@@ -165,11 +165,11 @@ const ProjectsList = () => {
                 onClick={() => setCurrentPage(index)}
                 className={`transition-all duration-300 rounded-full ${
                   currentPage === index
-                    ? "bg-black h-3 w-8"
-                    : "bg-gray-300 h-3 w-3 hover:bg-gray-400"
+                    ? 'bg-black h-3 w-8'
+                    : 'bg-gray-300 h-3 w-3 hover:bg-gray-400'
                 }`}
                 aria-label={`Go to page ${index + 1}`}
-                aria-current={currentPage === index ? "page" : undefined}
+                aria-current={currentPage === index ? 'page' : undefined}
               />
             ))}
           </div>

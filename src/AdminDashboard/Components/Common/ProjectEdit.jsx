@@ -72,6 +72,7 @@ const ProjectEdit = ({ isOpen, onClose, project, onUpdate }) => {
           className="border p-2 w-full rounded mb-2"
         >
           <option value="">Select Type</option>
+          <option value="upcoming">Upcoming</option>
           <option value="ongoing">Ongoing</option>
           <option value="completed">Completed</option>
         </select>
