@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './Components/Common/Layout';
+import Footer from './Components/Common/Footer';
 import Home from './Pages/Home';
 import AboutUs from './Pages/AboutUs';
 import CompletedPrjcts from './Pages/CompletedPrjcts';
@@ -17,6 +17,27 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
+  const footerRef = useRef(null);
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!footerRef.current) return;
+
+      const footerTop = footerRef.current.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+
+      setShowButton(footerTop <= windowHeight);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <Router>
       <ToastContainer
@@ -31,21 +52,38 @@ export default function App() {
         pauseOnHover
         theme="colored"
       />
+
       <Routes>
+        {/* Public Routes */}
         <Route
           path="/*"
           element={
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/aboutus" element={<AboutUs />} />
-              <Route path="/completed-projects" element={<CompletedPrjcts />} />
-              <Route path="/upcoming-projects" element={<UpcomingPrjcts />} />
-              <Route path="/ongoing-projects" element={<OngoingPrjcts />} />
-              <Route path="/project" element={<Project />} />
-              <Route path="/events" element={<Event />} />
-              <Route path="/careers" element={<Career />} />
-              <Route path="/blogs" element={<Blogs />} />
-            </Routes>
+            <>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/aboutus" element={<AboutUs />} />
+                <Route
+                  path="/completed-projects"
+                  element={<CompletedPrjcts />}
+                />
+                <Route path="/upcoming-projects" element={<UpcomingPrjcts />} />
+                <Route path="/ongoing-projects" element={<OngoingPrjcts />} />
+                <Route path="/project" element={<Project />} />
+                <Route path="/events" element={<Event />} />
+                <Route path="/careers" element={<Career />} />
+                <Route path="/blogs" element={<Blogs />} />
+              </Routes>
+
+              <Footer ref={footerRef} />
+              {showButton && (
+                <button
+                  onClick={scrollToTop}
+                  className="fixed bottom-6 right-6 w-12 h-12 bg-[#ffffff] text-black rounded-full flex items-center justify-center shadow-lg  transition"
+                >
+                  ↑
+                </button>
+              )}
+            </>
           }
         />
 
