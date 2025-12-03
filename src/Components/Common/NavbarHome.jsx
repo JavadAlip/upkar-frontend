@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
-import navbarLast from "../../assets/navbarLast1.png";
+import React, { useState } from 'react';
+import { ChevronDown, Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.png';
+import navbarLast from '../../assets/navbarLast1.png';
 
 const NavbarHome = () => {
   const [ongoingOpen, setOngoingOpen] = useState(false);
@@ -10,10 +10,10 @@ const NavbarHome = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const staticLinks = [
-    { name: "Commercial", path: "/" },
-    { name: "Events", path: "/events" },
-    { name: "Blogs", path: "/blogs" },
-    { name: "Careers", path: "/careers" },
+    { name: 'Commercial', path: '/' },
+    { name: 'Events', path: '/events' },
+    { name: 'Blogs', path: '/blogs' },
+    { name: 'Careers', path: '/careers' },
   ];
 
   return (
@@ -58,7 +58,7 @@ const NavbarHome = () => {
               Ongoing
               <ChevronDown
                 className={`ml-1 w-4 h-4 transition-transform duration-300 ${
-                  ongoingOpen ? "rotate-180 text-blue-600" : "text-gray-500"
+                  ongoingOpen ? 'rotate-180 text-blue-600' : 'text-gray-500'
                 }`}
               />
             </span>
@@ -108,7 +108,7 @@ const NavbarHome = () => {
               Completed
               <ChevronDown
                 className={`ml-1 w-4 h-4 transition-transform duration-300 ${
-                  completedOpen ? "rotate-180 text-blue-600" : "text-gray-500"
+                  completedOpen ? 'rotate-180 text-blue-600' : 'text-gray-500'
                 }`}
               />
             </Link>
@@ -175,7 +175,7 @@ const NavbarHome = () => {
                 <span>Ongoing</span>
                 <ChevronDown
                   className={`w-4 h-4 transition-transform ${
-                    ongoingOpen ? "rotate-180 text-blue-600" : "text-gray-500"
+                    ongoingOpen ? 'rotate-180 text-blue-600' : 'text-gray-500'
                   }`}
                 />
               </button>
@@ -222,8 +222,8 @@ const NavbarHome = () => {
                     <ChevronDown
                       className={`w-4 h-4 transition-transform ${
                         completedOpen
-                          ? "rotate-180 text-blue-600"
-                          : "text-gray-500"
+                          ? 'rotate-180 text-blue-600'
+                          : 'text-gray-500'
                       }`}
                     />
                   </button>

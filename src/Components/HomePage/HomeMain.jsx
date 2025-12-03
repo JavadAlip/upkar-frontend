@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { getBanners } from "../../Api";
-import Connect from "../../assets/Icons/connect.png";
-import Phone from "../../assets/Icons/Phone.png";
-import Mail from "../../assets/Icons/mail.png";
-import Whatsapp from "../../assets/Icons/whatsapp.png";
-import AboveIcon from "../../assets/aboveIcon.png";
-import tree from "../../assets/Tree.png";
+import React, { useState, useEffect } from 'react';
+import { getBanners } from '../../Api';
+import Connect from '../../assets/Icons/connect.png';
+import Phone from '../../assets/Icons/Phone.png';
+import Mail from '../../assets/Icons/mail.png';
+import Whatsapp from '../../assets/Icons/whatsapp.png';
+import AboveIcon from '../../assets/aboveIcon.png';
+import tree from '../../assets/Tree.png';
 
 const HomeMain = () => {
   const [banner, setBanner] = useState(null);
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     const fetchBanner = async () => {
@@ -18,7 +18,7 @@ const HomeMain = () => {
 
         if (data && data.length > 0) setBanner(data[0]);
       } catch (error) {
-        console.error("Error fetching banners:", error);
+        console.error('Error fetching banners:', error);
       }
     };
 
@@ -30,8 +30,8 @@ const HomeMain = () => {
       <div className="relative w-full group cursor-pointer mb-6 lg:mb-12">
         <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
           <img
-            src={banner?.image || ""}
-            alt={banner?.title || "Home Main"}
+            src={banner?.image || ''}
+            alt={banner?.title || 'Home Main'}
             className="w-full h-full object-cover transition-transform duration-300 rounded-[30px]"
           />
 
@@ -43,17 +43,17 @@ const HomeMain = () => {
               style={{ fontFamily: "'Figtree', sans-serif" }}
             >
               <span className="font-semibold">
-                {banner?.title?.split("\n")[0]}
+                {banner?.title?.split('\n')[0]}
               </span>
               <br />
-              <span className="font-bold">{banner?.title?.split("\n")[1]}</span>
+              <span className="font-bold">{banner?.title?.split('\n')[1]}</span>
             </h1>
 
             <p
               className="text-white max-w-md sm:max-w-lg md:max-w-xl text-base sm:text-lg md:text-xl lg:text-2xl mb-6 hidden sm:block"
               style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 400 }}
             >
-              {banner?.subtitle || ""}
+              {banner?.subtitle || ''}
             </p>
 
             <div className="flex items-start">

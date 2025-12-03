@@ -427,7 +427,7 @@ const Sidebar = ({ setActiveSection }) => {
           >
             <span className="flex items-center gap-2">
               <FileText className="w-5 h-5" />
-              Blogs
+              Blog Page
             </span>
             <ChevronDown
               className={`w-4 h-4 transition-transform ${
