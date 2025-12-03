@@ -1,15 +1,31 @@
-import React from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { getAboutImages } from '../../Api';
 
-const importAllImages = () => {
-  const images = import.meta.glob("../../assets/*.{jpg,jpeg,png,avif,webp}", {
-    eager: true,
-  });
-  return Object.values(images).map((img) => img.default || img);
-};
+const AboutImages = () => {
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-const Gallery = () => {
-  const images = importAllImages();
+  const token = localStorage.getItem('adminToken');
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const data = await getAboutImages(token);
+        const allImages = data.flatMap((item) => item.images || []);
+        setImages(allImages);
+      } catch (error) {
+        console.error('Error fetching about images:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchImages();
+  }, [token]);
+
+  if (loading) return <p className="text-center py-20">Loading gallery...</p>;
+  if (!images.length)
+    return <p className="text-center py-20">No images found</p>;
 
   return (
     <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
@@ -18,99 +34,95 @@ const Gallery = () => {
       </h2>
 
       <div className="relative hidden sm:block">
-        <div
-          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth pb-6"
-          style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth" }}
-        >
-          {Array.from({ length: Math.ceil(images.length / 8) }, (_, i) => {
+        <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth pb-6 gallery-container">
+          {Array.from({ length: Math.ceil(images.length / 8) }).map((_, i) => {
             const chunk = images.slice(i * 8, i * 8 + 8);
             const [img0, img1, img2, img3, img4, img5, img6, img7] = chunk;
 
             return (
               <div key={i} className="flex-shrink-0 w-full snap-center">
                 <div className="grid grid-cols-[2fr_1fr_2fr] gap-4">
-                  {/* Top-left large */}
-                  <div className="rounded-lg overflow-hidden">
-                    {img0 && (
+                  {img0 && (
+                    <div className="rounded-lg overflow-hidden">
                       <img
                         src={img0}
                         alt={`slide-${i}-0`}
                         className="w-full h-[340px] object-cover"
                       />
-                    )}
-                  </div>
+                    </div>
+                  )}
 
                   <div className="flex flex-col gap-4">
-                    <div className="rounded-lg overflow-hidden">
-                      {img1 && (
+                    {img1 && (
+                      <div className="rounded-lg overflow-hidden">
                         <img
                           src={img1}
                           alt={`slide-${i}-1`}
                           className="w-full h-[160px] object-cover"
                         />
-                      )}
-                    </div>
-                    <div className="rounded-lg overflow-hidden">
-                      {img2 && (
+                      </div>
+                    )}
+                    {img2 && (
+                      <div className="rounded-lg overflow-hidden">
                         <img
                           src={img2}
                           alt={`slide-${i}-2`}
                           className="w-full h-[160px] object-cover"
                         />
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="rounded-lg overflow-hidden">
-                    {img3 && (
+                  {img3 && (
+                    <div className="rounded-lg overflow-hidden">
                       <img
                         src={img3}
                         alt={`slide-${i}-3`}
                         className="w-full h-[340px] object-cover"
                       />
-                    )}
-                  </div>
+                    </div>
+                  )}
 
-                  <div className="rounded-lg overflow-hidden">
-                    {img4 && (
+                  {img4 && (
+                    <div className="rounded-lg overflow-hidden">
                       <img
                         src={img4}
                         alt={`slide-${i}-4`}
                         className="w-full h-[340px] object-cover"
                       />
-                    )}
-                  </div>
+                    </div>
+                  )}
 
                   <div className="flex flex-col gap-4">
-                    <div className="rounded-lg overflow-hidden">
-                      {img5 && (
+                    {img5 && (
+                      <div className="rounded-lg overflow-hidden">
                         <img
                           src={img5}
                           alt={`slide-${i}-5`}
                           className="w-full h-[160px] object-cover"
                         />
-                      )}
-                    </div>
-                    <div className="rounded-lg overflow-hidden">
-                      {img6 && (
+                      </div>
+                    )}
+                    {img6 && (
+                      <div className="rounded-lg overflow-hidden">
                         <img
                           src={img6}
                           alt={`slide-${i}-6`}
                           className="w-full h-[160px] object-cover"
                         />
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="rounded-lg overflow-hidden">
-                    {img7 && (
+                  {img7 && (
+                    <div className="rounded-lg overflow-hidden">
                       <img
                         src={img7}
                         alt={`slide-${i}-7`}
                         className="w-full h-[340px] object-cover"
                       />
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
             );
@@ -119,30 +131,28 @@ const Gallery = () => {
 
         <button
           className="absolute left-0 top-1/2 bg-white text-gray-800 p-2 rounded-full shadow-md hover:shadow-lg transition-all"
-          onClick={() => {
-            const container = document.querySelector(".overflow-x-auto");
-            container.scrollBy({ left: -400, behavior: "smooth" });
-          }}
+          onClick={() =>
+            document
+              .querySelector('.gallery-container')
+              ?.scrollBy({ left: -400, behavior: 'smooth' })
+          }
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
-
         <button
           className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
-          onClick={() => {
-            const container = document.querySelector(".overflow-x-auto");
-            container.scrollBy({ left: 400, behavior: "smooth" });
-          }}
+          onClick={() =>
+            document
+              .querySelector('.gallery-container')
+              ?.scrollBy({ left: 400, behavior: 'smooth' })
+          }
         >
           <ChevronRight className="w-4 h-4" />
         </button>
       </div>
 
       <div className="relative block sm:hidden mt-2 mx-2">
-        <div
-          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth pb-6 movile"
-          style={{ scrollSnapType: "x mandatory", scrollBehavior: "smooth" }}
-        >
+        <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth pb-6 mobile-gallery">
           {images.map((src, index) => (
             <div
               key={index}
@@ -159,20 +169,21 @@ const Gallery = () => {
 
         <button
           className="absolute left-0 top-1/2 bg-white text-gray-800 p-2 rounded-full shadow-md hover:shadow-lg transition-all"
-          onClick={() => {
-            const container = document.querySelector(".movile");
-            container.scrollBy({ left: -400, behavior: "smooth" });
-          }}
+          onClick={() =>
+            document
+              .querySelector('.mobile-gallery')
+              ?.scrollBy({ left: -400, behavior: 'smooth' })
+          }
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
-
         <button
           className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
-          onClick={() => {
-            const container = document.querySelector(".movile");
-            container.scrollBy({ left: 400, behavior: "smooth" });
-          }}
+          onClick={() =>
+            document
+              .querySelector('.mobile-gallery')
+              ?.scrollBy({ left: 400, behavior: 'smooth' })
+          }
         >
           <ChevronRight className="w-4 h-4" />
         </button>
@@ -181,4 +192,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default AboutImages;

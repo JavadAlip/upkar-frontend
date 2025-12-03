@@ -216,6 +216,12 @@ const Sidebar = ({ setActiveSection }) => {
               >
                 Team
               </button>
+              <button
+                onClick={() => setActiveSection('aboutimages')}
+                className="p-2 hover:bg-blue-800 rounded text-left"
+              >
+                About images
+              </button>
             </div>
           )}
 

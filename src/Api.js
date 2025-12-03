@@ -626,6 +626,50 @@ export const deleteTeamMember = async (id, token) => {
   return res.data;
 };
 
+// About images
+export const getAboutImages = async () => {
+  const res = await axios.get(`${API_URL}/aboutuspage/get-all-about-images`);
+  return res.data;
+};
+
+export const createAboutImages = async (formData, token) => {
+  const res = await axios.post(
+    `${API_URL}/aboutuspage/create-about-images`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
+  return res.data;
+};
+
+export const updateAboutImages = async (id, formData, token) => {
+  const res = await axios.put(
+    `${API_URL}/aboutuspage/update-about-images/${id}`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
+  return res.data;
+};
+
+export const deleteAboutImages = async (id, token) => {
+  const res = await axios.delete(
+    `${API_URL}/aboutuspage/delete-about-images/${id}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+  return res.data;
+};
+
 //Events
 export const createEvent = async (formData, token) => {
   const res = await axios.post(`${API_URL}/eventspage/create-event`, formData, {

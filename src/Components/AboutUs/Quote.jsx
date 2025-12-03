@@ -41,28 +41,31 @@ const Quote = () => {
         />
       </div>
 
-      <div className="absolute top-13 right-5 lg:right-10 flex gap-1 sm:gap-2 opacity-90">
-        <img
-          src={QuoteDown}
-          alt="quote down"
-          className="w-4 sm:w-5 md:w-6 lg:w-7"
-        />
-        <img
-          src={QuoteDown}
-          alt="quote down"
-          className="w-4 sm:w-5 md:w-6 lg:w-7"
-        />
-      </div>
-
-      <div className="text-center mt-4 text-white text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed max-w-[75%] lg:max-w-[90%] mx-auto">
+      <div className="text-center mt-4 text-white text-base sm:text-lg md:text-xl lg:text-[24px] font-light leading-snug sm:leading-relaxed max-w-[75%] lg:max-w-[90%] mx-auto">
         <p>{quote.quoteContent}</p>
       </div>
+
+      <div className="w-full flex justify-end mt-3 pr-4 sm:pr-10">
+        <div className="flex gap-1 sm:gap-2 opacity-90">
+          <img
+            src={QuoteDown}
+            alt="quote down"
+            className="w-4 sm:w-5 md:w-6 lg:w-7"
+          />
+          <img
+            src={QuoteDown}
+            alt="quote down"
+            className="w-4 sm:w-5 md:w-6 lg:w-7"
+          />
+        </div>
+      </div>
+
       <div className="max-w-5xl mx-auto mt-10 text-right px-2 relative z-10">
-        <h3 className="font-semibold text-white text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+        <h3 className="font-semibold text-white text-base sm:text-lg md:text-xl lg:text-[24px] font-light">
           {quote.name}
         </h3>
 
-        <p className="text-gray-300 text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+        <p className="text-gray-300 text-base sm:text-lg md:text-xl lg:text-[24px] font-light">
           {quote.position}
         </p>
       </div>
