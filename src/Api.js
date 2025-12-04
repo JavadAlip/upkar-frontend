@@ -45,7 +45,7 @@ export const getVisionMission = async () => {
   return res.data;
 };
 
-export const createOrUpdateVisionMission = async (formData, token) => {
+export const createVisionMission = async (formData, token) => {
   const res = await axios.post(`${API_URL}/homepage/create-vision`, formData, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -55,8 +55,22 @@ export const createOrUpdateVisionMission = async (formData, token) => {
   return res.data;
 };
 
-export const deleteVisionMission = async (token) => {
-  const res = await axios.delete(`${API_URL}/homepage/delete-vision`, {
+export const updateVisionMission = async (id, formData, token) => {
+  const res = await axios.put(
+    `${API_URL}/homepage/update-vision/${id}`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
+  return res.data;
+};
+
+export const deleteVisionMission = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/homepage/delete-vision/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return res.data;

@@ -4,7 +4,6 @@ import Vision3 from '../../assets/Vision3.png';
 import visionExp from '../../assets/visionExp1.png';
 import aboutArrow from '../../assets/Icons/aboutArrow.png';
 import { getVisionMission } from '../../Api';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const VisionMission = () => {
@@ -17,7 +16,8 @@ const VisionMission = () => {
     const fetchData = async () => {
       try {
         const data = await getVisionMission(token);
-        setVisionMission(data);
+
+        setVisionMission(data?.[0] || null);
       } catch (error) {
         console.error('Error fetching Vision & Mission:', error);
       }
@@ -101,7 +101,7 @@ const VisionMission = () => {
           <div className="rounded-2xl overflow-hidden shadow-xl">
             <img
               src={visionMission?.image || Vision3}
-              alt="Upkar Development"
+              alt="Vision & Mission"
               className="w-full h-64 sm:h-80 md:h-[420px] lg:h-[480px] object-cover"
             />
             <div className="absolute -bottom-4 right-0 sm:-bottom-6 sm:-right-4 md:-bottom-8 md:-right-6">
@@ -111,13 +111,13 @@ const VisionMission = () => {
                   alt="Years of Experience"
                   className="w-full rounded-xl shadow-lg"
                 />
-                <div className="absolute font-[Figtree] inset-0 flex flex-col justify-center items-center text-start px-2">
+                <div className="absolute inset-0 flex flex-col justify-center items-center px-2">
                   <h3 className="text-3xl sm:text-3xl md:text-6xl font-bold text-white">
                     {visionMission?.totalExperience?.split(' ')[0] ||
                       visionMission?.stats?.[0]?.number ||
                       '10+'}
                   </h3>
-                  <p className="text-xs sm:text-sm md:text-base font-[Figtree] text-white font-medium leading-snug whitespace-pre-line">
+                  <p className="text-xs sm:text-sm md:text-base font-[Figtree] text-white font-medium leading-snug whitespace-pre-line text-center">
                     {visionMission?.totalExperience
                       ?.replace(
                         visionMission?.totalExperience?.split(' ')[0],
@@ -146,10 +146,7 @@ const VisionMission = () => {
             >
               {stat.number}
             </div>
-            <div
-              className="text-[#1A2235] font-[Figtree] text-sm sm:text-base md:text-[16px] leading-snug mt-1 whitespace-pre-line"
-              style={{ fontFamily: "'Noto Serif JP', serif" }}
-            >
+            <div className="text-[#1A2235] font-[Figtree] text-sm sm:text-base md:text-[16px] leading-snug mt-1 whitespace-pre-line">
               {stat.label}
             </div>
 

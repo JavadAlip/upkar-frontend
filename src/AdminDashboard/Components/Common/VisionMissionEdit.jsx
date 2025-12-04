@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { createOrUpdateVisionMission } from '../../../Api';
+import { updateVisionMission } from '../../../Api';
 import { toast } from 'react-toastify';
 
 const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
@@ -51,7 +51,6 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!description || !missionText || !visionText || !totalExperience) {
       return toast.error('All fields are required!');
     }
@@ -66,7 +65,7 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
 
     try {
       setLoading(true);
-      await createOrUpdateVisionMission(formData, token);
+      await updateVisionMission(visionMission._id, formData, token);
       toast.success('Vision & Mission updated successfully!');
       onSuccess();
       onClose();
@@ -124,7 +123,6 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
               onChange={handleImageChange}
               className="mb-2"
             />
-
             {imagePreview && (
               <img
                 src={imagePreview}
@@ -135,7 +133,7 @@ const VisionMissionEdit = ({ isOpen, onClose, visionMission, onSuccess }) => {
           </div>
 
           <div>
-            <h3 className="font-medium mb-2">Stats</h3>
+            <h3 className="font-medium mb-1">Stats</h3>
             {stats.map((stat, index) => (
               <div key={index} className="flex gap-2 mb-2 items-center">
                 <input

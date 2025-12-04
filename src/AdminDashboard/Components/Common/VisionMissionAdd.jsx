@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createOrUpdateVisionMission } from '../../../Api';
+import { createVisionMission } from '../../../Api';
 import { toast } from 'react-toastify';
 
 const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
@@ -21,18 +21,12 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
     setStats(newStats);
   };
 
-  const addStatField = () => {
-    setStats([...stats, { number: '', label: '' }]);
-  };
-
-  const removeStatField = (index) => {
-    const newStats = stats.filter((_, i) => i !== index);
-    setStats(newStats);
-  };
+  const addStatField = () => setStats([...stats, { number: '', label: '' }]);
+  const removeStatField = (index) =>
+    setStats(stats.filter((_, i) => i !== index));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (
       !description ||
       !missionText ||
@@ -40,9 +34,7 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
       !totalExperience ||
       !image
     ) {
-      return toast.error(
-        'All fields including image & experience are required!'
-      );
+      return toast.error('All fields including image are required!');
     }
 
     const formData = new FormData();
@@ -55,10 +47,17 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
 
     try {
       setLoading(true);
-      await createOrUpdateVisionMission(formData, token);
+      await createVisionMission(formData, token);
       toast.success('Vision & Mission added successfully!');
       onSuccess();
       onClose();
+      // Reset form
+      setDescription('');
+      setMissionText('');
+      setVisionText('');
+      setTotalExperience('');
+      setStats([{ number: '', label: '' }]);
+      setImage(null);
     } catch (error) {
       console.error(error);
       toast.error('Failed to add Vision & Mission!');
@@ -69,7 +68,7 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
 
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-40 z-50">
-      <div className="bg-white p-6 rounded w-full max-w-lg">
+      <div className="bg-white p-6 rounded w-full max-w-lg max-h-[90vh] overflow-y-auto">
         <h2 className="text-xl font-semibold mb-4">Add Vision & Mission</h2>
 
         <form onSubmit={handleSubmit} className="space-y-3">
@@ -78,6 +77,7 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
             className="border p-2 w-full rounded"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            rows={3}
           />
 
           <textarea
@@ -85,6 +85,7 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
             className="border p-2 w-full rounded"
             value={missionText}
             onChange={(e) => setMissionText(e.target.value)}
+            rows={3}
           />
 
           <textarea
@@ -92,6 +93,7 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
             className="border p-2 w-full rounded"
             value={visionText}
             onChange={(e) => setVisionText(e.target.value)}
+            rows={3}
           />
 
           <input
@@ -113,7 +115,7 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
           <div>
             <h3 className="font-medium mb-1">Stats</h3>
             {stats.map((stat, index) => (
-              <div key={index} className="flex gap-2 mb-2">
+              <div key={index} className="flex gap-2 mb-2 items-center">
                 <input
                   type="text"
                   placeholder="Number"
@@ -137,7 +139,7 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
                   <button
                     type="button"
                     onClick={() => removeStatField(index)}
-                    className="text-red-500"
+                    className="text-red-500 px-2 py-1 border rounded"
                   >
                     Remove
                   </button>
@@ -148,7 +150,7 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
             <button
               type="button"
               onClick={addStatField}
-              className="text-blue-500 mb-2"
+              className="text-blue-500 mb-2 px-2 py-1 border rounded"
             >
               + Add Stat
             </button>
@@ -158,7 +160,7 @@ const VisionMissionAdd = ({ isOpen, onClose, onSuccess }) => {
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 border rounded"
+              className="px-4 py-2 border rounded hover:bg-gray-100"
             >
               Cancel
             </button>
