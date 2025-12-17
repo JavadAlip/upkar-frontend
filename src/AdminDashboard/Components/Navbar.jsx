@@ -27,18 +27,11 @@ const Navbar = () => {
 
   return (
     <div className="w-full h-16 bg-white shadow flex items-center px-6">
-      <h1 className="hidden sm:block text-2xl font-bold text-black">
+      {/* <h1 className="hidden sm:block text-2xl font-bold text-black">
         ADMIN DASHBOARD
-      </h1>
+      </h1> */}
 
-      <div className="flex-1 flex justify-end">
-        <button
-          onClick={handleLogout}
-          className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
-        >
-          Logout
-        </button>
-      </div>
+      <div className="flex-1 flex justify-end"></div>
     </div>
   );
 };
