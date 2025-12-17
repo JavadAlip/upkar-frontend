@@ -36,6 +36,7 @@ import QuoteCertificate from '../Components/HomePage/Quote';
 import ValueImages from '../Components/CompletedPrjctPage/ValueImages';
 import TreeSection from '../Components/HomePage/Tree';
 import AboutImages from '../Components/AboutPage/AboutImages';
+import EnquiryList from '../Components/Enquiries/EnquiryList';
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('banner');
@@ -126,6 +127,8 @@ const AdminDashboard = () => {
         return <TreeSection />;
       case 'aboutimages':
         return <AboutImages />;
+      case 'enquiry':
+        return <EnquiryList />;
       default:
         return <div>Welcome Admin</div>;
     }

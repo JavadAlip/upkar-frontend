@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { getAwardsAPI } from "../../Api";
+import React, { useState, useEffect } from 'react';
+import { getAwardsAPI } from '../../Api';
 
 const Awards = () => {
   const [awards, setAwards] = useState([]);
@@ -10,7 +10,7 @@ const Awards = () => {
         const data = await getAwardsAPI();
         setAwards(data);
       } catch (error) {
-        console.error("Error fetching awards:", error);
+        console.error('Error fetching awards:', error);
       }
     };
 
@@ -49,13 +49,13 @@ const Awards = () => {
                       className="text-white text-base sm:text-lg md:text-xl font-light leading-tight"
                       style={{ fontFamily: "'Satoshi', sans-serif" }}
                     >
-                      {award.title.split(" ")[0] || award.title}
+                      {award.title.split(' ')[0] || award.title}
                     </p>
                     <p
                       className="text-white text-base sm:text-lg md:text-xl font-bold leading-tight"
                       style={{ fontFamily: "'Satoshi', sans-serif" }}
                     >
-                      {award.title.split(" ").slice(1).join(" ") || ""}
+                      {award.title.split(' ').slice(1).join(' ') || ''}
                     </p>
                   </div>
                 </div>

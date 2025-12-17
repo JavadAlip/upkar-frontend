@@ -1444,3 +1444,14 @@ export const deleteTreeSection = async (id, token) => {
   });
   return res.data;
 };
+
+// Enquiry
+export const getAllEnquiries = async () => {
+  const res = await axios.get(`${API_URL}/homepage/all-enquiry`);
+  return res.data;
+};
+
+export const createEnquiry = async (payload) => {
+  const res = await axios.post(`${API_URL}/homepage/create-enquiry`, payload);
+  return res.data;
+};
