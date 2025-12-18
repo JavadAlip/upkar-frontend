@@ -14,6 +14,7 @@ import {
   X,
   LogOut,
   ClipboardList,
+  LayoutDashboard,
 } from 'lucide-react';
 import logo from '../../assets/Icons/adminLogo.png';
 import { useNavigate } from 'react-router-dom';
@@ -88,6 +89,14 @@ const Sidebar = ({ setActiveSection }) => {
         </div>
 
         <div className="flex-1 flex flex-col p-4 gap-2 overflow-y-auto">
+          <div
+            onClick={() => setActiveSection('dashboard')}
+            className="flex items-center gap-3 p-2 cursor-pointer hover:bg-[#2D5C3A] hover:text-white"
+          >
+            <LayoutDashboard size={18} />
+            <span>Dashboard</span>
+          </div>
+
           {/*  Home Page  */}
           <button
             onClick={() => setOpenHome(!openHome)}
