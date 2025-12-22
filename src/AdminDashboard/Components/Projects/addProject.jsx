@@ -1,0 +1,579 @@
+import { useState } from 'react';
+import { createProjects } from '../../../Api';
+
+export default function AddProject({ onClose }) {
+  const token = localStorage.getItem('adminToken');
+
+  const [formData, setFormData] = useState({
+    projectName: '',
+    projectType: '',
+    projectStatus: '',
+    location: '',
+    projectAddress: '',
+    priceStartsFrom: '',
+    plotSize: '',
+    possessionDate: '',
+    unitConfiguration: '',
+    waterSupply: '',
+    projectArea: '',
+    totalUnits: '',
+    masterPlans: [],
+    brochureImage: null,
+    propertyImages: [],
+    noBrokerReraId: '',
+    builderProjectReraId: '',
+    reraDescription: '',
+    aboutProject: '',
+    locationUrl: '',
+    keyFeatures: [],
+    amenities: [],
+  });
+
+  const [featureInput, setFeatureInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const addKeyFeature = () => {
+    if (!featureInput.trim()) return;
+
+    setFormData((prev) => ({
+      ...prev,
+      keyFeatures: [...prev.keyFeatures, featureInput.trim()],
+    }));
+
+    setFeatureInput('');
+  };
+
+  const removeKeyFeature = (index) => {
+    setFormData((prev) => ({
+      ...prev,
+      keyFeatures: prev.keyFeatures.filter((_, i) => i !== index),
+    }));
+  };
+
+  const handleAmenityToggle = (amenity) => {
+    setFormData((prev) => ({
+      ...prev,
+      amenities: prev.amenities.includes(amenity)
+        ? prev.amenities.filter((a) => a !== amenity)
+        : [...prev.amenities, amenity],
+    }));
+  };
+
+  const handleFileChange = (field, files, multiple = false) => {
+    if (multiple) {
+      setFormData((prev) => ({
+        ...prev,
+        [field]: [...prev[field], ...Array.from(files)],
+      }));
+    } else {
+      setFormData((prev) => ({ ...prev, [field]: files[0] }));
+    }
+  };
+
+  const removeFile = (field, index = null) => {
+    if (index !== null) {
+      setFormData((prev) => ({
+        ...prev,
+        [field]: prev[field].filter((_, i) => i !== index),
+      }));
+    } else {
+      setFormData((prev) => ({ ...prev, [field]: null }));
+    }
+  };
+
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      setError('');
+
+      if (
+        !formData.projectName ||
+        !formData.projectType ||
+        !formData.projectStatus ||
+        !formData.location
+      ) {
+        setError(
+          'Please fill in all required fields (Project Name, Type, Status, Location)'
+        );
+        setLoading(false);
+        return;
+      }
+
+      const data = new FormData();
+
+      data.append('projectName', formData.projectName);
+      data.append('projectType', formData.projectType);
+      data.append('projectStatus', formData.projectStatus);
+      data.append('location', formData.location);
+
+      if (formData.projectAddress)
+        data.append('projectAddress', formData.projectAddress);
+      if (formData.priceStartsFrom)
+        data.append('priceStartsFrom', formData.priceStartsFrom);
+      if (formData.plotSize) data.append('plotSize', formData.plotSize);
+      if (formData.possessionDate)
+        data.append('possessionDate', formData.possessionDate);
+
+      if (formData.unitConfiguration)
+        data.append('unitConfiguration', formData.unitConfiguration);
+      if (formData.waterSupply)
+        data.append('waterSupply', formData.waterSupply);
+      if (formData.projectArea)
+        data.append('projectArea', formData.projectArea);
+      if (formData.totalUnits && formData.totalUnits !== '')
+        data.append('totalUnits', formData.totalUnits);
+
+      if (formData.noBrokerReraId)
+        data.append('noBrokerReraId', formData.noBrokerReraId);
+      if (formData.builderProjectReraId)
+        data.append('builderProjectReraId', formData.builderProjectReraId);
+      if (formData.reraDescription)
+        data.append('reraDescription', formData.reraDescription);
+      if (formData.aboutProject)
+        data.append('aboutProject', formData.aboutProject);
+      if (formData.locationUrl)
+        data.append('locationUrl', formData.locationUrl);
+
+      if (formData.keyFeatures.length > 0) {
+        formData.keyFeatures.forEach((feature) => {
+          data.append('keyFeatures[]', feature);
+        });
+      }
+
+      if (formData.amenities.length > 0) {
+        formData.amenities.forEach((amenity) => {
+          data.append('amenities[]', amenity);
+        });
+      }
+
+      if (formData.masterPlans.length > 0) {
+        formData.masterPlans.forEach((file) => {
+          data.append('masterPlans', file);
+        });
+      }
+
+      if (formData.brochureImage) {
+        data.append('brochureImage', formData.brochureImage);
+      }
+
+      if (formData.propertyImages.length > 0) {
+        formData.propertyImages.forEach((image) => {
+          data.append('propertyImages', image);
+        });
+      }
+
+      console.log('Submitting form data...');
+      await createProjects(data, token);
+      alert('Project created successfully!');
+      onClose();
+    } catch (err) {
+      console.error('Error creating project:', err);
+      setError(
+        err.response?.data?.message || err.message || 'Failed to create project'
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="p-6 max-h-screen overflow-y-auto">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-xl font-semibold text-gray-800">Add a project</h2>
+      </div>
+
+      {error && (
+        <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">
+          {error}
+        </div>
+      )}
+
+      <Section title="Basic Project Details">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Input
+            placeholder="Project Name *"
+            value={formData.projectName}
+            onChange={(e) => handleInputChange('projectName', e.target.value)}
+          />
+          <Select
+            placeholder="Project Type *"
+            options={['Residential', 'Commercial']}
+            value={formData.projectType}
+            onChange={(e) => handleInputChange('projectType', e.target.value)}
+          />
+          <Select
+            placeholder="Project Status *"
+            options={['ongoing', 'completed', 'upcoming']}
+            value={formData.projectStatus}
+            onChange={(e) => handleInputChange('projectStatus', e.target.value)}
+          />
+          <Input
+            placeholder="Location *"
+            value={formData.location}
+            onChange={(e) => handleInputChange('location', e.target.value)}
+          />
+          <Input
+            placeholder="Project Address"
+            className="md:col-span-2"
+            value={formData.projectAddress}
+            onChange={(e) =>
+              handleInputChange('projectAddress', e.target.value)
+            }
+          />
+          <Input
+            placeholder="Price Starts From"
+            type="number"
+            value={formData.priceStartsFrom}
+            onChange={(e) =>
+              handleInputChange('priceStartsFrom', e.target.value)
+            }
+          />
+          <Input
+            placeholder="Plot Size"
+            value={formData.plotSize}
+            onChange={(e) => handleInputChange('plotSize', e.target.value)}
+          />
+          <div className="space-y-1">
+            <label className="text-sm font-medium text-gray-700">
+              Possession Date
+            </label>
+            <Input
+              type="date"
+              className="w-full"
+              value={formData.possessionDate}
+              onChange={(e) =>
+                handleInputChange('possessionDate', e.target.value)
+              }
+            />
+          </div>
+        </div>
+      </Section>
+
+      <Section title="Upload Master Plan">
+        <FileUpload
+          label="Upload Master Plan Image"
+          multiple
+          onChange={(files) => handleFileChange('masterPlans', files, true)}
+          selectedFiles={formData.masterPlans}
+          onRemoveMultiple={(index) => removeFile('masterPlans', index)}
+        />
+      </Section>
+
+      <Section title="Project Details">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Input
+            placeholder="Unit Configuration"
+            value={formData.unitConfiguration}
+            onChange={(e) =>
+              handleInputChange('unitConfiguration', e.target.value)
+            }
+          />
+          <Input
+            placeholder="Water Supply"
+            value={formData.waterSupply}
+            onChange={(e) => handleInputChange('waterSupply', e.target.value)}
+          />
+          <Input
+            placeholder="Project Area"
+            value={formData.projectArea}
+            onChange={(e) => handleInputChange('projectArea', e.target.value)}
+          />
+          <Input
+            type="number"
+            placeholder="Total Units"
+            value={formData.totalUnits}
+            onChange={(e) => handleInputChange('totalUnits', e.target.value)}
+          />
+        </div>
+      </Section>
+
+      <Section title="Add Brochure">
+        <FileUpload
+          label="Upload Brochure"
+          onChange={(files) => handleFileChange('brochureImage', files)}
+          selectedFile={formData.brochureImage}
+          onRemove={() => removeFile('brochureImage')}
+        />
+      </Section>
+
+      <Section title="Amenities">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+          {[
+            'Common Garden',
+            'CCTV Camera',
+            'Community Hall',
+            'Park',
+            'Vastu Compliant',
+            'Childrens Play Area',
+            'Power Backup',
+            'Fire Safety',
+            'Security',
+            'Jogging Track',
+            'Party Area',
+            'Lift',
+            'Visitor parking',
+            'Gym',
+            'Swimming Pool',
+            'Badminton Court',
+            'Spa/Steam/Sauna',
+            'Indoor Games',
+            'Club House',
+            'Auditorium',
+          ].map((item) => (
+            <label
+              key={item}
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              <input
+                type="checkbox"
+                className="w-4 h-4 cursor-pointer"
+                checked={formData.amenities.includes(item)}
+                onChange={() => handleAmenityToggle(item)}
+              />
+              <span>{item}</span>
+            </label>
+          ))}
+        </div>
+      </Section>
+
+      <Section title="Key Features">
+        <div className="flex gap-2">
+          <Input
+            placeholder="Add a key feature"
+            value={featureInput}
+            onChange={(e) => setFeatureInput(e.target.value)}
+          />
+          <button
+            type="button"
+            onClick={addKeyFeature}
+            className="px-4 rounded-lg bg-green-800 hover:bg-green-900 text-white text-sm"
+          >
+            +
+          </button>
+        </div>
+
+        {formData.keyFeatures.length > 0 && (
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+            {formData.keyFeatures.map((feature, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-between bg-white border border-gray-200 rounded-lg px-4 py-2 shadow-sm"
+              >
+                <span className="text-sm text-gray-700">{feature}</span>
+                <button
+                  type="button"
+                  onClick={() => removeKeyFeature(index)}
+                  className="text-red-600 hover:text-red-800 transition"
+                  title="Remove"
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </Section>
+
+      <Section title="Property Media">
+        <FileUpload
+          label="Upload Property Images"
+          multiple
+          onChange={(files) => handleFileChange('propertyImages', files, true)}
+          selectedFiles={formData.propertyImages}
+          onRemoveMultiple={(index) => removeFile('propertyImages', index)}
+        />
+      </Section>
+
+      <Section title="RERA">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Input
+            placeholder="No Broker RERA ID"
+            value={formData.noBrokerReraId}
+            onChange={(e) =>
+              handleInputChange('noBrokerReraId', e.target.value)
+            }
+          />
+          <Input
+            placeholder="Builder Project RERA ID"
+            value={formData.builderProjectReraId}
+            onChange={(e) =>
+              handleInputChange('builderProjectReraId', e.target.value)
+            }
+          />
+        </div>
+        <textarea
+          className="border rounded-lg px-3 py-2 text-sm w-full h-24 resize-none mt-3 focus:outline-none focus:ring-2 focus:ring-green-800"
+          placeholder="RERA Description"
+          value={formData.reraDescription}
+          onChange={(e) => handleInputChange('reraDescription', e.target.value)}
+        />
+      </Section>
+
+      <Section title="About Project">
+        <textarea
+          className="border rounded-lg px-3 py-2 text-sm w-full h-32 resize-none focus:outline-none focus:ring-2 focus:ring-green-800"
+          placeholder="About Project"
+          value={formData.aboutProject}
+          onChange={(e) => handleInputChange('aboutProject', e.target.value)}
+        />
+      </Section>
+
+      <Section title="Location URL">
+        <Input
+          placeholder="Google Map Location URL"
+          value={formData.locationUrl}
+          onChange={(e) => handleInputChange('locationUrl', e.target.value)}
+        />
+      </Section>
+
+      <div className="flex justify-end gap-3 mt-8 pt-4 border-t">
+        <button
+          onClick={onClose}
+          disabled={loading}
+          className="px-6 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition disabled:opacity-50"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={handleSubmit}
+          disabled={loading}
+          className="px-6 py-2 bg-green-800 hover:bg-green-900 text-white rounded-lg text-sm font-medium transition disabled:opacity-50"
+        >
+          {loading ? 'Saving...' : 'Save Project'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function Section({ title, children }) {
+  return (
+    <div className="mt-7">
+      <h3 className="text-sm font-semibold text-gray-800 mb-3">{title}</h3>
+      {children}
+    </div>
+  );
+}
+
+function Input({
+  placeholder,
+  type = 'text',
+  className = '',
+  value,
+  onChange,
+}) {
+  return (
+    <input
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      className={`border rounded-lg px-3 py-2 text-sm w-full focus:outline-none focus:ring-2 focus:ring-green-800 ${className}`}
+    />
+  );
+}
+
+function Select({ placeholder, options, value, onChange }) {
+  return (
+    <select
+      value={value}
+      onChange={onChange}
+      className="border rounded-lg px-3 py-2 text-sm w-full text-gray-500 focus:outline-none focus:ring-2 focus:ring-green-800 cursor-pointer"
+    >
+      <option value="">{placeholder}</option>
+      {options.map((opt) => (
+        <option key={opt} value={opt}>
+          {opt}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+function FileUpload({
+  label,
+  multiple,
+  onChange,
+  selectedFile,
+  selectedFiles,
+  onRemove,
+  onRemoveMultiple,
+}) {
+  const files = multiple ? selectedFiles : selectedFile ? [selectedFile] : [];
+
+  return (
+    <div className="space-y-2">
+      <label className="border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center text-sm text-gray-500 cursor-pointer hover:border-green-600 hover:bg-gray-50 transition">
+        <input
+          type="file"
+          hidden
+          multiple={multiple}
+          accept="image/*,application/pdf"
+          onChange={(e) => onChange(e.target.files)}
+        />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-8 h-8 mb-2 text-gray-400"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+          />
+        </svg>
+        <span className="font-medium text-gray-700">{label}</span>
+        <span className="text-xs mt-1 text-gray-400">
+          PNG, JPG, PDF (Max 10MB)
+        </span>
+      </label>
+
+      {files.length > 0 && (
+        <div className="space-y-2">
+          {files.map((file, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-between bg-gray-50 p-2 rounded border"
+            >
+              <div className="flex items-center gap-2">
+                <svg
+                  className="w-4 h-4 text-green-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span className="text-sm text-gray-700">{file.name}</span>
+                <span className="text-xs text-gray-500">
+                  ({(file.size / 1024).toFixed(1)} KB)
+                </span>
+              </div>
+              <button
+                onClick={() =>
+                  multiple ? onRemoveMultiple(index) : onRemove()
+                }
+                className="text-red-600 hover:text-red-800 text-sm"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

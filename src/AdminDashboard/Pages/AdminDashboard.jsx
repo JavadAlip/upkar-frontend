@@ -38,6 +38,7 @@ import TreeSection from '../Components/HomePage/Tree';
 import AboutImages from '../Components/AboutPage/AboutImages';
 import EnquiryList from '../Components/Enquiries/EnquiryList';
 import Dashboard from '../Components/Dashboard/Dashboard';
+import Project from '../Components/Projects/ProjectsList';
 
 const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('banner');
@@ -132,6 +133,8 @@ const AdminDashboard = () => {
         return <EnquiryList />;
       case 'dashboard':
         return <Dashboard />;
+      case 'projectslist':
+        return <Project />;
       default:
         return <div>Welcome Admin</div>;
     }

@@ -166,6 +166,15 @@ const Sidebar = ({ setActiveSection }) => {
             </div>
           )}
 
+          {/*  Projects figma  */}
+          <div
+            onClick={() => setActiveSection('projectslist')}
+            className="flex items-center gap-3 p-2 cursor-pointer hover:bg-[#2D5C3A] hover:text-white"
+          >
+            <LayoutDashboard size={18} />
+            <span>Projects</span>
+          </div>
+
           {/*  Project Page  */}
           <button
             onClick={() => setOpenProject(!openProject)}

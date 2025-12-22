@@ -1455,3 +1455,19 @@ export const createEnquiry = async (payload) => {
   const res = await axios.post(`${API_URL}/homepage/create-enquiry`, payload);
   return res.data;
 };
+
+// projects
+export const createProjects = async (formData, token) => {
+  const res = await axios.post(`${API_URL}/projects/create-project`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return res.data;
+};
+
+export const getAllProjects = async () => {
+  const res = await axios.get(`${API_URL}/projects/get-all-projects`);
+  return res.data;
+};
