@@ -381,7 +381,7 @@ export default function ViewProjectModal({ project, onClose }) {
               </div>
             </div>
 
-            {project.propertyImages?.length > 3 && (
+            {/* {project.propertyImages?.length > 3 && (
               <div className="mt-8 pt-6 border-t">
                 <h4 className="text-base font-semibold text-black mb-4">
                   Project Gallery
@@ -397,7 +397,7 @@ export default function ViewProjectModal({ project, onClose }) {
                   ))}
                 </div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </div>
