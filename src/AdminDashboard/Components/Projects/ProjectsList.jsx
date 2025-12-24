@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import AddProject from '../Projects/addProject';
-import { getAllProjects } from '../../../Api';
+import { getAllProjects, getAllCategories } from '../../../Api';
 import { Search } from 'lucide-react';
 import ViewProjectModal from '../../../AdminDashboard/Components/Projects/ViewProjectDetails';
 import { toast } from 'react-toastify';
@@ -11,13 +11,14 @@ const Project = () => {
   const [projects, setProjects] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [search, setSearch] = useState('');
   const [type, setType] = useState('all');
   const [status, setStatus] = useState('all');
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetchProjects();
+    fetchCategories();
   }, []);
 
   useEffect(() => {
@@ -33,6 +34,15 @@ const Project = () => {
       console.error('Error fetching projects:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchCategories = async () => {
+    try {
+      const res = await getAllCategories();
+      setCategories(res.categories || []);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
     }
   };
 
@@ -104,9 +114,13 @@ const Project = () => {
                 onChange={(e) => setType(e.target.value)}
                 className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-green-700"
               >
-                <option value="all">All Types</option>
-                <option value="Residential">Residential</option>
-                <option value="Commercial">Commercial</option>
+                <option value="all">All Categories</option>
+
+                {categories.map((cat) => (
+                  <option key={cat._id} value={cat.categoryName}>
+                    {cat.categoryName}
+                  </option>
+                ))}
               </select>
             </div>
 
