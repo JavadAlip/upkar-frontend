@@ -147,7 +147,7 @@ function AppWrapper() {
         {/* Admin */}
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route
-          path="/admin-dashboard"
+          path="/admin/*"
           element={
             <ProtectedRoute>
               <AdminDashboard />

@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createProjects } from '../../../Api';
+import { getAllCategories } from '../../../Api';
 
-export default function AddProject({ onClose }) {
+export default function AddProject({ onClose, onAdded }) {
   const token = localStorage.getItem('adminToken');
 
   const [formData, setFormData] = useState({
@@ -31,7 +32,20 @@ export default function AddProject({ onClose }) {
 
   const [featureInput, setFeatureInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const res = await getAllCategories();
+      setCategories(res.categories || []);
+    } catch (err) {
+      console.error('Failed to fetch categories', err);
+    }
+  };
 
   const handleInputChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -89,7 +103,6 @@ export default function AddProject({ onClose }) {
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      setError('');
 
       if (
         !formData.projectName ||
@@ -97,8 +110,8 @@ export default function AddProject({ onClose }) {
         !formData.projectStatus ||
         !formData.location
       ) {
-        setError(
-          'Please fill in all required fields (Project Name, Type, Status, Location)'
+        alert(
+          'Please fill all required fields (Project Name, Type, Status, Location)'
         );
         setLoading(false);
         return;
@@ -169,11 +182,11 @@ export default function AddProject({ onClose }) {
 
       console.log('Submitting form data...');
       await createProjects(data, token);
-      alert('Project created successfully!');
+      onAdded();
       onClose();
     } catch (err) {
       console.error('Error creating project:', err);
-      setError(
+      alert(
         err.response?.data?.message || err.message || 'Failed to create project'
       );
     } finally {
@@ -187,12 +200,6 @@ export default function AddProject({ onClose }) {
         <h2 className="text-xl font-semibold text-gray-800">Add a project</h2>
       </div>
 
-      {error && (
-        <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">
-          {error}
-        </div>
-      )}
-
       <Section title="Basic Project Details">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
@@ -202,10 +209,11 @@ export default function AddProject({ onClose }) {
           />
           <Select
             placeholder="Project Type *"
-            options={['Residential', 'Commercial']}
+            options={categories.map((cat) => cat.categoryName)}
             value={formData.projectType}
             onChange={(e) => handleInputChange('projectType', e.target.value)}
           />
+
           <Select
             placeholder="Project Status *"
             options={['ongoing', 'completed', 'upcoming']}
@@ -444,7 +452,7 @@ export default function AddProject({ onClose }) {
           disabled={loading}
           className="px-6 py-2 bg-green-800 hover:bg-green-900 text-white rounded-lg text-sm font-medium transition disabled:opacity-50"
         >
-          {loading ? 'Saving...' : 'Save Project'}
+          {loading ? 'Saving...' : 'Add Project'}
         </button>
       </div>
     </div>

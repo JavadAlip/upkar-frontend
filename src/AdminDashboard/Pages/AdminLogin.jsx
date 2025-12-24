@@ -11,7 +11,7 @@ const AdminLogin = () => {
   useEffect(() => {
     const token = localStorage.getItem('adminToken');
     if (token) {
-      navigate('/admin-dashboard', { replace: true });
+      navigate('/admin', { replace: true });
     }
   }, [navigate]);
 
@@ -26,7 +26,7 @@ const AdminLogin = () => {
       );
 
       localStorage.setItem('adminToken', res.data.token);
-      navigate('/admin-dashboard', { replace: true });
+      navigate('/admin', { replace: true });
     } catch (err) {
       setError(
         err.response?.data?.message || 'Login failed. Please try again.'

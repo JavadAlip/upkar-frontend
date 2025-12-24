@@ -96,7 +96,7 @@ const EnquiryList = () => {
   if (loading) return <p className="p-6">Loading enquiries...</p>;
 
   return (
-    <div className="p-6 bg-[#F7F8FA] min-h-screen">
+    <div className="p-6 bg-[#F7F8FA] min-h-screen font-figtree">
       <h2 className="text-2xl font-semibold mb-4">Manage Enquiries</h2>
 
       {/* Filters */}

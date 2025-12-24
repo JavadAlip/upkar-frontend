@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getAllEnquiries } from '../../../Api';
+import { getAllEnquiries, getAllProjects } from '../../../Api';
 import {
   FileText,
   ArrowUp,
@@ -19,11 +19,17 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { FormControl, MenuItem, Select } from '@mui/material';
+import AddProject from '../Projects/addProject';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const [totalEnquiries, setTotalEnquiries] = useState(0);
   const [recentEnquiries, setRecentEnquiries] = useState([]);
   const [period, setPeriod] = useState('yearly');
+  const [recentProjects, setRecentProjects] = useState([]);
+  const [totalProjects, setTotalProjects] = useState(0);
+  const [showAddProjectModal, setShowAddProjectModal] = useState(false);
+  const navigate = useNavigate();
 
   const timeAgo = (date) => {
     const seconds = Math.floor((new Date() - new Date(date)) / 1000);
@@ -46,6 +52,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchEnquiries();
+    fetchProjects();
   }, []);
 
   const fetchEnquiries = async () => {
@@ -63,6 +70,25 @@ const Dashboard = () => {
       }
     } catch (error) {
       console.error('Failed to fetch enquiries', error);
+    }
+  };
+  const fetchProjects = async () => {
+    try {
+      const res = await getAllProjects();
+
+      if (res?.projects && Array.isArray(res.projects)) {
+        // Total project count
+        setTotalProjects(res.projects.length);
+
+        // Latest project (for recent activity)
+        const latestProjects = [...res.projects]
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .slice(0, 1);
+
+        setRecentProjects(latestProjects);
+      }
+    } catch (error) {
+      console.error('Failed to fetch projects', error);
     }
   };
 
@@ -121,12 +147,12 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-figtree">
       <h1 className="text-2xl font-semibold">Dashboard Overview</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
-          { label: 'Total Properties', value: 12 },
+          { label: 'Total Projects', value: totalProjects },
           { label: 'Total Available Plots', value: 12 },
           { label: 'Total Inquiry', value: totalEnquiries },
         ].map((card, i) => (
@@ -136,21 +162,21 @@ const Dashboard = () => {
           >
             <div>
               <div className="p-2 border rounded-md inline-flex">
-                <FileText className="text-green-800" size={20} />
+                <FileText className="text-[#2D5C3A]" size={20} />
               </div>
-              <p className="text-3xl font-bold text-green-800 mt-2">
+              <p className="text-3xl font-bold text-[#2D5C3A] mt-2">
                 {card.value}
               </p>
               <p className="text-gray-600 text-sm">{card.label}</p>
             </div>
-            <div className="text-green-800 flex gap-1 text-sm">
+            <div className="text-[#2D5C3A] flex gap-1 text-sm">
               +2 <ArrowUp size={16} />
             </div>
           </div>
         ))}
       </div>
 
-      <div className="bg-white rounded-xl shadow p-6">
+      {/* <div className="bg-white rounded-xl shadow p-6">
         <h2 className="text-lg font-semibold mb-4">Recent Activities</h2>
 
         <div className="space-y-5">
@@ -164,7 +190,7 @@ const Dashboard = () => {
               >
                 <div className="flex gap-3">
                   <div className="bg-green-100 p-3 rounded-full">
-                    <PhoneCall className="text-green-800" size={18} />
+                    <PhoneCall className="text-[#2D5C3A]" size={18} />
                   </div>
                   <div>
                     <p className="font-medium text-gray-800">
@@ -182,17 +208,17 @@ const Dashboard = () => {
 
           {[
             {
-              icon: <MapPin className="text-green-800" size={18} />,
+              icon: <MapPin className="text-[#2D5C3A]" size={18} />,
               title: 'Plot A-45 sold in Sunrise Layout',
               name: 'Priya Sharma',
               time: '3 hours ago',
             },
-            {
-              icon: <Home className="text-green-800" size={18} />,
-              title: 'New Property “Eden Gardens” added',
-              name: 'Yash Raj',
-              time: '23 hours ago',
-            },
+            // {
+            //   icon: <Home className="text-[#2D5C3A]" size={18} />,
+            //   title: 'New Property “Eden Gardens” added',
+            //   name: 'Yash Raj',
+            //   time: '23 hours ago',
+            // },
           ].map((a, i) => (
             <div
               key={i}
@@ -210,6 +236,63 @@ const Dashboard = () => {
               <button className="text-gray-500">⋮</button>
             </div>
           ))}
+        </div>
+      </div> */}
+      <div className="bg-white rounded-xl shadow p-6">
+        <h2 className="text-lg font-semibold mb-4">Recent Activities</h2>
+
+        <div className="space-y-5">
+          {/* Recent Enquiry */}
+          {recentEnquiries.length === 0 ? (
+            <p className="text-center text-gray-500">No recent enquiries</p>
+          ) : (
+            recentEnquiries.map((item) => (
+              <div
+                key={item._id}
+                className="flex justify-between border-b pb-4 last:border-0"
+              >
+                <div className="flex gap-3">
+                  <div className="bg-[#2D5C3A] p-3 rounded-full">
+                    <PhoneCall className="text-white" size={18} />
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-800">
+                      Recent Enquiry for {item.projectType}
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      {item.name} · {timeAgo(item.createdAt)}
+                    </p>
+                  </div>
+                </div>
+                <button className="text-gray-500">⋮</button>
+              </div>
+            ))
+          )}
+
+          {/* Recent Project Added */}
+          {recentProjects.length === 0
+            ? null
+            : recentProjects.map((project) => (
+                <div
+                  key={project._id}
+                  className="flex justify-between border-b pb-4 last:border-0"
+                >
+                  <div className="flex gap-3">
+                    <div className="bg-[#2D5C3A] p-3 rounded-full">
+                      <Home className="text-white" size={18} />
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-800">
+                        New Property added
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        {project.projectName} · {timeAgo(project.createdAt)}
+                      </p>
+                    </div>
+                  </div>
+                  <button className="text-gray-500">⋮</button>
+                </div>
+              ))}
         </div>
       </div>
 
@@ -248,7 +331,7 @@ const Dashboard = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-white rounded-2xl shadow p-6 grid grid-cols-2 gap-4">
+        {/* <div className="bg-white rounded-2xl shadow p-6 grid grid-cols-2 gap-4">
           {[
             { icon: <FileText />, text: 'Add new Property' },
             { icon: <MapPin />, text: 'Manage Plots' },
@@ -258,6 +341,32 @@ const Dashboard = () => {
             <button
               key={i}
               className="bg-green-800 text-white py-6 rounded-lg flex flex-col items-center gap-2"
+            >
+              {b.icon}
+              <span className="text-sm">{b.text}</span>
+            </button>
+          ))}
+        </div> */}
+        <div className="bg-white rounded-2xl shadow p-6 grid grid-cols-2 gap-4">
+          {[
+            {
+              icon: <FileText />,
+              text: 'Add new Property',
+              onClick: () => setShowAddProjectModal(true),
+            },
+            { icon: <MapPin />, text: 'Manage Plots' },
+            // { icon: <Users />, text: 'View Inquiries' },
+            {
+              icon: <Users />,
+              text: 'View Inquiries',
+              onClick: () => navigate('/admin/enquiries'),
+            },
+            { icon: <ImageIcon />, text: 'Upload Media' },
+          ].map((b, i) => (
+            <button
+              key={i}
+              onClick={b.onClick}
+              className="bg-[#2D5C3A] text-white py-6 rounded-lg flex flex-col items-center gap-2 hover:bg-green-900 transition"
             >
               {b.icon}
               <span className="text-sm">{b.text}</span>
@@ -307,6 +416,22 @@ const Dashboard = () => {
           </tbody>
         </table>
       </div>
+      {showAddProjectModal && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50">
+          <div className="bg-white w-[90vw] max-w-4xl max-h-[90vh] rounded-xl shadow-2xl relative flex flex-col">
+            <button
+              onClick={() => setShowAddProjectModal(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl"
+            >
+              ✕
+            </button>
+
+            <div className="overflow-y-auto flex-1">
+              <AddProject onClose={() => setShowAddProjectModal(false)} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

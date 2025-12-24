@@ -3,6 +3,7 @@ import AddProject from '../Projects/addProject';
 import { getAllProjects } from '../../../Api';
 import { Search } from 'lucide-react';
 import ViewProjectModal from '../../../AdminDashboard/Components/Projects/ViewProjectDetails';
+import { toast } from 'react-toastify';
 
 const Project = () => {
   const [showAddModal, setShowAddModal] = useState(false);
@@ -59,6 +60,12 @@ const Project = () => {
     setFilteredProjects(data);
   };
 
+  // Same pattern as Certification
+  const handleAddSuccess = () => {
+    fetchProjects();
+    toast.success('Project added successfully!');
+  };
+
   return (
     <>
       <div className="relative p-6 bg-gray-50 min-h-screen">
@@ -67,7 +74,7 @@ const Project = () => {
 
           <button
             onClick={() => setShowAddModal(true)}
-            className="bg-green-800 hover:bg-green-900 text-white px-4 py-2 rounded-md text-sm font-medium transition"
+            className="bg-[#2D5C3A] hover:bg-green-900 text-white px-4 py-2 rounded-md text-sm font-medium transition"
           >
             + Add Project
           </button>
@@ -107,7 +114,7 @@ const Project = () => {
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-green-700"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-green-900"
               >
                 <option value="all">All Status</option>
                 <option value="ongoing">Ongoing</option>
@@ -127,7 +134,7 @@ const Project = () => {
             filteredProjects.map((project) => (
               <div
                 key={project._id}
-                onClick={() => setSelectedProject(project)} // <-- Set selected project
+                onClick={() => setSelectedProject(project)}
                 className="bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-all cursor-pointer"
               >
                 <div className="relative">
@@ -191,7 +198,10 @@ const Project = () => {
             </button>
 
             <div className="overflow-y-auto flex-1">
-              <AddProject onClose={() => setShowAddModal(false)} />
+              <AddProject
+                onClose={() => setShowAddModal(false)}
+                onAdded={handleAddSuccess}
+              />
             </div>
           </div>
         </div>

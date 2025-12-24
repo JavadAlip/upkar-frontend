@@ -1471,3 +1471,18 @@ export const getAllProjects = async () => {
   const res = await axios.get(`${API_URL}/projects/get-all-projects`);
   return res.data;
 };
+
+// Categories
+export const createCategory = async (data, token) => {
+  const res = await axios.post(`${API_URL}/categories/create-category`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};
+
+export const getAllCategories = async () => {
+  const res = await axios.get(`${API_URL}/categories/get-all-categories`);
+  return res.data;
+};
