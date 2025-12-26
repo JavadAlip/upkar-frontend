@@ -253,7 +253,7 @@ const AdminDashboard = () => {
             <Route path="certification" element={<Certification />} />
             <Route path="qna" element={<QAs />} />
             <Route path="awards" element={<Awards />} />
-            <Route path="quote-certificate" element={<QuoteCertificate />} />
+            <Route path="quotes" element={<QuoteCertificate />} />
             <Route path="tree" element={<TreeSection />} />
 
             {/* Project */}
