@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
 import AddProject from '../Projects/addProject';
-import { getAllProjects, getAllCategories } from '../../../Api';
+import { getAllProjects, getAllCategories, deleteProjects } from '../../../Api';
 import { Search } from 'lucide-react';
 import ViewProjectModal from '../../../AdminDashboard/Components/Projects/ViewProjectDetails';
 import { toast } from 'react-toastify';
+import { Pencil, Trash2 } from 'lucide-react';
+import EditProjectModal from './../Projects/EditProjectModal';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
-const Project = () => {
+const ITEMS_PER_PAGE = 3;
+
+const ProjectsList = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [projects, setProjects] = useState([]);
@@ -15,6 +21,10 @@ const Project = () => {
   const [type, setType] = useState('all');
   const [status, setStatus] = useState('all');
   const [categories, setCategories] = useState([]);
+  const [editProject, setEditProject] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchProjects();
@@ -32,6 +42,7 @@ const Project = () => {
       setFilteredProjects(res.projects || []);
     } catch (error) {
       console.error('Error fetching projects:', error);
+      toast.error('Failed to fetch projects!');
     } finally {
       setLoading(false);
     }
@@ -68,17 +79,54 @@ const Project = () => {
     }
 
     setFilteredProjects(data);
+    setCurrentPage(1);
   };
 
-  // Same pattern as Certification
+  const handleDelete = async (id, projectName) => {
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#28a745',
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await deleteProjects(id, token);
+        setProjects(projects.filter((p) => p._id !== id));
+        setFilteredProjects(filteredProjects.filter((p) => p._id !== id));
+        toast.success('Project deleted successfully!');
+      } catch (error) {
+        console.error('Error deleting project:', error);
+        toast.error('Failed to delete project!');
+      }
+    }
+  };
+
   const handleAddSuccess = () => {
     fetchProjects();
     toast.success('Project added successfully!');
   };
 
+  const handleEditSuccess = () => {
+    fetchProjects();
+    toast.success('Project updated successfully!');
+  };
+
+  const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentProjects = filteredProjects.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE
+  );
+
   return (
     <>
-      <div className="relative p-6 bg-gray-50 min-h-screen">
+      <div className="relative p-6 bg-gray-50 font-figtree min-h-screen">
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-2xl font-semibold">Project Management</h1>
 
@@ -142,10 +190,10 @@ const Project = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {loading ? (
             <p className="text-gray-500">Loading projects...</p>
-          ) : filteredProjects.length === 0 ? (
+          ) : currentProjects.length === 0 ? (
             <p className="text-gray-500">No projects found</p>
           ) : (
-            filteredProjects.map((project) => (
+            currentProjects.map((project) => (
               <div
                 key={project._id}
                 onClick={() => setSelectedProject(project)}
@@ -164,9 +212,37 @@ const Project = () => {
                     className="w-full h-48 object-cover"
                   />
 
-                  <span className="absolute top-3 right-3 px-3 py-1 text-xs font-medium rounded-md text-white bg-green-800">
-                    {project.projectStatus}
-                  </span>
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+                    {/* Left: Edit & Delete */}
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setEditProject(project);
+                        }}
+                        className="backdrop-blur-md bg-white/30 border border-white/40 p-2 rounded-full shadow hover:bg-white/40 transition"
+                        title="Edit Project"
+                      >
+                        <Pencil size={12} className="text-blue-600" />
+                      </button>
+
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDelete(project._id, project.projectName);
+                        }}
+                        className="backdrop-blur-md bg-white/30 border border-white/40 p-2 rounded-full shadow hover:bg-white/40 transition"
+                        title="Delete Project"
+                      >
+                        <Trash2 size={12} className="text-red-600" />
+                      </button>
+                    </div>
+
+                    {/* Right: Status */}
+                    <span className="px-3 py-1 text-xs font-medium rounded-md text-white bg-green-800">
+                      {project.projectStatus}
+                    </span>
+                  </div>
                 </div>
 
                 <div className="p-4">
@@ -199,6 +275,36 @@ const Project = () => {
             ))
           )}
         </div>
+
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center gap-4 mt-6">
+            <button
+              onClick={() => setCurrentPage((p) => p - 1)}
+              disabled={currentPage === 1}
+              className={`text-xl font-semibold ${
+                currentPage === 1
+                  ? 'text-gray-300 cursor-not-allowed'
+                  : 'text-[#050F27]'
+              }`}
+            >
+              ‹
+            </button>
+            <span className="text-sm font-medium text-gray-700">
+              {currentPage}
+            </span>
+            <button
+              onClick={() => setCurrentPage((p) => p + 1)}
+              disabled={currentPage === totalPages}
+              className={`text-xl font-semibold ${
+                currentPage === totalPages
+                  ? 'text-gray-300 cursor-not-allowed'
+                  : 'text-[#050F27]'
+              }`}
+            >
+              ›
+            </button>
+          </div>
+        )}
       </div>
 
       {showAddModal && (
@@ -227,8 +333,16 @@ const Project = () => {
           onClose={() => setSelectedProject(null)}
         />
       )}
+
+      {editProject && (
+        <EditProjectModal
+          project={editProject}
+          onClose={() => setEditProject(null)}
+          onUpdated={handleEditSuccess}
+        />
+      )}
     </>
   );
 };
 
-export default Project;
+export default ProjectsList;

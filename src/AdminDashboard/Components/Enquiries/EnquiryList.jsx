@@ -7,13 +7,9 @@ const EnquiryList = () => {
   const [enquiries, setEnquiries] = useState([]);
   const [filteredEnquiries, setFilteredEnquiries] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Filters
   const [search, setSearch] = useState('');
   const [status, setStatus] = useState('');
   const [date, setDate] = useState('');
-
-  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {

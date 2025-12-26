@@ -1472,6 +1472,29 @@ export const getAllProjects = async () => {
   return res.data;
 };
 
+export const updateProjects = async (id, formData, token) => {
+  const res = await axios.put(
+    `${API_URL}/projects/update-project/${id}`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
+  return res.data;
+};
+
+export const deleteProjects = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/projects/delete-project/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};
+
 // Categories
 export const createCategory = async (data, token) => {
   const res = await axios.post(`${API_URL}/categories/create-category`, data, {
