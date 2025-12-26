@@ -477,11 +477,29 @@ export default function ViewProjectModal({ project, onClose }) {
         <div className="flex-1 overflow-y-auto">
           {/* TOP IMAGES */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 sm:p-6">
-            <img
+            {/* <img
               src={project.propertyImages?.[0]}
               alt="Main"
               className="col-span-1 md:col-span-2 h-[220px] md:h-[320px] w-full object-cover rounded-lg"
-            />
+            /> */}
+            <div className="relative col-span-1 md:col-span-2 overflow-visible">
+              <img
+                src={project.propertyImages?.[0]}
+                alt="Main"
+                className="h-[220px] md:h-[320px] w-full object-cover rounded-lg"
+              />
+
+              <div
+                className="
+      absolute -bottom-2 font-figtree bg-white text-[#209F39]
+      text-sm sm:text-base md:text-[20px]
+      px-4 py-2 sm:px-6 sm:py-3 md:px-10 md:py-4
+      rounded-xl font-semibold
+    "
+              >
+                RERA Certified
+              </div>
+            </div>
 
             <div className="grid grid-cols-2 md:grid-cols-1 gap-3">
               {project.propertyImages?.slice(1, 3).map((img, i) => (
