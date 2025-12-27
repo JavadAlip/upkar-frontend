@@ -117,7 +117,7 @@ const MediaLibrary = () => {
             onClick={() => setShowAddModal(true)}
             className="px-4 py-2 text-[16px] font-medium bg-[#2D5C3A] text-white rounded-md hover:bg-[#244A30] transition"
           >
-            + Add Images
+            + Add Media
           </button>
         </div>
         <p className="text-[16px] text-[#4A5565]">

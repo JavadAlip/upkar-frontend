@@ -361,7 +361,12 @@ const Dashboard = () => {
               text: 'View Inquiries',
               onClick: () => navigate('/admin/enquiries'),
             },
-            { icon: <ImageIcon />, text: 'Upload Media' },
+            {
+              icon: <ImageIcon />,
+              text: 'Upload Media',
+              onClick: () => navigate('/admin/media'),
+            },
+            // { icon: <ImageIcon />, text: 'Upload Media' },
           ].map((b, i) => (
             <button
               key={i}

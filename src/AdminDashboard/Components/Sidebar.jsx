@@ -598,6 +598,7 @@ import {
   LayoutGrid,
   Building2,
   BarChart3,
+  ImageIcon,
 } from 'lucide-react';
 import logo from '../../assets/Icons/adminLogo.png';
 import Swal from 'sweetalert2';
@@ -691,7 +692,7 @@ const Sidebar = () => {
             Enquiries
           </NavLink>
           <NavLink to="/admin/media" className={linkClass}>
-            <ClipboardList size={18} />
+            <ImageIcon size={18} />
             Media Library
           </NavLink>
 
