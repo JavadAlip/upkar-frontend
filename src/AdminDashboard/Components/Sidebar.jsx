@@ -690,6 +690,10 @@ const Sidebar = () => {
             <ClipboardList size={18} />
             Enquiries
           </NavLink>
+          <NavLink to="/admin/media" className={linkClass}>
+            <ClipboardList size={18} />
+            Media Library
+          </NavLink>
 
           {/* HOME PAGE */}
           <button

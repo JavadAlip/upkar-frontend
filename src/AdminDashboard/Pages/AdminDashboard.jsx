@@ -223,6 +223,7 @@ import Dashboard from '../Components/Dashboard/Dashboard';
 import Project from '../Components/Projects/ProjectsList';
 import Categories from '../Components/Categories/Categories';
 import CategoryDetails from '../Components/Categories/categoryDetails';
+import MediaLibrary from '../Components/MediaLibrary/MediaLibrary';
 
 const AdminDashboard = () => {
   return (
@@ -302,6 +303,7 @@ const AdminDashboard = () => {
             <Route path="projects-list" element={<Project />} />
             <Route path="categories" element={<Categories />} />
             <Route path="category/:id" element={<CategoryDetails />} />
+            <Route path="media" element={<MediaLibrary />} />
           </Routes>
         </div>
       </div>
