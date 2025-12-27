@@ -39,11 +39,14 @@ const MediaLibrary = () => {
 
   const handleDelete = async (projectId) => {
     const res = await Swal.fire({
-      title: 'Delete this image?',
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
-      confirmButtonText: 'Delete',
+      cancelButtonColor: '#28a745',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
     });
     if (res.isConfirmed) {
       await deleteProjectImagesAPI(projectId, token);
