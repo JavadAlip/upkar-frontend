@@ -1,23 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { getAmenitiesAPI } from "../../Api";
+import React from 'react';
 
-const Amenities = () => {
-  const [amenities, setAmenities] = useState([]);
-
-  useEffect(() => {
-    const fetchAmenities = async () => {
-      try {
-        const data = await getAmenitiesAPI();
-        setAmenities(data);
-      } catch (error) {
-        console.error("Error fetching amenities:", error);
-      }
-    };
-
-    fetchAmenities();
-  }, []);
-
-  if (!amenities.length) return <p className="text-center py-20">Loading...</p>;
+const Amenities = ({ project }) => {
+  if (!project?.amenities?.length) return null;
 
   return (
     <div className="w-full bg-white py-16 px-4">
@@ -26,20 +10,15 @@ const Amenities = () => {
           Amenities
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {amenities.map((amenity, idx) => (
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {project.amenities.map((amenity, idx) => (
             <div
               key={idx}
               className="border border-gray-300 rounded-lg p-8 hover:shadow-lg transition-shadow duration-300 group cursor-pointer bg-white"
             >
               <div className="flex items-center gap-4">
-                <img
-                  src={amenity.icon}
-                  alt={amenity.heading}
-                  className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300 flex-shrink-0"
-                />
-                <p className="text-base font-medium text-gray-800 group-hover:text-black transition-colors duration-300">
-                  {amenity.heading}
+                <p className="text-[18px] font-medium text-gray-800 group-hover:text-black transition-colors duration-300">
+                  {amenity}
                 </p>
               </div>
             </div>
