@@ -599,6 +599,7 @@ import {
   Building2,
   BarChart3,
   ImageIcon,
+  UserCheck,
 } from 'lucide-react';
 import logo from '../../assets/Icons/adminLogo.png';
 import Swal from 'sweetalert2';
@@ -689,8 +690,14 @@ const Sidebar = () => {
           {/* Enquiries */}
           <NavLink to="/admin/enquiries" className={linkClass}>
             <ClipboardList size={18} />
-            Enquiries
+            Project Enquiries
           </NavLink>
+
+          <NavLink to="/admin/career-enquiries" className={linkClass}>
+            <UserCheck size={18} />
+            Career Enquiries
+          </NavLink>
+
           <NavLink to="/admin/media" className={linkClass}>
             <ImageIcon size={18} />
             Media Library

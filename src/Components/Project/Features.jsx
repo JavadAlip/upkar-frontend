@@ -1,25 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { getAllFeatures } from "../../Api";
+import React from 'react';
 
-const Features = () => {
-  const [featuresData, setFeaturesData] = useState(null);
-  const token = localStorage.getItem("adminToken");
-
-  useEffect(() => {
-    const fetchFeatures = async () => {
-      try {
-        const data = await getAllFeatures(token);
-        if (data && data.length > 0) setFeaturesData(data[0]);
-      } catch (error) {
-        console.error("Error fetching features:", error);
-      }
-    };
-    fetchFeatures();
-  }, [token]);
-
-  if (!featuresData) return <p className="text-center py-20">Loading...</p>;
-
-  const { description, mainImage, icons } = featuresData;
+const Features = ({ project }) => {
+  if (!project?.keyFeatures?.length) return null;
 
   return (
     <section className="py-12 px-4 sm:px-6 lg:px-8">
@@ -32,34 +14,30 @@ const Features = () => {
           <div className="flex flex-col lg:flex-row gap-6 items-start">
             <div className="lg:w-5/12 flex flex-col justify-center">
               <p className="text-white text-[20px] sm:text-[24px] font-light font-[Figtree] text-center mb-6">
-                {description}
+                Upkar Spring Woods is a BMRDA, approved residential layout.
               </p>
-
               <div className="relative rounded-2xl overflow-hidden">
                 <img
-                  src={mainImage}
-                  alt="Upkar Habitat"
+                  src={project.propertyImages?.[0]}
+                  alt={project.projectName}
                   className="w-full h-60 object-cover rounded-2xl"
                 />
               </div>
             </div>
 
-            <div className="lg:w-7/12 grid grid-cols-3 gap-3 sm:gap-2">
-              {icons.map((feature, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center rounded-lg justify-center text-center p-2 sm:p-4"
-                >
-                  <img
-                    src={feature.icon}
-                    alt={feature.iconTitle}
-                    className="w-48 h-52 sm:w-32 sm:h-40 md:w-40 md:h-48 lg:w-48 lg:h-52 -mb-5 object-contain rounded-2xl"
-                  />
-                  <h3 className="text-white font-light font-[Figtree] text-base sm:text-lg md:text-xl lg:text-[24px]">
-                    {feature.iconTitle}
-                  </h3>
-                </div>
-              ))}
+            <div className="lg:w-7/12">
+              <div className="text-white space-y-4">
+                {project.keyFeatures.map((feature, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start gap-3 p-4 rounded-lg bg-white/5"
+                  >
+                    <span className="text-[20px] font-light font-[Figtree]">
+                      • {feature}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

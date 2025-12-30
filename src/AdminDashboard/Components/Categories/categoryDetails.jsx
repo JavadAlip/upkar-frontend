@@ -21,14 +21,12 @@ const CategoryDetails = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await getAllProjects();
-      if (!res.success) {
-        console.error('API returned unsuccessful response');
+      const allProjects = await getAllProjects();
+
+      if (!Array.isArray(allProjects)) {
+        console.error('Projects API did not return an array');
         return;
       }
-
-      const allProjects = res.projects || [];
-      console.log('All projects:', allProjects);
 
       const filtered = allProjects.filter(
         (p) =>
@@ -38,7 +36,6 @@ const CategoryDetails = () => {
             id.toString().trim().toLowerCase()
       );
 
-      console.log(`Filtered projects for "${id}":`, filtered);
       setProjects(filtered);
     } catch (error) {
       console.error('Error fetching projects:', error);

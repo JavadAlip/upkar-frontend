@@ -15,13 +15,11 @@ const HomeMain = () => {
     const fetchBanner = async () => {
       try {
         const data = await getBanners(token);
-
         if (data && data.length > 0) setBanner(data[0]);
       } catch (error) {
         console.error('Error fetching banners:', error);
       }
     };
-
     fetchBanner();
   }, [token]);
 
@@ -29,11 +27,14 @@ const HomeMain = () => {
     <div className="w-full flex flex-col justify-center items-center px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
       <div className="relative w-full group cursor-pointer mb-6 lg:mb-12">
         <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
-          <img
-            src={banner?.image || ''}
-            alt={banner?.title || 'Home Main'}
-            className="w-full h-full object-cover transition-transform duration-300 rounded-[30px]"
-          />
+          {/* Only render image if it exists */}
+          {banner?.image && (
+            <img
+              src={banner.image}
+              alt={banner?.title || 'Home Main'}
+              className="w-full h-full object-cover transition-transform duration-300 rounded-[30px]"
+            />
+          )}
 
           <div className="absolute inset-0 bg-black/10 bg-gradient-to-t from-black/90 via-black/30 to-transparent rounded-[30px]"></div>
 

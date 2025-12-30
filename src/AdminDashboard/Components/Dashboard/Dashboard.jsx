@@ -72,16 +72,17 @@ const Dashboard = () => {
       console.error('Failed to fetch enquiries', error);
     }
   };
+
   const fetchProjects = async () => {
     try {
       const res = await getAllProjects();
 
-      if (res?.projects && Array.isArray(res.projects)) {
-        // Total project count
-        setTotalProjects(res.projects.length);
+      console.log('PROJECT API RESPONSE:', res);
 
-        // Latest project (for recent activity)
-        const latestProjects = [...res.projects]
+      if (Array.isArray(res)) {
+        setTotalProjects(res.length);
+
+        const latestProjects = [...res]
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .slice(0, 1);
 
@@ -256,8 +257,11 @@ const Dashboard = () => {
                     <PhoneCall className="text-white" size={18} />
                   </div>
                   <div>
+                    {/* <p className="font-medium text-gray-800">
+                      Recent Project Enquiry for {item.projectType}
+                    </p> */}
                     <p className="font-medium text-gray-800">
-                      Recent Enquiry for {item.projectType}
+                      Recent Project Enquiry
                     </p>
                     <p className="text-sm text-gray-500">
                       {item.name} · {timeAgo(item.createdAt)}
@@ -283,10 +287,13 @@ const Dashboard = () => {
                     </div>
                     <div>
                       <p className="font-medium text-gray-800">
-                        New Property added
+                        New Project added
                       </p>
                       <p className="text-sm text-gray-500">
-                        {project.projectName} · {timeAgo(project.createdAt)}
+                        {project.projectName} ·{' '}
+                        {project.createdAt
+                          ? timeAgo(project.createdAt)
+                          : 'just now'}
                       </p>
                     </div>
                   </div>
@@ -355,7 +362,7 @@ const Dashboard = () => {
               onClick: () => setShowAddProjectModal(true),
             },
             { icon: <MapPin />, text: 'Manage Plots' },
-            // { icon: <Users />, text: 'View Inquiries' },
+
             {
               icon: <Users />,
               text: 'View Inquiries',
@@ -366,7 +373,6 @@ const Dashboard = () => {
               text: 'Upload Media',
               onClick: () => navigate('/admin/media'),
             },
-            // { icon: <ImageIcon />, text: 'Upload Media' },
           ].map((b, i) => (
             <button
               key={i}
@@ -432,7 +438,13 @@ const Dashboard = () => {
             </button>
 
             <div className="overflow-y-auto flex-1">
-              <AddProject onClose={() => setShowAddProjectModal(false)} />
+              <AddProject
+                onClose={() => setShowAddProjectModal(false)}
+                onSuccess={() => {
+                  fetchProjects();
+                  setShowAddProjectModal(false);
+                }}
+              />
             </div>
           </div>
         </div>

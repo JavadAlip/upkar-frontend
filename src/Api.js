@@ -1446,13 +1446,42 @@ export const deleteTreeSection = async (id, token) => {
 };
 
 // Enquiry
+
+export const createEnquiry = async (payload) => {
+  const res = await axios.post(`${API_URL}/homepage/create-enquiry`, payload);
+  return res.data;
+};
+
 export const getAllEnquiries = async () => {
   const res = await axios.get(`${API_URL}/homepage/all-enquiry`);
   return res.data;
 };
 
-export const createEnquiry = async (payload) => {
-  const res = await axios.post(`${API_URL}/homepage/create-enquiry`, payload);
+export const deleteEnquiry = async (id, token) => {
+  const res = await axios.delete(`${API_URL}/homepage/delete-enquiry/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+// career enquiries
+export const createCareerEnquiry = async (payload) => {
+  const res = await axios.post(
+    `${API_URL}/careerspage/create-career-enquiry`,
+    payload
+  );
+  return res.data;
+};
+
+export const getAllCareerEnquiries = async () => {
+  const res = await axios.get(`${API_URL}/careerspage/all-career-enquiry`);
+  return res.data;
+};
+
+export const deleteCareerEnquiry = async (id) => {
+  const res = await axios.delete(
+    `${API_URL}/careerspage/delete-career-enquiry/${id}`
+  );
   return res.data;
 };
 
@@ -1467,9 +1496,14 @@ export const createProjects = async (formData, token) => {
   return res.data;
 };
 
+export const getSingleProject = async (projectId) => {
+  const res = await axios.get(`${API_URL}/projects/get-project/${projectId}`);
+  return res.data;
+};
+
 export const getAllProjects = async () => {
   const res = await axios.get(`${API_URL}/projects/get-all-projects`);
-  return res.data;
+  return res.data.projects;
 };
 
 export const updateProjects = async (id, formData, token) => {

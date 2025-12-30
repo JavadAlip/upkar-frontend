@@ -100,7 +100,7 @@ const Footer = forwardRef((props, ref) => {
             </li>
             <li>
               <Link
-                to="/career"
+                to="/careers"
                 className="hover:text-gray-300 transition-colors font-normal"
               >
                 Careers

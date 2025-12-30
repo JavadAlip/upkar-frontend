@@ -37,9 +37,17 @@ const ProjectsList = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await getAllProjects();
-      setProjects(res.projects || []);
-      setFilteredProjects(res.projects || []);
+      const data = await getAllProjects();
+
+      if (!Array.isArray(data)) {
+        console.error('Projects API did not return an array');
+        setProjects([]);
+        setFilteredProjects([]);
+        return;
+      }
+
+      setProjects(data);
+      setFilteredProjects(data);
     } catch (error) {
       console.error('Error fetching projects:', error);
       toast.error('Failed to fetch projects!');

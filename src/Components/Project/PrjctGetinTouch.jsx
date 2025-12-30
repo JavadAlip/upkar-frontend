@@ -1,15 +1,19 @@
-import React, { useState } from "react";
-import GetInTocuh1 from "../../assets/PrjctGetin.png";
-import getinBtn from "../../assets/Icons/getinBtn.png";
+import React, { useState } from 'react';
+import { ArrowRight } from 'lucide-react';
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import GetInTocuh1 from '../../assets/PrjctGetin.png';
+import { createEnquiry } from '../../Api';
+import getinBtn from '../../assets/Icons/getinBtn.png';
 
-const PrjctGetinTouch = () => {
+const GetInTouch = () => {
   const [formData, setFormData] = useState({
-    projectType: "",
-    preferredEstate: "",
-    name: "",
-    email: "",
-    phone: "",
-    existingCustomer: "",
+    projectType: '',
+    siteVisitDate: '',
+    location: '',
+    name: '',
+    email: '',
+    phone: '',
+    isExistingCustomer: '',
   });
 
   const handleChange = (e) => {
@@ -19,142 +23,164 @@ const PrjctGetinTouch = () => {
     });
   };
 
-  const handleSubmit = () => {
-    console.log("Form submitted:", formData);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await createEnquiry(formData);
+
+      alert('Enquiry submitted successfully');
+
+      // Reset form
+      setFormData({
+        projectType: '',
+        siteVisitDate: '',
+        location: '',
+        name: '',
+        email: '',
+        phone: '',
+        isExistingCustomer: '',
+      });
+    } catch (error) {
+      console.error(error);
+      alert(
+        error?.response?.data?.message || 'Something went wrong. Try again.'
+      );
+    }
   };
 
   return (
-    <div className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 mb-0 lg:mb-2 font-sans">
-      <h2 className="mb-12 text-[48px] font-[Figtree]  text-black leading-tight">
-        <span className="font-light">Get in</span>{" "}
-        <span className="font-semibold">Touch</span>
+    <div className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 mb-0 lg:mb-2 font-figtree">
+      <h2 className="mb-4 lg:mb-12 text-3xl font-figtree sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight">
+        <span style={{ fontWeight: 500 }}>Get in </span>
+        <span style={{ fontWeight: 700 }}>Touch</span>
       </h2>
 
       <div className="relative rounded-3xl overflow-hidden shadow-2xl">
         <div
-          className="w-full min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[750px] bg-cover bg-center"
+          className="w-full bg-cover bg-center"
           style={{ backgroundImage: `url(${GetInTocuh1})` }}
         >
-          <div className="relative z-10 h-full flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 md:px-12 lg:px-16 py-10 gap-10 lg:gap-0">
+          <div className="relative z-10 h-full flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 md:px-12 lg:px-16 py-10 gap-4 sm:gap-6 md:gap-8 lg:gap-0">
             <div className="text-white max-w-md text-center lg:text-left px-2 sm:px-4 mb-8 lg:mb-0">
-              <h3 className="leading-tight text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-[Figtree] text-white text-center lg:text-left">
-                <span className="font-light block">Ready to take the</span>
-                <span className="font-light block text-center lg:text-left">
-                  next step?
-                </span>
-                <span className="font-semibold block text-center lg:text-left mt-0">
+              <h3 className="leading-snug sm:leading-snug font-figtree md:leading-normal lg:leading-relaxed block text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+                <span>Ready to take the</span>
+                <br />
+                <span style={{ fontWeight: 300 }}>next step?</span>
+                <span style={{ fontWeight: 600, display: 'block' }}>
                   Let's Connect!
                 </span>
               </h3>
             </div>
 
-            <div className="bg-white rounded-3xl p-4 sm:p-6 md:p-10 w-full max-w-md sm:max-w-lg md:max-w-xl shadow-xl mx-auto lg:mx-0">
-              <div className="space-y-5">
-                <div>
+            <div className="bg-white rounded-3xl p-8 md:p-10 lg:p-12 w-full max-w-md sm:max-w-lg md:max-w-xl shadow-xl mx-auto lg:mx-0">
+              <form
+                className="flex flex-col items-center gap-5"
+                onSubmit={handleSubmit}
+              >
+                {/* Project Type */}
+                <div className="relative w-full">
                   <select
                     name="projectType"
                     value={formData.projectType}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm sm:text-base md:text-lg text-black bg-white placeholder-black"
-                    style={{
-                      fontFamily: "'Figtree', sans-serif",
-                      fontWeight: 300,
-                    }}
+                    className="w-full px-[15px] lg:px-[25px] py-[8px] lg:py-[10px] border border-black rounded-[20px] appearance-none pr-10"
+                    required
                   >
                     <option value="">Select a Project Type</option>
                     <option value="ongoing">Ongoing Project</option>
                     <option value="upcoming">Upcoming Project</option>
                     <option value="completed">Completed Project</option>
                   </select>
+
+                  <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                    <KeyboardArrowDownOutlinedIcon />
+                  </div>
                 </div>
 
-                <div>
+                {/* Site Visit Date */}
+                <div className="relative w-full flex flex-col">
+                  <label className="mb-1 text-sm">
+                    Preferred Site Visit Date
+                  </label>
+                  <input
+                    type="date"
+                    name="siteVisitDate"
+                    value={formData.siteVisitDate}
+                    onChange={handleChange}
+                    className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
+                    required
+                  />
+                </div>
+
+                <input
+                  type="text"
+                  name="location"
+                  placeholder="Location"
+                  value={formData.location}
+                  onChange={handleChange}
+                  className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
+                  required
+                />
+
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
+                  required
+                />
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email id"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
+                  required
+                />
+
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
+                  required
+                />
+
+                {/* Existing Customer */}
+                <div className="relative w-full">
                   <select
-                    name="preferredEstate"
-                    value={formData.preferredEstate}
+                    name="isExistingCustomer"
+                    value={formData.isExistingCustomer}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm sm:text-base md:text-lg text-black bg-white placeholder-black"
-                    style={{
-                      fontFamily: "'Figtree', sans-serif",
-                      fontWeight: 300,
-                    }}
+                    className="w-full px-[15px] py-[8px] border border-black rounded-[20px] appearance-none pr-10"
+                    required
                   >
-                    <option value="">Preferred Estate</option>
-                    <option value="villa">Villa</option>
-                    <option value="apartment">Apartment</option>
-                    <option value="plot">Plot</option>
-                  </select>
-                </div>
-
-                <div>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm sm:text-base md:text-lg text-black bg-white placeholder-black"
-                    style={{
-                      fontFamily: "'Figtree', sans-serif",
-                      fontWeight: 300,
-                    }}
-                  />
-                </div>
-
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email id"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm sm:text-base md:text-lg text-black bg-white placeholder-black"
-                    style={{
-                      fontFamily: "'Figtree', sans-serif",
-                      fontWeight: 300,
-                    }}
-                  />
-                </div>
-
-                <div>
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Phone Number"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm sm:text-base md:text-lg text-black bg-white placeholder-black"
-                    style={{
-                      fontFamily: "'Figtree', sans-serif",
-                      fontWeight: 300,
-                    }}
-                  />
-                </div>
-
-                <div>
-                  <select
-                    name="existingCustomer"
-                    value={formData.existingCustomer}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm sm:text-base md:text-lg text-black bg-white placeholder-black"
-                    style={{
-                      fontFamily: "'Figtree', sans-serif",
-                      fontWeight: 300,
-                    }}
-                  >
-                    <option value="">Are you an Existing customer ?</option>
+                    <option value="">Are you an Existing customer?</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                   </select>
+
+                  <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                    <KeyboardArrowDownOutlinedIcon />
+                  </div>
                 </div>
 
-                <div className="mt-6 w-max mx-auto">
+                {/* Submit */}
+                <button type="submit" className="mt-6 focus:outline-none">
                   <img
                     src={getinBtn}
-                    className="w-40 sm:w-56 md:w-72 lg:w-80 h-auto mx-auto"
+                    alt="Send Enquiry"
+                    className="w-56 cursor-pointer hover:opacity-90 transition-opacity"
                   />
-                </div>
-              </div>
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -163,4 +189,4 @@ const PrjctGetinTouch = () => {
   );
 };
 
-export default PrjctGetinTouch;
+export default GetInTouch;

@@ -1,121 +1,212 @@
-import React, { useState } from "react";
-import { ArrowRight } from "lucide-react";
-const AboutGetInTouch = () => {
+import React, { useState, useEffect } from 'react';
+import { createEnquiry, getAllProjects } from '../../Api';
+import { toast } from 'react-toastify';
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import getinBtn from '../../assets/Icons/getinBtn.png';
+
+const GetInTouch = () => {
   const [formData, setFormData] = useState({
-    projectType: "",
-    preferredEstate: "",
-    name: "",
-    email: "",
-    phone: "",
-    existingCustomer: "",
+    projectStatus: '',
+    projectId: '',
+    siteVisitDate: '',
+    location: '',
+    name: '',
+    email: '',
+    phone: '',
+    isExistingCustomer: '',
   });
 
+  const [projects, setProjects] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const allProjects = await getAllProjects();
+        if (Array.isArray(allProjects)) setProjects(allProjects);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+        toast.error('Failed to fetch projects!');
+      }
+    };
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
+    if (Array.isArray(projects)) {
+      const filtered = formData.projectStatus
+        ? projects.filter((p) => p.projectStatus === formData.projectStatus)
+        : [];
+      setFilteredProjects(filtered);
+      setFormData((prev) => ({ ...prev, projectId: '' }));
+    }
+  }, [formData.projectStatus, projects]);
+
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
-    console.log("Form submitted:", formData);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await createEnquiry(formData);
+      toast.success('Enquiry submitted successfully!');
+      setFormData({
+        projectStatus: '',
+        projectId: '',
+        siteVisitDate: '',
+        location: '',
+        name: '',
+        email: '',
+        phone: '',
+        isExistingCustomer: '',
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error(
+        error?.response?.data?.message || 'Something went wrong. Try again.'
+      );
+    }
   };
 
   return (
-    <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 font-[Figtree]">
-      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight">
-        Get in <span className="font-semibold">Touch</span>
+    <div className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 font-figtree">
+      {/* Heading */}
+      <h2 className="mb-8 text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight text-center lg:text-left">
+        <span style={{ fontWeight: 500 }}>Get in </span>
+        <span style={{ fontWeight: 700 }}>Touch</span>
       </h2>
 
-      <div className="flex flex-col items-center">
-        <div className="p-8 md:p-12 space-y-6 w-full">
-          <div>
+      {/* Form */}
+      <div className="bg-white rounded-3xl p-8 md:p-10 lg:p-12 w-full shadow-xl">
+        <form
+          className="flex flex-col items-center gap-5"
+          onSubmit={handleSubmit}
+        >
+          {/* Project Status */}
+          <div className="relative w-full">
             <select
-              name="projectType"
-              value={formData.projectType}
+              name="projectStatus"
+              value={formData.projectStatus}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-gray-700 bg-white"
+              className="w-full px-[15px] lg:px-[25px] py-[8px] lg:py-[10px] border border-black rounded-[20px] appearance-none pr-10"
+              required
             >
-              <option value="">Select Site</option>
+              <option value="">Select a Project Status</option>
               <option value="ongoing">Ongoing Project</option>
               <option value="upcoming">Upcoming Project</option>
               <option value="completed">Completed Project</option>
             </select>
+            <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+              <KeyboardArrowDownOutlinedIcon />
+            </div>
           </div>
 
-          <div>
+          {/* Project Name */}
+          <div className="relative w-full">
             <select
-              name="preferredEstate"
-              value={formData.preferredEstate}
+              name="projectId"
+              value={formData.projectId}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-gray-700 bg-white"
+              className="w-full px-[15px] lg:px-[25px] py-[8px] lg:py-[10px] border border-black rounded-[20px] appearance-none pr-10"
+              required
+              disabled={
+                !formData.projectStatus || filteredProjects.length === 0
+              }
             >
-              <option value="">Preferred site visit date</option>
-              <option value="villa">Villa</option>
-              <option value="apartment">Apartment</option>
-              <option value="plot">Plot</option>
+              <option value="">Select a Project</option>
+              {filteredProjects.map((p) => (
+                <option key={p._id} value={p._id}>
+                  {p.projectName}
+                </option>
+              ))}
             </select>
+            <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+              <KeyboardArrowDownOutlinedIcon />
+            </div>
           </div>
 
-          <div>
+          {/* Site Visit Date */}
+          <div className="relative w-full flex flex-col">
+            <label className="mb-1 text-sm">Preferred Site Visit Date</label>
             <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={formData.name}
+              type="date"
+              name="siteVisitDate"
+              value={formData.siteVisitDate}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-gray-700 bg-white"
+              className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
+              required
             />
           </div>
 
-          <div>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email id"
-              value={formData.email}
+          {/* Other Inputs */}
+          <input
+            type="text"
+            name="location"
+            placeholder="Location"
+            value={formData.location}
+            onChange={handleChange}
+            className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
+            required
+          />
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email id"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
+            required
+          />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone Number"
+            value={formData.phone}
+            onChange={handleChange}
+            className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
+            required
+          />
+
+          {/* Existing Customer */}
+          <div className="relative w-full">
+            <select
+              name="isExistingCustomer"
+              value={formData.isExistingCustomer}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-gray-700 bg-white"
-            />
+              className="w-full px-[15px] py-[8px] border border-black rounded-[20px] appearance-none pr-10"
+              required
+            >
+              <option value="">Are you an Existing customer?</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+              <KeyboardArrowDownOutlinedIcon />
+            </div>
           </div>
 
-          <div>
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone Number"
-              value={formData.phone}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-gray-700 bg-white"
+          {/* Submit */}
+          <button type="submit" className="mt-6 focus:outline-none">
+            <img
+              src={getinBtn}
+              alt="Send Enquiry"
+              className="w-full max-w-[280px] cursor-pointer hover:opacity-90 transition-opacity"
             />
-          </div>
-
-          <div>
-            <input
-              type="text"
-              name="location"
-              placeholder="Location"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 text-gray-700 bg-white"
-            />
-          </div>
-        </div>
-
-        <button
-          aria-label="Explore Projects"
-          className="flex items-center justify-center items-center bg-[#050F27] rounded-full shadow-md transition-colors hover:bg-[#0b2444] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#071334]"
-        >
-          <span className="px-6 py-3 text-white text-sm sm:text-base font-medium">
-            Search Properties
-          </span>
-          <span className="relative -mr-1 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center border-2 border-[#071334]">
-            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#071334]" />
-          </span>
-        </button>
+          </button>
+        </form>
       </div>
     </div>
   );
 };
 
-export default AboutGetInTouch;
+export default GetInTouch;

@@ -1,22 +1,19 @@
-import { useEffect, useState } from 'react';
-import { getAllEnquiries, deleteEnquiry } from '../../../Api';
+import React, { useEffect, useState } from 'react';
+import { getAllCareerEnquiries, deleteCareerEnquiry } from '../../../Api';
 import Swal from 'sweetalert2';
 import { Trash2 } from 'lucide-react';
 import { toast } from 'react-toastify';
 
 const ITEMS_PER_PAGE = 2;
 
-const EnquiryList = () => {
+const CareerEnquiryList = () => {
   const [enquiries, setEnquiries] = useState([]);
   const [filteredEnquiries, setFilteredEnquiries] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [search, setSearch] = useState('');
-  const [status, setStatus] = useState('');
   const [date, setDate] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-
-  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchEnquiries();
@@ -24,18 +21,18 @@ const EnquiryList = () => {
 
   useEffect(() => {
     applyFilters();
-  }, [search, status, date, enquiries]);
+  }, [search, date, enquiries]);
 
   const fetchEnquiries = async () => {
     try {
-      const data = await getAllEnquiries(token);
+      const data = await getAllCareerEnquiries();
       if (Array.isArray(data)) {
         setEnquiries(data);
         setFilteredEnquiries(data);
       }
     } catch (error) {
       console.error(error);
-      toast.error('Failed to fetch enquiries');
+      toast.error('Failed to fetch career enquiries');
     } finally {
       setLoading(false);
     }
@@ -53,10 +50,6 @@ const EnquiryList = () => {
       );
     }
 
-    if (status) {
-      temp = temp.filter((item) => item.projectStatus === status);
-    }
-
     if (date) {
       temp = temp.filter(
         (item) => new Date(item.createdAt).toISOString().split('T')[0] === date
@@ -68,8 +61,6 @@ const EnquiryList = () => {
   };
 
   const handleDelete = async (id) => {
-    if (!token) return toast.error('You are not authorized.');
-
     const confirm = await Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -83,7 +74,7 @@ const EnquiryList = () => {
     if (!confirm.isConfirmed) return;
 
     try {
-      await deleteEnquiry(id, token);
+      await deleteCareerEnquiry(id);
 
       const updated = enquiries.filter((item) => item._id !== id);
       setEnquiries(updated);
@@ -96,10 +87,10 @@ const EnquiryList = () => {
         setCurrentPage(currentPage - 1);
       }
 
-      toast.success('Enquiry deleted successfully.');
+      toast.success('Career enquiry has been deleted.');
     } catch (error) {
       console.error(error);
-      toast.error('Failed to delete enquiry.');
+      toast.error('Failed to delete career enquiry');
     }
   };
 
@@ -129,11 +120,11 @@ const EnquiryList = () => {
     startIndex + ITEMS_PER_PAGE
   );
 
-  if (loading) return <p className="p-6">Loading enquiries...</p>;
+  if (loading) return <p className="p-6">Loading career enquiries...</p>;
 
   return (
     <div className="p-6 bg-[#F7F8FA] min-h-screen font-figtree">
-      <h2 className="text-2xl font-semibold mb-4">Manage Enquiries</h2>
+      <h2 className="text-2xl font-semibold mb-4">Manage Career Enquiries</h2>
 
       {/* Filters */}
       <div className="bg-white p-4 rounded-xl border mb-6 flex flex-col md:flex-row gap-4">
@@ -144,17 +135,6 @@ const EnquiryList = () => {
           onChange={(e) => setSearch(e.target.value)}
           className="border rounded-lg px-4 py-2 w-full md:w-1/3"
         />
-
-        <select
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-          className="border rounded-lg px-4 py-2 w-full md:w-1/4"
-        >
-          <option value="">All Status</option>
-          <option value="ongoing">Ongoing</option>
-          <option value="upcoming">Upcoming</option>
-          <option value="completed">Completed</option>
-        </select>
 
         <input
           type="date"
@@ -167,7 +147,7 @@ const EnquiryList = () => {
       {/* Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {currentEnquiries.length === 0 ? (
-          <p className="text-center col-span-full">No enquiries found</p>
+          <p className="text-center col-span-full">No career enquiries found</p>
         ) : (
           currentEnquiries.map((item, index) => (
             <div
@@ -187,17 +167,10 @@ const EnquiryList = () => {
 
               <div className="space-y-2 text-[16px]">
                 <p>
-                  <strong>Client Name:</strong> {item.name}
+                  <strong>Name:</strong> {item.name}
                 </p>
                 <p>
-                  <strong>Project Status:</strong> {item.projectStatus}
-                </p>
-                <p>
-                  <strong>Project Name:</strong> {item.projectName || '-'}
-                </p>
-                <p>
-                  <strong>Site Visit:</strong>{' '}
-                  {new Date(item.siteVisitDate).toLocaleDateString()}
+                  <strong>Service:</strong> {item.serviceInterestedIn}
                 </p>
                 <p>
                   <strong>Location:</strong> {item.location}
@@ -207,9 +180,6 @@ const EnquiryList = () => {
                 </p>
                 <p>
                   <strong>Email:</strong> {item.email}
-                </p>
-                <p>
-                  <strong>Existing Customer:</strong> {item.isExistingCustomer}
                 </p>
               </div>
 
@@ -221,7 +191,6 @@ const EnquiryList = () => {
         )}
       </div>
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex justify-center items-center gap-6 mt-10">
           <button
@@ -257,4 +226,4 @@ const EnquiryList = () => {
   );
 };
 
-export default EnquiryList;
+export default CareerEnquiryList;

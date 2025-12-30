@@ -1,239 +1,14 @@
-// import React, { useState } from 'react';
-// import { ArrowRight } from 'lucide-react';
-// import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-// import GetInTocuh1 from '../../assets/GetInTouch1.png';
-
-// const GetInTouch = () => {
-//   const [formData, setFormData] = useState({
-//     projectType: '',
-//     siteVisitDate: '',
-//     location: '',
-//     name: '',
-//     email: '',
-//     phone: '',
-//     isExistingCustomer: '',
-//   });
-
-//   const handleChange = (e) => {
-//     setFormData({
-//       ...formData,
-//       [e.target.name]: e.target.value,
-//     });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     try {
-//       const res = await fetch(
-//         'http://localhost:5000/api/homepage/create-enquiry',
-//         {
-//           method: 'POST',
-//           headers: {
-//             'Content-Type': 'application/json',
-//           },
-//           body: JSON.stringify(formData),
-//         }
-//       );
-
-//       const data = await res.json();
-
-//       if (res.ok) {
-//         alert('Enquiry submitted successfully');
-
-//         setFormData({
-//           projectType: '',
-//           siteVisitDate: '',
-//           location: '',
-//           name: '',
-//           email: '',
-//           phone: '',
-//           isExistingCustomer: '',
-//         });
-//       } else {
-//         alert(data.message || 'Something went wrong');
-//       }
-//     } catch (error) {
-//       console.error(error);
-//       alert('Server error');
-//     }
-//   };
-
-//   return (
-//     <div className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 mb-0 lg:mb-2 font-sans">
-//       <h2
-//         className="mb-4 lg:mb-12 text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight"
-//         style={{ fontFamily: "'Noto Serif JP', serif" }}
-//       >
-//         <span style={{ fontWeight: 500 }}>Get in </span>
-//         <span style={{ fontWeight: 700 }}>Touch</span>
-//       </h2>
-
-//       <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-//         <div
-//           className="w-full bg-cover bg-center"
-//           style={{ backgroundImage: `url(${GetInTocuh1})` }}
-//         >
-//           <div className="relative z-10 h-full flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 md:px-12 lg:px-16 py-10 gap-4 sm:gap-6 md:gap-8 lg:gap-0">
-//             <div className="text-white max-w-md text-center lg:text-left px-2 sm:px-4 mb-8 lg:mb-0">
-//               <h3
-//                 className="leading-snug sm:leading-snug md:leading-normal lg:leading-relaxed block text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
-//                 style={{ fontFamily: "'Noto Serif JP', serif" }}
-//               >
-//                 <span>Ready to take the</span>
-//                 <br />
-//                 <span
-//                   className="block text-center"
-//                   style={{ fontWeight: 300, marginBottom: '0' }}
-//                 >
-//                   next step?
-//                 </span>
-//                 <span
-//                   className="block text-center"
-//                   style={{ fontWeight: 600, display: 'block', marginTop: '0' }}
-//                 >
-//                   Let's Connect!
-//                 </span>
-//               </h3>
-//             </div>
-
-//             <div className="bg-white rounded-3xl p-8 md:p-10 lg:p-12 w-full max-w-md sm:max-w-lg md:max-w-xl shadow-xl mx-auto lg:mx-0">
-//               <div className="flex flex-col items-center gap-5">
-//                 <div className="relative w-full">
-//                   <select
-//                     name="projectType"
-//                     value={formData.projectType}
-//                     onChange={handleChange}
-//                     className="w-full px-[15px] lg:px-[25px] py-[8px] lg:py-[10px] border border-black rounded-[20px] focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm sm:text-base md:text-lg text-black bg-white placeholder-black appearance-none pr-10"
-//                     style={{
-//                       fontFamily: "'Figtree', sans-serif",
-//                       fontWeight: 300,
-//                     }}
-//                   >
-//                     <option value="">Select a Project Type</option>
-//                     <option value="ongoing">Ongoing Project</option>
-//                     <option value="upcoming">Upcoming Project</option>
-//                     <option value="completed">Completed Project</option>
-//                   </select>
-
-//                   <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-//                     <KeyboardArrowDownOutlinedIcon className="w-2 h-2 lg:w-4 lg:h-4 text-black" />
-//                   </div>
-//                 </div>
-
-//                 <div className="relative w-full">
-//                   <select
-//                     name="preferredEstate"
-//                     value={formData.preferredEstate}
-//                     onChange={handleChange}
-//                     className="w-full px-[15px] lg:px-[25px] py-[8px] lg:py-[10px] border border-black rounded-[20px] focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm sm:text-base md:text-lg text-black bg-white placeholder-black appearance-none pr-10"
-//                     style={{
-//                       fontFamily: "'Figtree', sans-serif",
-//                       fontWeight: 300,
-//                     }}
-//                   >
-//                     <option value="">Preferred Estate</option>
-//                     <option value="villa">Villa</option>
-//                     <option value="apartment">Apartment</option>
-//                     <option value="plot">Plot</option>
-//                   </select>
-
-//                   <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-//                     <KeyboardArrowDownOutlinedIcon className="w-2 h-2 lg:w-4 lg:h-4 text-black" />
-//                   </div>
-//                 </div>
-
-//                 <input
-//                   type="text"
-//                   name="name"
-//                   placeholder="Name"
-//                   value={formData.name}
-//                   onChange={handleChange}
-//                   className="w-full px-[15px] lg:px-[25px] py-[8px] lg:py-[10px] border border-black rounded-[20px] focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm sm:text-base md:text-lg text-black bg-white placeholder-black"
-//                   style={{
-//                     fontFamily: "'Figtree', sans-serif",
-//                     fontWeight: 300,
-//                   }}
-//                 />
-
-//                 <input
-//                   type="email"
-//                   name="email"
-//                   placeholder="Email id"
-//                   value={formData.email}
-//                   onChange={handleChange}
-//                   className="w-full px-[15px] lg:px-[25px] py-[8px] lg:py-[10px] border border-black rounded-[20px] focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm sm:text-base md:text-lg text-black bg-white placeholder-black"
-//                   style={{
-//                     fontFamily: "'Figtree', sans-serif",
-//                     fontWeight: 300,
-//                   }}
-//                 />
-
-//                 <input
-//                   type="tel"
-//                   name="phone"
-//                   placeholder="Phone Number"
-//                   value={formData.phone}
-//                   onChange={handleChange}
-//                   className="w-full px-[15px] lg:px-[25px] py-[8px] lg:py-[10px] border border-black rounded-[20px] focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm sm:text-base md:text-lg text-black bg-white placeholder-black"
-//                   style={{
-//                     fontFamily: "'Figtree', sans-serif",
-//                     fontWeight: 300,
-//                   }}
-//                 />
-
-//                 <div className="relative w-full">
-//                   <select
-//                     name="existingCustomer"
-//                     value={formData.existingCustomer}
-//                     onChange={handleChange}
-//                     className="w-full px-[15px] lg:px-[25px] py-[8px] lg:py-[10px] border border-black rounded-[20px] focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm sm:text-base md:text-lg text-black bg-white placeholder-black appearance-none pr-10"
-//                     style={{
-//                       fontFamily: "'Figtree', sans-serif",
-//                       fontWeight: 300,
-//                     }}
-//                   >
-//                     <option value="">Are you an Existing customer ?</option>
-//                     <option value="yes">Yes</option>
-//                     <option value="no">No</option>
-//                   </select>
-
-//                   <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-//                     <KeyboardArrowDownOutlinedIcon className="w-2 h-2 lg:w-4 lg:h-4 text-black" />
-//                   </div>
-//                 </div>
-
-//                 <button
-//                   aria-label="Send Enquiry"
-//                   className="inline-flex items-center bg-[#050F27] rounded-full shadow-md mt-4 md:mt-6 lg:mt-10 transition-colors hover:bg-[#0b2444] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#071334]"
-//                 >
-//                   <span className="px-[15px] lg:px-[25px] py-[8px] lg:py-[10px] text-white text-sm sm:text-base md:text-lg font-medium">
-//                     Send Enquiry
-//                   </span>
-//                   <span className="relative -mr-1 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white rounded-full flex items-center justify-center border-2 border-[#071334]">
-//                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#071334]" />
-//                   </span>
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default GetInTouch;
-
-import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { createEnquiry, getAllProjects } from '../../Api';
+import { toast } from 'react-toastify';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import GetInTocuh1 from '../../assets/GetInTouch1.png';
-import { createEnquiry } from '../../Api';
+import getinBtn from '../../assets/Icons/getinBtn.png';
 
 const GetInTouch = () => {
   const [formData, setFormData] = useState({
-    projectType: '',
+    projectStatus: '',
+    projectId: '',
     siteVisitDate: '',
     location: '',
     name: '',
@@ -241,6 +16,32 @@ const GetInTouch = () => {
     phone: '',
     isExistingCustomer: '',
   });
+
+  const [projects, setProjects] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const allProjects = await getAllProjects();
+        if (Array.isArray(allProjects)) setProjects(allProjects);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+        toast.error('Failed to fetch projects!');
+      }
+    };
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
+    if (Array.isArray(projects)) {
+      const filtered = formData.projectStatus
+        ? projects.filter((p) => p.projectStatus === formData.projectStatus)
+        : [];
+      setFilteredProjects(filtered);
+      setFormData((prev) => ({ ...prev, projectId: '' }));
+    }
+  }, [formData.projectStatus, projects]);
 
   const handleChange = (e) => {
     setFormData({
@@ -251,15 +52,14 @@ const GetInTouch = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       await createEnquiry(formData);
 
-      alert('Enquiry submitted successfully');
+      toast.success('Enquiry submitted successfully!');
 
-      // Reset form
       setFormData({
-        projectType: '',
+        projectStatus: '',
+        projectId: '',
         siteVisitDate: '',
         location: '',
         name: '',
@@ -269,7 +69,7 @@ const GetInTouch = () => {
       });
     } catch (error) {
       console.error(error);
-      alert(
+      toast.error(
         error?.response?.data?.message || 'Something went wrong. Try again.'
       );
     }
@@ -277,10 +77,7 @@ const GetInTouch = () => {
 
   return (
     <div className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 mb-0 lg:mb-2 font-sans">
-      <h2
-        className="mb-4 lg:mb-12 text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight"
-        style={{ fontFamily: "'Noto Serif JP', serif" }}
-      >
+      <h2 className="mb-4 lg:mb-12 text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight">
         <span style={{ fontWeight: 500 }}>Get in </span>
         <span style={{ fontWeight: 700 }}>Touch</span>
       </h2>
@@ -292,10 +89,7 @@ const GetInTouch = () => {
         >
           <div className="relative z-10 h-full flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 md:px-12 lg:px-16 py-10 gap-4 sm:gap-6 md:gap-8 lg:gap-0">
             <div className="text-white max-w-md text-center lg:text-left px-2 sm:px-4 mb-8 lg:mb-0">
-              <h3
-                className="leading-snug sm:leading-snug md:leading-normal lg:leading-relaxed block text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
-                style={{ fontFamily: "'Noto Serif JP', serif" }}
-              >
+              <h3 className="leading-snug sm:leading-snug md:leading-normal lg:leading-relaxed block text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
                 <span>Ready to take the</span>
                 <br />
                 <span style={{ fontWeight: 300 }}>next step?</span>
@@ -310,21 +104,44 @@ const GetInTouch = () => {
                 className="flex flex-col items-center gap-5"
                 onSubmit={handleSubmit}
               >
-                {/* Project Type */}
+                {/* Project Status */}
                 <div className="relative w-full">
                   <select
-                    name="projectType"
-                    value={formData.projectType}
+                    name="projectStatus"
+                    value={formData.projectStatus}
                     onChange={handleChange}
                     className="w-full px-[15px] lg:px-[25px] py-[8px] lg:py-[10px] border border-black rounded-[20px] appearance-none pr-10"
                     required
                   >
-                    <option value="">Select a Project Type</option>
+                    <option value="">Select a Project Status</option>
                     <option value="ongoing">Ongoing Project</option>
                     <option value="upcoming">Upcoming Project</option>
                     <option value="completed">Completed Project</option>
                   </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                    <KeyboardArrowDownOutlinedIcon />
+                  </div>
+                </div>
 
+                {/* Project Name */}
+                <div className="relative w-full">
+                  <select
+                    name="projectId"
+                    value={formData.projectId}
+                    onChange={handleChange}
+                    className="w-full px-[15px] lg:px-[25px] py-[8px] lg:py-[10px] border border-black rounded-[20px] appearance-none pr-10"
+                    required
+                    disabled={
+                      !formData.projectStatus || filteredProjects.length === 0
+                    }
+                  >
+                    <option value="">Select a Project</option>
+                    {filteredProjects.map((p) => (
+                      <option key={p._id} value={p._id}>
+                        {p.projectName}
+                      </option>
+                    ))}
+                  </select>
                   <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
                     <KeyboardArrowDownOutlinedIcon />
                   </div>
@@ -345,6 +162,7 @@ const GetInTouch = () => {
                   />
                 </div>
 
+                {/* Other inputs */}
                 <input
                   type="text"
                   name="location"
@@ -354,7 +172,6 @@ const GetInTouch = () => {
                   className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
                   required
                 />
-
                 <input
                   type="text"
                   name="name"
@@ -364,7 +181,6 @@ const GetInTouch = () => {
                   className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
                   required
                 />
-
                 <input
                   type="email"
                   name="email"
@@ -374,7 +190,6 @@ const GetInTouch = () => {
                   className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
                   required
                 />
-
                 <input
                   type="tel"
                   name="phone"
@@ -398,21 +213,18 @@ const GetInTouch = () => {
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                   </select>
-
                   <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
                     <KeyboardArrowDownOutlinedIcon />
                   </div>
                 </div>
 
                 {/* Submit */}
-                <button
-                  type="submit"
-                  className="inline-flex items-center bg-[#050F27] rounded-full mt-6 hover:bg-[#0b2444]"
-                >
-                  <span className="px-6 py-3 text-white">Send Enquiry</span>
-                  <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                    <ArrowRight className="text-[#071334]" />
-                  </span>
+                <button type="submit" className="mt-6 focus:outline-none">
+                  <img
+                    src={getinBtn}
+                    alt="Send Enquiry"
+                    className="w-56 cursor-pointer hover:opacity-90 transition-opacity"
+                  />
                 </button>
               </form>
             </div>

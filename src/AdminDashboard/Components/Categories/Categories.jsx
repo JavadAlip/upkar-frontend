@@ -20,12 +20,20 @@ const Categories = () => {
   const fetchCategoriesWithCounts = async () => {
     try {
       const catRes = await getAllCategories();
-      const projects = await getAllProjects();
+      const projRes = await getAllProjects();
 
-      const catData = catRes.categories || [];
+      const catData = Array.isArray(catRes?.categories)
+        ? catRes.categories
+        : [];
+
+      const projectsArray = Array.isArray(projRes)
+        ? projRes
+        : Array.isArray(projRes?.projects)
+        ? projRes.projects
+        : [];
 
       const formatted = catData.map((cat) => {
-        const catProjects = projects.projects.filter(
+        const catProjects = projectsArray.filter(
           (p) => p.projectType === cat.categoryName
         );
 

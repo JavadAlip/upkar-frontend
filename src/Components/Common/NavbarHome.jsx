@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import navbarLast from '../../assets/navbarLast1.png';
@@ -27,12 +27,11 @@ const NavbarHome = () => {
           />
         </Link>
       </div>
-
-      <ul className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 space-x-8 items-center">
+      <ul className="hidden md:flex absolute font-figtree left-1/2 transform -translate-x-1/2 space-x-8 items-center">
         <li>
           <Link
             to="/aboutus"
-            className="text-gray-700 hover:text-blue-600 transition-colors duration-300 whitespace-nowrap"
+            className="text-black hover:text-[#2D5C3A] transition-colors duration-300 whitespace-nowrap"
           >
             About us
           </Link>
@@ -54,32 +53,19 @@ const NavbarHome = () => {
             }}
             className="relative"
           >
-            <span className="text-gray-700 hover:text-blue-600 transition-colors duration-300 flex items-center">
-              Ongoing
-              <ChevronDown
-                className={`ml-1 w-4 h-4 transition-transform duration-300 ${
-                  ongoingOpen ? 'rotate-180 text-blue-600' : 'text-gray-500'
-                }`}
-              />
-            </span>
-
-            {ongoingOpen && (
-              <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
-                <Link
-                  to="/project"
-                  className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                >
-                  Project
-                </Link>
-              </div>
-            )}
+            <Link
+              to="/ongoing-projects"
+              className="text-black hover:text-[#2D5C3A] transition-colors duration-300 flex items-center"
+            >
+              ongoing
+            </Link>
           </div>
         </li>
 
         <li>
           <Link
             to="/upcoming-projects"
-            className="text-gray-700 hover:text-blue-600 transition-colors duration-300"
+            className="text-black hover:text-[#2D5C3A] transition-colors duration-300"
           >
             Upcoming
           </Link>
@@ -103,26 +89,10 @@ const NavbarHome = () => {
           >
             <Link
               to="/completed-projects"
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-300 flex items-center"
+              className="text-black hover:text-[#2D5C3A] transition-colors duration-300 flex items-center"
             >
               Completed
-              <ChevronDown
-                className={`ml-1 w-4 h-4 transition-transform duration-300 ${
-                  completedOpen ? 'rotate-180 text-blue-600' : 'text-gray-500'
-                }`}
-              />
             </Link>
-
-            {completedOpen && (
-              <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
-                <Link
-                  to="/project"
-                  className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                >
-                  Project
-                </Link>
-              </div>
-            )}
           </div>
         </li>
 
@@ -130,14 +100,13 @@ const NavbarHome = () => {
           <li key={item.name}>
             <Link
               to={item.path}
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-300 whitespace-nowrap"
+              className="text-black hover:text-[#2D5C3A] transition-colors duration-300 whitespace-nowrap"
             >
               {item.name}
             </Link>
           </li>
         ))}
       </ul>
-
       <div className="hidden md:block">
         <img
           src={navbarLast}
@@ -145,7 +114,6 @@ const NavbarHome = () => {
           className="h-24 w-auto object-contain cursor-pointer"
         />
       </div>
-
       <button
         className="md:hidden text-gray-700 focus:outline-none"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -155,12 +123,12 @@ const NavbarHome = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white shadow-md rounded-md mt-2 z-50 md:hidden">
+        <div className="absolute top-full left-0 w-full font-figtree bg-white shadow-md rounded-md mt-2 z-50 md:hidden">
           <ul className="flex flex-col space-y-2 p-4">
             <li>
               <Link
                 to="/aboutus"
-                className="block text-gray-700 hover:text-blue-600 transition-colors"
+                className="block  text-black hover:text-[#2D5C3A] transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 About us
@@ -168,34 +136,19 @@ const NavbarHome = () => {
             </li>
 
             <li>
-              <button
-                className="w-full flex justify-between items-center text-gray-700 hover:text-blue-600"
-                onClick={() => setOngoingOpen(!ongoingOpen)}
+              <Link
+                to="/ongoing-projects"
+                className="block text-black hover:text-[#2D5C3A] transition-colors"
+                onClick={() => setMenuOpen(false)}
               >
-                <span>Ongoing</span>
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    ongoingOpen ? 'rotate-180 text-blue-600' : 'text-gray-500'
-                  }`}
-                />
-              </button>
-              {ongoingOpen && (
-                <div className="ml-4 mt-2">
-                  <Link
-                    to="/project"
-                    className="block text-gray-600 hover:text-blue-600 py-1"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Project
-                  </Link>
-                </div>
-              )}
+                Ongoing
+              </Link>
             </li>
 
             <li>
               <Link
                 to="/upcoming-projects"
-                className="block text-gray-700 hover:text-blue-600 transition-colors"
+                className="block text-black hover:text-[#2D5C3A] transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 Upcoming
@@ -207,38 +160,12 @@ const NavbarHome = () => {
                 <div className="flex items-center justify-between">
                   <Link
                     to="/completed-projects"
-                    className="flex-1 text-gray-700 hover:text-blue-600"
+                    className="flex-1 text-black hover:text-[#2D5C3A]"
                     onClick={() => setMenuOpen(false)}
                   >
                     Completed
                   </Link>
-                  <button
-                    className="p-2 text-gray-700 hover:text-blue-600"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setCompletedOpen(!completedOpen);
-                    }}
-                  >
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform ${
-                        completedOpen
-                          ? 'rotate-180 text-blue-600'
-                          : 'text-gray-500'
-                      }`}
-                    />
-                  </button>
                 </div>
-                {completedOpen && (
-                  <div className="ml-4 mt-2">
-                    <Link
-                      to="/project"
-                      className="block text-gray-600 hover:text-blue-600 py-1"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Project
-                    </Link>
-                  </div>
-                )}
               </div>
             </li>
 
@@ -246,7 +173,7 @@ const NavbarHome = () => {
               <li key={item.name}>
                 <Link
                   to={item.path}
-                  className="block text-gray-700 hover:text-blue-600 transition-colors"
+                  className="block text-black hover:text-[#2D5C3A] transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
                   {item.name}

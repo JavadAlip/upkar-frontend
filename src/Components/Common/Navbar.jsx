@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { ChevronDown, Menu, X } from "lucide-react";
-import logo from "../../assets/logo.png";
-import navbarLast from "../../assets/navbarLast.png";
-import navbarLast1 from "../../assets/navbarLast1.png";
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import logo from '../../assets/logo.png';
+import navbarLast from '../../assets/navbarLast.png';
+import navbarLast1 from '../../assets/navbarLast1.png';
 
 const Navbar = () => {
   const location = useLocation();
@@ -28,7 +28,7 @@ const Navbar = () => {
         <li>
           <Link
             to="/aboutus"
-            className="text-black hover:text-gray-600 transition-colors duration-300 whitespace-nowrap"
+            className="text-black hover:text-[#2D5C3A]  transition-colors duration-300 whitespace-nowrap"
           >
             About us
           </Link>
@@ -52,33 +52,17 @@ const Navbar = () => {
           >
             <Link
               to="/ongoing-projects"
-              className="text-black hover:text-gray-600 transition-colors duration-300 flex items-center"
+              className="text-black hover:text-[#2D5C3A]  transition-colors duration-300 flex items-center"
             >
               Ongoing
-              <ChevronDown
-                className={`ml-1 w-4 h-4 transition-transform duration-300 ${
-                  ongoingOpen ? "rotate-180 text-gray-600" : "text-gray-500"
-                }`}
-              />
             </Link>
-
-            {ongoingOpen && (
-              <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
-                <Link
-                  to="/project"
-                  className="block px-4 py-2 text-black hover:bg-gray-50  transition-colors"
-                >
-                  Project
-                </Link>
-              </div>
-            )}
           </div>
         </li>
 
         <li>
           <Link
             to="/upcoming-projects"
-            className="text-black hover:text-gray-600 transition-colors duration-300"
+            className="text-black hover:text-[#2D5C3A]  transition-colors duration-300"
           >
             Upcoming
           </Link>
@@ -102,33 +86,17 @@ const Navbar = () => {
           >
             <Link
               to="/completed-projects"
-              className="text-black hover:text-gray-600 transition-colors duration-300 flex items-center"
+              className="text-black hover:text-[#2D5C3A]  transition-colors duration-300 flex items-center"
             >
               Completed
-              <ChevronDown
-                className={`ml-1 w-4 h-4 transition-transform duration-300 ${
-                  completedOpen ? "rotate-180 text-gray-600" : "text-gray-500"
-                }`}
-              />
             </Link>
-
-            {completedOpen && (
-              <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
-                <Link
-                  to="/project"
-                  className="block px-4 py-2 text-black hover:bg-gray-50  transition-colors"
-                >
-                  Project
-                </Link>
-              </div>
-            )}
           </div>
         </li>
 
         <li>
           <Link
             to="/events"
-            className="text-black hover:text-gray-600 transition-colors duration-300"
+            className="text-black hover:text-[#2D5C3A]  transition-colors duration-300"
           >
             Events
           </Link>
@@ -137,7 +105,7 @@ const Navbar = () => {
         <li>
           <Link
             to="/blogs"
-            className="text-black hover:text-gray-600 transition-colors duration-300"
+            className="text-black hover:text-[#2D5C3A]  transition-colors duration-300"
           >
             Blogs
           </Link>
@@ -146,13 +114,13 @@ const Navbar = () => {
         <li>
           <Link
             to="/careers"
-            className="text-black hover:text-gray-600 transition-colors duration-300"
+            className="text-black hover:text-[#2D5C3A]  transition-colors duration-300"
           >
             Careers
           </Link>
         </li>
 
-        {location.pathname === "/aboutus" && (
+        {location.pathname === '/aboutus' && (
           <li>
             <Link
               to="/"
@@ -165,14 +133,14 @@ const Navbar = () => {
       </ul>
 
       <div className="hidden lg-nav:flex flex-row items-center gap-3">
-        {location.pathname === "/aboutus" && (
+        {location.pathname === '/aboutus' && (
           <img
             src={navbarLast}
             alt="About Logo"
             className="h-10 w-auto object-contain cursor-pointer"
           />
         )}
-        {location.pathname === "/" && (
+        {location.pathname === '/' && (
           <img
             src={navbarLast1}
             alt="Home Logo"
@@ -195,7 +163,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/aboutus"
-                className="block text-black hover:text-gray-600 transition-colors"
+                className="block text-black hover:text-[#2D5C3A]  transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 About us
@@ -205,7 +173,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/upcoming-projects"
-                className="block text-black hover:text-gray-600 transition-colors"
+                className="block text-black hover:text-[#2D5C3A]  transition-colors"
               >
                 Upcoming
               </Link>
@@ -214,7 +182,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/ongoing-projects"
-                className="block text-black hover:text-gray-600 transition-colors"
+                className="block text-black hover:text-[#2D5C3A]  transition-colors"
               >
                 Ongoing
               </Link>
@@ -237,35 +205,17 @@ const Navbar = () => {
               >
                 <Link
                   to="/completed-projects"
-                  className="text-black hover:text-gray-600 transition-colors duration-300 flex items-center"
+                  className="text-black hover:text-[#2D5C3A]  transition-colors duration-300 flex items-center"
                 >
                   Completed
-                  <ChevronDown
-                    className={`ml-1 w-4 h-4 transition-transform duration-300 ${
-                      completedOpen
-                        ? "rotate-180 text-gray-600"
-                        : "text-gray-500"
-                    }`}
-                  />
                 </Link>
-
-                {completedOpen && (
-                  <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2 z-50">
-                    <Link
-                      to="/project"
-                      className="block px-4 py-2 text-black hover:bg-gray-50  transition-colors"
-                    >
-                      Project
-                    </Link>
-                  </div>
-                )}
               </div>
             </li>
 
             <li>
               <Link
                 to="/events"
-                className="block text-black hover:text-gray-600 transition-colors"
+                className="block text-black hover:text-[#2D5C3A]  transition-colors"
               >
                 Events
               </Link>
@@ -274,7 +224,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/blogs"
-                className="block text-black hover:text-gray-600 transition-colors"
+                className="block text-black hover:text-[#2D5C3A]  transition-colors"
               >
                 Blogs
               </Link>
@@ -282,7 +232,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/careers"
-                className="block text-black hover:text-gray-600 transition-colors"
+                className="block text-black hover:text-[#2D5C3A]  transition-colors"
               >
                 Careers
               </Link>

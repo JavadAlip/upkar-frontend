@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { createProjects } from '../../../Api';
 import { getAllCategories } from '../../../Api';
 
-export default function AddProject({ onClose, onAdded }) {
+export default function AddProject({ onClose, onSuccess }) {
   const token = localStorage.getItem('adminToken');
 
   const [formData, setFormData] = useState({
@@ -182,7 +182,10 @@ export default function AddProject({ onClose, onAdded }) {
 
       console.log('Submitting form data...');
       await createProjects(data, token);
-      onAdded();
+      if (onSuccess) {
+        onSuccess();
+      }
+
       onClose();
     } catch (err) {
       console.error('Error creating project:', err);

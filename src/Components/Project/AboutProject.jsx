@@ -1,77 +1,61 @@
-import React, { useEffect, useState } from "react";
-import { getAboutProjectsAPI } from "../../Api";
+import React from 'react';
 
-const AboutProject = () => {
-  const [aboutData, setAboutData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const token = localStorage.getItem("adminToken");
+const AboutProject = ({ project }) => {
+  if (!project) return null;
 
-  useEffect(() => {
-    const fetchAboutData = async () => {
-      try {
-        const data = await getAboutProjectsAPI(token);
-        if (data && data.length > 0) {
-          setAboutData(data[0]);
-        }
-      } catch (error) {
-        console.error("Error fetching about project data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAboutData();
-  }, [token]);
-
-  if (loading)
-    return <p className="text-center py-20">Loading About Project...</p>;
-  if (!aboutData)
-    return <p className="text-center py-20">No About Project data found</p>;
+  if (!project.aboutProject && !project.reraDescription) return null;
 
   return (
     <div className="w-full bg-white py-8 md:py-16 px-4 md:px-6 font-sans">
       <div className="max-w-6xl mx-auto space-y-8 md:space-y-12">
-        <div>
-          <h2 className="mb-4 md:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-figtree text-black">
-            <span className="font-semibold">
-              {aboutData.aboutHeading.split(" ")[0]}
-            </span>{" "}
-            <span className="font-light">
-              {aboutData.aboutHeading.split(" ").slice(1).join(" ")}
-            </span>
-          </h2>
-          <p className="font-figtree font-light text-base sm:text-lg md:text-xl lg:text-2xl text-[#050F27] leading-relaxed md:leading-snug max-w-4xl">
-            {aboutData.aboutDescription}
-          </p>
-        </div>
-
-        <div>
-          <h3 className="mb-4 md:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-figtree text-black">
-            <span className="font-semibold">
-              {aboutData.reRaising.split(" -")[0]}
-            </span>{" "}
-            <span className="font-light">
-              {aboutData.reRaising.split(" -").slice(1).join(" -")}
-            </span>
-          </h3>
-          <p className="font-figtree font-light text-base sm:text-lg md:text-xl lg:text-2xl text-[#050F27] leading-relaxed md:leading-snug">
-            {aboutData.reRadescription}
-          </p>
-
-          <div className="space-y-2 md:space-y-3 pt-2">
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-figtree text-[#050F27]">
-              <span className="font-light">NoBroker RERA Id -</span>{" "}
-              <span className="font-bold">{aboutData.noBrokerHeading}</span>
-            </p>
-
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-figtree text-[#050F27]">
-              <span className="font-light">Builder Project RERA Id -</span>{" "}
-              <span className="font-bold break-all">
-                {aboutData.builderHeading}
-              </span>
+        {/* About Project Section */}
+        {project.aboutProject && (
+          <div>
+            <h2 className="mb-4 md:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-figtree text-black">
+              <span className="font-semibold">About</span>{' '}
+              <span className="font-light">Project</span>
+            </h2>
+            <p className="font-figtree font-light text-base sm:text-lg md:text-xl lg:text-2xl text-[#050F27] leading-relaxed md:leading-snug max-w-4xl">
+              {project.aboutProject}
             </p>
           </div>
-        </div>
+        )}
+
+        {/* RERA Section */}
+        {(project.reraDescription ||
+          project.noBrokerReraId ||
+          project.builderProjectReraId) && (
+          <div>
+            <h3 className="mb-4 md:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-figtree text-black">
+              <span className="font-semibold">RERA</span>{' '}
+              <span className="font-light">Information</span>
+            </h3>
+
+            {project.reraDescription && (
+              <p className="font-figtree font-light text-base sm:text-lg md:text-xl lg:text-2xl text-[#050F27] leading-relaxed md:leading-snug mb-4">
+                {project.reraDescription}
+              </p>
+            )}
+
+            <div className="space-y-2 md:space-y-3 pt-2">
+              {project.noBrokerReraId && (
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-figtree text-[#050F27]">
+                  <span className="font-light">NoBroker RERA Id - </span>
+                  <span className="font-bold">{project.noBrokerReraId}</span>
+                </p>
+              )}
+
+              {project.builderProjectReraId && (
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-figtree text-[#050F27]">
+                  <span className="font-light">Builder Project RERA Id - </span>
+                  <span className="font-bold break-all">
+                    {project.builderProjectReraId}
+                  </span>
+                </p>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
