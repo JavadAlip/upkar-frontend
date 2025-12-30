@@ -18,7 +18,7 @@ export default function AddProject({ onClose, onSuccess }) {
     waterSupply: '',
     projectArea: '',
     totalUnits: '',
-    masterPlans: [],
+    masterPlans: null,
     brochureImage: null,
     propertyImages: [],
     noBrokerReraId: '',
@@ -49,6 +49,20 @@ export default function AddProject({ onClose, onSuccess }) {
 
   const handleInputChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSingleFileChange = (field, files) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: files[0],
+    }));
+  };
+
+  const removeSingleFile = (field) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: null,
+    }));
   };
 
   const addKeyFeature = () => {
@@ -164,10 +178,8 @@ export default function AddProject({ onClose, onSuccess }) {
         });
       }
 
-      if (formData.masterPlans.length > 0) {
-        formData.masterPlans.forEach((file) => {
-          data.append('masterPlans', file);
-        });
+      if (formData.masterPlans) {
+        data.append('masterPlans', formData.masterPlans);
       }
 
       if (formData.brochureImage) {
@@ -268,10 +280,9 @@ export default function AddProject({ onClose, onSuccess }) {
       <Section title="Upload Master Plan">
         <FileUpload
           label="Upload Master Plan Image"
-          multiple
-          onChange={(files) => handleFileChange('masterPlans', files, true)}
-          selectedFiles={formData.masterPlans}
-          onRemoveMultiple={(index) => removeFile('masterPlans', index)}
+          onChange={(files) => handleSingleFileChange('masterPlans', files)}
+          selectedFile={formData.masterPlans}
+          onRemove={() => removeSingleFile('masterPlans')}
         />
       </Section>
 

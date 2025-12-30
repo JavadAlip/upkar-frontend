@@ -8,6 +8,11 @@ const PlotLayout = ({ project }) => {
 
   if (!project) return null;
 
+  const latestMasterPlan =
+    project.masterPlans?.length > 0
+      ? project.masterPlans[project.masterPlans.length - 1]
+      : null;
+
   const plotDetails = [
     { heading: 'Project Area', value: project.projectArea },
     { heading: 'Total Units', value: project.totalUnits },
@@ -27,6 +32,7 @@ const PlotLayout = ({ project }) => {
 
           {/* Content */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
+            {/* Left Details */}
             <div className="flex flex-col gap-4 max-w-md w-full">
               {plotDetails.map((detail, index) => (
                 <div
@@ -43,6 +49,7 @@ const PlotLayout = ({ project }) => {
               ))}
             </div>
 
+            {/* Right Image */}
             <div className="relative">
               <div
                 className="
@@ -56,17 +63,20 @@ const PlotLayout = ({ project }) => {
                   flex items-center justify-center
                   cursor-pointer
                 "
-                onClick={() => setPreviewOpen(true)}
+                onClick={() => latestMasterPlan && setPreviewOpen(true)}
               >
-                {project.masterPlans?.[0] && (
+                {latestMasterPlan ? (
                   <img
-                    src={project.masterPlans[0]}
+                    src={latestMasterPlan}
                     alt="Master Plan"
                     className="w-full h-full object-contain rounded-2xl"
                   />
+                ) : (
+                  <p className="text-gray-400">No Master Plan Available</p>
                 )}
               </div>
 
+              {/* Brochure */}
               {project.brochureImage && (
                 <div className="mt-6 flex justify-center">
                   <a
@@ -106,7 +116,7 @@ const PlotLayout = ({ project }) => {
                   className="w-24 sm:w-32 md:w-40 lg:w-48 cursor-pointer hover:opacity-90 transition-opacity"
                 />
                 <h3 className="font-[Figtree] font-semibold text-[32px] sm:text-[64px] md:text-[80px] lg:text-[96px]">
-                  Save More{' '}
+                  Save More
                 </h3>
               </div>
             </div>
@@ -114,13 +124,14 @@ const PlotLayout = ({ project }) => {
         </div>
       </div>
 
-      {previewOpen && (
+      {/* Preview Modal */}
+      {previewOpen && latestMasterPlan && (
         <div
           className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center"
           onClick={() => setPreviewOpen(false)}
         >
           <img
-            src={project.masterPlans?.[0]}
+            src={latestMasterPlan}
             alt="Preview"
             className="max-w-[90%] max-h-[90%] rounded-xl"
           />

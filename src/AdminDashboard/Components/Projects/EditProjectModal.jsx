@@ -97,12 +97,12 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
 
   // Files state
   const [propertyImages, setPropertyImages] = useState([]);
-  const [masterPlans, setMasterPlans] = useState([]);
+  const [masterPlans, setMasterPlans] = useState(null);
   const [brochureImage, setBrochureImage] = useState(null);
 
   // Existing files preview
   const existingPropertyImages = safeParseArray(project.propertyImages);
-  const existingMasterPlans = safeParseArray(project.masterPlans);
+  const existingMasterPlans = safeParseArray(project.masterPlans).slice(-1);
   const existingBrochure = project.brochureImage || null;
 
   const handleChange = (e) => {
@@ -141,7 +141,7 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
   };
 
   const handleMasterPlansChange = (e) => {
-    setMasterPlans([...e.target.files]);
+    setMasterPlans(e.target.files[0]);
   };
 
   const handleBrochureChange = (e) => {
@@ -181,10 +181,8 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
         });
       }
 
-      if (masterPlans.length > 0) {
-        masterPlans.forEach((file) => {
-          formData.append('masterPlans', file);
-        });
+      if (masterPlans) {
+        formData.append('masterPlans', masterPlans);
       }
 
       if (brochureImage) {
@@ -547,8 +545,9 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
                   {existingMasterPlans.length > 0 && (
                     <div className="mb-2">
                       <p className="text-xs text-gray-500 mb-2">
-                        Current Plans ({existingMasterPlans.length})
+                        Current Master Plan
                       </p>
+
                       <div className="flex gap-2 overflow-x-auto pb-2">
                         {existingMasterPlans.map((plan, i) => (
                           <img
@@ -564,12 +563,11 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
                   <input
                     type="file"
                     accept="image/*"
-                    multiple
                     onChange={handleMasterPlansChange}
                     className="w-full border border-gray-300 p-2 rounded"
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    Upload floor plans or master plans
+                    Upload a new master plan
                   </p>
                 </div>
 
