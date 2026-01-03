@@ -855,9 +855,9 @@ const Sidebar = () => {
               <NavLink to="/admin/completed-values" className={linkClass}>
                 Our Values
               </NavLink>
-              <NavLink to="/admin/completed-projects" className={linkClass}>
+              {/* <NavLink to="/admin/completed-projects" className={linkClass}>
                 Project Lists
-              </NavLink>
+              </NavLink> */}
               <NavLink to="/admin/value-images" className={linkClass}>
                 Value images
               </NavLink>
@@ -883,9 +883,9 @@ const Sidebar = () => {
               <NavLink to="/admin/upcoming-values" className={linkClass}>
                 Our Values
               </NavLink>
-              <NavLink to="/admin/upcoming-projects" className={linkClass}>
+              {/* <NavLink to="/admin/upcoming-projects" className={linkClass}>
                 Project Lists
-              </NavLink>
+              </NavLink> */}
               <NavLink to="/admin/value-images" className={linkClass}>
                 Value images
               </NavLink>
@@ -911,9 +911,9 @@ const Sidebar = () => {
               <NavLink to="/admin/ongoing-values" className={linkClass}>
                 Our Values
               </NavLink>
-              <NavLink to="/admin/ongoing-projects" className={linkClass}>
+              {/* <NavLink to="/admin/ongoing-projects" className={linkClass}>
                 Project Lists
-              </NavLink>
+              </NavLink> */}
               <NavLink to="/admin/value-images" className={linkClass}>
                 Value images
               </NavLink>
