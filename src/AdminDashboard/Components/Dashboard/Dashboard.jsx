@@ -154,7 +154,7 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
           { label: 'Total Projects', value: totalProjects },
-          { label: 'Total Available Plots', value: 12 },
+          { label: 'Total Available Plots', value: totalProjects },
           { label: 'Total Inquiry', value: totalEnquiries },
         ].map((card, i) => (
           <div

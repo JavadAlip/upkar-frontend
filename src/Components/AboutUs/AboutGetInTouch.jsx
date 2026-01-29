@@ -64,7 +64,7 @@ const GetInTouch = () => {
     } catch (error) {
       console.error(error);
       toast.error(
-        error?.response?.data?.message || 'Something went wrong. Try again.'
+        error?.response?.data?.message || 'Something went wrong. Try again.',
       );
     }
   };

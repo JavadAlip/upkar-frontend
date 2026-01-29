@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { getCareerImages } from "../../Api";
+import React, { useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { getCareerImages } from '../../Api';
 
 const CareerImages = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -14,7 +14,7 @@ const CareerImages = () => {
         const allImages = data.flatMap((item) => item.images || []);
         setImages(allImages);
       } catch (error) {
-        console.error("Error fetching project images:", error);
+        console.error('Error fetching project images:', error);
       } finally {
         setLoading(false);
       }
@@ -128,8 +128,8 @@ const CareerImages = () => {
           className="absolute left-0 top-1/2 bg-white text-gray-800 p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
-              .querySelector(".gallery-container")
-              ?.scrollBy({ left: -400, behavior: "smooth" })
+              .querySelector('.gallery-container')
+              ?.scrollBy({ left: -400, behavior: 'smooth' })
           }
         >
           <ChevronLeft className="w-4 h-4" />
@@ -138,8 +138,8 @@ const CareerImages = () => {
           className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
-              .querySelector(".gallery-container")
-              ?.scrollBy({ left: 400, behavior: "smooth" })
+              .querySelector('.gallery-container')
+              ?.scrollBy({ left: 400, behavior: 'smooth' })
           }
         >
           <ChevronRight className="w-4 h-4" />
@@ -166,8 +166,8 @@ const CareerImages = () => {
           className="absolute left-0 top-1/2 bg-white text-gray-800 p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
-              .querySelector(".mobile-gallery")
-              ?.scrollBy({ left: -400, behavior: "smooth" })
+              .querySelector('.mobile-gallery')
+              ?.scrollBy({ left: -400, behavior: 'smooth' })
           }
         >
           <ChevronLeft className="w-4 h-4" />
@@ -176,8 +176,8 @@ const CareerImages = () => {
           className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
-              .querySelector(".mobile-gallery")
-              ?.scrollBy({ left: 400, behavior: "smooth" })
+              .querySelector('.mobile-gallery')
+              ?.scrollBy({ left: 400, behavior: 'smooth' })
           }
         >
           <ChevronRight className="w-4 h-4" />
