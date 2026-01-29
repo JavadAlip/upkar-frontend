@@ -545,10 +545,9 @@ import CmpltNavbar from '../Components/CompletedPrjcts/CmpltNavbar';
 import PrjctGetinTouch from '../Components/AboutUs/AboutGetInTouch';
 import directionsImg from '../assets/Directions.png';
 import { AMENITY_ICONS } from '../assets/Amenities';
-import areaIcon from '../assets/icons/area1.png';
-import waterIcon from '../assets/icons/water1.png';
-import unitIcon from '../assets/icons/unit1.png';
-import homeIcon from '../assets/icons/home.png';
+import areaIcon from '../assets/Icons/area1.png';
+import waterIcon from '../assets/Icons/water1.png';
+import unitIcon from '../assets/Icons/unit1.png';
 
 const safeParseArray = (value) => {
   if (Array.isArray(value)) return value;
