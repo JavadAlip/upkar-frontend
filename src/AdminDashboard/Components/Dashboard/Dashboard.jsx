@@ -29,6 +29,18 @@ const Dashboard = () => {
   const [recentProjects, setRecentProjects] = useState([]);
   const [totalProjects, setTotalProjects] = useState(0);
   const [showAddProjectModal, setShowAddProjectModal] = useState(false);
+  const [tableProjects, setTableProjects] = useState([]);
+  const ITEMS_PER_PAGE = 5;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(tableProjects.length / ITEMS_PER_PAGE);
+
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+
+  const currentProjects = tableProjects.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE,
+  );
+
   const navigate = useNavigate();
 
   const timeAgo = (date) => {
@@ -49,6 +61,9 @@ const Dashboard = () => {
     }
     return 'just now';
   };
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [tableProjects]);
 
   useEffect(() => {
     fetchEnquiries();
@@ -73,35 +88,78 @@ const Dashboard = () => {
     }
   };
 
+  // const fetchProjects = async () => {
+  //   try {
+  //     const res = await getAllProjects();
+
+  //     console.log('PROJECT API RESPONSE:', res);
+
+  //     if (Array.isArray(res)) {
+  //       setTotalProjects(res.length);
+
+  //       const latestProjects = [...res]
+  //         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  //         .slice(0, 1);
+
+  //       setRecentProjects(latestProjects);
+  //     }
+  //   } catch (error) {
+  //     console.error('Failed to fetch projects', error);
+  //   }
+  // };
   const fetchProjects = async () => {
     try {
       const res = await getAllProjects();
 
-      console.log('PROJECT API RESPONSE:', res);
+      console.log('RAW PROJECT RESPONSE:', res);
 
-      if (Array.isArray(res)) {
-        setTotalProjects(res.length);
+      // 🔥 normalize projects array
+      const projects =
+        res?.projects ||
+        res?.data?.projects ||
+        (Array.isArray(res) ? res : res?.data);
 
-        const latestProjects = [...res]
+      if (Array.isArray(projects)) {
+        setTotalProjects(projects.length);
+
+        const latestProjects = [...projects]
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .slice(0, 1);
 
         setRecentProjects(latestProjects);
+        setTableProjects(projects);
+      } else {
+        console.error('Projects is not an array:', projects);
+        setTableProjects([]);
       }
     } catch (error) {
       console.error('Failed to fetch projects', error);
+      setTableProjects([]);
+    }
+  };
+
+  const getProgressByStatus = (status) => {
+    switch (status) {
+      case 'completed':
+        return 100;
+      case 'ongoing':
+        return 50;
+      case 'upcoming':
+        return 0;
+      default:
+        return 0;
     }
   };
 
   const chartData = [
-    { year: 2016, value: 8000 },
-    { year: 2017, value: 12000 },
-    { year: 2018, value: 45000 },
-    { year: 2019, value: 80000 },
-    { year: 2020, value: 10000 },
-    { year: 2021, value: 20000 },
-    { year: 2022, value: 60000 },
-    { year: 2023, value: 100000 },
+    { year: 2020, value: 8000 },
+    { year: 2021, value: 12000 },
+    { year: 2022, value: 45000 },
+    { year: 2023, value: 80000 },
+    { year: 2024, value: 10000 },
+    { year: 2025, value: 20000 },
+    { year: 2026, value: 60000 },
+    // { year: 2023, value: 100000 },
   ];
 
   const projects = [
@@ -256,18 +314,23 @@ const Dashboard = () => {
                   <div className="bg-[#2D5C3A] p-3 rounded-full">
                     <PhoneCall className="text-white" size={18} />
                   </div>
+
                   <div>
-                    {/* <p className="font-medium text-gray-800">
-                      Recent Project Enquiry for {item.projectType}
-                    </p> */}
+                    {/* TITLE */}
                     <p className="font-medium text-gray-800">
-                      Recent Project Enquiry
+                      Recent Project Enquiry for{' '}
+                      <span className="font-semibold">
+                        {item.projectName || 'Unknown Project'}
+                      </span>
                     </p>
+
+                    {/* SUB TITLE */}
                     <p className="text-sm text-gray-500">
                       {item.name} · {timeAgo(item.createdAt)}
                     </p>
                   </div>
                 </div>
+
                 <button className="text-gray-500">⋮</button>
               </div>
             ))
@@ -287,10 +350,11 @@ const Dashboard = () => {
                     </div>
                     <div>
                       <p className="font-medium text-gray-800">
-                        New Project added
+                        New Project "{project.projectName}"" added
                       </p>
                       <p className="text-sm text-gray-500">
-                        {project.projectName} ·{' '}
+                        {/* {project.projectName} ·{' '} */}
+                        admin ·{' '}
                         {project.createdAt
                           ? timeAgo(project.createdAt)
                           : 'just now'}
@@ -361,7 +425,11 @@ const Dashboard = () => {
               text: 'Add new Property',
               onClick: () => setShowAddProjectModal(true),
             },
-            { icon: <MapPin />, text: 'Manage Plots' },
+            {
+              icon: <MapPin />,
+              text: 'Manage Plots',
+              onClick: () => navigate('/admin/projects-list'),
+            },
 
             {
               icon: <Users />,
@@ -391,42 +459,104 @@ const Dashboard = () => {
           Project <b>Overviews</b>
         </h2>
 
-        <table className="min-w-full text-sm">
-          <thead className="border-b">
-            <tr>
-              <th>S.no</th>
-              <th>Project</th>
-              <th>Status</th>
-              <th>Progress</th>
-              <th>Due</th>
-              <th>Agent</th>
+        <table className="w-full border-separate border-spacing-y-3">
+          <thead>
+            <tr className="text-left text-black text-sm">
+              <th className="px-4 py-2">S.no</th>
+              <th className="px-4 py-2">Project</th>
+              <th className="px-4 py-2">Status</th>
+              <th className="px-4 py-2">Progress</th>
+              <th className="px-4 py-2">Due</th>
             </tr>
           </thead>
+
           <tbody>
-            {projects.map((p) => (
-              <tr key={p.id} className="border-b">
-                <td>{p.id}</td>
-                <td>{p.name}</td>
-                <td>
-                  <span className="bg-green-800 text-white px-2 py-1 rounded text-xs">
-                    {p.status}
-                  </span>
+            {tableProjects.length === 0 ? (
+              <tr>
+                <td colSpan="6" className="text-center py-6 text-gray-500">
+                  No projects found
                 </td>
-                <td>
-                  <div className="w-32 h-2 bg-gray-200 rounded">
-                    <div
-                      className="h-2 bg-green-800 rounded"
-                      style={{ width: `${p.progress}%` }}
-                    />
-                  </div>
-                </td>
-                <td>{p.due}</td>
-                <td>{p.agent}</td>
               </tr>
-            ))}
+            ) : (
+              currentProjects.map((project, index) => {
+                const progress = getProgressByStatus(project.projectStatus);
+
+                return (
+                  <tr key={project._id} className="border-b">
+                    <td className="px-4 py-3">{startIndex + index + 1}</td>
+                    <td className="font-medium">{project.projectName}</td>
+                    <td className="px-4 py-3">
+                      <span
+                        className={`px-2 py-1 rounded text-xs text-white ${
+                          project.projectStatus === 'completed'
+                            ? 'bg-green-800'
+                            : project.projectStatus === 'ongoing'
+                              ? 'bg-yellow-600'
+                              : 'bg-gray-500'
+                        }`}
+                      >
+                        {project.projectStatus}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="w-32 h-2 bg-gray-200 rounded overflow-hidden">
+                        <div
+                          className={`h-2 ${
+                            progress === 100
+                              ? 'bg-green-800'
+                              : progress === 50
+                                ? 'bg-green-800'
+                                : 'bg-gray-400'
+                          }`}
+                          style={{ width: `${progress}%` }}
+                        />
+                      </div>
+                    </td>
+                    <td className="px-4 py-3">
+                      {project.possessionDate
+                        ? new Date(project.possessionDate).toLocaleDateString()
+                        : '-'}
+                    </td>
+                    {/* <td className="px-4 py-3">Admin</td> static agent */}
+                  </tr>
+                );
+              })
+            )}
           </tbody>
         </table>
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center gap-6 mt-8">
+            <button
+              onClick={() => setCurrentPage((p) => p - 1)}
+              disabled={currentPage === 1}
+              className={`text-xl font-semibold ${
+                currentPage === 1
+                  ? 'text-gray-300 cursor-not-allowed'
+                  : 'text-[#050F27]'
+              }`}
+            >
+              ‹
+            </button>
+
+            <span className="px-4 py-2 border rounded-lg bg-white text-sm">
+              {currentPage}
+            </span>
+
+            <button
+              onClick={() => setCurrentPage((p) => p + 1)}
+              disabled={currentPage === totalPages}
+              className={`text-xl font-semibold ${
+                currentPage === totalPages
+                  ? 'text-gray-300 cursor-not-allowed'
+                  : 'text-[#050F27]'
+              }`}
+            >
+              ›
+            </button>
+          </div>
+        )}
       </div>
+
       {showAddProjectModal && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50">
           <div className="bg-white w-[90vw] max-w-4xl max-h-[90vh] rounded-xl shadow-2xl relative flex flex-col">
