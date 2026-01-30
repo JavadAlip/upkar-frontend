@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { Trash2 } from 'lucide-react';
 import { toast } from 'react-toastify';
 
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 6;
 
 const EnquiryList = () => {
   const [enquiries, setEnquiries] = useState([]);
@@ -49,7 +49,7 @@ const EnquiryList = () => {
         (item) =>
           item.name?.toLowerCase().includes(search.toLowerCase()) ||
           item.email?.toLowerCase().includes(search.toLowerCase()) ||
-          item.phone?.includes(search)
+          item.phone?.includes(search),
       );
     }
 
@@ -59,7 +59,7 @@ const EnquiryList = () => {
 
     if (date) {
       temp = temp.filter(
-        (item) => new Date(item.createdAt).toISOString().split('T')[0] === date
+        (item) => new Date(item.createdAt).toISOString().split('T')[0] === date,
       );
     }
 
@@ -126,7 +126,7 @@ const EnquiryList = () => {
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentEnquiries = filteredEnquiries.slice(
     startIndex,
-    startIndex + ITEMS_PER_PAGE
+    startIndex + ITEMS_PER_PAGE,
   );
 
   if (loading) return <p className="p-6">Loading enquiries...</p>;

@@ -586,17 +586,48 @@ const ProjectDetail = () => {
     if (projectId) fetchProject();
   }, [projectId]);
 
-  const handleDownloadBrochure = () => {
-    if (!project?.brochureImage) return;
-    const link = document.createElement('a');
-    link.href = project.brochureImage;
-    link.download = `${project.projectName}-brochure`;
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // const handleDownloadBrochure = () => {
+  //   if (!project?.brochureImage) return;
+  //   const link = document.createElement('a');
+  //   link.href = project.brochureImage;
+  //   link.download = `${project.projectName}-brochure`;
+  //   link.target = '_blank';
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
+  const handleDownloadBrochure = async () => {
+    try {
+      const response = await fetch(project.brochureImage);
+      const blob = await response.blob();
 
+      const url = window.URL.createObjectURL(blob);
+
+      //  Use real filename from backend
+      let fileName = project.brochureFileName || 'brochure';
+
+      //  Fallback: derive extension from mimetype
+      if (!fileName.includes('.')) {
+        const mime = project.brochureMimeType || blob.type;
+
+        if (mime === 'application/pdf') fileName += '.pdf';
+        else if (mime === 'image/png') fileName += '.png';
+        else if (mime === 'image/jpeg') fileName += '.jpg';
+      }
+
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+
+      document.body.appendChild(link);
+      link.click();
+
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Download failed:', error);
+    }
+  };
   if (loading) {
     return (
       <>

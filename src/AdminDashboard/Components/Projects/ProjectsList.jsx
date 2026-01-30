@@ -370,7 +370,7 @@ import EditProjectModal from './../Projects/EditProjectModal';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
-const ITEMS_PER_PAGE = 3;
+const ITEMS_PER_PAGE = 6;
 
 const ProjectsList = () => {
   const [showAddModal, setShowAddModal] = useState(false);
@@ -476,7 +476,7 @@ const ProjectsList = () => {
     }
   };
 
-  // ✅ FIX: Remove duplicate toast - AddProject already shows success toast
+  //  FIX: Remove duplicate toast - AddProject already shows success toast
   const handleAddSuccess = () => {
     fetchProjects();
     // Don't show toast here - AddProject component already shows it
@@ -498,7 +498,7 @@ const ProjectsList = () => {
     <>
       <div className="relative p-6 bg-gray-50 font-figtree min-h-screen">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-semibold">Project Management</h1>
+          <h1 className="text-2xl font-semibold">Plot Management</h1>
 
           <button
             onClick={() => setShowAddModal(true)}

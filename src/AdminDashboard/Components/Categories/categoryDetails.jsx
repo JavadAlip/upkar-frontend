@@ -33,7 +33,7 @@ const CategoryDetails = () => {
           p.projectType &&
           id &&
           p.projectType.toString().trim().toLowerCase() ===
-            id.toString().trim().toLowerCase()
+            id.toString().trim().toLowerCase(),
       );
 
       setProjects(filtered);
@@ -51,14 +51,14 @@ const CategoryDetails = () => {
           project.projectName
             ?.toLowerCase()
             .includes(searchTerm.toLowerCase()) ||
-          project.location?.toLowerCase().includes(searchTerm.toLowerCase())
+          project.location?.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     }
 
     if (statusFilter !== 'all') {
       result = result.filter(
         (project) =>
-          project.projectStatus?.toLowerCase() === statusFilter.toLowerCase()
+          project.projectStatus?.toLowerCase() === statusFilter.toLowerCase(),
       );
     }
 
@@ -116,9 +116,9 @@ const CategoryDetails = () => {
               <th className="px-6 py-3 text-left font-medium">Project Name</th>
               <th className="px-6 py-3 text-left  font-medium">Location</th>
               <th className="px-6 py-3 text-left  font-medium">Price</th>
-              <th className="px-6 py-3 text-left  font-medium">
+              {/* <th className="px-6 py-3 text-left  font-medium">
                 Customer Name
-              </th>
+              </th> */}
               <th className="px-6 py-3 text-left  font-medium">Status</th>
             </tr>
           </thead>
@@ -138,7 +138,7 @@ const CategoryDetails = () => {
                   <td className="px-6 py-3 text-[18px] text-left">
                     ₹ {project.priceStartsFrom}
                   </td>
-                  <td className="px-6 py-3 text-[18px] text-left">-</td>
+                  {/* <td className="px-6 py-3 text-[18px] text-left">-</td> */}
                   <td className="px-6 py-3 text-[18px] text-left">
                     <span className="px-3 py-1 rounded-md text-[16px] bg-[#2D5C3A] text-white inline-block">
                       {project.projectStatus}
