@@ -133,7 +133,7 @@ const EnquiryList = () => {
 
   return (
     <div className="p-6 bg-[#F7F8FA] min-h-screen font-figtree">
-      <h2 className="text-2xl font-semibold mb-4">Manage Enquiries</h2>
+      <h2 className="text-2xl font-semibold mb-4">Manage Project Enquiries</h2>
 
       {/* Filters */}
       <div className="bg-white p-4 rounded-xl border mb-6 flex flex-col md:flex-row gap-4">

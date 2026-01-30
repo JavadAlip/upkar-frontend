@@ -1525,6 +1525,7 @@
 //     </div>
 //   );
 // }
+
 import { useState, useEffect } from 'react';
 import { createProjects } from '../../../Api';
 import { getAllCategories } from '../../../Api';
@@ -1545,7 +1546,8 @@ export default function AddProject({ onClose, onSuccess }) {
     unitConfiguration: '',
     waterSupply: '',
     projectArea: '',
-    totalUnits: '',
+    // totalUnits: '',
+    totalUnits: null,
     masterPlans: null,
     brochureImage: null,
     propertyImages: [],
@@ -1694,7 +1696,7 @@ export default function AddProject({ onClose, onSuccess }) {
 
   const handleSubmit = async () => {
     try {
-      // ✅ Validation
+      //  Validation
       if (
         !formData.projectName ||
         !formData.projectType ||
@@ -1707,15 +1709,15 @@ export default function AddProject({ onClose, onSuccess }) {
         return;
       }
 
-      // ✅ Close modal IMMEDIATELY
+      //  Close modal IMMEDIATELY
       onClose();
 
-      // 🎉 Show SUCCESS immediately
+      //  Show SUCCESS immediately
       toast.success('Project submitted! Processing images...', {
         autoClose: 3000,
       });
 
-      // 📦 Prepare FormData in background
+      //  Prepare FormData in background
       const data = new FormData();
 
       data.append('projectName', formData.projectName);
@@ -1737,13 +1739,16 @@ export default function AddProject({ onClose, onSuccess }) {
         data.append('waterSupply', formData.waterSupply);
       if (formData.projectArea)
         data.append('projectArea', formData.projectArea);
-
-      if (formData.totalUnits && formData.totalUnits.trim() !== '') {
-        const totalUnitsNum = Number(formData.totalUnits);
-        if (!isNaN(totalUnitsNum)) {
-          data.append('totalUnits', totalUnitsNum);
-        }
+      if (formData.totalUnits !== null) {
+        data.append('totalUnits', formData.totalUnits);
       }
+
+      // if (formData.totalUnits && formData.totalUnits.trim() !== '') {
+      //   const totalUnitsNum = Number(formData.totalUnits);
+      //   if (!isNaN(totalUnitsNum)) {
+      //     data.append('totalUnits', totalUnitsNum);
+      //   }
+      // }
 
       if (formData.noBrokerReraId)
         data.append('noBrokerReraId', formData.noBrokerReraId);
@@ -1959,11 +1964,22 @@ export default function AddProject({ onClose, onSuccess }) {
             value={formData.projectArea}
             onChange={(e) => handleInputChange('projectArea', e.target.value)}
           />
-          <Input
+          {/* <Input
             type="number"
             placeholder="Total Units"
             value={formData.totalUnits}
             onChange={(e) => handleInputChange('totalUnits', e.target.value)}
+          /> */}
+          <Input
+            type="number"
+            placeholder="Total Units"
+            value={formData.totalUnits ?? ''}
+            onChange={(e) =>
+              handleInputChange(
+                'totalUnits',
+                e.target.value === '' ? null : Number(e.target.value),
+              )
+            }
           />
         </div>
       </Section>
