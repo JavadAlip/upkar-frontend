@@ -689,7 +689,7 @@ const Sidebar = () => {
 
           <NavLink to="/admin/career-roles" className={linkClass}>
             <UserCheck size={18} />
-            Roles
+            Jobs Roles
           </NavLink>
 
           {/* Enquiries */}
