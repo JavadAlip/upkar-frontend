@@ -677,6 +677,7 @@
 // };
 
 // export default EditProjectModal1;
+
 import { useState, useEffect } from 'react';
 import { X, Plus, Trash2 } from 'lucide-react';
 import { updateProjects, getAllCategories } from '../../../Api';
@@ -994,8 +995,24 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
       onClose();
     } catch (err) {
       console.error(err);
-      toast.error(err.response?.data?.message || 'Failed to update project');
+
+      const msg = err.response?.data?.message || '';
+
+      if (
+        msg.includes('No matching document') ||
+        msg.includes('modifiedPaths') ||
+        msg.includes('version')
+      ) {
+        return;
+      }
+
+      toast.error(msg || 'Failed to update project');
     }
+
+    // catch (err) {
+    //   console.error(err);
+    //   toast.error(err.response?.data?.message || 'Failed to update project');
+    // }
   };
 
   return (

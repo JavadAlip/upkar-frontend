@@ -687,6 +687,11 @@ const Sidebar = () => {
             Projects
           </NavLink>
 
+          <NavLink to="/admin/career-roles" className={linkClass}>
+            <UserCheck size={18} />
+            Roles
+          </NavLink>
+
           {/* Enquiries */}
           <NavLink to="/admin/enquiries" className={linkClass}>
             <ClipboardList size={18} />

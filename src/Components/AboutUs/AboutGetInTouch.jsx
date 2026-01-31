@@ -72,7 +72,7 @@ const GetInTouch = () => {
   return (
     <div className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 font-figtree">
       {/* Heading */}
-      <h2 className="mb-8 text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight text-center lg:text-left">
+      <h2 className="mb-8 text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight text-left">
         <span style={{ fontWeight: 500 }}>Get in </span>
         <span style={{ fontWeight: 700 }}>Touch</span>
       </h2>

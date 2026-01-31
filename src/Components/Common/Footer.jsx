@@ -12,13 +12,13 @@ const Footer = forwardRef((props, ref) => {
     >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
         <div className="md:col-span-1 flex flex-col">
-          <p className="font-[Figtree] text-[20px] font-light leading-[1] text-white">
+          {/* <p className="font-[Figtree] text-[20px] font-light leading-[1] text-white">
             Stay connected, explore opportunities,
             <br />
             and invest with confidence. Your real
             <br />
             estate success starts here.
-          </p>
+          </p> */}
           <div className="flex gap-4 mt-6">
             <a href="#" className="hover:text-gray-300 transition-colors">
               <FaLinkedin className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -113,7 +113,7 @@ const Footer = forwardRef((props, ref) => {
       <div className="pt-8 flex flex-col items-center gap-8 lg:gap-12 w-full">
         <p className="text-center text-sm sm:text-base md:text-lg font-light">
           All Rights Reserved 2025 |{' '}
-          <span className="font-bold">Upkar Groups</span>
+          <span className="font-bold">Upkar Group</span>
         </p>
         <img
           src={Footerimg}

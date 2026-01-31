@@ -1,6 +1,7 @@
 import axios from 'axios';
 const API_URL =
   import.meta.env.VITE_API_URL || 'https://upkar-backend.onrender.com/api';
+// import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 //banners
 export const getBanners = async () => {
@@ -1553,5 +1554,21 @@ export const deleteCategory = async (id, token) => {
       },
     },
   );
+  return res.data;
+};
+
+// job roles
+export const getCareerRoles = async () => {
+  const res = await axios.get(`${API_URL}/careerspage/get-roles`);
+  return res.data;
+};
+
+export const createCareerRole = async (payload) => {
+  const res = await axios.post(`${API_URL}/careerspage/create-role`, payload);
+  return res.data;
+};
+
+export const deleteCareerRole = async (id) => {
+  const res = await axios.delete(`${API_URL}/careerspage/delete-role/${id}`);
   return res.data;
 };

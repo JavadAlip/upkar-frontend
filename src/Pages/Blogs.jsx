@@ -1,7 +1,6 @@
 import BlogMain from '../Components/Blogs/BlogMain';
 import PopularArticles from '../Components/Blogs/PopularArticles';
 import ReadMore from '../Components/Blogs/ReadMore';
-import JoinTeam from '../Components/Career/JoinTeam';
 import CmpltNavbar from '../Components/CompletedPrjcts/CmpltNavbar';
 
 const Blogs = () => {
@@ -11,7 +10,6 @@ const Blogs = () => {
       <BlogMain />
       <PopularArticles />
       <ReadMore />
-      <JoinTeam />
     </>
   );
 };

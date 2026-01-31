@@ -225,6 +225,7 @@ import Categories from '../Components/Categories/Categories';
 import CategoryDetails from '../Components/Categories/categoryDetails';
 import MediaLibrary from '../Components/MediaLibrary/MediaLibrary';
 import CareerEnquiryList from '../Components/Enquiries/CareerEnquiry';
+import CareerRoles from '../Components/JobRoles/JobRoles';
 
 const AdminDashboard = () => {
   return (
@@ -306,6 +307,7 @@ const AdminDashboard = () => {
             <Route path="category/:id" element={<CategoryDetails />} />
             <Route path="media" element={<MediaLibrary />} />
             <Route path="career-enquiries" element={<CareerEnquiryList />} />
+            <Route path="career-roles" element={<CareerRoles />} />
           </Routes>
         </div>
       </div>

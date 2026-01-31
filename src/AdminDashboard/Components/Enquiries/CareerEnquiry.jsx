@@ -170,7 +170,7 @@ const CareerEnquiryList = () => {
                   <strong>Name:</strong> {item.name}
                 </p>
                 <p>
-                  <strong>Service:</strong> {item.serviceInterestedIn}
+                  <strong>Job Role:</strong> {item.serviceInterestedIn}
                 </p>
                 <p>
                   <strong>Location:</strong> {item.location}
