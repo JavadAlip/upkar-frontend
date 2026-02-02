@@ -795,6 +795,10 @@ import waterIcon from '../assets/Icons/water1.png';
 import unitIcon from '../assets/Icons/unit1.png';
 import BrochureForm from '../Components/BrochureForm/BrochureForm';
 import { GoDotFill } from 'react-icons/go';
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import getinBtn from '../../src/assets/Icons/getinBtn8.png';
+import { createEnquiry, getAllProjects } from '../Api';
+import { toast } from 'react-toastify';
 
 const safeParseArray = (value) => {
   if (Array.isArray(value)) return value;
@@ -811,6 +815,52 @@ const safeParseArray = (value) => {
 };
 
 const ProjectDetail = () => {
+  const [formData, setFormData] = useState({
+    projectStatus: '',
+    projectId: '',
+    siteVisitDate: '',
+    location: '',
+    name: '',
+    email: '',
+    phone: '',
+    isExistingCustomer: '',
+  });
+
+  const [projects, setProjects] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState([]);
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const allProjects = await getAllProjects();
+        if (Array.isArray(allProjects)) setProjects(allProjects);
+      } catch (err) {
+        toast.error('Failed to load projects');
+      }
+    };
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
+    if (!formData.projectStatus) {
+      setFilteredProjects([]);
+      return;
+    }
+
+    const filtered = projects.filter(
+      (p) => p.projectStatus === formData.projectStatus,
+    );
+
+    setFilteredProjects(filtered);
+    setFormData((prev) => ({ ...prev, projectId: '' }));
+  }, [formData.projectStatus, projects]);
+
   const { projectId } = useParams();
   const navigate = useNavigate();
   const [project, setProject] = useState(null);
@@ -1389,15 +1439,13 @@ const ProjectDetail = () => {
               )}
 
               {/* DIRECTIONS + CONTACT (50-50 on Large Screens) */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-                {/* DIRECTIONS */}
-                <div className="flex flex-col h-full">
+              {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div className="flex flex-col lg:h-full">
                   <h1 className="block lg:hidden font-figtree text-2xl sm:text-3xl mb-4 font-semibold">
                     Directions
                   </h1>
 
-                  <div className="flex-1 rounded-2xl overflow-hidden shadow-xl">
-                    {/* Determine final URL */}
+                  <div className="rounded-2xl overflow-hidden shadow-xl lg:h-full">
                     {(() => {
                       const defaultUrl =
                         'https://www.google.com/maps/place/Upkar+Developers/data=!4m2!3m1!1s0x0:0x4197a95cbd5e5aaa?sa=X&ved=1t:2428&ictx=111';
@@ -1419,7 +1467,7 @@ const ProjectDetail = () => {
                           <iframe
                             title="Project Location"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31109.11610951081!2d77.56036951969323!3d12.939408280942776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae159423739445%3A0x4197a95cbd5e5aaa!2sUPKAR%20TOWERS!5e0!3m2!1sen!2som!4v1733050000000!5m2!1sen!2som"
-                            className="w-full h-full border-0 pointer-events-none"
+                            className="w-full h-[350px] lg:h-full border-0 pointer-events-none"
                             allowFullScreen=""
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
@@ -1430,10 +1478,190 @@ const ProjectDetail = () => {
                   </div>
                 </div>
 
-                {/* GET IN TOUCH */}
-                <div className="flex h-full">
+                <div className="flex lg:h-full">
                   <div className="flex-1">
                     <PrjctGetinTouch />
+                  </div>
+                </div>
+              </div> */}
+
+              {/* DIRECTIONS + CONTACT (50-50 on Large Screens) */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                {/* ================= DIRECTIONS ================= */}
+                <div className="flex flex-col">
+                  <div className="rounded-2xl overflow-hidden shadow-xl flex-1">
+                    {(() => {
+                      const DEFAULT_EMBED_URL =
+                        'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31109.11610951081!2d77.56036951969323!3d12.939408280942776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae159423739445%3A0x4197a95cbd5e5aaa!2sUPKAR%20TOWERS!5e0!3m2!1sen!2som!4v1733050000000!5m2!1sen!2som';
+
+                      const DEFAULT_LINK_URL =
+                        'https://www.google.com/maps/place/Upkar+Developers';
+
+                      const embedUrl = project.locationEmbedUrl?.includes(
+                        'google.com/maps/embed',
+                      )
+                        ? project.locationEmbedUrl
+                        : DEFAULT_EMBED_URL;
+
+                      const linkUrl = project.locationUrl?.startsWith('http')
+                        ? project.locationUrl
+                        : DEFAULT_LINK_URL;
+
+                      return (
+                        <a
+                          href={linkUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block w-full h-full"
+                        >
+                          <iframe
+                            title="Project Location"
+                            src={embedUrl}
+                            className="w-full h-[350px] lg:h-full border-0 pointer-events-none"
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                          />
+                        </a>
+                      );
+                    })()}
+                  </div>
+                </div>
+
+                {/* ================= GET IN TOUCH ================= */}
+                <div className="w-full font-figtree flex flex-col border border-gray-400 rounded-lg">
+                  <div className="bg-white rounded-3xl p-8 md:p-10 w-full  flex-1">
+                    <form
+                      className="flex flex-col gap-5"
+                      onSubmit={async (e) => {
+                        e.preventDefault();
+                        try {
+                          await createEnquiry(formData);
+                          toast.success('Enquiry submitted successfully!');
+                          setFormData({
+                            projectStatus: '',
+                            projectId: '',
+                            siteVisitDate: '',
+                            location: '',
+                            name: '',
+                            email: '',
+                            phone: '',
+                            isExistingCustomer: '',
+                          });
+                        } catch (err) {
+                          toast.error(
+                            err?.response?.data?.message ||
+                              'Something went wrong. Try again.',
+                          );
+                        }
+                      }}
+                    >
+                      {/* PROJECT STATUS */}
+                      <select
+                        name="projectStatus"
+                        value={formData.projectStatus}
+                        onChange={handleChange}
+                        className="w-full px-5 py-3 border border-black rounded-2xl"
+                        required
+                      >
+                        <option value="">Select Project Status</option>
+                        <option value="ongoing">Ongoing</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="completed">Completed</option>
+                      </select>
+
+                      {/* PROJECT LIST */}
+                      <select
+                        name="projectId"
+                        value={formData.projectId}
+                        onChange={handleChange}
+                        className="w-full px-5 py-3 border border-black rounded-2xl"
+                        required
+                        disabled={!filteredProjects.length}
+                      >
+                        <option value="">Select Project</option>
+                        {filteredProjects.map((p) => (
+                          <option key={p._id} value={p._id}>
+                            {p.projectName}
+                          </option>
+                        ))}
+                      </select>
+
+                      {/* SITE VISIT DATE */}
+                      <input
+                        type="date"
+                        name="siteVisitDate"
+                        value={formData.siteVisitDate}
+                        onChange={handleChange}
+                        className="w-full px-5 py-3 border border-black rounded-2xl"
+                        required
+                      />
+
+                      {/* LOCATION */}
+                      <input
+                        type="text"
+                        name="location"
+                        placeholder="Location"
+                        value={formData.location}
+                        onChange={handleChange}
+                        className="w-full px-5 py-3 border border-black rounded-2xl"
+                        required
+                      />
+
+                      {/* NAME */}
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        className="w-full px-5 py-3 border border-black rounded-2xl"
+                        required
+                      />
+
+                      {/* EMAIL */}
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="w-full px-5 py-3 border border-black rounded-2xl"
+                        required
+                      />
+
+                      {/* PHONE */}
+                      <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Phone Number"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="w-full px-5 py-3 border border-black rounded-2xl"
+                        required
+                      />
+
+                      {/* EXISTING CUSTOMER */}
+                      <select
+                        name="isExistingCustomer"
+                        value={formData.isExistingCustomer}
+                        onChange={handleChange}
+                        className="w-full px-5 py-3 border border-black rounded-2xl"
+                        required
+                      >
+                        <option value="">Are you an existing customer?</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                      </select>
+
+                      {/* SUBMIT */}
+                      <button type="submit" className="mt-4 flex justify-start">
+                        <img
+                          src={getinBtn}
+                          alt="Send Enquiry"
+                          className="max-w-[200px] sm:max-w-[180px]  xs:max-w-[160px]  w-full hover:opacity-90 "
+                        />
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>
