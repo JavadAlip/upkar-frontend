@@ -121,7 +121,7 @@ const VisionMission = () => {
                     {visionMission?.totalExperience
                       ?.replace(
                         visionMission?.totalExperience?.split(' ')[0],
-                        ''
+                        '',
                       )
                       .trim() ||
                       visionMission?.stats?.[0]?.label ||

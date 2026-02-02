@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { getCertifications } from "../../Api";
+import React, { useState, useEffect } from 'react';
+import { getCertifications } from '../../Api';
 
 const AboutCertification = () => {
   const [certifications, setCertifications] = useState([]);
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     const fetchCerts = async () => {
@@ -11,7 +11,7 @@ const AboutCertification = () => {
         const data = await getCertifications(token);
         setCertifications(data);
       } catch (error) {
-        console.error("Error fetching certifications:", error);
+        console.error('Error fetching certifications:', error);
       }
     };
 
@@ -19,7 +19,7 @@ const AboutCertification = () => {
   }, [token]);
 
   return (
-    <div className="w-full bg-[#050F27] px-4 lg:px-10 py-12 sm:py-14 md:py-16 lg:py-12 font-[Figtree]">
+    <div className="w-full bg-[#000000] px-4 lg:px-10 py-12 sm:py-14 md:py-16 lg:py-12 font-[Figtree]">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12 text-center lg:text-left">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-semibold leading-tight text-white mb-8 lg:mb-12">

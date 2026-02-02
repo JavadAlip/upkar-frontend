@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { ArrowRight } from "lucide-react";
-import JoinUs from "../../assets/Icons/joinUs.png";
-import { getCareerMainAPI } from "../../Api";
+import React, { useEffect, useState } from 'react';
+import { ArrowRight } from 'lucide-react';
+import JoinUs from '../../assets/Icons/joinUs.png';
+import { getCareerMainAPI } from '../../Api';
 
 const CareerMain = () => {
-  const [careerDescription, setCareerDescription] = useState("");
+  const [careerDescription, setCareerDescription] = useState('');
 
   useEffect(() => {
     const fetchCareerDescription = async () => {
@@ -14,7 +14,7 @@ const CareerMain = () => {
           setCareerDescription(res.data[0].careerDescription);
         }
       } catch (error) {
-        console.error("Failed to fetch career description:", error);
+        console.error('Failed to fetch career description:', error);
       }
     };
     fetchCareerDescription();
@@ -26,7 +26,7 @@ const CareerMain = () => {
         <div className="text-center space-y-6 md:space-y-8">
           <h2 className="text-3xl md:text-4xl lg:text-[48px]">
             <span className="font-[Figtree] font-light text-black">
-              Careers at{" "}
+              Careers at{' '}
             </span>
             <span className="font-[Figtree] font-semibold text-black">
               Upkar Developers
@@ -34,7 +34,7 @@ const CareerMain = () => {
           </h2>
 
           <p className="font-[Figtree] font-light text-base md:text-lg lg:text-[20px] text-[#050F27] leading-[1.4] max-w-4xl mx-auto px-2 whitespace-pre-line">
-            {careerDescription || "Loading career description..."}
+            {careerDescription || 'Loading career description...'}
           </p>
 
           <div className="flex justify-center pt-2">

@@ -1,7 +1,8 @@
 import HomeMain from '../Components/HomePage/HomeMain';
 import VisionMission from '../Components/HomePage/VisionMission';
 import Projects from '../Components/HomePage/Projects';
-import GetInTouch from '../Components/HomePage/GetInTouch';
+// import GetInTouch from '../Components/HomePage/GetInTouch';
+import GetInTouch from '../Components/AboutUs/AboutGetInTouch';
 import Certification from '../Components/HomePage/Certification';
 import QnsAns from '../Components/Common/QnsAns';
 import Awards from '../Components/HomePage/Awards';

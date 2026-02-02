@@ -8,7 +8,7 @@ const Footer = forwardRef((props, ref) => {
   return (
     <footer
       ref={ref}
-      className="w-full bg-[#050F27] text-white py-10 lg:py-12 px-4 lg:px-10 font-[Figtree]"
+      className="w-full bg-[#000000] text-white py-10 lg:py-12 px-4 lg:px-10 font-[Figtree]"
     >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
         <div className="md:col-span-1 flex flex-col">

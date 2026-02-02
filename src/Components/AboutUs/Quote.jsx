@@ -27,7 +27,7 @@ const Quote = () => {
     return <div className="text-center py-10 text-white">Loading...</div>;
 
   return (
-    <div className="bg-[#050F27] text-white py-14 sm:py-16 md:py-18 lg:py-20 px-6 sm:px-10 md:px-16 font-[Figtree] relative overflow-hidden">
+    <div className="bg-[#000000] text-white py-14 sm:py-16 md:py-18 lg:py-20 px-6 sm:px-10 md:px-16 font-[Figtree] relative overflow-hidden">
       <div className="absolute top-13 left-5 lg:left-10 flex gap-1 sm:gap-2 opacity-90">
         <img
           src={QuoteUp}

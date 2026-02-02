@@ -35,8 +35,8 @@ const AboutImages = () => {
 
       <div className="relative hidden sm:block">
         <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth pb-6 gallery-container">
-          {Array.from({ length: Math.ceil(images.length / 8) }).map((_, i) => {
-            const chunk = images.slice(i * 8, i * 8 + 8);
+          {Array.from({ length: Math.ceil(images.length / 4) }).map((_, i) => {
+            const chunk = images.slice(i * 4, i * 4 + 4);
             const [img0, img1, img2, img3, img4, img5, img6, img7] = chunk;
 
             return (
@@ -130,7 +130,8 @@ const AboutImages = () => {
         </div>
 
         <button
-          className="absolute left-0 top-1/2 bg-white text-gray-800 p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+          // className="absolute left-0 top-1/2 bg-white text-gray-800 p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/30 backdrop-blur-md text-gray-800 p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
               .querySelector('.gallery-container')
@@ -140,7 +141,8 @@ const AboutImages = () => {
           <ChevronLeft className="w-4 h-4" />
         </button>
         <button
-          className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+          // className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#050F27]/30 backdrop-blur-md text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
               .querySelector('.gallery-container')
@@ -168,7 +170,8 @@ const AboutImages = () => {
         </div>
 
         <button
-          className="absolute left-0 top-1/2 bg-white text-gray-800 p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+          // className="absolute left-0 top-1/2 bg-white text-gray-800 p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/30 backdrop-blur-md text-gray-800 p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
               .querySelector('.mobile-gallery')
@@ -178,7 +181,8 @@ const AboutImages = () => {
           <ChevronLeft className="w-4 h-4" />
         </button>
         <button
-          className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+          // className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#050F27]/30 backdrop-blur-md text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
               .querySelector('.mobile-gallery')
