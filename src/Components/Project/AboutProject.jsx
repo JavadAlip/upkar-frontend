@@ -15,7 +15,7 @@ const AboutProject = ({ project }) => {
               <span className="font-semibold">About</span>{' '}
               <span className="font-light">Project</span>
             </h2>
-            <p className="font-figtree font-light text-base sm:text-lg md:text-xl lg:text-2xl text-[#050F27] leading-relaxed md:leading-snug max-w-4xl">
+            <p className="font-figtree font-light text-base sm:text-lg md:text-xl lg:text-2xl text-[#000000] leading-relaxed md:leading-snug max-w-4xl">
               {project.aboutProject}
             </p>
           </div>
@@ -32,21 +32,21 @@ const AboutProject = ({ project }) => {
             </h3>
 
             {project.reraDescription && (
-              <p className="font-figtree font-light text-base sm:text-lg md:text-xl lg:text-2xl text-[#050F27] leading-relaxed md:leading-snug mb-4">
+              <p className="font-figtree font-light text-base sm:text-lg md:text-xl lg:text-2xl text-[#000000] leading-relaxed md:leading-snug mb-4">
                 {project.reraDescription}
               </p>
             )}
 
             <div className="space-y-2 md:space-y-3 pt-2">
               {project.noBrokerReraId && (
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-figtree text-[#050F27]">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-figtree text-[#000000]">
                   <span className="font-light">NoBroker RERA Id - </span>
                   <span className="font-bold">{project.noBrokerReraId}</span>
                 </p>
               )}
 
               {project.builderProjectReraId && (
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-figtree text-[#050F27]">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-figtree text-[#000000]">
                   <span className="font-light">Builder Project RERA Id - </span>
                   <span className="font-bold break-all">
                     {project.builderProjectReraId}

@@ -37,7 +37,7 @@ const VisionMission = () => {
             <span className="font-light">& Mission</span>
           </h2>
 
-          <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+          <p className="text-[#000000] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
             {visionMission?.description ||
               'Our core values are centered on integrity and trust, upholding transparency and ethical practices in every interaction. We are driven by a commitment to quality and craftsmanship.'}
           </p>
@@ -47,7 +47,7 @@ const VisionMission = () => {
               onClick={() => setMissionOpen(!missionOpen)}
               className="w-full flex items-center justify-between text-left"
             >
-              <h3 className="text-[#050F27] text-lg sm:text-xl md:text-2xl lg:text-[24px] font-[Figtree] font-bold">
+              <h3 className="text-[#000000] text-lg sm:text-xl md:text-2xl lg:text-[24px] font-[Figtree] font-bold">
                 Our Mission
               </h3>
               {missionOpen ? (
@@ -57,7 +57,7 @@ const VisionMission = () => {
               )}
             </button>
             {missionOpen && (
-              <p className="mt-4 text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+              <p className="mt-4 text-[#000000] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                 {visionMission?.missionText ||
                   'It is to consistently deliver exceptional homes and build lasting relationships based on trust, quality, and a commitment to customer satisfaction.'}
               </p>
@@ -69,7 +69,7 @@ const VisionMission = () => {
               onClick={() => setVisionOpen(!visionOpen)}
               className="w-full flex items-center justify-between text-left"
             >
-              <h3 className="text-[#050F27] text-lg sm:text-xl md:text-2xl lg:text-[24px] font-[Figtree] font-bold">
+              <h3 className="text-[#000000] text-lg sm:text-xl md:text-2xl lg:text-[24px] font-[Figtree] font-bold">
                 Our Vision
               </h3>
               {visionOpen ? (
@@ -79,7 +79,7 @@ const VisionMission = () => {
               )}
             </button>
             {visionOpen && (
-              <p className="mt-4 text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+              <p className="mt-4 text-[#000000] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                 {visionMission?.visionText ||
                   'To be the most trusted and innovative real estate developer, creating sustainable communities that enhance the quality of life for generations to come.'}
               </p>

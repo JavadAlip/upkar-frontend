@@ -220,7 +220,7 @@ const Projects = () => {
                 dangerouslySetInnerHTML={{ __html: project.heading }}
               />
 
-              <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+              <p className="text-[#000000] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                 {project.description}
               </p>
 
@@ -228,7 +228,7 @@ const Projects = () => {
                 {project.bulletPoints?.map((point, idx) => (
                   <li
                     key={idx}
-                    className="flex items-start text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed"
+                    className="flex items-start text-[#000000] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed"
                   >
                     <span className="mr-2">•</span> {point}
                   </li>

@@ -17,7 +17,7 @@ const Map = () => {
         </div>
 
         <div className="space-y-4 sm:space-y-6">
-          <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+          <p className="text-[#000000] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
             Explore our portfolio of exceptional properties and take the first
             step toward a new life.
           </p>

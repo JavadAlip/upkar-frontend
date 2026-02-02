@@ -59,7 +59,7 @@ export default function Section() {
         </h2>
 
         <p
-          className="text-sm sm:text-lg md:text-xl lg:text-2xl text-[#050F27] font-[Figtree] leading-relaxed 
+          className="text-sm sm:text-lg md:text-xl lg:text-2xl text-[#000000] font-[Figtree] leading-relaxed 
              max-w-[90%] sm:max-w-[75%] md:max-w-[60%] lg:max-w-[55%] mt-2"
         >
           <span className="font-bold">Upkar Developers</span>{' '}

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { ChevronDown, ChevronUp, ArrowRight } from "lucide-react";
-import { getQuestionsAPI } from "../../Api";
-import { toast } from "react-toastify";
+import React, { useState, useEffect } from 'react';
+import { ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
+import { getQuestionsAPI } from '../../Api';
+import { toast } from 'react-toastify';
 
 const QnsAns = () => {
   const [openIndex, setOpenIndex] = useState(-1);
   const [faqs, setFaqs] = useState([]);
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     fetchFAQs();
@@ -17,8 +17,8 @@ const QnsAns = () => {
       const data = await getQuestionsAPI(token);
       setFaqs(data);
     } catch (error) {
-      console.error("Error fetching FAQs:", error);
-      toast.error("Failed to fetch Q&As!");
+      console.error('Error fetching FAQs:', error);
+      toast.error('Failed to fetch Q&As!');
     }
   };
 
@@ -42,7 +42,7 @@ const QnsAns = () => {
 
             <button
               aria-label="Explore Projects"
-              className="inline-flex items-center bg-[#050F27] rounded-full shadow-md transition-colors hover:bg-[#0b2444] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#071334]"
+              className="inline-flex items-center bg-[#000000] rounded-full shadow-md transition-colors hover:bg-[#0b2444] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#071334]"
             >
               <span className="px-6 py-3 text-white text-sm sm:text-base font-medium">
                 Connect us !
@@ -63,15 +63,15 @@ const QnsAns = () => {
               key={index}
               className={`border rounded-2xl transition-all ${
                 openIndex === index
-                  ? "bg-gray-100 border-gray-200"
-                  : "bg-white border-gray-200"
+                  ? 'bg-gray-100 border-gray-200'
+                  : 'bg-white border-gray-200'
               }`}
             >
               <button
                 onClick={() => toggleFAQ(index)}
                 className="w-full flex items-center justify-between p-5 text-left"
               >
-                <span className="pr-4 text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[22px] font-[Figtree] font-medium leading-snug sm:leading-relaxed">
+                <span className="pr-4 text-[#000000] text-base sm:text-lg md:text-xl lg:text-[22px] font-[Figtree] font-medium leading-snug sm:leading-relaxed">
                   {index + 1}. {faq.question}
                 </span>
                 {openIndex === index ? (
@@ -83,11 +83,11 @@ const QnsAns = () => {
 
               {openIndex === index && (
                 <div className="px-5 pb-5">
-                  <p className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[20px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                  <p className="text-[#000000] text-base sm:text-lg md:text-xl lg:text-[20px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                     {faq.answer}
                   </p>
                   <div className="flex justify-end mt-2">
-                    <span className="text-[#050F27] text-base sm:text-lg md:text-xl lg:text-[20px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                    <span className="text-[#000000] text-base sm:text-lg md:text-xl lg:text-[20px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                       Learn more
                     </span>
                   </div>

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { getWhyJoinAPI } from "../../Api";
-import { toast } from "react-toastify";
+import React, { useEffect, useState } from 'react';
+import { getWhyJoinAPI } from '../../Api';
+import { toast } from 'react-toastify';
 
 const WhyJoinUs = () => {
   const [reasons, setReasons] = useState([]);
@@ -13,8 +13,8 @@ const WhyJoinUs = () => {
           setReasons(res.data);
         }
       } catch (error) {
-        console.error("Failed to fetch Why Join Us data:", error);
-        toast.error("Failed to fetch Why Join Us data");
+        console.error('Failed to fetch Why Join Us data:', error);
+        toast.error('Failed to fetch Why Join Us data');
       }
     };
     fetchReasons();
@@ -25,7 +25,7 @@ const WhyJoinUs = () => {
       <div className="max-w-6xl mx-auto space-y-16">
         <h2 className="mb-12 text-center">
           <span className="font-[Figtree] font-semibold text-[48px] text-black">
-            Why{" "}
+            Why{' '}
           </span>
           <span className="font-[Figtree] font-light text-[48px] text-black">
             Join us?
@@ -37,11 +37,11 @@ const WhyJoinUs = () => {
             {reasons.length > 0 ? (
               reasons.map((reason) => (
                 <div key={reason._id} className="space-y-3 text-center">
-                  <h3 className="font-[Figtree] font-semibold text-[20px] text-[#050F27]">
+                  <h3 className="font-[Figtree] font-semibold text-[20px] text-[#000000]">
                     {reason.title}
                   </h3>
 
-                  <p className="font-[Figtree] font-light text-[20px] text-[#050F27] leading-[1.2]">
+                  <p className="font-[Figtree] font-light text-[20px] text-[#000000] leading-[1.2]">
                     {reason.description}
                   </p>
                 </div>

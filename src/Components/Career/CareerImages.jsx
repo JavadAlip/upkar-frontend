@@ -135,7 +135,7 @@ const CareerImages = () => {
           <ChevronLeft className="w-4 h-4" />
         </button>
         <button
-          className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+          className="absolute right-0 top-1/2 bg-[#000000] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
               .querySelector('.gallery-container')
@@ -173,7 +173,7 @@ const CareerImages = () => {
           <ChevronLeft className="w-4 h-4" />
         </button>
         <button
-          className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+          className="absolute right-0 top-1/2 bg-[#000000] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
               .querySelector('.mobile-gallery')

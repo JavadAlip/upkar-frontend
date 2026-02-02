@@ -652,7 +652,7 @@ const ProjectsList = () => {
               className={`text-xl font-semibold ${
                 currentPage === 1
                   ? 'text-gray-300 cursor-not-allowed'
-                  : 'text-[#050F27]'
+                  : 'text-[#000000]'
               }`}
             >
               ‹
@@ -666,7 +666,7 @@ const ProjectsList = () => {
               className={`text-xl font-semibold ${
                 currentPage === totalPages
                   ? 'text-gray-300 cursor-not-allowed'
-                  : 'text-[#050F27]'
+                  : 'text-[#000000]'
               }`}
             >
               ›

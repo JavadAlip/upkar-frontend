@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { getProjectImagesAPI } from "../../Api";
+import React, { useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { getProjectImagesAPI } from '../../Api';
 
 const PrjctGallery = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -15,7 +15,7 @@ const PrjctGallery = () => {
         const allImages = data.flatMap((item) => item.images || []);
         setImages(allImages);
       } catch (error) {
-        console.error("Error fetching project images:", error);
+        console.error('Error fetching project images:', error);
       } finally {
         setLoading(false);
       }
@@ -30,7 +30,7 @@ const PrjctGallery = () => {
   return (
     <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
       <h2 className="mb-12 text-[48px] font-[Figtree] text-black leading-tight">
-        <span className="font-semibold">Project</span>{" "}
+        <span className="font-semibold">Project</span>{' '}
         <span className="font-light">Images</span>
       </h2>
 
@@ -134,18 +134,18 @@ const PrjctGallery = () => {
           className="absolute left-0 top-1/2 bg-white text-gray-800 p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
-              .querySelector(".gallery-container")
-              ?.scrollBy({ left: -400, behavior: "smooth" })
+              .querySelector('.gallery-container')
+              ?.scrollBy({ left: -400, behavior: 'smooth' })
           }
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
         <button
-          className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+          className="absolute right-0 top-1/2 bg-[#000000] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
-              .querySelector(".gallery-container")
-              ?.scrollBy({ left: 400, behavior: "smooth" })
+              .querySelector('.gallery-container')
+              ?.scrollBy({ left: 400, behavior: 'smooth' })
           }
         >
           <ChevronRight className="w-4 h-4" />
@@ -172,18 +172,18 @@ const PrjctGallery = () => {
           className="absolute left-0 top-1/2 bg-white text-gray-800 p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
-              .querySelector(".mobile-gallery")
-              ?.scrollBy({ left: -400, behavior: "smooth" })
+              .querySelector('.mobile-gallery')
+              ?.scrollBy({ left: -400, behavior: 'smooth' })
           }
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
         <button
-          className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+          className="absolute right-0 top-1/2 bg-[#000000] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
-              .querySelector(".mobile-gallery")
-              ?.scrollBy({ left: 400, behavior: "smooth" })
+              .querySelector('.mobile-gallery')
+              ?.scrollBy({ left: 400, behavior: 'smooth' })
           }
         >
           <ChevronRight className="w-4 h-4" />

@@ -33,7 +33,7 @@ const CareerMain = () => {
             </span>
           </h2>
 
-          <p className="font-[Figtree] font-light text-base md:text-lg lg:text-[20px] text-[#050F27] leading-[1.4] max-w-4xl mx-auto px-2 whitespace-pre-line">
+          <p className="font-[Figtree] font-light text-base md:text-lg lg:text-[20px] text-[#000000] leading-[1.4] max-w-4xl mx-auto px-2 whitespace-pre-line">
             {careerDescription || 'Loading career description...'}
           </p>
 
