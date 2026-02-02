@@ -787,7 +787,7 @@ import { Download, Expand, X } from 'lucide-react';
 import { ChevronLeft, ChevronRight, Home } from 'lucide-react';
 import { getSingleProject } from '../Api';
 import CmpltNavbar from '../Components/CompletedPrjcts/CmpltNavbar';
-import PrjctGetinTouch from '../Components/AboutUs/AboutGetInTouch';
+import PrjctGetinTouch from '../Components/Common/PrjctDetailGetinTouch';
 import directionsImg from '../assets/Directions.png';
 import { AMENITY_ICONS } from '../assets/Amenities';
 import areaIcon from '../assets/Icons/area1.png';
