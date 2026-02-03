@@ -9,8 +9,16 @@ export const adminLoginApi = async (data) => {
   return res.data;
 };
 
+// export const adminForgotPasswordApi = async (data) => {
+//   const res = await axios.post(`${API_URL}/admin/forgot-password`, data);
+//   return res.data;
+// };
 export const adminForgotPasswordApi = async (data) => {
-  const res = await axios.post(`${API_URL}/admin/forgot-password`, data);
+  const res = await axios.post(`${API_URL}/admin/forgot-password`, data, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
   return res.data;
 };
 
