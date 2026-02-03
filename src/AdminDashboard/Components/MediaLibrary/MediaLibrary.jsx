@@ -32,7 +32,7 @@ const MediaLibrary = () => {
         url: img,
         projectId: p._id,
         projectName: p.name,
-      }))
+      })),
     );
     setImages(allImages);
   };
@@ -148,7 +148,7 @@ const MediaLibrary = () => {
               className={`text-xl font-semibold ${
                 currentPage === 1
                   ? 'text-gray-300 cursor-not-allowed'
-                  : 'text-[#050F27] hover:text-[#2D5C3A]'
+                  : 'text-[#000000] hover:text-[#2D5C3A]'
               }`}
             >
               ‹
@@ -162,7 +162,7 @@ const MediaLibrary = () => {
               className={`text-xl font-semibold ${
                 currentPage === totalPages
                   ? 'text-gray-300 cursor-not-allowed'
-                  : 'text-[#050F27] hover:text-[#2D5C3A]'
+                  : 'text-[#000000] hover:text-[#2D5C3A]'
               }`}
             >
               ›

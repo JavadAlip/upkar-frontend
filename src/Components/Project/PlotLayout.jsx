@@ -25,7 +25,7 @@ const PlotLayout = ({ project }) => {
       <div className="w-full bg-white py-12 px-4 sm:py-16 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Title */}
-          <h2 className="mb-12 text-3xl sm:text-4xl md:text-[48px] font-[Figtree] text-[#050F27]">
+          <h2 className="mb-12 text-3xl sm:text-4xl md:text-[48px] font-[Figtree] text-[#000000]">
             <span className="font-semibold">Plot</span>{' '}
             <span className="font-light">Layout</span>
           </h2>

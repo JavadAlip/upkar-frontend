@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { getAllArticles } from "../../Api";
+import React, { useEffect, useState } from 'react';
+import { getAllArticles } from '../../Api';
 
 const PopularArticles = () => {
   const [articleData, setArticleData] = useState(null);
@@ -12,7 +12,7 @@ const PopularArticles = () => {
           setArticleData(res.data[0]);
         }
       } catch (error) {
-        console.log("Error fetching articles:", error);
+        console.log('Error fetching articles:', error);
       }
     };
 
@@ -63,7 +63,7 @@ const PopularArticles = () => {
                   {item.subHeading}
                 </h4>
 
-                <p className="text-[20px] font-figtree font-normal text-[#050F27] leading-normal">
+                <p className="text-[20px] font-figtree font-normal text-[#000000] leading-normal">
                   {item.subDescription}
                 </p>
               </div>

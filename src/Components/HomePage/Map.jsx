@@ -1,4 +1,4 @@
-import ProjectBtn from '../../assets/Icons/ProjectBtn.png';
+import ProjectBtn from '../../assets/Icons/ProjectBtn7.png';
 import { Link } from 'react-router-dom';
 
 const Map = () => {

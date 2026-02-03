@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import Vision3 from '../../assets/Vision3.png';
 import visionExp from '../../assets/visionExp1.png';
-import aboutArrow from '../../assets/Icons/aboutArrow.png';
+import aboutArrow from '../../assets/Icons/aboutArrow7.png';
 import { getVisionMission } from '../../Api';
 import { Link } from 'react-router-dom';
 
@@ -134,24 +134,24 @@ const VisionMission = () => {
         </div>
       </div>
 
-      <div className="w-full max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 mt-20 lg:mt-28 border-t border-[#1A2235]/10">
+      <div className="w-full max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 mt-20 lg:mt-28 border-t border-[#000000]/10">
         {visionMission?.stats?.map((stat, index) => (
           <div
             key={index}
             className="relative flex flex-col items-center text-center px-4 sm:px-8 py-8"
           >
             <div
-              className="text-[#1A2235] font-[Noto Serif JP] font-bold text-3xl sm:text-4xl md:text-[48px]"
+              className="text-[#000000] font-[Noto Serif JP] font-bold text-3xl sm:text-4xl md:text-[48px]"
               style={{ fontFamily: "'Noto Serif JP', serif" }}
             >
               {stat.number}
             </div>
-            <div className="text-[#1A2235] font-[Figtree] text-sm sm:text-base md:text-[16px] leading-snug mt-1 whitespace-pre-line">
+            <div className="text-[#000000] font-[Figtree] text-sm sm:text-base md:text-[16px] leading-snug mt-1 whitespace-pre-line">
               {stat.label}
             </div>
 
             {index % 2 === 0 && index !== visionMission.stats.length - 1 && (
-              <div className="absolute hidden md:block right-0 top-1/2 -translate-y-1/2 h-24 border-r border-[#1A2235]" />
+              <div className="absolute hidden md:block right-0 top-1/2 -translate-y-1/2 h-24 border-r border-[#000000]" />
             )}
           </div>
         ))}

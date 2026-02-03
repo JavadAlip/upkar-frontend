@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getProjects } from '../../Api';
-import ProjectBtn1 from '../../assets/Icons/projectBtn1.png';
-import ProjectBtn2 from '../../assets/Icons/projectBtn2.png';
-import ProjectBtn3 from '../../assets/Icons/projectBtn3.png';
+import ProjectBtn1 from '../../assets/Icons/projectBtn11.png';
+import ProjectBtn2 from '../../assets/Icons/projectBtn22.png';
+import ProjectBtn3 from '../../assets/Icons/projectBtn33.png';
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);

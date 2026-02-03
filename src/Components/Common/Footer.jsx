@@ -21,13 +21,13 @@ const Footer = forwardRef((props, ref) => {
           </p> */}
           <div className="flex gap-4 mt-6">
             <a href="#" className="hover:text-gray-300 transition-colors">
-              <FaLinkedin className="w-5 h-5 sm:w-6 sm:h-6" />
-            </a>
-            <a href="#" className="hover:text-gray-300 transition-colors">
               <FaWhatsapp className="w-5 h-5 sm:w-6 sm:h-6" />
             </a>
             <a href="#" className="hover:text-gray-300 transition-colors">
               <FaInstagram className="w-5 h-5 sm:w-6 sm:h-6" />
+            </a>
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              <FaLinkedin className="w-5 h-5 sm:w-6 sm:h-6" />
             </a>
             <a href="#" className="hover:text-gray-300 transition-colors">
               <FaXTwitter className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -112,7 +112,7 @@ const Footer = forwardRef((props, ref) => {
 
       <div className="pt-8 flex flex-col items-center gap-8 lg:gap-12 w-full">
         <p className="text-center text-sm sm:text-base md:text-lg font-light">
-          All Rights Reserved 2025 |{' '}
+          All Rights Reserved 2026 |{' '}
           <span className="font-bold">Upkar Group</span>
         </p>
         <img

@@ -1,5 +1,5 @@
-import React from "react";
-import contactBtn from "../../assets/Icons/contactBtn.png";
+import React from 'react';
+import contactBtn from '../../assets/Icons/contactBtn77.png';
 
 const ContactUs = () => {
   return (

@@ -142,7 +142,7 @@ const AboutImages = () => {
         </button>
         <button
           // className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#050F27]/30 backdrop-blur-md text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#000000]/30 backdrop-blur-md text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
               .querySelector('.gallery-container')
@@ -182,7 +182,7 @@ const AboutImages = () => {
         </button>
         <button
           // className="absolute right-0 top-1/2 bg-[#050F27] text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#050F27]/30 backdrop-blur-md text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#000000]/30 backdrop-blur-md text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all"
           onClick={() =>
             document
               .querySelector('.mobile-gallery')

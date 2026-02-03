@@ -49,7 +49,7 @@ const MainSection = () => {
           <Link
             to="/project"
             aria-label="Explore Projects"
-            className="inline-flex items-center bg-[#050F27] rounded-full shadow-md mb-10 transition-colors hover:bg-[#0b2444]"
+            className="inline-flex items-center bg-[#000000] rounded-full shadow-md mb-10 transition-colors hover:bg-[#0b2444]"
           >
             <span className="px-6 py-3 text-white text-sm sm:text-base font-medium">
               Explore Projects
@@ -114,13 +114,13 @@ const MainSection = () => {
 
             <div className="absolute top-10 right-0 py-3 w-14 sm:w-16 bg-white flex flex-col items-center gap-1 rounded-tl-[0.8rem] rounded-bl-[0.8rem] shadow-md z-20">
               <button className="p-2 sm:p-3 rounded-full">
-                <LocalPhoneIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#050F27]" />
+                <LocalPhoneIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#000000]" />
               </button>
               <button className="p-2 sm:p-3 rounded-full">
-                <EmailIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#050F27]" />
+                <EmailIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#000000]" />
               </button>
               <button className="p-2 sm:p-3 rounded-full">
-                <WhatsAppIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#050F27]" />
+                <WhatsAppIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#000000]" />
               </button>
             </div>
 
@@ -133,7 +133,7 @@ const MainSection = () => {
               </button>
               <button
                 onClick={nextSlide}
-                className="bg-[#050F27] text-white p-2 rounded-full shadow-md"
+                className="bg-[#000000] text-white p-2 rounded-full shadow-md"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -143,15 +143,15 @@ const MainSection = () => {
       </div>
 
       <div className="mx-auto max-w-[95%] lg:max-w-[85%] text-center pt-10">
-        <p className="text-[#050F27] text-lg lg:text-[24px] font-light leading-relaxed mb-4">
+        <p className="text-[#000000] text-lg lg:text-[24px] font-light leading-relaxed mb-4">
           {data.paragraph1}
         </p>
 
-        <p className="text-[#050F27] text-lg lg:text-[24px] font-light leading-relaxed mb-4">
+        <p className="text-[#000000] text-lg lg:text-[24px] font-light leading-relaxed mb-4">
           {data.paragraph2}
         </p>
 
-        <p className="text-[#050F27] text-lg lg:text-[24px] font-light leading-relaxed">
+        <p className="text-[#000000] text-lg lg:text-[24px] font-light leading-relaxed">
           {data.paragraph3}
         </p>
       </div>

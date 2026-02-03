@@ -72,11 +72,17 @@ function AppWrapper() {
 
       {!isAdminPage && <Footer ref={footerRef} />}
       {!isAdminPage && showButton && (
+        // <button
+        //   onClick={scrollToTop}
+        //   className="fixed bottom-6 right-6 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center z-50"
+        // >
+        //   <ChevronUp className="w-6 h-6" />
+        // </button>
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center z-50"
+          className="fixed bottom-6 right-6 w-12 h-12 rounded-full  bg-white/30 backdrop-blur-md  border border-white/40  shadow-lg flex items-center justify-center  z-50 hover:bg-white/40 transition"
         >
-          <ChevronUp className="w-6 h-6" />
+          <ChevronUp className="w-6 h-6 text-white" />
         </button>
       )}
     </>
