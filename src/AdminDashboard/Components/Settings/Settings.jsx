@@ -398,64 +398,66 @@ const Settings = () => {
       <div className="mt-10 border-t pt-6">
         <h3 className="text-xl font-semibold mb-4">Change Password</h3>
 
-        {/* CURRENT PASSWORD */}
-        <div className="mb-4 relative">
-          <label className="text-sm font-medium">Current Password</label>
-          <Lock className="absolute left-3 top-8 text-gray-500" />
-          <input
-            type={showCurrentPassword ? 'text' : 'password'}
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-            className="w-full pl-10 pr-10 py-2 border rounded-lg"
-          />
-          <span
-            onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-            className="absolute right-3 top-8 cursor-pointer text-gray-500"
-          >
-            {showCurrentPassword ? <EyeOff /> : <Eye />}
-          </span>
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* CURRENT PASSWORD */}
+          <div className="relative">
+            <label className="text-sm font-medium">Current Password</label>
+            <Lock className="absolute left-3 top-8 text-gray-500" />
+            <input
+              type={showCurrentPassword ? 'text' : 'password'}
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              className="w-full pl-10 pr-10 py-2 border rounded-lg"
+            />
+            <span
+              onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+              className="absolute right-3 top-8 cursor-pointer text-gray-500"
+            >
+              {showCurrentPassword ? <EyeOff /> : <Eye />}
+            </span>
+          </div>
 
-        {/* NEW PASSWORD */}
-        <div className="mb-4 relative">
-          <label className="text-sm font-medium">New Password</label>
-          <Lock className="absolute left-3 top-8 text-gray-500" />
-          <input
-            type={showNewPassword ? 'text' : 'password'}
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            className="w-full pl-10 pr-10 py-2 border rounded-lg"
-          />
-          <span
-            onClick={() => setShowNewPassword(!showNewPassword)}
-            className="absolute right-3 top-8 cursor-pointer text-gray-500"
-          >
-            {showNewPassword ? <EyeOff /> : <Eye />}
-          </span>
-        </div>
+          {/* NEW PASSWORD */}
+          <div className="relative">
+            <label className="text-sm font-medium">New Password</label>
+            <Lock className="absolute left-3 top-8 text-gray-500" />
+            <input
+              type={showNewPassword ? 'text' : 'password'}
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              className="w-full pl-10 pr-10 py-2 border rounded-lg"
+            />
+            <span
+              onClick={() => setShowNewPassword(!showNewPassword)}
+              className="absolute right-3 top-8 cursor-pointer text-gray-500"
+            >
+              {showNewPassword ? <EyeOff /> : <Eye />}
+            </span>
+          </div>
 
-        {/* CONFIRM PASSWORD */}
-        <div className="mb-6 relative">
-          <label className="text-sm font-medium">Confirm Password</label>
-          <Lock className="absolute left-3 top-8 text-gray-500" />
-          <input
-            type={showConfirmPassword ? 'text' : 'password'}
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full pl-10 pr-10 py-2 border rounded-lg"
-          />
-          <span
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            className="absolute right-3 top-8 cursor-pointer text-gray-500"
-          >
-            {showConfirmPassword ? <EyeOff /> : <Eye />}
-          </span>
+          {/* CONFIRM PASSWORD */}
+          <div className="relative">
+            <label className="text-sm font-medium">Confirm Password</label>
+            <Lock className="absolute left-3 top-8 text-gray-500" />
+            <input
+              type={showConfirmPassword ? 'text' : 'password'}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="w-full pl-10 pr-10 py-2 border rounded-lg"
+            />
+            <span
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="absolute right-3 top-8 cursor-pointer text-gray-500"
+            >
+              {showConfirmPassword ? <EyeOff /> : <Eye />}
+            </span>
+          </div>
         </div>
 
         <button
           onClick={handleChangePassword}
           disabled={passwordLoading}
-          className="bg-[#2D5C3A] text-white px-6 py-2 rounded-lg"
+          className="mt-6 bg-[#2D5C3A] text-white px-6 py-2 rounded-lg"
         >
           {passwordLoading ? 'Updating...' : 'Update Password'}
         </button>
