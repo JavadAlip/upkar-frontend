@@ -1,37 +1,49 @@
+import React, { useEffect, useState } from 'react';
+import { getAdminProfileApi } from '../../Api';
 import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
-import { toast } from 'react-toastify';
 
 const Navbar = () => {
+  const [admin, setAdmin] = useState(null);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will be logged out of the admin dashboard!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#28a745',
-      confirmButtonText: 'Yes, Logout!',
-      cancelButtonText: 'Cancel',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        localStorage.removeItem('adminToken');
-        navigate('/admin-login', { replace: true });
-        toast.success('Logged out successfully!');
+  useEffect(() => {
+    const fetchAdmin = async () => {
+      try {
+        const token = localStorage.getItem('adminToken');
+        if (!token) return;
+
+        const res = await getAdminProfileApi(token);
+        setAdmin(res);
+      } catch (error) {
+        console.error('Failed to load admin profile');
       }
-    });
-  };
+    };
+
+    fetchAdmin();
+  }, []);
 
   return (
     <div className="w-full h-16 bg-white shadow flex items-center px-6">
-      {/* <h1 className="hidden sm:block text-2xl font-bold text-black">
-        ADMIN DASHBOARD
-      </h1> */}
-
-      <div className="flex-1 flex justify-end"></div>
+      {/* Right side */}
+      <div className="flex-1 flex justify-end items-center gap-3">
+        {admin && (
+          <div
+            onClick={() => navigate('/admin/settings')}
+            className="flex items-center gap-3 cursor-pointer"
+          >
+            <img
+              src={admin.photo || '/avatar.png'}
+              alt="Admin"
+              className="w-9 h-9 rounded-full object-cover border"
+            />
+            <div className="text-right leading-tight">
+              <p className="text-sm font-semibold text-gray-800 hover:text-blue-600">
+                {admin.name}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

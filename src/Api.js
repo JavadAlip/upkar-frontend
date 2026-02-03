@@ -3,6 +3,48 @@ const API_URL =
   import.meta.env.VITE_API_URL || 'https://upkar-backend.onrender.com/api';
 // import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
+//Admin Auth
+export const adminLoginApi = async (data) => {
+  const res = await axios.post(`${API_URL}/admin/login`, data);
+  return res.data;
+};
+
+export const adminForgotPasswordApi = async (data) => {
+  const res = await axios.post(`${API_URL}/admin/forgot-password`, data);
+  return res.data;
+};
+
+export const adminVerifyOtpApi = async (data) => {
+  const res = await axios.post(`${API_URL}/admin/verify-otp`, data);
+  return res.data;
+};
+
+export const adminResetPasswordApi = async (data) => {
+  const res = await axios.post(`${API_URL}/admin/reset-password`, data);
+  return res.data;
+};
+
+/* GET ADMIN PROFILE */
+export const getAdminProfileApi = async (token) => {
+  const res = await axios.get(`${API_URL}/admin/profile`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};
+
+/* UPDATE ADMIN PROFILE */
+export const updateAdminProfileApi = async (formData, token) => {
+  const res = await axios.put(`${API_URL}/admin/profile`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return res.data;
+};
+
 //banners
 export const getBanners = async () => {
   const res = await axios.get(`${API_URL}/homepage/get-all-banners`);

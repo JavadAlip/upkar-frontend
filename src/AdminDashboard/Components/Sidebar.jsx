@@ -687,11 +687,6 @@ const Sidebar = () => {
             Projects
           </NavLink>
 
-          <NavLink to="/admin/career-roles" className={linkClass}>
-            <UserCheck size={18} />
-            Jobs Roles
-          </NavLink>
-
           {/* Enquiries */}
           <NavLink to="/admin/enquiries" className={linkClass}>
             <ClipboardList size={18} />
@@ -701,6 +696,11 @@ const Sidebar = () => {
           <NavLink to="/admin/career-enquiries" className={linkClass}>
             <UserCheck size={18} />
             Career Enquiries
+          </NavLink>
+
+          <NavLink to="/admin/career-roles" className={linkClass}>
+            <UserCheck size={18} />
+            Jobs Roles
           </NavLink>
 
           <NavLink to="/admin/media" className={linkClass}>
@@ -951,10 +951,15 @@ const Sidebar = () => {
           )}
 
           {/* SETTINGS */}
-          <div className="flex items-center gap-3 p-2 border rounded">
+          {/* <div className="flex items-center gap-3 p-2 border rounded">
             <Settings size={18} />
             Settings
-          </div>
+          </div> */}
+
+          <NavLink to="/admin/settings" className={linkClass}>
+            <Settings size={18} />
+            Settings
+          </NavLink>
 
           {/* LOGOUT */}
           <button
