@@ -37,7 +37,7 @@ const Navbar = () => {
               className="w-9 h-9 rounded-full object-cover border"
             />
             <div className="text-right leading-tight">
-              <p className="text-sm font-semibold text-gray-800 hover:text-blue-600">
+              <p className="text-sm font-semibold text-gray-800 hover:text-[#2D5C3A]">
                 {admin.name}
               </p>
             </div>

@@ -53,6 +53,16 @@ export const updateAdminProfileApi = async (formData, token) => {
   return res.data;
 };
 
+/* CHANGE ADMIN PASSWORD */
+export const changeAdminPasswordApi = async (data, token) => {
+  const res = await axios.put(`${API_URL}/admin/change-password`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};
+
 //banners
 export const getBanners = async () => {
   const res = await axios.get(`${API_URL}/homepage/get-all-banners`);

@@ -18,9 +18,6 @@ import Career from './Pages/Career';
 import Blogs from './Pages/Blogs';
 import AdminDashboard from './AdminDashboard/Pages/AdminDashboard';
 import AdminLogin from './AdminDashboard/Pages/AdminLogin';
-import AdminForgotPassword from './AdminDashboard/Pages/AdminForgotPassword';
-import AdminOtp from './AdminDashboard/Pages/AdminOtpVerify';
-import AdminResetPassword from './AdminDashboard/Pages/AdminResetPassword';
 import ProtectedRoute from './AdminDashboard/Components/ProtectedRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -63,12 +60,6 @@ function AppWrapper() {
         <Route path="/blogs" element={<Blogs />} />
         {/* Admin */}
         <Route path="/admin-login" element={<AdminLogin />} />
-        <Route
-          path="/admin-forgot-password"
-          element={<AdminForgotPassword />}
-        />
-        <Route path="/admin-otp" element={<AdminOtp />} />
-        <Route path="/admin-reset-password" element={<AdminResetPassword />} />
         <Route
           path="/admin/*"
           element={
