@@ -21,7 +21,7 @@ const OngoingProjectsList = () => {
 
         if (projectList && projectList.length > 0) {
           const ongoingProjects = projectList.filter(
-            (p) => p.projectStatus === 'ongoing'
+            (p) => p.projectStatus === 'ongoing',
           );
           setProjects(ongoingProjects);
         }
@@ -61,7 +61,7 @@ const OngoingProjectsList = () => {
   const startIndex = currentPage * projectsPerPage;
   const currentProjects = filteredProjects.slice(
     startIndex,
-    startIndex + projectsPerPage
+    startIndex + projectsPerPage,
   );
 
   const handleProjectClick = (projectId) => {
@@ -126,11 +126,18 @@ const OngoingProjectsList = () => {
                   onClick={() => handleProjectClick(project._id)}
                   className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition cursor-pointer"
                 >
-                  <img
+                  {/* <img
                     src={project.propertyImages?.[0]}
                     alt={project.projectName}
                     className="w-full h-64 object-cover"
-                  />
+                  /> */}
+                  <div className="overflow-hidden">
+                    <img
+                      src={project.propertyImages?.[0]}
+                      alt={project.projectName}
+                      className="w-full h-64 object-cover transition-transform duration-500 hover:scale-110"
+                    />
+                  </div>
 
                   <div className="p-5">
                     <h3 className="text-[20px] font-medium">
