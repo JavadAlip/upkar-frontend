@@ -23,7 +23,7 @@ const Map = () => {
           </p>
 
           <div className="mt-4">
-            <Link to="/project">
+            <Link to="/ongoing-projects">
               <img
                 src={ProjectBtn}
                 alt="Explore Projects"

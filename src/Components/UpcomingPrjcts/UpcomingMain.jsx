@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { getAllUpcomingProjects } from "../../Api";
-import addEnq from "../../assets/Icons/addEnq.png";
-import Phone from "../../assets/Icons/Phone.png";
-import Mail from "../../assets/Icons/mail.png";
-import Whatsapp from "../../assets/Icons/whatsapp.png";
+import React, { useEffect, useState } from 'react';
+import { getAllUpcomingProjects } from '../../Api';
+import addEnq from '../../assets/Icons/addEnq.png';
+import Phone from '../../assets/Icons/Phone.png';
+import Mail from '../../assets/Icons/mail.png';
+import Whatsapp from '../../assets/Icons/whatsapp.png';
 
 const UpcomingMain = () => {
   const [project, setProject] = useState(null);
@@ -17,7 +17,7 @@ const UpcomingMain = () => {
           setProject(res.data[0]);
         }
       } catch (error) {
-        console.error("Error fetching upcoming projects:", error);
+        console.error('Error fetching upcoming projects:', error);
       } finally {
         setLoading(false);
       }
@@ -40,9 +40,9 @@ const UpcomingMain = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-black font-figtree mb-8 sm:mb-12 md:mb-16 lg:mb-[100px] text-left">
-              {project.heading.split(" ")[0]}{" "}
+              {project.heading.split(' ')[0]}{' '}
               <span className="font-semibold">
-                {project.heading.split(" ").slice(1).join(" ")}
+                {project.heading.split(' ').slice(1).join(' ')}
               </span>
             </h2>
 
@@ -60,14 +60,14 @@ const UpcomingMain = () => {
           </div>
 
           <div className="relative">
-            <div className="rounded-3xl overflow-hidden shadow-2xl">
+            <div className="rounded-3xl overflow-hidden ">
               <img
                 src={project.mainImage}
                 alt="Upcoming Project"
                 className="w-full h-auto object-cover"
               />
 
-              <div className="absolute top-24 -right-4 bg-white rounded-2xl p-4 shadow-lg flex flex-col gap-6">
+              <div className="absolute top-24 -right-4 bg-white rounded-2xl p-4  flex flex-col gap-6">
                 <button className="hover:scale-110 transition-transform duration-300">
                   <img src={Phone} alt="Phone" className="w-6 h-6" />
                 </button>
