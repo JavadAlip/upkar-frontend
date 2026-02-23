@@ -40,7 +40,7 @@ const EventMain = () => {
             {data.mainTitle}
           </h1>
 
-          <p className="text-gray-600 font-[Figtree] font-normal text-[18px] md:text-[24px] max-w-3xl mx-auto">
+          <p className="text-black font-[Figtree] font-normal text-[18px] md:text-[24px] max-w-3xl mx-auto">
             {data.mainDescription}
           </p>
         </div>
@@ -61,7 +61,7 @@ const EventMain = () => {
               {data.subTitle}
             </h2>
 
-            <p className="text-gray-600 text-base text-[20px] font-[Figtree] md:text-lg leading-relaxed">
+            <p className="text-black text-base text-[20px] font-[Figtree] md:text-lg leading-relaxed">
               {data.subDescription}
             </p>
           </div>
