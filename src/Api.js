@@ -1526,11 +1526,26 @@ export const deleteEnquiry = async (id, token) => {
 };
 
 // career enquiries
+// export const createCareerEnquiry = async (payload) => {
+//   const res = await axios.post(
+//     `${API_URL}/careerspage/create-career-enquiry`,
+//     payload,
+//   );
+//   return res.data;
+// };
+
+// career enquiries
 export const createCareerEnquiry = async (payload) => {
   const res = await axios.post(
     `${API_URL}/careerspage/create-career-enquiry`,
     payload,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    },
   );
+
   return res.data;
 };
 
@@ -1630,5 +1645,26 @@ export const createCareerRole = async (payload) => {
 
 export const deleteCareerRole = async (id) => {
   const res = await axios.delete(`${API_URL}/careerspage/delete-role/${id}`);
+  return res.data;
+};
+
+// CREATE OR UPDATE EVENT PAGE
+export const createOrUpdateEventTop = async (formData, token) => {
+  const res = await axios.post(
+    `${API_URL}/eventspage/update-event-page`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    },
+  );
+  return res.data;
+};
+
+// GET EVENT PAGE
+export const getEventTop = async () => {
+  const res = await axios.get(`${API_URL}/eventspage/get-event-page`);
   return res.data;
 };

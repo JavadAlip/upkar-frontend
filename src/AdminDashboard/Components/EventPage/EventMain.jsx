@@ -124,12 +124,21 @@ const EventMain = () => {
                   </td>
                   <td className="px-4 py-2">{truncate(event.eventLocation)}</td>
                   <td className="px-4 py-2">{formatDate(event.eventDate)}</td>
-                  <td className="px-4 py-2">
+                  {/* <td className="px-4 py-2">
                     <img
                       src={event.eventImage}
                       alt={event.eventTitle}
                       className="w-20 h-12 object-cover rounded"
                     />
+                  </td> */}
+                  <td className="px-4 py-2">
+                    {event.eventImages?.length > 0 && (
+                      <img
+                        src={event.eventImages[0]}
+                        alt={event.eventTitle}
+                        className="w-20 h-12 object-cover rounded"
+                      />
+                    )}
                   </td>
                   <td className="px-4 py-2 flex items-center gap-2">
                     <button

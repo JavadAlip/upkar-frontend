@@ -36,7 +36,7 @@ const EventViewModal = ({ isOpen, onClose, event }) => {
               })}
             </p>
           </div>
-
+          {/* 
           {event.eventImage && (
             <div className="p-3 border rounded">
               <strong className="block mb-1 text-gray-700">Image:</strong>
@@ -45,6 +45,18 @@ const EventViewModal = ({ isOpen, onClose, event }) => {
                 alt={event.eventTitle}
                 className="mt-2 w-full h-60 object-cover rounded border"
               />
+            </div>
+          )} */}
+          {event.eventImages?.length > 0 && (
+            <div className="grid grid-cols-2 gap-3 mt-2">
+              {event.eventImages.map((img, index) => (
+                <img
+                  key={index}
+                  src={img}
+                  alt={`event-${index}`}
+                  className="w-full h-40 object-cover rounded border"
+                />
+              ))}
             </div>
           )}
 

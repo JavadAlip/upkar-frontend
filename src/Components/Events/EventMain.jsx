@@ -1,119 +1,83 @@
-import React, { useState, useEffect } from 'react';
-import { MapPin } from 'lucide-react';
-import { getAllEvents } from '../../Api';
-const Events = () => {
-  const [events, setEvents] = useState([]);
+import React, { useEffect, useState } from 'react';
+import { getEventTop } from '../../Api';
+
+const EventMain = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchEventData = async () => {
       try {
-        const res = await getAllEvents();
-        setEvents(res.events || []);
+        const res = await getEventTop();
+        if (res.success) {
+          setData(res.eventPage);
+        }
       } catch (error) {
-        console.error('Error fetching events:', error);
+        console.error('Error fetching event page:', error);
+      } finally {
+        setLoading(false);
       }
     };
-    fetchEvents();
+
+    fetchEventData();
   }, []);
 
-  const formatEventDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = date.getDate();
-    const month = date.toLocaleString('default', { month: 'short' });
-    const year = date.getFullYear();
-    return { day, month, year };
-  };
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center py-20">
+        <p className="text-gray-500 text-lg">Loading...</p>
+      </div>
+    );
+  }
+
+  if (!data) return null;
 
   return (
-    <div className="w-full bg-white py-8 md:py-12 lg:py-16 px-4 md:px-6">
+    <div className="w-full bg-white py-12 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl md:text-4xl lg:text-5xl font-[Figtree] text-[#000000] mb-8 md:mb-12">
-          <span className="font-semibold">Events </span>
-          <span className="font-light">at Upkar !</span>
-        </h2>
+        <div className="text-center mb-10">
+          <h1 className="text-[36px] font-[Figtree] md:text-[48px] font-medium text-black mb-4">
+            {data.mainTitle}
+          </h1>
 
-        <div className="space-y-8 md:space-y-12">
-          {events.map((event) => {
-            const { day, month, year } = formatEventDate(event.eventDate);
-            return (
-              <div
-                key={event._id}
-                className="flex flex-col lg:flex-row gap-4 md:gap-8 items-start"
-              >
-                <div className="w-full lg:w-1/3 flex-shrink-0">
-                  <div className="relative shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <img
-                      src={event.eventImage}
-                      alt={event.eventTitle}
-                      className="w-full h-40 md:h-48 lg:h-56 object-cover hover:scale-105 transition-transform duration-300"
-                    />
+          <p className="text-gray-600 font-[Figtree] font-normal text-[18px] md:text-[24px] max-w-3xl mx-auto">
+            {data.mainDescription}
+          </p>
+        </div>
 
-                    <div className="absolute bottom-2 right-2 md:bottom-[-10px] md:right-[-80px] bg-white px-4 md:px-8 py-3 md:py-6 rounded-lg md:rounded-2xl shadow-md">
-                      <p className="text-center leading-tight font-[Figtree] text-lg md:text-2xl lg:text-4xl font-light text-[#000000]">
-                        {day} {month}
-                        <br />
-                        <span className="font-semibold text-lg md:text-2xl lg:text-4xl text-[#000000]">
-                          {year}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
+        <div className="mb-14">
+          <img
+            src={data.mainImage}
+            alt="Main Event"
+            className="w-full h-[250px] md:h-[400px] lg:h-[500px] object-cover rounded-xl"
+          />
+        </div>
 
-                <div
-                  className="w-full lg:w-2/3 space-y-2 md:space-y-4 border border-[#DADADA] lg:border-l-0 p-3 md:p-4 lg:pl-32 rounded lg:rounded-none"
-                  style={{ backgroundColor: '#fff' }}
-                >
-                  <h3
-                    className="font-medium text-lg md:text-2xl lg:text-3xl"
-                    style={{
-                      color: '#000000',
-                      fontFamily: 'Figtree',
-                      fontWeight: 500,
-                    }}
-                  >
-                    {event.eventTitle}
-                  </h3>
+        {/* ===== Sub Section ===== */}
+        <div className="flex flex-col lg:flex-row items-center gap-10">
+          {/* Left Side Content */}
+          <div className="flex-1 text-center lg:text-left">
+            <h2 className="text-[24px] md:text-[32px] font-[Figtree] font-medium text-black mb-4">
+              {data.subTitle}
+            </h2>
 
-                  <p
-                    className="leading-relaxed text-sm md:text-base lg:text-2xl"
-                    style={{
-                      color: '#000000',
-                      fontFamily: 'Figtree',
-                      fontWeight: 300,
-                    }}
-                  >
-                    {event.eventDescription}
-                  </p>
+            <p className="text-gray-600 text-base text-[20px] font-[Figtree] md:text-lg leading-relaxed">
+              {data.subDescription}
+            </p>
+          </div>
 
-                  <div className="flex items-start gap-2 md:gap-3 pt-2 md:pt-0">
-                    <MapPin
-                      size={16}
-                      className="flex-shrink-0 mt-1 md:mt-1"
-                      style={{ color: '#666666' }}
-                    />
-                    <p
-                      className="text-sm md:text-base lg:text-2xl"
-                      style={{
-                        color: '#666666',
-                        fontFamily: 'Figtree',
-                        fontWeight: 500,
-                      }}
-                    >
-                      {event.eventLocation}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-          {events.length === 0 && (
-            <p className="text-center text-gray-500 py-10">No events found.</p>
-          )}
+          {/* Right Side Image */}
+          <div className="flex-1">
+            <img
+              src={data.subImage}
+              alt="Sub Event"
+              className="w-full h-[250px] md:h-[350px] object-cover rounded-xl shadow-md"
+            />
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Events;
+export default EventMain;

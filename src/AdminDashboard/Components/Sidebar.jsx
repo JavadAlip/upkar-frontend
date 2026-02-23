@@ -620,6 +620,7 @@ const Sidebar = () => {
   const [openCompleted, setOpenCompleted] = useState(false);
   const [openUpcoming, setOpenUpcoming] = useState(false);
   const [openOngoing, setOpenOngoing] = useState(false);
+  const [openEvent, setOpenEvent] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -810,11 +811,33 @@ const Sidebar = () => {
             </div>
           )}
 
+          {/* EVENT PAGE */}
+          <button
+            onClick={() => setOpenEvent(!openEvent)}
+            className="w-full p-2 border rounded flex justify-between"
+          >
+            <span className="flex gap-2">
+              <Calendar size={18} /> Event Page
+            </span>
+            <ChevronDown className={openEvent ? 'rotate-180' : ''} />
+          </button>
+
+          {openEvent && (
+            <div className="ml-4 space-y-1 text-sm">
+              <NavLink to="/admin/event-top" className={linkClass}>
+                Event Main
+              </NavLink>
+              <NavLink to="/admin/events" className={linkClass}>
+                Events
+              </NavLink>
+            </div>
+          )}
+
           {/* EVENT */}
-          <NavLink to="/admin/events" className={linkClass}>
+          {/* <NavLink to="/admin/events" className={linkClass}>
             <Calendar size={18} />
             Events
-          </NavLink>
+          </NavLink> */}
 
           {/* CAREER */}
           <button
