@@ -173,7 +173,7 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
-import navbarLast from '../../assets/navbarLast.png';
+// import navbarLast from '../../assets/navbarLast.png';
 
 const CmpltNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -182,7 +182,7 @@ const CmpltNavbar = () => {
   const isActive = (path) => location.pathname === path;
 
   const staticLinks = [
-    { name: 'Commercial', path: '/' },
+    // { name: 'Commercial', path: '/' },
     { name: 'Events', path: '/events' },
     { name: 'Blogs', path: '/blogs' },
     { name: 'Careers', path: '/careers' },
@@ -290,13 +290,13 @@ const CmpltNavbar = () => {
         </li>
       </ul>
 
-      <div className="hidden md:block">
+      {/* <div className="hidden md:block">
         <img
           src={navbarLast}
           alt="Credai Logo"
           className="h-8 w-auto object-contain cursor-pointer"
         />
-      </div>
+      </div> */}
 
       <button
         className="md:hidden text-gray-700 focus:outline-none"

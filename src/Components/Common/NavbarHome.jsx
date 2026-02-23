@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
-import navbarLast from '../../assets/navbarLast1.png';
+// import navbarLast from '../../assets/navbarLast1.png';
 
 const NavbarHome = () => {
   const [ongoingOpen, setOngoingOpen] = useState(false);
@@ -10,7 +10,7 @@ const NavbarHome = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const staticLinks = [
-    { name: 'Commercial', path: '/' },
+    // { name: 'Commercial', path: '/' },
     { name: 'Events', path: '/events' },
     { name: 'Blogs', path: '/blogs' },
     { name: 'Careers', path: '/careers' },
@@ -107,13 +107,13 @@ const NavbarHome = () => {
           </li>
         ))}
       </ul>
-      <div className="hidden md:block">
+      {/* <div className="hidden md:block">
         <img
           src={navbarLast}
           alt="Credai Logo"
           className="h-24 w-auto object-contain cursor-pointer"
         />
-      </div>
+      </div> */}
       <button
         className="md:hidden text-gray-700 focus:outline-none"
         onClick={() => setMenuOpen(!menuOpen)}
