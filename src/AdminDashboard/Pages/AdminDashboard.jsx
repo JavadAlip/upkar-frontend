@@ -192,8 +192,11 @@ import Quote from '../Components/AboutPage/Quote';
 import Team from '../Components/AboutPage/Team';
 import AboutImages from '../Components/AboutPage/AboutImages';
 
-/* Event / Career */
+/* Event*/
 import EventMain from '../Components/EventPage/EventMain';
+import EventTop from '../Components/EventPage/EventTop';
+
+/* Career*/
 import CareerMain from '../Components/CareerPage/CareerMain';
 import WhyJoinMain from '../Components/CareerPage/WhyJoinMain';
 import CareerImages from '../Components/CareerPage/CareerImages';
@@ -274,8 +277,11 @@ const AdminDashboard = () => {
             <Route path="team" element={<Team />} />
             <Route path="about-images" element={<AboutImages />} />
 
-            {/* Event / Career */}
+            {/* Event */}
+            <Route path="event-top" element={<EventTop />} />
             <Route path="events" element={<EventMain />} />
+
+            {/* Career */}
             <Route path="career-main" element={<CareerMain />} />
             <Route path="why-join" element={<WhyJoinMain />} />
             <Route path="career-images" element={<CareerImages />} />
