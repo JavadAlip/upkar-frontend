@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { createCertification } from '../../../Api';
+import { createBrandMotive } from '../../../Api';
 
-const CertificationAdd = ({ isOpen, onClose, onAdded }) => {
-  const [heading, setHeading] = useState('');
-  const [icon, setIcon] = useState(null);
+const BrandMotiveAdd = ({ isOpen, onClose, onAdded }) => {
+  const [title, setTitle] = useState('');
+  const [highlightText, setHighlightText] = useState('');
   const [loading, setLoading] = useState(false);
-  const [content, setContent] = useState('');
 
   const token = localStorage.getItem('adminToken');
 
@@ -14,23 +13,18 @@ const CertificationAdd = ({ isOpen, onClose, onAdded }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!heading || !content || !icon) {
-      return alert('Heading, and Icon are required!');
+    if (!title || !highlightText) {
+      return alert('All fields are required!');
     }
-
-    const formData = new FormData();
-    formData.append('heading', heading);
-    formData.append('content', content);
-    formData.append('icon', icon);
 
     try {
       setLoading(true);
-      await createCertification(formData, token);
+      await createBrandMotive({ title, highlightText }, token);
       onAdded();
       onClose();
     } catch (error) {
       console.error(error);
-      alert('Failed to create certification.');
+      alert('Failed to create Brand Motive.');
     } finally {
       setLoading(false);
     }
@@ -39,29 +33,23 @@ const CertificationAdd = ({ isOpen, onClose, onAdded }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
       <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
-        <h2 className="text-xl font-semibold mb-4">Add Certification</h2>
+        <h2 className="text-xl font-semibold mb-4">Add Brand Motive</h2>
 
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Heading"
+            placeholder="Title"
             className="border p-2 w-full mb-3 rounded"
-            value={heading}
-            onChange={(e) => setHeading(e.target.value)}
-          />
-          <textarea
-            placeholder="Content"
-            className="border p-2 w-full mb-3 rounded"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            rows={3}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
 
-          <input
-            type="file"
-            accept="image/*"
-            className="mb-3"
-            onChange={(e) => setIcon(e.target.files[0])}
+          <textarea
+            placeholder="Highlight Text"
+            className="border p-2 w-full mb-3 rounded"
+            value={highlightText}
+            onChange={(e) => setHighlightText(e.target.value)}
+            rows={3}
           />
 
           <div className="flex justify-end gap-2">
@@ -78,7 +66,7 @@ const CertificationAdd = ({ isOpen, onClose, onAdded }) => {
               disabled={loading}
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
-              {loading ? 'Uploading...' : 'Add'}
+              {loading ? 'Saving...' : 'Add'}
             </button>
           </div>
         </form>
@@ -87,4 +75,4 @@ const CertificationAdd = ({ isOpen, onClose, onAdded }) => {
   );
 };
 
-export default CertificationAdd;
+export default BrandMotiveAdd;

@@ -1,11 +1,11 @@
 import { X } from 'lucide-react';
 
-const CertificationViewModal = ({ isOpen, onClose, certification }) => {
-  if (!isOpen || !certification) return null;
+const BrandEthosViewModal = ({ isOpen, onClose, ethos }) => {
+  if (!isOpen || !ethos) return null;
 
   const truncateText = (text) => {
     if (!text) return '';
-    return text.length > 20 ? text.substring(0, 20) + '...' : text;
+    return text.length > 40 ? text.substring(0, 40) + '...' : text;
   };
 
   return (
@@ -18,29 +18,25 @@ const CertificationViewModal = ({ isOpen, onClose, certification }) => {
           <X className="w-5 h-5" />
         </button>
 
-        <h2 className="text-xl font-bold mb-4">
-          {truncateText(certification.heading)}
-        </h2>
+        <h2 className="text-xl font-bold mb-4">{truncateText(ethos.title)}</h2>
 
         <div className="space-y-4">
           <div className="p-3 border rounded">
-            <strong className="block mb-1 text-gray-700">Heading:</strong>
-            <p className="text-gray-900">
-              {truncateText(certification.heading)}
-            </p>
+            <strong className="block mb-1 text-gray-700">Title:</strong>
+            <p className="text-gray-900">{truncateText(ethos.title)}</p>
           </div>
 
           <div className="p-3 border rounded">
-            <strong className="block mb-1 text-gray-700">Content:</strong>
-            <p className="text-gray-900">{certification.content}</p>
+            <strong className="block mb-1 text-gray-700">Description:</strong>
+            <p className="text-gray-900">{ethos.description}</p>
           </div>
 
-          {certification.icon && (
+          {ethos.icon && (
             <div className="p-3 border rounded">
               <strong className="block mb-1 text-gray-700">Icon:</strong>
               <img
-                src={certification.icon}
-                alt={certification.heading}
+                src={ethos.icon}
+                alt={ethos.title}
                 className="mt-2 w-20 h-20 object-cover rounded border"
               />
             </div>
@@ -49,7 +45,7 @@ const CertificationViewModal = ({ isOpen, onClose, certification }) => {
           <div className="p-3 border rounded">
             <strong className="block mb-1 text-gray-700">Created At:</strong>
             <p className="text-gray-900">
-              {new Date(certification.createdAt).toLocaleString()}
+              {new Date(ethos.createdAt).toLocaleString()}
             </p>
           </div>
         </div>
@@ -58,4 +54,4 @@ const CertificationViewModal = ({ isOpen, onClose, certification }) => {
   );
 };
 
-export default CertificationViewModal;
+export default BrandEthosViewModal;

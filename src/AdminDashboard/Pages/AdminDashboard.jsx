@@ -173,6 +173,8 @@ import BannerTable from '../Components/HomePage/Banner';
 import VisionMission from '../Components/HomePage/VisionMission';
 import Projects from '../Components/HomePage/Projects';
 import Certification from '../Components/HomePage/Certification';
+import BrandEthos from '../Components/HomePage/BrandEthos.jsx';
+import BrandMotive from '../Components/HomePage/BrandMotive.jsx';
 import QAs from '../Components/HomePage/QAs';
 import Awards from '../Components/HomePage/Awards';
 import QuoteCertificate from '../Components/HomePage/Quote';
@@ -259,6 +261,8 @@ const AdminDashboard = () => {
             <Route path="vision" element={<VisionMission />} />
             <Route path="home-projects" element={<Projects />} />
             <Route path="certification" element={<Certification />} />
+            <Route path="Brandethos" element={<BrandEthos />} />
+            <Route path="Brandmotive" element={<BrandMotive />} />
             <Route path="qna" element={<QAs />} />
             <Route path="awards" element={<Awards />} />
             <Route path="quotes" element={<QuoteCertificate />} />

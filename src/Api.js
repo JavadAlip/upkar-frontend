@@ -1691,3 +1691,87 @@ export const deleteEventEnquiry = async (id) => {
   );
   return res.data;
 };
+
+export const getBrandEthos = async (token) => {
+  const res = await axios.get(`${API_URL}/homepage/get-all-brand-ethos`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+export const createBrandEthos = async (formData, token) => {
+  const res = await axios.post(
+    `${API_URL}/homepage/create-brand-ethos`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    },
+  );
+  return res.data;
+};
+
+export const updateBrandEthos = async (id, formData, token) => {
+  const res = await axios.put(
+    `${API_URL}/homepage/update-brand-ethos/${id}`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    },
+  );
+  return res.data;
+};
+
+export const deleteBrandEthos = async (id, token) => {
+  const res = await axios.delete(
+    `${API_URL}/homepage/delete-brand-ethos/${id}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    },
+  );
+  return res.data;
+};
+
+export const getBrandMotive = async (token) => {
+  const res = await axios.get(`${API_URL}/homepage/get-all-brand-motive`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+export const createBrandMotive = async (data, token) => {
+  const res = await axios.post(
+    `${API_URL}/homepage/create-brand-motive`,
+    data,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    },
+  );
+  return res.data;
+};
+
+export const updateBrandMotive = async (id, data, token) => {
+  const res = await axios.put(
+    `${API_URL}/homepage/update-brand-motive/${id}`,
+    data,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    },
+  );
+  return res.data;
+};
+
+export const deleteBrandMotive = async (id, token) => {
+  const res = await axios.delete(
+    `${API_URL}/homepage/delete-brand-motive/${id}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    },
+  );
+  return res.data;
+};

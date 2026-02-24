@@ -1,41 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { updateCertification } from '../../../Api';
+import { updateBrandEthos } from '../../../Api';
 
-const CertificationEdit = ({ isOpen, onClose, certification, onUpdated }) => {
-  const [heading, setHeading] = useState('');
+const BrandEthosEdit = ({ isOpen, onClose, ethos, onUpdated }) => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [iconPreview, setIconPreview] = useState('');
   const [iconFile, setIconFile] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [content, setContent] = useState('');
 
   const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
-    if (certification) {
-      setHeading(certification.heading || '');
-      setContent(certification.content || '');
-      setIconPreview(certification.icon || '');
+    if (ethos) {
+      setTitle(ethos.title || '');
+      setDescription(ethos.description || '');
+      setIconPreview(ethos.icon || '');
       setIconFile(null);
     }
-  }, [certification]);
+  }, [ethos]);
 
   if (!isOpen) return null;
 
   const handleSubmit = async () => {
-    if (!heading.trim()) return alert('Heading is required');
+    if (!title.trim() || !description.trim())
+      return alert('All fields required');
 
     const formData = new FormData();
-    formData.append('heading', heading);
-    formData.append('content', content);
+    formData.append('title', title);
+    formData.append('description', description);
     if (iconFile) formData.append('icon', iconFile);
 
     try {
       setLoading(true);
-      await updateCertification(certification._id, formData, token);
+      await updateBrandEthos(ethos._id, formData, token);
       onUpdated();
       onClose();
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
       alert('Update failed');
     } finally {
       setLoading(false);
@@ -53,18 +54,18 @@ const CertificationEdit = ({ isOpen, onClose, certification, onUpdated }) => {
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-40 z-50">
       <div className="bg-white p-6 rounded w-[400px]">
-        <h2 className="text-lg font-semibold mb-4">Edit Certification</h2>
+        <h2 className="text-lg font-semibold mb-4">Edit Brand Ethos</h2>
 
         <input
-          value={heading}
-          onChange={(e) => setHeading(e.target.value)}
-          placeholder="Heading"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Title"
           className="border p-2 w-full mb-3 rounded"
         />
         <textarea
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="Content"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Description"
           className="border p-2 w-full mb-3 rounded"
           rows={3}
         />
@@ -75,7 +76,6 @@ const CertificationEdit = ({ isOpen, onClose, certification, onUpdated }) => {
           onChange={handleIconChange}
           className="mb-3"
         />
-
         {iconPreview && (
           <img
             src={iconPreview}
@@ -100,4 +100,4 @@ const CertificationEdit = ({ isOpen, onClose, certification, onUpdated }) => {
   );
 };
 
-export default CertificationEdit;
+export default BrandEthosEdit;

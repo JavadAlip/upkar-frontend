@@ -737,7 +737,13 @@ const Sidebar = () => {
                 Projects
               </NavLink>
               <NavLink to="/admin/certification" className={linkClass}>
-                Certification
+                Core Values
+              </NavLink>
+              <NavLink to="/admin/Brandethos" className={linkClass}>
+                Brand Ethos
+              </NavLink>
+              <NavLink to="/admin/Brandmotive" className={linkClass}>
+                Brand Motive
               </NavLink>
               <NavLink to="/admin/quotes" className={linkClass}>
                 Quotes
