@@ -7,9 +7,11 @@ const Blogs = () => {
   return (
     <>
       <CmpltNavbar />
-      <BlogMain />
-      <PopularArticles />
-      <ReadMore />
+      <div className="pt-24">
+        <BlogMain />
+        <PopularArticles />
+        <ReadMore />
+      </div>
     </>
   );
 };

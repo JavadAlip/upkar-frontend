@@ -8,9 +8,11 @@ const Career = () => {
   return (
     <div>
       <CmpltNavbar />
-      <CareerMain />
-      <WhyJoinUs />
-      <Openings />
+      <div className="pt-24">
+        <CareerMain />
+        <WhyJoinUs />
+        <Openings />
+      </div>
     </div>
   );
 };

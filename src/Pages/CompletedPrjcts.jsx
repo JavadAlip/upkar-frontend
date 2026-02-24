@@ -9,11 +9,13 @@ const CompletedPrjcts = () => {
   return (
     <div>
       <CmpltNavbar />
-      <CompletedMain />
-      <ProjectsList />
-      <OurValues />
-      <ValueImage />
-      <GetInTouch />
+      <div className="pt-24">
+        <CompletedMain />
+        <ProjectsList />
+        <OurValues />
+        <ValueImage />
+        <GetInTouch />
+      </div>
     </div>
   );
 };

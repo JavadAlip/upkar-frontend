@@ -7,9 +7,11 @@ const Event = () => {
   return (
     <div>
       <CmpltNavbar />
-      <Eventmain />
-      <Events />
-      <EventGetIn />
+      <div className="pt-24">
+        <Eventmain />
+        <Events />
+        <EventGetIn />
+      </div>
     </div>
   );
 };

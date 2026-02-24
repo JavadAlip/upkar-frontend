@@ -9,11 +9,13 @@ const UpcomingPrjcts = () => {
   return (
     <div>
       <CmpltNavbar />
-      <UpcomingMain />
-      <ProjectsList />
-      <OurValues />
-      <ValueImage />
-      <GetInTouch />
+      <div className="pt-24">
+        <UpcomingMain />
+        <ProjectsList />
+        <OurValues />
+        <ValueImage />
+        <GetInTouch />
+      </div>
     </div>
   );
 };

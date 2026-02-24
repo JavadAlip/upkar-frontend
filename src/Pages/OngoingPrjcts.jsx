@@ -9,11 +9,13 @@ const OngoingPrjcts = () => {
   return (
     <div>
       <CmpltNavbar />
-      <OngoingMain />
-      <ProjectsList />
-      <OurValues />
-      <ValueImage />
-      <GetInTouch />
+      <div className="pt-24">
+        <OngoingMain />
+        <ProjectsList />
+        <OurValues />
+        <ValueImage />
+        <GetInTouch />
+      </div>
     </div>
   );
 };

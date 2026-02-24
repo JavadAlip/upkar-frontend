@@ -83,14 +83,16 @@ const Project = () => {
   return (
     <div>
       <CmpltNavbar />
-      <PrjctMain project={project} />
-      <Features project={project} />
-      <PlotLayout project={project} />
-      <Amenities project={project} />
-      <AboutProject project={project} />
-      <PrjctGallery project={project} />
-      <Directions project={project} />
-      <PrjctGetinTouch project={project} />
+      <div className="pt-24">
+        <PrjctMain project={project} />
+        <Features project={project} />
+        <PlotLayout project={project} />
+        <Amenities project={project} />
+        <AboutProject project={project} />
+        <PrjctGallery project={project} />
+        <Directions project={project} />
+        <PrjctGetinTouch project={project} />
+      </div>
     </div>
   );
 };

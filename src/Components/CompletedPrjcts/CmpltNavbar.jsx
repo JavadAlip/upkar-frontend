@@ -189,7 +189,8 @@ const CmpltNavbar = () => {
   ];
 
   return (
-    <nav className="bg-white shadow-md p-4 flex items-center justify-between relative font-figtree">
+    // <nav className="bg-white shadow-md p-4 flex items-center justify-between relative font-figtree">
+    <nav className="fixed top-0 left-0 w-full bg-white/40 backdrop-blur-md shadow-md p-4 flex items-center justify-between z-50 font-figtree">
       <div className="flex items-center">
         <Link to="/">
           <img
