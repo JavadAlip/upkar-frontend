@@ -228,6 +228,7 @@ import Categories from '../Components/Categories/Categories';
 import CategoryDetails from '../Components/Categories/categoryDetails';
 import MediaLibrary from '../Components/MediaLibrary/MediaLibrary';
 import CareerEnquiryList from '../Components/Enquiries/CareerEnquiry';
+import EventEnquiryList from '../Components/Enquiries/EventEnquiryList';
 import CareerRoles from '../Components/JobRoles/JobRoles';
 import Settings from '../Components/Settings/Settings';
 
@@ -314,6 +315,7 @@ const AdminDashboard = () => {
             <Route path="category/:id" element={<CategoryDetails />} />
             <Route path="media" element={<MediaLibrary />} />
             <Route path="career-enquiries" element={<CareerEnquiryList />} />
+            <Route path="event-enquiries" element={<EventEnquiryList />} />
             <Route path="career-roles" element={<CareerRoles />} />
             <Route path="settings" element={<Settings />} />
           </Routes>
