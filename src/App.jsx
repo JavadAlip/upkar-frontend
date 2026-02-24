@@ -21,6 +21,7 @@ import AdminLogin from './AdminDashboard/Pages/AdminLogin';
 import ProtectedRoute from './AdminDashboard/Components/ProtectedRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import FloatingContact from './Components/Common/FloatingContact';
 
 function AppWrapper() {
   const footerRef = useRef(null);
@@ -71,6 +72,7 @@ function AppWrapper() {
       </Routes>
 
       {!isAdminPage && <Footer ref={footerRef} />}
+      {!isAdminPage && <FloatingContact />}
       {!isAdminPage && showButton && (
         // <button
         //   onClick={scrollToTop}

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getAllUpcomingProjects } from '../../Api';
 import addEnq from '../../assets/Icons/addEnq.png';
-import Phone from '../../assets/Icons/Phone.png';
-import Mail from '../../assets/Icons/mail.png';
-import Whatsapp from '../../assets/Icons/whatsapp.png';
+// import Phone from '../../assets/Icons/Phone.png';
+// import Mail from '../../assets/Icons/mail.png';
 
 const UpcomingMain = () => {
   const [project, setProject] = useState(null);
@@ -67,17 +66,15 @@ const UpcomingMain = () => {
                 className="w-full h-auto object-cover"
               />
 
-              <div className="absolute top-24 -right-4 bg-white rounded-2xl p-4  flex flex-col gap-6">
+              {/* <div className="absolute top-24 -right-4 bg-white rounded-2xl p-4  flex flex-col gap-6">
                 <button className="hover:scale-110 transition-transform duration-300">
                   <img src={Phone} alt="Phone" className="w-6 h-6" />
                 </button>
                 <button className="hover:scale-110 transition-transform duration-300">
                   <img src={Mail} alt="Mail" className="w-6 h-6" />
                 </button>
-                <button className="hover:scale-110 transition-transform duration-300">
-                  <img src={Whatsapp} alt="WhatsApp" className="w-6 h-6" />
-                </button>
-              </div>
+           
+              </div> */}
             </div>
           </div>
         </div>

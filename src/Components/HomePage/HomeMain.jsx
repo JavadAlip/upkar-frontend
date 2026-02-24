@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getBanners } from '../../Api';
 import Connect from '../../assets/Icons/connect.png';
-import Phone from '../../assets/Icons/Phone.png';
-import Mail from '../../assets/Icons/mail.png';
-import Whatsapp from '../../assets/Icons/whatsapp.png';
+// import Phone from '../../assets/Icons/Phone.png';
+// import Mail from '../../assets/Icons/mail.png';
+
 import AboveIcon from '../../assets/aboveIcon.png';
 import tree from '../../assets/Tree.png';
 
@@ -87,21 +87,15 @@ const HomeMain = () => {
             />
           </div>
 
-          <div className="absolute top-6 sm:top-11 -right-2 sm:-right-4 bg-white rounded-xl sm:rounded-2xl p-2 sm:p-4 shadow-lg flex flex-col gap-3 sm:gap-6">
+          {/* <div className="absolute top-6 sm:top-11 -right-2 sm:-right-4 bg-white rounded-xl sm:rounded-2xl p-2 sm:p-4 shadow-lg flex flex-col gap-3 sm:gap-6">
             <button className="hover:scale-110 transition-transform duration-300">
               <img src={Phone} alt="Phone" className="w-4 h-4 sm:w-6 sm:h-6" />
             </button>
             <button className="hover:scale-110 transition-transform duration-300">
               <img src={Mail} alt="Mail" className="w-4 h-4 sm:w-6 sm:h-6" />
             </button>
-            <button className="hover:scale-110 transition-transform duration-300">
-              <img
-                src={Whatsapp}
-                alt="WhatsApp"
-                className="w-4 h-4 sm:w-6 sm:h-6"
-              />
-            </button>
-          </div>
+        
+          </div> */}
         </div>
       </div>
     </div>

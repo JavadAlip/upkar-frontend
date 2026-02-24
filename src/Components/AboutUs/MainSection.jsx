@@ -166,9 +166,8 @@ import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import Phone from '../../assets/Icons/Phone.png';
-import Mail from '../../assets/Icons/mail.png';
-import Whatsapp from '../../assets/Icons/whatsapp.png';
+// import Phone from '../../assets/Icons/Phone.png';
+// import Mail from '../../assets/Icons/mail.png';
 import { getAllAboutMain } from '../../Api';
 import { Link } from 'react-router-dom';
 
@@ -293,7 +292,7 @@ const MainSection = () => {
             ))}
 
             {/* Floating contact buttons */}
-            <div className="absolute top-6 sm:top-11 -right-2 sm:-right-4 bg-white rounded-xl sm:rounded-2xl p-2 sm:p-4  flex flex-col gap-3 sm:gap-6">
+            {/* <div className="absolute top-6 sm:top-11 -right-2 sm:-right-4 bg-white rounded-xl sm:rounded-2xl p-2 sm:p-4  flex flex-col gap-3 sm:gap-6">
               <button className="hover:scale-110 transition-transform duration-300">
                 <img
                   src={Phone}
@@ -304,14 +303,8 @@ const MainSection = () => {
               <button className="hover:scale-110 transition-transform duration-300">
                 <img src={Mail} alt="Mail" className="w-4 h-4 sm:w-6 sm:h-6" />
               </button>
-              <button className="hover:scale-110 transition-transform duration-300">
-                <img
-                  src={Whatsapp}
-                  alt="WhatsApp"
-                  className="w-4 h-4 sm:w-6 sm:h-6"
-                />
-              </button>
-            </div>
+             
+            </div> */}
 
             {/* Optional arrows (keep or remove) */}
             {/* <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-4 z-30">

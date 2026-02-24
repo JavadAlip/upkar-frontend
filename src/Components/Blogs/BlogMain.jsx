@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { getAllBlogMain } from "../../Api";
-import addEnq from "../../assets/Icons/fullArticle.png";
-import Phone from "../../assets/Icons/Phone.png";
-import Mail from "../../assets/Icons/mail.png";
-import Whatsapp from "../../assets/Icons/whatsapp.png";
+import React, { useEffect, useState } from 'react';
+import { getAllBlogMain } from '../../Api';
+import addEnq from '../../assets/Icons/fullArticle.png';
+// import Phone from "../../assets/Icons/Phone.png";
+// import Mail from "../../assets/Icons/mail.png";
+// import Whatsapp from "../../assets/Icons/whatsapp.png";
 
 const BlogMain = () => {
   const [blogData, setBlogData] = useState(null);
@@ -16,7 +16,7 @@ const BlogMain = () => {
           setBlogData(res.data[0]);
         }
       } catch (error) {
-        console.log("Error fetching blog main data:", error);
+        console.log('Error fetching blog main data:', error);
       }
     };
 
@@ -61,7 +61,7 @@ const BlogMain = () => {
                 className="w-full h-auto object-cover"
               />
 
-              <div className="absolute top-24 -right-4 bg-white rounded-2xl p-4 shadow-lg flex flex-col gap-6">
+              {/* <div className="absolute top-24 -right-4 bg-white rounded-2xl p-4 shadow-lg flex flex-col gap-6">
                 <button className="hover:scale-110 transition-transform duration-300">
                   <img src={Phone} alt="Phone" className="w-6 h-6" />
                 </button>
@@ -71,7 +71,7 @@ const BlogMain = () => {
                 <button className="hover:scale-110 transition-transform duration-300">
                   <img src={Whatsapp} alt="WhatsApp" className="w-6 h-6" />
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
