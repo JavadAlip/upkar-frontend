@@ -699,6 +699,11 @@ const Sidebar = () => {
             Career Enquiries
           </NavLink>
 
+          <NavLink to="/admin/event-enquiries" className={linkClass}>
+            <ClipboardList size={18} />
+            Event Enquiries
+          </NavLink>
+
           <NavLink to="/admin/career-roles" className={linkClass}>
             <UserCheck size={18} />
             Jobs Roles

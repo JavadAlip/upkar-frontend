@@ -1,6 +1,6 @@
 import Eventmain from '../Components/Events/EventMain';
 import Events from '../Components/Events/Events';
-import GetInTouch from '../Components/AboutUs/AboutGetInTouch';
+import EventGetIn from '../Components/Events/EventGetIn';
 import CmpltNavbar from '../Components/CompletedPrjcts/CmpltNavbar';
 
 const Event = () => {
@@ -9,7 +9,7 @@ const Event = () => {
       <CmpltNavbar />
       <Eventmain />
       <Events />
-      <GetInTouch />
+      <EventGetIn />
     </div>
   );
 };

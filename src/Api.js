@@ -1668,3 +1668,26 @@ export const getEventTop = async () => {
   const res = await axios.get(`${API_URL}/eventspage/get-event-page`);
   return res.data;
 };
+
+export const createEventEnquiry = async (payload) => {
+  const res = await axios.post(
+    `${API_URL}/eventspage/create-event-enquiry`,
+    payload,
+  );
+
+  return res.data;
+};
+
+// GET ALL EVENT ENQUIRIES
+export const getAllEventEnquiries = async () => {
+  const res = await axios.get(`${API_URL}/eventspage/all-event-enquiry`);
+  return res.data;
+};
+
+// DELETE EVENT ENQUIRY
+export const deleteEventEnquiry = async (id) => {
+  const res = await axios.delete(
+    `${API_URL}/eventspage/delete-event-enquiry/${id}`,
+  );
+  return res.data;
+};
