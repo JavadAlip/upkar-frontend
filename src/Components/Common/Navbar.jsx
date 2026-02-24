@@ -272,7 +272,8 @@ const Navbar = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="bg-white shadow-md py-4 px-4 lg:px-10 flex items-center justify-between relative font-figtree">
+    // <nav className="bg-white shadow-md py-4 px-4 lg:px-10 flex items-center justify-between relative font-figtree">
+    <nav className="fixed top-0 left-0 w-full bg-white/40 backdrop-blur-md shadow-md py-4 px-4 lg:px-10 flex items-center justify-between z-50 font-figtree">
       <div className="flex items-center">
         <Link to="/">
           <img

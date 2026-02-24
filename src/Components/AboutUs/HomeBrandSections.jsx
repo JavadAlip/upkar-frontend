@@ -35,7 +35,7 @@ const HomeBrandSections = () => {
           className="absolute left-6 top-1/2 -translate-y-1/2
                      backdrop-blur-md bg-white/30
                      text-black p-3 rounded-full
-                     shadow-lg z-50
+                     shadow-lg z-10
                      hover:bg-white/40 transition"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -49,7 +49,7 @@ const HomeBrandSections = () => {
           className="absolute right-6 top-1/2 -translate-y-1/2
                      backdrop-blur-md bg-white/30
                      text-black p-3 rounded-full
-                     shadow-lg z-50
+                     shadow-lg z-10
                      hover:bg-white/40 transition"
         >
           <ChevronRight className="w-5 h-5" />
