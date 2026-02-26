@@ -37,7 +37,7 @@ const QnsAns = () => {
             <span className="font-bold">Right Answers !</span>
           </h2>
 
-          <div>
+          <div className="hidden lg:block">
             <p className="text-gray-600 mb-6 text-base sm:text-lg">
               Still any doubts in your mind?
             </p>

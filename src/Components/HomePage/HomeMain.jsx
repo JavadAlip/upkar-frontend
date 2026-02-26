@@ -50,13 +50,13 @@ const HomeMain = () => {
             </h1>
 
             <p
-              className="text-white max-w-md sm:max-w-lg md:max-w-xl text-base sm:text-lg md:text-xl lg:text-2xl mb-6 hidden sm:block"
+              className="text-white max-w-md sm:max-w-lg md:max-w-xl text-sm sm:text-lg md:text-xl lg:text-2xl mb-6"
               style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 400 }}
             >
               {banner?.subtitle || ''}
             </p>
 
-            <div className="flex items-start">
+            <div className="hidden sm:flex items-start">
               <img
                 src={Connect}
                 alt="Connect"
@@ -66,27 +66,28 @@ const HomeMain = () => {
             </div>
           </div>
 
-          <div className="absolute bottom-6 sm:bottom-10 right-4 sm:right-8 hidden sm:block">
-            <div className="bg-white px-4 sm:px-6 py-2 rounded-full shadow-lg flex items-center gap-2">
-              <p className="text-black text-[10px] sm:text-[12px] md:text-[14px] font-normal">
+          <div className="absolute bottom-3 sm:bottom-10 right-3 sm:right-8">
+            <div className=" bg-white  px-2 py-1  sm:px-6 sm:py-2  rounded-lg sm:rounded-full  shadow-lg  flex items-center gap-1 sm:gap-2 ">
+              <p className=" text-black text-[9px] sm:text-[12px] md:text-[14px] font-normal">
                 RERA & BMRDA Approved Projects
               </p>
+
               <img
                 src={AboveIcon}
                 alt="Above Icon"
-                className="w-6 sm:w-8 md:w-10 h-auto"
+                className="w-4 sm:w-8 md:w-10 h-auto"
               />
             </div>
           </div>
 
-          <div className="md:hidden absolute bottom-3 right-2">
+          {/* <div className="md:hidden absolute bottom-3 right-2">
             <img
               src={Connect}
               alt="Connect"
               onClick={() => navigate('/contact')}
               className="w-24 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
             />
-          </div>
+          </div> */}
 
           {/* <div className="absolute top-6 sm:top-11 -right-2 sm:-right-4 bg-white rounded-xl sm:rounded-2xl p-2 sm:p-4 shadow-lg flex flex-col gap-3 sm:gap-6">
             <button className="hover:scale-110 transition-transform duration-300">
