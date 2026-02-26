@@ -173,8 +173,6 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
-// import navbarLast from '../../assets/navbarLast.png';
-
 const CmpltNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
@@ -281,7 +279,7 @@ const CmpltNavbar = () => {
           <Link
             to="/contact"
             className={`transition-colors duration-300 whitespace-nowrap ${
-              isActive('/')
+              isActive('/contact')
                 ? 'text-[#2D5C3A] font-medium'
                 : 'hover:text-[#2D5C3A] text-black '
             }`}

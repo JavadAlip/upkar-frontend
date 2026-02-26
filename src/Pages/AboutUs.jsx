@@ -5,7 +5,7 @@ import Team from '../Components/AboutUs/Team';
 import AboutCertification from '../Components/AboutUs/HomeBrandSections';
 import Gallery from '../Components/AboutUs/Gallery';
 import AboutGetInTouch from '../Components/AboutUs/AboutGetInTouch';
-import Navbar from '../Components/Common/NavbarHome';
+import Navbar from '../Components/CompletedPrjcts/CmpltNavbar';
 
 const AboutUs = () => {
   return (
