@@ -50,7 +50,7 @@ const HomeMain = () => {
             </h1>
 
             <p
-              className="hidden sm:blocktext-whitemax-w-md sm:max-w-lg md:max-w-xltext-sm sm:text-lg md:text-xl lg:text-2xl mb-6"
+              className=" hidden sm:block  text-white   max-w-md sm:max-w-lg md:max-w-xl  text-sm sm:text-lg md:text-xl lg:text-2xl  mb-6 "
               style={{ fontFamily: "'Figtree', sans-serif", fontWeight: 400 }}
             >
               {banner?.subtitle || ''}
