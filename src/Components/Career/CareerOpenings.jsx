@@ -35,7 +35,10 @@ const CareerOpenings = () => {
   }, []);
 
   return (
-    <div className="px-4 lg:px-10 py-12 font-[Figtree] bg-white">
+    <div
+      id="job-openings"
+      className="px-4 lg:px-10 py-12 font-[Figtree] bg-white"
+    >
       <h1 className="text-4xl md:text-5xl font-semibold mb-10">Openings</h1>
 
       {/* Header */}

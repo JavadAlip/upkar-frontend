@@ -1,7 +1,9 @@
 import React from 'react';
 import contactBtn from '../../assets/Icons/contactBtn77.png';
+import { useNavigate } from 'react-router-dom';
 
 const ContactUs = () => {
+  const navigate = useNavigate();
   return (
     <div className="w-full bg-white py-12 sm:py-16 px-4 font-[Figtree]">
       <div className="max-w-6xl mx-auto text-center">
@@ -19,6 +21,7 @@ const ContactUs = () => {
             <img
               src={contactBtn}
               alt="Contact Us"
+              onClick={() => navigate('/contact')}
               className="w-36 sm:w-40 md:w-48 lg:w-56 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
             />
           </div>

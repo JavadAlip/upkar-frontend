@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 import { getQuestionsAPI } from '../../Api';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const QnsAns = () => {
   const [openIndex, setOpenIndex] = useState(-1);
   const [faqs, setFaqs] = useState([]);
   const token = localStorage.getItem('adminToken');
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchFAQs();
@@ -42,10 +44,11 @@ const QnsAns = () => {
 
             <button
               aria-label="Explore Projects"
-              className="inline-flex items-center bg-[#000000] rounded-full shadow-md transition-colors hover:bg-[#0b2444] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#071334]"
+              onClick={() => navigate('/contact')}
+              className="inline-flex items-center bg-[#000000] rounded-full shadow-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#071334]"
             >
               <span className="px-6 py-3 text-white text-sm sm:text-base font-medium">
-                Connect us !
+                Connect us
               </span>
               <span className="relative -mr-1 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center border-2 border-[#071334]">
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#071334]" />

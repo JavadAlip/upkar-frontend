@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { getBanners } from '../../Api';
 import Connect from '../../assets/Icons/connect.png';
-// import Phone from '../../assets/Icons/Phone.png';
-// import Mail from '../../assets/Icons/mail.png';
-
+import { useNavigate } from 'react-router-dom';
 import AboveIcon from '../../assets/aboveIcon.png';
 import tree from '../../assets/Tree.png';
 
 const HomeMain = () => {
   const [banner, setBanner] = useState(null);
   const token = localStorage.getItem('adminToken');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBanner = async () => {
@@ -61,6 +60,7 @@ const HomeMain = () => {
               <img
                 src={Connect}
                 alt="Connect"
+                onClick={() => navigate('/contact')}
                 className="w-32 sm:w-40 md:w-48 lg:w-52 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
               />
             </div>
@@ -83,6 +83,7 @@ const HomeMain = () => {
             <img
               src={Connect}
               alt="Connect"
+              onClick={() => navigate('/contact')}
               className="w-24 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
             />
           </div>

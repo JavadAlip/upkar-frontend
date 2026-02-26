@@ -24,7 +24,7 @@ const PopularArticles = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12">
+    <div id="top-articles" className="max-w-6xl mx-auto px-6 py-12">
       <h2 className="text-[48px] font-semibold font-figtree mb-8">
         Popular <span className="font-light">Articles</span>
       </h2>

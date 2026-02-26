@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getAllBlogMain } from '../../Api';
 import addEnq from '../../assets/Icons/fullArticle.png';
-// import Phone from "../../assets/Icons/Phone.png";
-// import Mail from "../../assets/Icons/mail.png";
-// import Whatsapp from "../../assets/Icons/whatsapp.png";
 
 const BlogMain = () => {
   const [blogData, setBlogData] = useState(null);
@@ -27,6 +24,13 @@ const BlogMain = () => {
     return <p className="text-center py-10">Loading...</p>;
   }
 
+  const handleScrollToContact = () => {
+    const section = document.getElementById('top-articles');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="w-full py-16 px-4 font-figtree">
       <div className="max-w-6xl mx-auto">
@@ -48,6 +52,7 @@ const BlogMain = () => {
               <img
                 src={addEnq}
                 alt="Ask Enquiry"
+                onClick={handleScrollToContact}
                 className="cursor-pointer hover:scale-105 transition-transform duration-300"
               />
             </div>

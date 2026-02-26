@@ -34,6 +34,13 @@ const CompletedMain = () => {
     return <div className="text-center py-16">No project found</div>;
   }
 
+  const handleScrollToContact = () => {
+    const section = document.getElementById('get-in-touch');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="w-full py-16 px-4 font-figtree">
       <div className="max-w-6xl mx-auto">
@@ -54,6 +61,7 @@ const CompletedMain = () => {
               <img
                 src={addEnq}
                 alt="Ask Enquiry"
+                onClick={handleScrollToContact}
                 className="cursor-pointer hover:scale-105 transition-transform duration-300"
               />
             </div>

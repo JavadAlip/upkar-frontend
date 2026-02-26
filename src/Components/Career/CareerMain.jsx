@@ -20,6 +20,13 @@ const CareerMain = () => {
     fetchCareerDescription();
   }, []);
 
+  const handleScrollToContact = () => {
+    const section = document.getElementById('job-openings');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="w-full bg-white py-8 md:py-16 px-4">
       <div className="max-w-6xl mx-auto space-y-12 md:space-y-16">
@@ -38,13 +45,12 @@ const CareerMain = () => {
           </p>
 
           <div className="flex justify-center pt-2">
-            <a href="/your-link" className="inline-block">
-              <img
-                src={JoinUs}
-                alt="Join Us"
-                className="w-32 md:w-40 lg:w-auto cursor-pointer hover:opacity-80 transition-all duration-300"
-              />
-            </a>
+            <img
+              src={JoinUs}
+              alt="Join Us"
+              onClick={handleScrollToContact}
+              className="w-32 md:w-40 lg:w-auto cursor-pointer hover:opacity-80 transition-all duration-300"
+            />
           </div>
         </div>
       </div>
