@@ -1,216 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import { createEnquiry, getAllProjects } from '../../Api';
-// import { toast } from 'react-toastify';
-// import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
-// import getinBtn from '../../assets/Icons/getinBtn.png';
-
-// const GetInTouch = () => {
-//   const [formData, setFormData] = useState({
-//     projectStatus: '',
-//     projectId: '',
-//     siteVisitDate: '',
-//     location: '',
-//     name: '',
-//     email: '',
-//     phone: '',
-//     isExistingCustomer: '',
-//   });
-
-//   const [projects, setProjects] = useState([]);
-//   const [filteredProjects, setFilteredProjects] = useState([]);
-
-//   useEffect(() => {
-//     const fetchProjects = async () => {
-//       try {
-//         const allProjects = await getAllProjects();
-//         if (Array.isArray(allProjects)) setProjects(allProjects);
-//       } catch (error) {
-//         console.error('Error fetching projects:', error);
-//         toast.error('Failed to fetch projects!');
-//       }
-//     };
-//     fetchProjects();
-//   }, []);
-
-//   useEffect(() => {
-//     if (Array.isArray(projects)) {
-//       const filtered = formData.projectStatus
-//         ? projects.filter((p) => p.projectStatus === formData.projectStatus)
-//         : [];
-//       setFilteredProjects(filtered);
-//       setFormData((prev) => ({ ...prev, projectId: '' }));
-//     }
-//   }, [formData.projectStatus, projects]);
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await createEnquiry(formData);
-//       toast.success('Enquiry submitted successfully!');
-//       setFormData({
-//         projectStatus: '',
-//         projectId: '',
-//         siteVisitDate: '',
-//         location: '',
-//         name: '',
-//         email: '',
-//         phone: '',
-//         isExistingCustomer: '',
-//       });
-//     } catch (error) {
-//       console.error(error);
-//       toast.error(
-//         error?.response?.data?.message || 'Something went wrong. Try again.',
-//       );
-//     }
-//   };
-
-//   return (
-//     <div className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 font-figtree">
-//       {/* Heading */}
-//       <h2 className="mb-8 text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight text-left">
-//         <span style={{ fontWeight: 500 }}>Get in </span>
-//         <span style={{ fontWeight: 700 }}>Touch</span>
-//       </h2>
-
-//       {/* Form */}
-//       <div className="bg-white rounded-3xl p-8 md:p-10 lg:p-12 w-full shadow-xl">
-//         <form
-//           className="flex flex-col items-center gap-5"
-//           onSubmit={handleSubmit}
-//         >
-//           {/* Project Status */}
-//           <div className="relative w-full">
-//             <select
-//               name="projectStatus"
-//               value={formData.projectStatus}
-//               onChange={handleChange}
-//               className="w-full px-[15px] lg:px-[25px] py-[8px] lg:py-[10px] border border-black rounded-[20px] appearance-none pr-10"
-//               required
-//             >
-//               <option value="">Select a Project Status</option>
-//               <option value="ongoing">Ongoing Project</option>
-//               <option value="upcoming">Upcoming Project</option>
-//               <option value="completed">Completed Project</option>
-//             </select>
-//             <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-//               <KeyboardArrowDownOutlinedIcon />
-//             </div>
-//           </div>
-
-//           {/* Project Name */}
-//           <div className="relative w-full">
-//             <select
-//               name="projectId"
-//               value={formData.projectId}
-//               onChange={handleChange}
-//               className="w-full px-[15px] lg:px-[25px] py-[8px] lg:py-[10px] border border-black rounded-[20px] appearance-none pr-10"
-//               required
-//               disabled={
-//                 !formData.projectStatus || filteredProjects.length === 0
-//               }
-//             >
-//               <option value="">Select a Project</option>
-//               {filteredProjects.map((p) => (
-//                 <option key={p._id} value={p._id}>
-//                   {p.projectName}
-//                 </option>
-//               ))}
-//             </select>
-//             <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-//               <KeyboardArrowDownOutlinedIcon />
-//             </div>
-//           </div>
-
-//           {/* Site Visit Date */}
-//           <div className="relative w-full flex flex-col">
-//             <label className="mb-1 text-sm">Preferred Site Visit Date</label>
-//             <input
-//               type="date"
-//               name="siteVisitDate"
-//               value={formData.siteVisitDate}
-//               onChange={handleChange}
-//               className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
-//               required
-//             />
-//           </div>
-
-//           {/* Other Inputs */}
-//           <input
-//             type="text"
-//             name="location"
-//             placeholder="Location"
-//             value={formData.location}
-//             onChange={handleChange}
-//             className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
-//             required
-//           />
-//           <input
-//             type="text"
-//             name="name"
-//             placeholder="Name"
-//             value={formData.name}
-//             onChange={handleChange}
-//             className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
-//             required
-//           />
-//           <input
-//             type="email"
-//             name="email"
-//             placeholder="Email id"
-//             value={formData.email}
-//             onChange={handleChange}
-//             className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
-//             required
-//           />
-//           <input
-//             type="tel"
-//             name="phone"
-//             placeholder="Phone Number"
-//             value={formData.phone}
-//             onChange={handleChange}
-//             className="w-full px-[15px] py-[8px] border border-black rounded-[20px]"
-//             required
-//           />
-
-//           {/* Existing Customer */}
-//           <div className="relative w-full">
-//             <select
-//               name="isExistingCustomer"
-//               value={formData.isExistingCustomer}
-//               onChange={handleChange}
-//               className="w-full px-[15px] py-[8px] border border-black rounded-[20px] appearance-none pr-10"
-//               required
-//             >
-//               <option value="">Are you an Existing customer?</option>
-//               <option value="yes">Yes</option>
-//               <option value="no">No</option>
-//             </select>
-//             <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-//               <KeyboardArrowDownOutlinedIcon />
-//             </div>
-//           </div>
-
-//           {/* Submit */}
-//           <button type="submit" className="mt-6 focus:outline-none">
-//             <img
-//               src={getinBtn}
-//               alt="Send Enquiry"
-//               className="w-full max-w-[280px] cursor-pointer hover:opacity-90 transition-opacity"
-//             />
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default GetInTouch;
-
 import React, { useState, useEffect } from 'react';
 import { createEnquiry, getAllProjects } from '../../Api';
 import { toast } from 'react-toastify';
@@ -231,6 +18,7 @@ const GetInTouch = () => {
 
   const [projects, setProjects] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -258,12 +46,55 @@ const GetInTouch = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const validateForm = () => {
+    const errors = {};
+
+    if (!formData.projectStatus)
+      errors.projectStatus = 'Project status is required';
+
+    if (!formData.projectId) errors.projectId = 'Project is required';
+
+    if (!formData.siteVisitDate)
+      errors.siteVisitDate = 'Site visit date is required';
+
+    if (!formData.location.trim()) errors.location = 'Location is required';
+
+    if (!formData.name.trim()) errors.name = 'Full name is required';
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email) errors.email = 'Email is required';
+    else if (!emailRegex.test(formData.email))
+      errors.email = 'Invalid email format';
+
+    // Indian phone validation (10 digits)
+    const phoneRegex = /^[6-9]\d{9}$/;
+    if (!formData.phone) errors.phone = 'Phone number is required';
+    else if (!phoneRegex.test(formData.phone))
+      errors.phone = 'Enter valid 10 digit number';
+
+    if (!formData.isExistingCustomer)
+      errors.isExistingCustomer = 'Customer type is required';
+
+    return errors;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const validationErrors = validateForm();
+
+    if (Object.keys(validationErrors).length > 0) {
+      // Show first error message in toast
+      const firstError = Object.values(validationErrors)[0];
+      toast.error(firstError);
+      return;
+    }
+
     try {
       await createEnquiry(formData);
       toast.success('Enquiry submitted successfully!');
+
       setFormData({
         projectStatus: '',
         projectId: '',
@@ -281,9 +112,11 @@ const GetInTouch = () => {
       );
     }
   };
-
   return (
-    <div className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 font-figtree">
+    <div
+      id="get-in-touch"
+      className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 font-figtree"
+    >
       {/* Heading */}
       <h2 className="mb-8 text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight text-left">
         <span style={{ fontWeight: 500 }}>Get in </span>
@@ -400,7 +233,14 @@ const GetInTouch = () => {
               name="phone"
               placeholder="Phone Number"
               value={formData.phone}
-              onChange={handleChange}
+              onChange={(e) => {
+                // Allow only digits & max 10 numbers
+                const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                setFormData({ ...formData, phone: value });
+              }}
+              inputMode="numeric"
+              pattern="[0-9]*"
+              maxLength={10}
               className="w-full px-[15px] h-[48px] border border-black rounded-[20px]"
               required
             />
