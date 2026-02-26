@@ -16,6 +16,7 @@ import ProjectDetail from './Pages/ProjectDetail';
 import Event from './Pages/Event';
 import Career from './Pages/Career';
 import Blogs from './Pages/Blogs';
+import Contact from './Pages/Contact';
 import AdminDashboard from './AdminDashboard/Pages/AdminDashboard';
 import AdminLogin from './AdminDashboard/Pages/AdminLogin';
 import ProtectedRoute from './AdminDashboard/Components/ProtectedRoute';
@@ -59,6 +60,7 @@ function AppWrapper() {
         <Route path="/events" element={<Event />} />
         <Route path="/careers" element={<Career />} />
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/contact" element={<Contact />} />
         {/* Admin */}
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route
