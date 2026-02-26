@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Search } from 'lucide-react';
+import { Search, Hand, BadgePercent, Headset } from 'lucide-react';
 import { FiChevronDown } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import { getAllProjects, getAllCategories } from '../../Api';
@@ -124,32 +124,29 @@ const OngoingProjectsList = () => {
                 <div
                   key={project._id}
                   onClick={() => handleProjectClick(project._id)}
-                  className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition cursor-pointer"
+                  className="group bg-white rounded-xl overflow-hidden font-figtree shadow-md cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-[1.03]"
                 >
-                  {/* <img
-                    src={project.propertyImages?.[0]}
-                    alt={project.projectName}
-                    className="w-full h-64 object-cover"
-                  /> */}
+                  {/* Image */}
                   <div className="overflow-hidden">
                     <img
                       src={project.propertyImages?.[0]}
                       alt={project.projectName}
-                      className="w-full h-64 object-cover transition-transform duration-500 hover:scale-110"
+                      className="w-full h-64 object-cover"
                     />
                   </div>
 
-                  <div className="p-5">
-                    <h3 className="text-[20px] font-medium">
+                  {/* Content */}
+                  <div className="p-6 text-center">
+                    {/* Project Name */}
+                    <h3 className="text-[22px] font-semibold text-black">
                       {project.projectName}
                     </h3>
 
-                    <p className="text-[13px] mt-1">{project.projectType}</p>
-
-                    <div className="flex items-center gap-2 mt-2 text-gray-600">
+                    {/* Location */}
+                    <div className="flex justify-center items-center gap-2 mt-2 text-black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="w-4 h-4 text-[#6B6B6B]"
+                        className="w-4 h-4 text-black"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -166,8 +163,34 @@ const OngoingProjectsList = () => {
                           d="M19.5 10.5c0 7.5-7.5 12-7.5 12s-7.5-4.5-7.5-12a7.5 7.5 0 1115 0z"
                         />
                       </svg>
-                      <span className="text-[13px]">{project.location}</span>
+                      <span className="text-[16px]">{project.location}</span>
                     </div>
+
+                    {/* 3 Icons */}
+                    <div className="flex justify-center gap-3 mt-6">
+                      {/* Hand Icon */}
+                      <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110">
+                        <Hand size={20} />
+                      </div>
+
+                      {/* Hand with % (Offer / Price) */}
+                      <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110">
+                        <BadgePercent size={20} />
+                      </div>
+
+                      {/* Telecaller */}
+                      <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110">
+                        <Headset size={20} />
+                      </div>
+                    </div>
+
+                    {/* Small Line */}
+                    <div className="w-72 h-[1px] bg-gray-500 mx-auto my-6"></div>
+
+                    {/* BHK Type */}
+                    <p className="text-[16px] font-medium text-black">
+                      {project.unitConfiguration}
+                    </p>
                   </div>
                 </div>
               ))}
