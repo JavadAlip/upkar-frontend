@@ -1,7 +1,7 @@
 import axios from 'axios';
 const API_URL =
   import.meta.env.VITE_API_URL || 'https://upkar-backend.onrender.com/api';
-import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+// import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 //Admin Auth
 export const adminLoginApi = async (data) => {
