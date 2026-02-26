@@ -279,14 +279,14 @@ const CmpltNavbar = () => {
 
         <li>
           <Link
-            to="/"
+            to="/contact"
             className={`transition-colors duration-300 whitespace-nowrap ${
               isActive('/')
                 ? 'text-[#2D5C3A] font-medium'
                 : 'hover:text-[#2D5C3A] text-black '
             }`}
           >
-            Contact
+            Contact Us
           </Link>
         </li>
       </ul>
@@ -377,11 +377,11 @@ const CmpltNavbar = () => {
 
             <li>
               <Link
-                to="/"
+                to="/contact"
                 className="block text-white bg-black text-center py-2 px-4 rounded-lg hover:bg-gray-900 transition-all duration-300"
                 onClick={() => setMenuOpen(false)}
               >
-                Contact
+                Contact Us
               </Link>
             </li>
           </ul>

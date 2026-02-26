@@ -14,6 +14,7 @@ const NavbarHome = () => {
     { name: 'Events', path: '/events' },
     { name: 'Blogs', path: '/blogs' },
     { name: 'Careers', path: '/careers' },
+    { name: 'Contact Us', path: '/contact' },
   ];
 
   return (
@@ -58,7 +59,7 @@ const NavbarHome = () => {
               to="/ongoing-projects"
               className="text-black hover:text-[#2D5C3A] transition-colors duration-300 flex items-center"
             >
-              ongoing
+              Ongoing
             </Link>
           </div>
         </li>

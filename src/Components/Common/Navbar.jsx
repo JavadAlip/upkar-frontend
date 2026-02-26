@@ -260,8 +260,8 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import logo from '../../assets/logo.png';
-import navbarLast from '../../assets/navbarLast.png';
-import navbarLast1 from '../../assets/navbarLast1.png';
+// import navbarLast from '../../assets/navbarLast.png';
+// import navbarLast1 from '../../assets/navbarLast1.png';
 
 const Navbar = () => {
   const location = useLocation();
@@ -417,20 +417,20 @@ const Navbar = () => {
         {location.pathname === '/aboutus' && (
           <li>
             <Link
-              to="/"
-              className={`transition-colors duration-300 ${
-                isActive('/')
+              to="/contact"
+              className={`transition-colors duration-300 whitespace-nowrap ${
+                isActive('/contact')
                   ? 'text-[#2D5C3A] font-medium'
                   : 'text-black hover:text-[#2D5C3A]'
               }`}
             >
-              Contact
+              Contact Us
             </Link>
           </li>
         )}
       </ul>
 
-      <div className="hidden lg-nav:flex flex-row items-center gap-3">
+      {/* <div className="hidden lg-nav:flex flex-row items-center gap-3">
         {location.pathname === '/aboutus' && (
           <img
             src={navbarLast}
@@ -445,7 +445,7 @@ const Navbar = () => {
             className="h-16 w-auto object-contain cursor-pointer"
           />
         )}
-      </div>
+      </div> */}
 
       <button
         className="lg-nav:hidden text-gray-700 focus:outline-none"
@@ -538,11 +538,11 @@ const Navbar = () => {
 
             <li>
               <Link
-                to="/"
-                className="block text-white bg-black text-center py-2 px-4 rounded-lg hover:bg-gray-900 transition-all duration-300"
+                to="/contact"
+                className="block text-white bg-black text-center py-2 px-4 rounded-lg hover:bg-gray-900 transition-all duration-300 whitespace-nowrap"
                 onClick={() => setMenuOpen(false)}
               >
-                Contact
+                Contact Us
               </Link>
             </li>
           </ul>
