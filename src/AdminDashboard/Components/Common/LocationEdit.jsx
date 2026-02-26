@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 const LocationEdit = ({ isOpen, onClose, data, onUpdated }) => {
   const [form, setForm] = useState({
     title: '',
+    embedUrl: '',
     locationUrl: '',
   });
 
@@ -13,6 +14,7 @@ const LocationEdit = ({ isOpen, onClose, data, onUpdated }) => {
       setForm({
         title: data.title,
         locationUrl: data.locationUrl,
+        embedUrl: data.embedUrl,
       });
     }
   }, [data]);
@@ -43,6 +45,12 @@ const LocationEdit = ({ isOpen, onClose, data, onUpdated }) => {
             value={form.title}
             className="border p-2 rounded"
             onChange={(e) => setForm({ ...form, title: e.target.value })}
+          />
+
+          <input
+            value={form.embedUrl}
+            className="border p-2 rounded"
+            onChange={(e) => setForm({ ...form, embedUrl: e.target.value })}
           />
 
           <input

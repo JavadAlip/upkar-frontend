@@ -534,40 +534,29 @@ const Locations = () => {
       );
     }
   };
-  const extractIframeSrc = (raw) => {
-    if (!raw) return null;
-    const srcMatch = raw.match(/src=["']([^"']+)["']/);
-    if (srcMatch) return srcMatch[1];
-    return raw;
-  };
 
-  const getEmbedUrl = (locationUrl) => {
-    const src = extractIframeSrc(locationUrl);
-    if (!src) return '';
-    if (src.includes('google.com/maps/embed')) return src;
+  // const getEmbedUrl = (locationUrl) => {
+  //   const src = extractIframeSrc(locationUrl);
+  //   if (!src) return '';
+  //   if (src.includes('google.com/maps/embed')) return src;
 
-    return `https://maps.google.com/maps?q=${encodeURIComponent(
-      src,
-    )}&output=embed&hl=en`;
-  };
+  //   return `https://maps.google.com/maps?q=${encodeURIComponent(
+  //     src,
+  //   )}&output=embed&hl=en`;
+  // };
 
-  const getDirectUrl = (locationUrl) => {
-    if (!locationUrl) return '#';
-    const src = extractIframeSrc(locationUrl);
-    if (!src) return '#';
-    if (src.includes('google.com/maps/embed')) {
-      return src.replace('/maps/embed', '/maps');
-    }
-    return src;
-  };
-
+  // const handleMapClick = () => {
+  //   if (activeLocation?.locationUrl) {
+  //     window.open(
+  //       getDirectUrl(activeLocation.locationUrl),
+  //       '_blank',
+  //       'noopener,noreferrer',
+  //     );
+  //   }
+  // };
   const handleMapClick = () => {
     if (activeLocation?.locationUrl) {
-      window.open(
-        getDirectUrl(activeLocation.locationUrl),
-        '_blank',
-        'noopener,noreferrer',
-      );
+      window.open(activeLocation.locationUrl, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -612,9 +601,10 @@ const Locations = () => {
               <iframe
                 key={activeLocation._id}
                 title={activeLocation.title}
-                src={getEmbedUrl(activeLocation.locationUrl)}
+                src={activeLocation.embedUrl}
                 className="w-full h-full border-0 pointer-events-none"
                 loading="lazy"
+                allowFullScreen
               />
             </div>
           )}

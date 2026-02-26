@@ -6,6 +6,7 @@ const LocationAdd = ({ isOpen, onClose, onAdded }) => {
   const [form, setForm] = useState({
     title: '',
     locationUrl: '',
+    embedUrl: '',
   });
 
   if (!isOpen) return null;
@@ -13,7 +14,11 @@ const LocationAdd = ({ isOpen, onClose, onAdded }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!form.title || !form.locationUrl) {
+    // if (!form.title || !form.locationUrl) {
+    //   toast.error('All fields required');
+    //   return;
+    // }
+    if (!form.title || !form.embedUrl || !form.locationUrl) {
       toast.error('All fields required');
       return;
     }
@@ -39,6 +44,12 @@ const LocationAdd = ({ isOpen, onClose, onAdded }) => {
             placeholder="Title"
             className="border p-2 rounded"
             onChange={(e) => setForm({ ...form, title: e.target.value })}
+          />
+
+          <input
+            placeholder="Google Maps Embed URL"
+            className="border p-2 rounded"
+            onChange={(e) => setForm({ ...form, embedUrl: e.target.value })}
           />
 
           <input
