@@ -103,7 +103,10 @@ const MainSection = () => {
 
         {/* RIGHT CAROUSEL */}
         <div className="relative">
-          <div className="rounded-[2rem] overflow-hidden relative h-[560px]">
+          <div
+            className="rounded-[2rem] overflow-hidden relative 
+                h-[280px] sm:h-[350px] md:h-[450px] lg:h-[560px]"
+          >
             {images.map((img, index) => (
               <div
                 key={index}
@@ -151,10 +154,37 @@ const MainSection = () => {
       </div>
 
       {/* PARAGRAPHS */}
-      <div className="max-w-[85%] mx-auto text-center pt-10">
-        <p className="mb-4">{data.paragraph1}</p>
-        <p className="mb-4">{data.paragraph2}</p>
-        <p>{data.paragraph3}</p>
+      <div
+        className="pt-8 sm:pt-10 
+                max-w-full sm:max-w-[90%] md:max-w-[90%] lg:max-w-[90%] 
+                mx-auto 
+                px-2 sm:px-0"
+      >
+        <p
+          className="mb-4 
+                text-sm sm:text-base md:text-lg 
+                leading-relaxed 
+                text-justify sm:text-center"
+        >
+          {data.paragraph1}
+        </p>
+
+        <p
+          className="mb-4 
+                text-sm sm:text-base md:text-lg 
+                leading-relaxed 
+                text-justify sm:text-center"
+        >
+          {data.paragraph2}
+        </p>
+
+        <p
+          className="text-sm sm:text-base md:text-lg 
+                leading-relaxed 
+                text-justify sm:text-center"
+        >
+          {data.paragraph3}
+        </p>
       </div>
     </div>
   );

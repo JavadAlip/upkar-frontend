@@ -152,7 +152,7 @@ const Footer = forwardRef((props, ref) => {
             className="mb-4 max-w-[180px] object-contain"
           />
 
-          <p className="text-4xl font-bold sm:text-2xl md:text-3xl leading-snug font-figtree text-white max-w-sm">
+          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-snug font-figtree text-white max-w-sm">
             Shaping a 50+ years legacy of quality & trust !
           </p>
         </div>

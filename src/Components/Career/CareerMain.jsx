@@ -40,7 +40,17 @@ const CareerMain = () => {
             </span>
           </h2>
 
-          <p className="font-[Figtree] font-light text-base md:text-lg lg:text-[20px] text-[#000000] leading-[1.4] max-w-4xl mx-auto px-2 whitespace-pre-line">
+          <p
+            className="font-figtree font-light 
+             text-sm sm:text-base md:text-lg lg:text-[20px] 
+             text-black 
+             leading-relaxed 
+             max-w-full sm:max-w-[90%] md:max-w-4xl 
+             mx-auto 
+             px-2 sm:px-0 
+             text-justify sm:text-center 
+             whitespace-pre-line"
+          >
             {careerDescription || 'Loading career description...'}
           </p>
 
