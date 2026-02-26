@@ -1,7 +1,7 @@
 import axios from 'axios';
 const API_URL =
   import.meta.env.VITE_API_URL || 'https://upkar-backend.onrender.com/api';
-// import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 //Admin Auth
 export const adminLoginApi = async (data) => {
@@ -1769,6 +1769,111 @@ export const updateBrandMotive = async (id, data, token) => {
 export const deleteBrandMotive = async (id, token) => {
   const res = await axios.delete(
     `${API_URL}/homepage/delete-brand-motive/${id}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    },
+  );
+  return res.data;
+};
+
+// CONTACT MAIN
+
+export const createContactMain = async (formData, token) => {
+  const res = await axios.post(
+    `${API_URL}/contactpage/create-contactmain`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    },
+  );
+  return res.data;
+};
+
+export const getContactMain = async () => {
+  const res = await axios.get(`${API_URL}/contactpage/get-contactmain`);
+  return res.data;
+};
+
+export const updateContactMain = async (formData, token) => {
+  const res = await axios.put(
+    `${API_URL}/contactpage/update-contactmain`,
+    formData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    },
+  );
+  return res.data;
+};
+
+export const deleteContactMain = async (token) => {
+  const res = await axios.delete(`${API_URL}/contactpage/delete-contactmain`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+// LOCATION API
+
+export const createLocation = async (data, token) => {
+  const res = await axios.post(`${API_URL}/contactpage/create-location`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+export const getAllLocations = async () => {
+  const res = await axios.get(`${API_URL}/contactpage/get-all-locations`);
+  return res.data;
+};
+
+export const updateLocation = async (id, data, token) => {
+  const res = await axios.put(
+    `${API_URL}/contactpage/update-location/${id}`,
+    data,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    },
+  );
+  return res.data;
+};
+
+export const deleteLocation = async (id, token) => {
+  const res = await axios.delete(
+    `${API_URL}/contactpage/delete-location/${id}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    },
+  );
+  return res.data;
+};
+
+// CREATE CONTACT ENQUIRY (Frontend public form)
+export const createContactEnquiry = async (payload) => {
+  const res = await axios.post(
+    `${API_URL}/contactpage/create-contact-enquiry`,
+    payload,
+  );
+  return res.data;
+};
+
+// GET ALL CONTACT ENQUIRIES (Admin)
+export const getAllContactEnquiries = async (token) => {
+  const res = await axios.get(`${API_URL}/contactpage/all-contact-enquiry`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
+};
+
+// DELETE CONTACT ENQUIRY (Admin)
+export const deleteContactEnquiry = async (id, token) => {
+  const res = await axios.delete(
+    `${API_URL}/contactpage/delete-contact-enquiry/${id}`,
     {
       headers: { Authorization: `Bearer ${token}` },
     },

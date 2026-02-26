@@ -222,6 +222,10 @@ import BlogMain from '../Components/BlogPage/BlogMain';
 import PopularArticles from '../Components/BlogPage/PopularArticles';
 import Readmore from '../Components/BlogPage/Readmore';
 
+/* Contact */
+import ContactMain from '../Components/ContactPage/ContactMain';
+import Locations from '../Components/ContactPage/LocationsMain.jsx';
+
 /* Others */
 import EnquiryList from '../Components/Enquiries/EnquiryList';
 import Dashboard from '../Components/Dashboard/Dashboard';
@@ -231,8 +235,10 @@ import CategoryDetails from '../Components/Categories/categoryDetails';
 import MediaLibrary from '../Components/MediaLibrary/MediaLibrary';
 import CareerEnquiryList from '../Components/Enquiries/CareerEnquiry';
 import EventEnquiryList from '../Components/Enquiries/EventEnquiryList';
+import ContactEnquiryList from '../Components/Enquiries/ContactEnquiry.jsx';
 import CareerRoles from '../Components/JobRoles/JobRoles';
 import Settings from '../Components/Settings/Settings';
+// import ContactMain from '../../Components/Contact/ContactMain.jsx';
 
 const AdminDashboard = () => {
   return (
@@ -312,6 +318,10 @@ const AdminDashboard = () => {
             <Route path="popular-articles" element={<PopularArticles />} />
             <Route path="read-more" element={<Readmore />} />
 
+            {/* Contact */}
+            <Route path="contact" element={<ContactMain />} />
+            <Route path="locations" element={<Locations />} />
+
             {/* Others */}
             <Route path="enquiries" element={<EnquiryList />} />
             <Route path="projects-list" element={<Project />} />
@@ -320,6 +330,7 @@ const AdminDashboard = () => {
             <Route path="media" element={<MediaLibrary />} />
             <Route path="career-enquiries" element={<CareerEnquiryList />} />
             <Route path="event-enquiries" element={<EventEnquiryList />} />
+            <Route path="contact-enquiries" element={<ContactEnquiryList />} />
             <Route path="career-roles" element={<CareerRoles />} />
             <Route path="settings" element={<Settings />} />
           </Routes>

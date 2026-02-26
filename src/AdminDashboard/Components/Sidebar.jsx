@@ -621,6 +621,7 @@ const Sidebar = () => {
   const [openUpcoming, setOpenUpcoming] = useState(false);
   const [openOngoing, setOpenOngoing] = useState(false);
   const [openEvent, setOpenEvent] = useState(false);
+  const [openContact, setOpenContact] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -704,6 +705,11 @@ const Sidebar = () => {
             Event Enquiries
           </NavLink>
 
+          <NavLink to="/admin/contact-enquiries" className={linkClass}>
+            <ClipboardList size={18} />
+            Contact Enquiries
+          </NavLink>
+
           <NavLink to="/admin/career-roles" className={linkClass}>
             <UserCheck size={18} />
             Jobs Roles
@@ -760,40 +766,6 @@ const Sidebar = () => {
             </div>
           )}
 
-          {/* PROJECT PAGE */}
-          <button
-            onClick={() => setOpenProject(!openProject)}
-            className="w-full p-2 border rounded flex justify-between"
-          >
-            <span className="flex gap-2">
-              <Folder size={18} /> Project Page
-            </span>
-            <ChevronDown className={openProject ? 'rotate-180' : ''} />
-          </button>
-
-          {openProject && (
-            <div className="ml-4 space-y-1 text-sm">
-              <NavLink to="/admin/project-main" className={linkClass}>
-                Project Main
-              </NavLink>
-              <NavLink to="/admin/feature" className={linkClass}>
-                Feature
-              </NavLink>
-              <NavLink to="/admin/plot-layout" className={linkClass}>
-                Plot Layout
-              </NavLink>
-              <NavLink to="/admin/amenity" className={linkClass}>
-                Amenities
-              </NavLink>
-              <NavLink to="/admin/about-project" className={linkClass}>
-                About Project
-              </NavLink>
-              <NavLink to="/admin/project-images" className={linkClass}>
-                Project Images
-              </NavLink>
-            </div>
-          )}
-
           {/* ABOUT PAGE */}
           <button
             onClick={() => setOpenAbout(!openAbout)}
@@ -818,59 +790,6 @@ const Sidebar = () => {
               </NavLink>
               <NavLink to="/admin/about-images" className={linkClass}>
                 About Images
-              </NavLink>
-            </div>
-          )}
-
-          {/* EVENT PAGE */}
-          <button
-            onClick={() => setOpenEvent(!openEvent)}
-            className="w-full p-2 border rounded flex justify-between"
-          >
-            <span className="flex gap-2">
-              <Calendar size={18} /> Event Page
-            </span>
-            <ChevronDown className={openEvent ? 'rotate-180' : ''} />
-          </button>
-
-          {openEvent && (
-            <div className="ml-4 space-y-1 text-sm">
-              <NavLink to="/admin/event-top" className={linkClass}>
-                Event Main
-              </NavLink>
-              <NavLink to="/admin/events" className={linkClass}>
-                Events
-              </NavLink>
-            </div>
-          )}
-
-          {/* EVENT */}
-          {/* <NavLink to="/admin/events" className={linkClass}>
-            <Calendar size={18} />
-            Events
-          </NavLink> */}
-
-          {/* CAREER */}
-          <button
-            onClick={() => setOpenCareer(!openCareer)}
-            className="w-full p-2 border rounded flex justify-between"
-          >
-            <span className="flex gap-2">
-              <Briefcase size={18} /> Career
-            </span>
-            <ChevronDown className={openCareer ? 'rotate-180' : ''} />
-          </button>
-
-          {openCareer && (
-            <div className="ml-4 space-y-1 text-sm">
-              <NavLink to="/admin/career-main" className={linkClass}>
-                Career Main
-              </NavLink>
-              <NavLink to="/admin/why-join" className={linkClass}>
-                Why Join
-              </NavLink>
-              <NavLink to="/admin/career-images" className={linkClass}>
-                Career Images
               </NavLink>
             </div>
           )}
@@ -959,13 +878,99 @@ const Sidebar = () => {
             </div>
           )}
 
+          {/* PROJECT PAGE */}
+          <button
+            onClick={() => setOpenProject(!openProject)}
+            className="w-full p-2 border rounded flex justify-between"
+          >
+            <span className="flex gap-2">
+              <Folder size={18} /> Project Page
+            </span>
+            <ChevronDown className={openProject ? 'rotate-180' : ''} />
+          </button>
+
+          {openProject && (
+            <div className="ml-4 space-y-1 text-sm">
+              <NavLink to="/admin/project-main" className={linkClass}>
+                Project Main
+              </NavLink>
+              <NavLink to="/admin/feature" className={linkClass}>
+                Feature
+              </NavLink>
+              <NavLink to="/admin/plot-layout" className={linkClass}>
+                Plot Layout
+              </NavLink>
+              <NavLink to="/admin/amenity" className={linkClass}>
+                Amenities
+              </NavLink>
+              <NavLink to="/admin/about-project" className={linkClass}>
+                About Project
+              </NavLink>
+              <NavLink to="/admin/project-images" className={linkClass}>
+                Project Images
+              </NavLink>
+            </div>
+          )}
+          {/* EVENT PAGE */}
+          <button
+            onClick={() => setOpenEvent(!openEvent)}
+            className="w-full p-2 border rounded flex justify-between"
+          >
+            <span className="flex gap-2">
+              <Calendar size={18} /> Event Page
+            </span>
+            <ChevronDown className={openEvent ? 'rotate-180' : ''} />
+          </button>
+
+          {openEvent && (
+            <div className="ml-4 space-y-1 text-sm">
+              <NavLink to="/admin/event-top" className={linkClass}>
+                Event Main
+              </NavLink>
+              <NavLink to="/admin/events" className={linkClass}>
+                Events
+              </NavLink>
+            </div>
+          )}
+
+          {/* EVENT */}
+          {/* <NavLink to="/admin/events" className={linkClass}>
+            <Calendar size={18} />
+            Events
+          </NavLink> */}
+
+          {/* CAREER */}
+          <button
+            onClick={() => setOpenCareer(!openCareer)}
+            className="w-full p-2 border rounded flex justify-between"
+          >
+            <span className="flex gap-2">
+              <Briefcase size={18} /> Career Page
+            </span>
+            <ChevronDown className={openCareer ? 'rotate-180' : ''} />
+          </button>
+
+          {openCareer && (
+            <div className="ml-4 space-y-1 text-sm">
+              <NavLink to="/admin/career-main" className={linkClass}>
+                Career Main
+              </NavLink>
+              <NavLink to="/admin/why-join" className={linkClass}>
+                Why Join
+              </NavLink>
+              <NavLink to="/admin/career-images" className={linkClass}>
+                Career Images
+              </NavLink>
+            </div>
+          )}
+
           {/* BLOG */}
           <button
             onClick={() => setOpenBlog(!openBlog)}
             className="w-full p-2 border rounded flex justify-between"
           >
             <span className="flex gap-2">
-              <FileText size={18} /> Blogs
+              <FileText size={18} /> Blogs Page
             </span>
             <ChevronDown className={openBlog ? 'rotate-180' : ''} />
           </button>
@@ -981,6 +986,34 @@ const Sidebar = () => {
               <NavLink to="/admin/read-more" className={linkClass}>
                 Read More
               </NavLink>
+            </div>
+          )}
+
+          {/* CONTACT */}
+          <button
+            onClick={() => setOpenContact(!openContact)}
+            className="w-full p-2 border rounded flex justify-between"
+          >
+            <span className="flex gap-2">
+              <FileText size={18} /> Contact Page
+            </span>
+            <ChevronDown className={openContact ? 'rotate-180' : ''} />
+          </button>
+
+          {openContact && (
+            <div className="ml-4 space-y-1 text-sm">
+              <NavLink to="/admin/contact" className={linkClass}>
+                Contact Main
+              </NavLink>
+              <NavLink to="/admin/locations" className={linkClass}>
+                Locations
+              </NavLink>
+              {/* <NavLink to="/admin/popular-articles" className={linkClass}>
+                Popular Articles
+              </NavLink>
+              <NavLink to="/admin/read-more" className={linkClass}>
+                Read More
+              </NavLink> */}
             </div>
           )}
 
