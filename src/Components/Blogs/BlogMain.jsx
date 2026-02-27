@@ -47,13 +47,22 @@ const BlogMain = () => {
             <p className="font-figtree font-extralight text-base sm:text-lg md:text-xl lg:text-[24px] text-primaryText text-center leading-[1.4] sm:leading-[1.3] lg:leading-[1.2] mb-6 sm:mb-8 lg:mb-[40px]">
               {blogData.description}
             </p>
-
-            <div className="flex justify-center lg:justify-center">
+            <div className="flex justify-center">
               <img
                 src={addEnq}
                 alt="Ask Enquiry"
                 onClick={handleScrollToContact}
-                className="cursor-pointer hover:scale-105 transition-transform duration-300"
+                className="
+      w-32          
+      sm:w-40       
+      md:w-48         
+      lg:w-56         
+      xl:w-60      
+      cursor-pointer
+      hover:scale-105
+      transition-transform
+      duration-300
+    "
               />
             </div>
           </div>
