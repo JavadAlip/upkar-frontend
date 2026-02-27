@@ -59,7 +59,7 @@ const CareerMain = () => {
               src={JoinUs}
               alt="Join Us"
               onClick={handleScrollToContact}
-              className="w-32 md:w-40 lg:w-auto cursor-pointer hover:opacity-80 transition-all duration-300"
+              className="w-[110px] sm:w-[130px] md:w-[150px] lg:w-[170px] xl:w-[190px] cursor-pointer hover:opacity-80 transition-all duration-300"
             />
           </div>
         </div>
