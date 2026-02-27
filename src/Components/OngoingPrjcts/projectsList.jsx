@@ -124,7 +124,8 @@ const OngoingProjectsList = () => {
                 <div
                   key={project._id}
                   onClick={() => handleProjectClick(project._id)}
-                  className="group bg-white rounded-xl overflow-hidden font-figtree shadow-md cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-[1.03]"
+                  className=" bg-white rounded-xl overflow-hidden font-figtree shadow-md cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-[1.03]  border-gray-300 
+hover:border-[#2D5C3A] border-2 "
                 >
                   {/* Image */}
                   <div className="overflow-hidden">
@@ -169,21 +170,29 @@ const OngoingProjectsList = () => {
                     {/* 3 Icons */}
                     <div className="flex justify-center gap-3 mt-6">
                       {/* Hand Icon */}
-                      <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110">
-                        <Hand size={20} />
+                      <div className="relative group">
+                        <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110 cursor-pointer">
+                          <Hand size={20} />
+                        </div>
+
+                        {/* Tooltip */}
+                        <span className="absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition duration-300">
+                          I’m Interested
+                        </span>
                       </div>
 
-                      {/* Hand with % (Offer / Price) */}
-                      <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110">
-                        <BadgePercent size={20} />
-                      </div>
+                      {/* Headset Icon */}
+                      <div className="relative group">
+                        <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110 cursor-pointer">
+                          <Headset size={20} />
+                        </div>
 
-                      {/* Telecaller */}
-                      <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110">
-                        <Headset size={20} />
+                        {/* Tooltip */}
+                        <span className="absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition duration-300">
+                          Call
+                        </span>
                       </div>
                     </div>
-
                     {/* Small Line */}
                     <div className="w-72 h-[1px] bg-gray-500 mx-auto my-6"></div>
 
