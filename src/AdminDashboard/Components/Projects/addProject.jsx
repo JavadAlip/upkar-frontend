@@ -28,6 +28,7 @@ export default function AddProject({ onClose, onSuccess }) {
     reraDescription: '',
     aboutProject: '',
     locationUrl: '',
+    locationEmbedUrl: '',
     keyFeatures: [],
     amenities: [],
   });
@@ -232,6 +233,8 @@ export default function AddProject({ onClose, onSuccess }) {
         data.append('aboutProject', formData.aboutProject);
       if (formData.locationUrl)
         data.append('locationUrl', formData.locationUrl);
+      if (formData.locationEmbedUrl)
+        data.append('locationEmbedUrl', formData.locationEmbedUrl);
 
       formData.keyFeatures.forEach((f) => data.append('keyFeatures[]', f));
       formData.amenities.forEach((a) => data.append('amenities[]', a));
@@ -592,6 +595,15 @@ export default function AddProject({ onClose, onSuccess }) {
           placeholder="Google Map Location URL"
           value={formData.locationUrl}
           onChange={(e) => handleInputChange('locationUrl', e.target.value)}
+        />
+      </Section>
+      <Section title="Google Map Embed URL">
+        <Input
+          placeholder="Paste Google Maps Embed URL"
+          value={formData.locationEmbedUrl}
+          onChange={(e) =>
+            handleInputChange('locationEmbedUrl', e.target.value)
+          }
         />
       </Section>
 

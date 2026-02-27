@@ -787,13 +787,32 @@ export default function ViewProjectModal({ project, onClose }) {
                       href={project.locationUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="text-blue-600 underline break-all"
                     >
-                      <img
-                        src={directionsImg}
-                        alt="Directions"
-                        className="w-full rounded-lg max-h-[220px] object-cover"
-                      />
+                      {project.locationUrl}
                     </a>
+                  </div>
+                )}
+
+                {/* GOOGLE MAP EMBED */}
+                {project.locationEmbedUrl && (
+                  <div>
+                    <h1 className="text-2xl sm:text-3xl font-bold mb-4">
+                      Location Map
+                    </h1>
+
+                    <div className="w-full rounded-lg overflow-hidden border">
+                      <iframe
+                        src={project.locationEmbedUrl}
+                        width="100%"
+                        height="300"
+                        style={{ border: 0 }}
+                        loading="lazy"
+                        allowFullScreen
+                        referrerPolicy="no-referrer-when-downgrade"
+                        className="rounded-lg"
+                      />
+                    </div>
                   </div>
                 )}
 

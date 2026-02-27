@@ -717,6 +717,7 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
     noBrokerReraId: project.noBrokerReraId || '',
     builderProjectReraId: project.builderProjectReraId || '',
     locationUrl: project.locationUrl || '',
+    locationEmbedUrl: project.locationEmbedUrl || '',
   });
 
   const [keyFeatures, setKeyFeatures] = useState(() => {
@@ -1151,6 +1152,34 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
                     placeholder="https://maps.google.com/..."
                     className="w-full border border-gray-300 p-2 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
                   />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Location Embed URL (Iframe)
+                  </label>
+                  <input
+                    name="locationEmbedUrl"
+                    value={form.locationEmbedUrl}
+                    onChange={handleChange}
+                    placeholder="https://www.google.com/maps/embed?pb=..."
+                    className="w-full border border-gray-300 p-2 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+
+                  {/* Optional Live Preview */}
+                  {form.locationEmbedUrl && (
+                    <div className="mt-2">
+                      <iframe
+                        src={form.locationEmbedUrl}
+                        width="100%"
+                        height="200"
+                        style={{ border: 0 }}
+                        loading="lazy"
+                        allowFullScreen
+                        className="rounded border"
+                      ></iframe>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
