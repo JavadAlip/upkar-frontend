@@ -79,6 +79,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { getAllArticles } from '../../Api';
+import { X } from 'lucide-react';
 
 const PopularArticles = () => {
   const [articleData, setArticleData] = useState(null);
@@ -192,11 +193,20 @@ const PopularArticles = () => {
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 px-4">
           <div className="bg-white w-full max-w-2xl rounded-3xl overflow-hidden relative max-h-[90vh] flex flex-col">
             {/* Close Button */}
+
             <button
               onClick={() => setSelectedItem(null)}
-              className="absolute top-4 right-4 text-black text-xl font-bold z-10"
+              className="absolute top-4 right-4 
+             bg-white/30 backdrop-blur-md 
+             border border-white/40
+             text-gray-800 
+             p-3 rounded-full 
+             shadow-md 
+             hover:scale-110 
+             transition-all duration-300 
+             z-10"
             >
-              ✕
+              <X className="w-4 h-4" />
             </button>
 
             {/* Image */}
