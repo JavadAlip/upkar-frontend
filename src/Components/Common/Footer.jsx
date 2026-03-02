@@ -12,7 +12,6 @@ const Footer = forwardRef((props, ref) => {
       ref={ref}
       className="w-full bg-black text-white px-4 sm:px-8 lg:px-20 py-14 font-[Figtree]"
     >
-      {/* TOP SECTION */}
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 lg:gap-6">
         <div>
           <img
@@ -115,10 +114,9 @@ const Footer = forwardRef((props, ref) => {
         <img
           src={Footerimg2}
           alt="Upkar Logo"
-          className="w-[160px] sm:w-[220px]  md:w-[300px]  lg:w-[220px]  xl:w-[220px]  2xl:w-[220px] object-contain "
+          className="w-[100px] sm:w-[130px] md:w-[160px] lg:w-[140px] xl:w-[150px] object-contain"
         />
       </div>
-
       <div className="border-t border-gray-700 my-10"></div>
       <div className="flex flex-col items-center gap-4">
         <img
