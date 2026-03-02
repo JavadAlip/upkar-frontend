@@ -3,7 +3,6 @@ import { getBanners } from '../../Api';
 import Connect from '../../assets/Icons/connect.png';
 import { useNavigate } from 'react-router-dom';
 import AboveIcon from '../../assets/aboveIcon.png';
-import tree from '../../assets/Tree.png';
 
 const HomeMain = () => {
   const [banner, setBanner] = useState(null);
@@ -26,7 +25,6 @@ const HomeMain = () => {
     <div className="w-full flex flex-col justify-center items-center px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
       <div className="relative w-full group cursor-pointer mb-6 lg:mb-12">
         <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
-          {/* Only render image if it exists */}
           {banner?.image && (
             <img
               src={banner.image}
@@ -79,25 +77,6 @@ const HomeMain = () => {
               />
             </div>
           </div>
-
-          {/* <div className="md:hidden absolute bottom-3 right-2">
-            <img
-              src={Connect}
-              alt="Connect"
-              onClick={() => navigate('/contact')}
-              className="w-24 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
-            />
-          </div> */}
-
-          {/* <div className="absolute top-6 sm:top-11 -right-2 sm:-right-4 bg-white rounded-xl sm:rounded-2xl p-2 sm:p-4 shadow-lg flex flex-col gap-3 sm:gap-6">
-            <button className="hover:scale-110 transition-transform duration-300">
-              <img src={Phone} alt="Phone" className="w-4 h-4 sm:w-6 sm:h-6" />
-            </button>
-            <button className="hover:scale-110 transition-transform duration-300">
-              <img src={Mail} alt="Mail" className="w-4 h-4 sm:w-6 sm:h-6" />
-            </button>
-        
-          </div> */}
         </div>
       </div>
     </div>

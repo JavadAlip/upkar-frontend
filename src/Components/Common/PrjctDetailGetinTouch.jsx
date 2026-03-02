@@ -71,19 +71,16 @@ const PrjctDetailGetinTouch = () => {
 
   return (
     <div className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 font-figtree">
-      {/* Heading */}
       <h2 className="mb-8 text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight text-left">
         <span style={{ fontWeight: 500 }}>Get in </span>
         <span style={{ fontWeight: 700 }}>Touch</span>
       </h2>
 
-      {/* Form */}
       <div className="bg-white rounded-3xl p-8 md:p-10 lg:p-12 w-full shadow-xl">
         <form
           className="flex flex-col items-center gap-5"
           onSubmit={handleSubmit}
         >
-          {/* Project Status */}
           <div className="relative w-full">
             <select
               name="projectStatus"
@@ -102,7 +99,6 @@ const PrjctDetailGetinTouch = () => {
             </div>
           </div>
 
-          {/* Project Name */}
           <div className="relative w-full">
             <select
               name="projectId"
@@ -126,7 +122,6 @@ const PrjctDetailGetinTouch = () => {
             </div>
           </div>
 
-          {/* Site Visit Date */}
           <div className="relative w-full flex flex-col">
             <label className="mb-1 text-sm">Preferred Site Visit Date</label>
             <input
@@ -139,7 +134,6 @@ const PrjctDetailGetinTouch = () => {
             />
           </div>
 
-          {/* Other Inputs */}
           <input
             type="text"
             name="location"
@@ -177,7 +171,6 @@ const PrjctDetailGetinTouch = () => {
             required
           />
 
-          {/* Existing Customer */}
           <div className="relative w-full">
             <select
               name="isExistingCustomer"
@@ -195,7 +188,6 @@ const PrjctDetailGetinTouch = () => {
             </div>
           </div>
 
-          {/* Submit */}
           <button type="submit" className="mt-6 focus:outline-none">
             <img
               src={getinBtn}

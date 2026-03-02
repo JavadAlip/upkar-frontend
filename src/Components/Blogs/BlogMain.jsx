@@ -52,17 +52,7 @@ const BlogMain = () => {
                 src={addEnq}
                 alt="Ask Enquiry"
                 onClick={handleScrollToContact}
-                className="
-      w-32          
-      sm:w-40       
-      md:w-48         
-      lg:w-56         
-      xl:w-60      
-      cursor-pointer
-      hover:scale-105
-      transition-transform
-      duration-300
-    "
+                className=" w-32  sm:w-40 md:w-48 lg:w-56  xl:w-60 cursor-pointer hover:scale-105transition-transform duration-300"
               />
             </div>
           </div>
@@ -74,18 +64,6 @@ const BlogMain = () => {
                 alt="Blog Main"
                 className="w-full h-auto object-cover"
               />
-
-              {/* <div className="absolute top-24 -right-4 bg-white rounded-2xl p-4 shadow-lg flex flex-col gap-6">
-                <button className="hover:scale-110 transition-transform duration-300">
-                  <img src={Phone} alt="Phone" className="w-6 h-6" />
-                </button>
-                <button className="hover:scale-110 transition-transform duration-300">
-                  <img src={Mail} alt="Mail" className="w-6 h-6" />
-                </button>
-                <button className="hover:scale-110 transition-transform duration-300">
-                  <img src={Whatsapp} alt="WhatsApp" className="w-6 h-6" />
-                </button>
-              </div> */}
             </div>
           </div>
         </div>

@@ -49,7 +49,6 @@ const MainSection = () => {
   return (
     <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 font-[Figtree]">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* LEFT CONTENT */}
         <div className="flex flex-col items-center text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light mb-6 leading-tight">
             {data.heading?.split('|')[0]} <br />
@@ -101,7 +100,6 @@ const MainSection = () => {
           </div>
         </div>
 
-        {/* RIGHT CAROUSEL */}
         <div className="relative">
           <div
             className="rounded-[2rem] overflow-hidden relative 
@@ -121,39 +119,10 @@ const MainSection = () => {
                 />
               </div>
             ))}
-
-            {/* Floating contact buttons */}
-            {/* <div className="absolute top-6 sm:top-11 -right-2 sm:-right-4 bg-white rounded-xl sm:rounded-2xl p-2 sm:p-4  flex flex-col gap-3 sm:gap-6">
-              <button className="hover:scale-110 transition-transform duration-300">
-                <img
-                  src={Phone}
-                  alt="Phone"
-                  className="w-4 h-4 sm:w-6 sm:h-6"
-                />
-              </button>
-              <button className="hover:scale-110 transition-transform duration-300">
-                <img src={Mail} alt="Mail" className="w-4 h-4 sm:w-6 sm:h-6" />
-              </button>
-             
-            </div> */}
-
-            {/* Optional arrows (keep or remove) */}
-            {/* <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-4 z-30">
-              <button onClick={prevSlide} className="bg-white p-2 rounded-full">
-                <ChevronLeft />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="bg-black text-white p-2 rounded-full"
-              >
-                <ChevronRight />
-              </button>
-            </div> */}
           </div>
         </div>
       </div>
 
-      {/* PARAGRAPHS */}
       <div
         className="pt-8 sm:pt-10 
                 max-w-full sm:max-w-[90%] md:max-w-[90%] lg:max-w-[90%] 

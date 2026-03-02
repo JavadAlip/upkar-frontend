@@ -19,7 +19,6 @@ const ContactEnquiry = () => {
   const [projects, setProjects] = useState([]);
   const [filteredProjects, setFilteredProjects] = useState([]);
 
-  // Fetch projects
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -33,7 +32,6 @@ const ContactEnquiry = () => {
     fetchProjects();
   }, []);
 
-  // Filter projects by status
   useEffect(() => {
     if (Array.isArray(projects)) {
       const filtered = formData.projectStatus
@@ -53,7 +51,6 @@ const ContactEnquiry = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // If selecting project, also set projectName
     if (name === 'projectId') {
       const selectedProject = filteredProjects.find((p) => p._id === value);
 
@@ -101,7 +98,6 @@ const ContactEnquiry = () => {
 
       <div className="bg-white rounded-3xl p-8 shadow-xl">
         <form onSubmit={handleSubmit}>
-          {/* Project Status */}
           <div className="relative flex flex-col">
             <label className="mb-1 text-sm">Project Status*</label>
             <select
@@ -121,7 +117,6 @@ const ContactEnquiry = () => {
             </div>
           </div>
 
-          {/* Project */}
           <div className="relative flex flex-col">
             <label className="mb-1 text-sm">Project*</label>
             <select
@@ -146,7 +141,6 @@ const ContactEnquiry = () => {
             </div>
           </div>
 
-          {/* Location */}
           <div className="flex flex-col">
             <label className="mb-1 text-sm">Location*</label>
             <input
@@ -159,7 +153,6 @@ const ContactEnquiry = () => {
             />
           </div>
 
-          {/* Name */}
           <div className="flex flex-col">
             <label className="mb-1 text-sm">Full Name*</label>
             <input
@@ -172,7 +165,6 @@ const ContactEnquiry = () => {
             />
           </div>
 
-          {/* Email */}
           <div className="flex flex-col">
             <label className="mb-1 text-sm">Email*</label>
             <input
@@ -185,7 +177,6 @@ const ContactEnquiry = () => {
             />
           </div>
 
-          {/* Phone */}
           <div className="flex flex-col">
             <label className="mb-1 text-sm">Phone*</label>
             <input
@@ -198,7 +189,6 @@ const ContactEnquiry = () => {
             />
           </div>
 
-          {/* Query */}
           <div className="lg:col-span-2 flex flex-col">
             <label className="mb-1 text-sm">Your Query*</label>
             <textarea
@@ -211,7 +201,6 @@ const ContactEnquiry = () => {
             />
           </div>
 
-          {/* Submit */}
           <button
             type="submit"
             className="mt-6 lg:col-span-2 flex justify-center"

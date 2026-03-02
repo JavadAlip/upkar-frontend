@@ -31,7 +31,6 @@ const GetInTouch = () => {
 
       alert('Enquiry submitted successfully');
 
-      // Reset form
       setFormData({
         projectType: '',
         siteVisitDate: '',
@@ -44,7 +43,7 @@ const GetInTouch = () => {
     } catch (error) {
       console.error(error);
       alert(
-        error?.response?.data?.message || 'Something went wrong. Try again.'
+        error?.response?.data?.message || 'Something went wrong. Try again.',
       );
     }
   };
@@ -78,7 +77,6 @@ const GetInTouch = () => {
                 className="flex flex-col items-center gap-5"
                 onSubmit={handleSubmit}
               >
-                {/* Project Type */}
                 <div className="relative w-full">
                   <select
                     name="projectType"
@@ -98,7 +96,6 @@ const GetInTouch = () => {
                   </div>
                 </div>
 
-                {/* Site Visit Date */}
                 <div className="relative w-full flex flex-col">
                   <label className="mb-1 text-sm">
                     Preferred Site Visit Date
@@ -153,7 +150,6 @@ const GetInTouch = () => {
                   required
                 />
 
-                {/* Existing Customer */}
                 <div className="relative w-full">
                   <select
                     name="isExistingCustomer"
@@ -172,7 +168,6 @@ const GetInTouch = () => {
                   </div>
                 </div>
 
-                {/* Submit */}
                 <button type="submit" className="mt-6 focus:outline-none">
                   <img
                     src={getinBtn}

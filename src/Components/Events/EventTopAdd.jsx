@@ -1,167 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import { toast } from 'react-toastify';
-// import { createOrUpdateEventTop, getEventTop } from '../../Api';
-
-// const EventTopAdd = ({ isOpen, onClose, onUpdated }) => {
-//   const [form, setForm] = useState({
-//     mainTitle: '',
-//     mainDescription: '',
-//     subTitle: '',
-//     subDescription: '',
-//   });
-
-//   const [mainImage, setMainImage] = useState(null);
-//   const [subImage, setSubImage] = useState(null);
-
-//   const [mainPreview, setMainPreview] = useState('');
-//   const [subPreview, setSubPreview] = useState('');
-
-//   const [loading, setLoading] = useState(false);
-//   const token = localStorage.getItem('adminToken');
-
-//   useEffect(() => {
-//     if (isOpen) fetchData();
-//   }, [isOpen]);
-
-//   const fetchData = async () => {
-//     try {
-//       const res = await getEventTop();
-//       if (res.eventPage) {
-//         setForm({
-//           mainTitle: res.eventPage.mainTitle || '',
-//           mainDescription: res.eventPage.mainDescription || '',
-//           subTitle: res.eventPage.subTitle || '',
-//           subDescription: res.eventPage.subDescription || '',
-//         });
-//         setMainPreview(res.eventPage.mainImage);
-//         setSubPreview(res.eventPage.subImage);
-//       }
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-
-//   if (!isOpen) return null;
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     const formData = new FormData();
-
-//     Object.keys(form).forEach((key) => formData.append(key, form[key]));
-
-//     if (mainImage) formData.append('mainImage', mainImage);
-//     if (subImage) formData.append('subImage', subImage);
-
-//     try {
-//       setLoading(true);
-//       await createOrUpdateEventTop(formData, token);
-//       toast.success('Event Top Updated Successfully');
-//       onUpdated();
-//       onClose();
-//     } catch (err) {
-//       toast.error('Failed to update');
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   return (
-//     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
-//       <div className="bg-white w-full max-w-lg p-6 rounded max-h-[90vh] overflow-y-auto">
-//         <h2 className="text-xl font-semibold mb-4">Edit Event Top Section</h2>
-
-//         <form className="space-y-3" onSubmit={handleSubmit}>
-//           <input
-//             type="text"
-//             placeholder="Main Title"
-//             className="border p-2 w-full rounded"
-//             value={form.mainTitle}
-//             onChange={(e) => setForm({ ...form, mainTitle: e.target.value })}
-//           />
-
-//           <textarea
-//             placeholder="Main Description"
-//             className="border p-2 w-full rounded"
-//             value={form.mainDescription}
-//             onChange={(e) =>
-//               setForm({ ...form, mainDescription: e.target.value })
-//             }
-//           />
-
-//           <label>Main Image</label>
-//           <input
-//             type="file"
-//             onChange={(e) => {
-//               const file = e.target.files[0];
-//               setMainImage(file);
-//               setMainPreview(URL.createObjectURL(file));
-//             }}
-//           />
-//           {mainPreview && (
-//             <img
-//               src={mainPreview}
-//               className="w-24 h-24 mt-2 object-cover rounded"
-//             />
-//           )}
-
-//           <input
-//             type="text"
-//             placeholder="Sub Title"
-//             className="border p-2 w-full rounded"
-//             value={form.subTitle}
-//             onChange={(e) => setForm({ ...form, subTitle: e.target.value })}
-//           />
-
-//           <textarea
-//             placeholder="Sub Description"
-//             className="border p-2 w-full rounded"
-//             value={form.subDescription}
-//             onChange={(e) =>
-//               setForm({ ...form, subDescription: e.target.value })
-//             }
-//           />
-
-//           <label>Sub Image</label>
-//           <input
-//             type="file"
-//             onChange={(e) => {
-//               const file = e.target.files[0];
-//               setSubImage(file);
-//               setSubPreview(URL.createObjectURL(file));
-//             }}
-//           />
-//           {subPreview && (
-//             <img
-//               src={subPreview}
-//               className="w-24 h-24 mt-2 object-cover rounded"
-//             />
-//           )}
-
-//           <div className="flex justify-end gap-2 mt-4">
-//             <button
-//               type="button"
-//               onClick={onClose}
-//               className="px-4 py-2 border rounded"
-//             >
-//               Cancel
-//             </button>
-//             <button
-//               type="submit"
-//               disabled={loading}
-//               className="px-4 py-2 bg-blue-500 text-white rounded"
-//             >
-//               {loading ? 'Saving...' : 'Save'}
-//             </button>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default EventTopAdd;
-
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { createOrUpdateEventTop, getEventTop } from '../../Api';
@@ -176,15 +12,11 @@ const EventTopAdd = ({ isOpen, onClose, onUpdated }) => {
 
   const [mainImage, setMainImage] = useState(null);
   const [subImage, setSubImage] = useState(null);
-
   const [mainPreview, setMainPreview] = useState('');
   const [subPreview, setSubPreview] = useState('');
-
   const [loading, setLoading] = useState(false);
-
   const token = localStorage.getItem('adminToken');
 
-  // Fetch existing data when modal opens
   useEffect(() => {
     if (isOpen) {
       fetchData();
@@ -203,11 +35,8 @@ const EventTopAdd = ({ isOpen, onClose, onUpdated }) => {
           subDescription: res.eventPage.subDescription || '',
         });
 
-        // Set existing images as preview
         setMainPreview(res.eventPage.mainImage || '');
         setSubPreview(res.eventPage.subImage || '');
-
-        // Reset selected files
         setMainImage(null);
         setSubImage(null);
       }
@@ -225,7 +54,6 @@ const EventTopAdd = ({ isOpen, onClose, onUpdated }) => {
 
     Object.keys(form).forEach((key) => formData.append(key, form[key]));
 
-    // Only append image if new one selected
     if (mainImage) formData.append('mainImage', mainImage);
     if (subImage) formData.append('subImage', subImage);
 
@@ -248,7 +76,6 @@ const EventTopAdd = ({ isOpen, onClose, onUpdated }) => {
         <h2 className="text-xl font-semibold mb-4">Edit Event Top Section</h2>
 
         <form className="space-y-4" onSubmit={handleSubmit}>
-          {/* Main Title */}
           <input
             type="text"
             placeholder="Main Title"
@@ -257,7 +84,6 @@ const EventTopAdd = ({ isOpen, onClose, onUpdated }) => {
             onChange={(e) => setForm({ ...form, mainTitle: e.target.value })}
           />
 
-          {/* Main Description */}
           <textarea
             placeholder="Main Description"
             className="border p-2 w-full rounded"
@@ -267,7 +93,6 @@ const EventTopAdd = ({ isOpen, onClose, onUpdated }) => {
             }
           />
 
-          {/* Main Image */}
           <div>
             <label className="font-medium block mb-1">Main Image</label>
 
@@ -299,7 +124,6 @@ const EventTopAdd = ({ isOpen, onClose, onUpdated }) => {
             </p>
           </div>
 
-          {/* Sub Title */}
           <input
             type="text"
             placeholder="Sub Title"
@@ -308,7 +132,6 @@ const EventTopAdd = ({ isOpen, onClose, onUpdated }) => {
             onChange={(e) => setForm({ ...form, subTitle: e.target.value })}
           />
 
-          {/* Sub Description */}
           <textarea
             placeholder="Sub Description"
             className="border p-2 w-full rounded"
@@ -318,7 +141,6 @@ const EventTopAdd = ({ isOpen, onClose, onUpdated }) => {
             }
           />
 
-          {/* Sub Image */}
           <div>
             <label className="font-medium block mb-1">Sub Image</label>
 
@@ -350,7 +172,6 @@ const EventTopAdd = ({ isOpen, onClose, onUpdated }) => {
             </p>
           </div>
 
-          {/* Buttons */}
           <div className="flex justify-end gap-2 pt-4">
             <button
               type="button"

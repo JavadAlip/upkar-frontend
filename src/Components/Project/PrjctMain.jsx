@@ -87,7 +87,7 @@ const PrjctMain = () => {
               <button
                 onClick={() =>
                   setCurrentImageIndex((prev) =>
-                    prev === 0 ? mainImages.length - 1 : prev - 1
+                    prev === 0 ? mainImages.length - 1 : prev - 1,
                   )
                 }
                 className="w-9 h-9 rounded-full border-2 border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-all duration-300"
@@ -106,7 +106,7 @@ const PrjctMain = () => {
               <button
                 onClick={() =>
                   setCurrentImageIndex((prev) =>
-                    prev === mainImages.length - 1 ? 0 : prev + 1
+                    prev === mainImages.length - 1 ? 0 : prev + 1,
                   )
                 }
                 className="w-9 h-9 rounded-full bg-black flex items-center justify-center hover:bg-gray-800 transition-all duration-300"

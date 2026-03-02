@@ -111,7 +111,6 @@ const EventGetIn = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          {/* Left Image */}
           <div className="w-full h-full">
             <img
               src={image}
@@ -120,7 +119,6 @@ const EventGetIn = () => {
             />
           </div>
 
-          {/* Right Form Fields */}
           <div className="bg-white rounded-3xl p-8 md:p-10 shadow-xl w-full">
             <div className="flex flex-col gap-5">
               <div className="flex flex-col">
@@ -169,7 +167,6 @@ const EventGetIn = () => {
           </div>
         </div>
 
-        {/* Button centered below both columns */}
         <div className="flex justify-center mt-10">
           <button type="submit" disabled={loading}>
             {loading ? (

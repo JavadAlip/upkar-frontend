@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllCompletedProjects } from '../../Api';
-import { ArrowRight } from 'lucide-react';
+
 import addEnq from '../../assets/Icons/addEnq.png';
-// import Phone from '../../assets/Icons/Phone.png';
-// import Mail from '../../assets/Icons/mail.png';
 
 const CompletedMain = () => {
   const [project, setProject] = useState(null);
@@ -74,16 +72,6 @@ const CompletedMain = () => {
                 alt="Completed Projects"
                 className="w-full h-auto object-cover"
               />
-
-              {/* <div className="absolute top-24 -right-4 bg-white rounded-2xl p-4  flex flex-col gap-6">
-                <button className="hover:scale-110 transition-transform duration-300">
-                  <img src={Phone} alt="Phone" className="w-6 h-6" />
-                </button>
-                <button className="hover:scale-110 transition-transform duration-300">
-                  <img src={Mail} alt="Mail" className="w-6 h-6" />
-                </button>
-              
-              </div> */}
             </div>
           </div>
         </div>

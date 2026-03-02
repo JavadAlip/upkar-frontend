@@ -1,5 +1,4 @@
 import ContactMain from '../Components/Contact/ContactMain';
-
 import Location from '../Components/Contact/Locations';
 import CmpltNavbar from '../Components/CompletedPrjcts/CmpltNavbar';
 

@@ -206,7 +206,6 @@ const Projects = () => {
         })}
       </div>
 
-      {/* Mobile View */}
       <div className="space-y-12 sm:space-y-16 block lg:hidden">
         {projects.map((project) => (
           <div

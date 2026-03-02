@@ -10,7 +10,7 @@ const CareerImage = () => {
       const sectionHeight = window.innerHeight;
       const progress = Math.min(scrollY / sectionHeight, 1);
 
-      const newScale = 1.4 - progress * 0.4; // same logic as ContactMain
+      const newScale = 1.4 - progress * 0.4;
       setScale(newScale);
     };
 
@@ -23,7 +23,6 @@ const CareerImage = () => {
 
   return (
     <section className="relative w-full h-[55vh] sm:h-[65vh] md:h-[75vh] lg:h-[90vh] flex items-center justify-center text-white overflow-hidden">
-      {/* Background Image with zoom animation */}
       <img
         src={Career}
         alt="Career Banner"
@@ -34,7 +33,6 @@ const CareerImage = () => {
         className="absolute inset-0 w-full h-full object-cover will-change-transform"
       />
 
-      {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent"></div>
     </section>
   );

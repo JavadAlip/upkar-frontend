@@ -24,15 +24,12 @@ const PlotLayout = ({ project }) => {
     <>
       <div className="w-full bg-white py-12 px-4 sm:py-16 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          {/* Title */}
           <h2 className="mb-12 text-3xl sm:text-4xl md:text-[48px] font-[Figtree] text-[#000000]">
             <span className="font-semibold">Plot</span>{' '}
             <span className="font-light">Layout</span>
           </h2>
 
-          {/* Content */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
-            {/* Left Details */}
             <div className="flex flex-col gap-4 max-w-md w-full">
               {plotDetails.map((detail, index) => (
                 <div
@@ -49,20 +46,9 @@ const PlotLayout = ({ project }) => {
               ))}
             </div>
 
-            {/* Right Image */}
             <div className="relative">
               <div
-                className="
-                  w-full
-                  h-[280px]
-                  sm:h-[320px]
-                  md:h-[360px]
-                  lg:h-[400px]
-                  bg-gray-100
-                  rounded-2xl
-                  flex items-center justify-center
-                  cursor-pointer
-                "
+                className="  w-full  h-[280px] sm:h-[320px]  md:h-[360px]  lg:h-[400px]  bg-gray-100 rounded-2xl flex items-center justify-center  cursor-pointer "
                 onClick={() => latestMasterPlan && setPreviewOpen(true)}
               >
                 {latestMasterPlan ? (
@@ -76,7 +62,6 @@ const PlotLayout = ({ project }) => {
                 )}
               </div>
 
-              {/* Brochure */}
               {project.brochureImage && (
                 <div className="mt-6 flex justify-center">
                   <a
@@ -95,7 +80,6 @@ const PlotLayout = ({ project }) => {
             </div>
           </div>
 
-          {/* Bottom Banner */}
           <div className="relative rounded-3xl overflow-hidden h-[400px] sm:h-[500px] md:h-[600px]">
             <img
               src={Plot2}
@@ -124,7 +108,6 @@ const PlotLayout = ({ project }) => {
         </div>
       </div>
 
-      {/* Preview Modal */}
       {previewOpen && latestMasterPlan && (
         <div
           className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center"

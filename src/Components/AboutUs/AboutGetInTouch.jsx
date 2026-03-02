@@ -61,13 +61,11 @@ const GetInTouch = () => {
 
     if (!formData.name.trim()) errors.name = 'Full name is required';
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email) errors.email = 'Email is required';
     else if (!emailRegex.test(formData.email))
       errors.email = 'Invalid email format';
 
-    // Indian phone validation (10 digits)
     const phoneRegex = /^[6-9]\d{9}$/;
     if (!formData.phone) errors.phone = 'Phone number is required';
     else if (!phoneRegex.test(formData.phone))
@@ -85,7 +83,6 @@ const GetInTouch = () => {
     const validationErrors = validateForm();
 
     if (Object.keys(validationErrors).length > 0) {
-      // Show first error message in toast
       const firstError = Object.values(validationErrors)[0];
       toast.error(firstError);
       return;
@@ -117,20 +114,16 @@ const GetInTouch = () => {
       id="get-in-touch"
       className="w-full px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12 font-figtree"
     >
-      {/* Heading */}
       <h2 className="mb-8 text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight text-left">
         <span style={{ fontWeight: 500 }}>Get in </span>
         <span style={{ fontWeight: 700 }}>Touch</span>
       </h2>
 
-      {/* Form */}
       <div className="bg-white rounded-3xl p-8 md:p-10 lg:p-12 w-full shadow-xl">
         <form
-          // className="flex flex-col items-center gap-5"
           className="grid grid-cols-1 lg:grid-cols-2 gap-5"
           onSubmit={handleSubmit}
         >
-          {/* Project Status */}
           <div className="relative w-full flex flex-col">
             <label className="mb-1 text-sm">Project Status*</label>
             <select
@@ -150,7 +143,6 @@ const GetInTouch = () => {
             </div>
           </div>
 
-          {/* Project Name */}
           <div className="relative w-full flex flex-col">
             <label className="mb-1 text-sm">Project*</label>
             <select
@@ -175,7 +167,6 @@ const GetInTouch = () => {
             </div>
           </div>
 
-          {/* Site Visit Date */}
           <div className="relative w-full flex flex-col">
             <label className="mb-1 text-sm">Preferred Site Visit Date*</label>
             <input
@@ -188,7 +179,6 @@ const GetInTouch = () => {
             />
           </div>
 
-          {/* Other Inputs */}
           <div className="relative w-full flex flex-col">
             <label className="mb-1 text-sm">Location*</label>
             <input
@@ -234,7 +224,6 @@ const GetInTouch = () => {
               placeholder="Phone Number"
               value={formData.phone}
               onChange={(e) => {
-                // Allow only digits & max 10 numbers
                 const value = e.target.value.replace(/\D/g, '').slice(0, 10);
                 setFormData({ ...formData, phone: value });
               }}
@@ -246,7 +235,6 @@ const GetInTouch = () => {
             />
           </div>
 
-          {/* Existing Customer */}
           <div className="relative w-full flex flex-col">
             <label className="mb-1 text-sm">Customer Type*</label>
             <select
@@ -265,7 +253,6 @@ const GetInTouch = () => {
             </div>
           </div>
 
-          {/* Submit */}
           <button
             type="submit"
             className="mt-6 lg:col-span-2 flex justify-center"

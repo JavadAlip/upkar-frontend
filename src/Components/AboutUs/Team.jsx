@@ -35,14 +35,12 @@ const Team = () => {
 
   return (
     <div className="w-full bg-white px-4 lg:px-10 py-8 font-[Figtree]">
-      {/* Heading */}
       <div className="mb-8">
         <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-light">
           Our <span className="font-semibold">Team</span>
         </h2>
       </div>
 
-      {/* ================= MOBILE VIEW ================= */}
       <div className="relative sm:hidden">
         {teamMembers.length > 0 && (
           <div className="overflow-hidden">
@@ -67,7 +65,6 @@ const Team = () => {
           </div>
         )}
 
-        {/* Left Arrow */}
         {currentIndex > 0 && (
           <button
             onClick={prevSlide}
@@ -79,7 +76,6 @@ const Team = () => {
           </button>
         )}
 
-        {/* Right Arrow */}
         {currentIndex < teamMembers.length - 1 && (
           <button
             onClick={nextSlide}
@@ -92,7 +88,6 @@ const Team = () => {
         )}
       </div>
 
-      {/* ================= DESKTOP GRID ================= */}
       <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 gap-6">
         {teamMembers.map((member, index) => (
           <div

@@ -14,13 +14,10 @@ const CareerOpenings = () => {
     setOpen(true);
   };
 
-  // FETCH ROLES
   useEffect(() => {
     const fetchRoles = async () => {
       try {
         const res = await getCareerRoles();
-
-        // only active roles
         const activeRoles = res.filter((item) => item.isActive);
 
         setOpenings(activeRoles);
@@ -41,21 +38,17 @@ const CareerOpenings = () => {
     >
       <h1 className="text-4xl md:text-5xl font-semibold mb-10">Openings</h1>
 
-      {/* Header */}
       <div className="flex text-base justify-between text-gray-500 mb-4">
         <span>Available Roles</span>
         <span>Location</span>
       </div>
 
-      {/* Loading */}
       {loading && <p className="text-gray-400 py-6">Loading openings...</p>}
 
-      {/* Empty State */}
       {!loading && openings.length === 0 && (
         <p className="text-gray-400 py-6">No openings available right now</p>
       )}
 
-      {/* Openings List */}
       <div className="space-y-6">
         {openings.map((item) => (
           <div

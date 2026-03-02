@@ -32,7 +32,6 @@ export const adminResetPasswordApi = async (data) => {
   return res.data;
 };
 
-/* GET ADMIN PROFILE */
 export const getAdminProfileApi = async (token) => {
   const res = await axios.get(`${API_URL}/admin/profile`, {
     headers: {
@@ -42,7 +41,6 @@ export const getAdminProfileApi = async (token) => {
   return res.data;
 };
 
-/* UPDATE ADMIN PROFILE */
 export const updateAdminProfileApi = async (formData, token) => {
   const res = await axios.put(`${API_URL}/admin/profile`, formData, {
     headers: {
@@ -53,7 +51,6 @@ export const updateAdminProfileApi = async (formData, token) => {
   return res.data;
 };
 
-/* CHANGE ADMIN PASSWORD */
 export const changeAdminPasswordApi = async (data, token) => {
   const res = await axios.put(`${API_URL}/admin/change-password`, data, {
     headers: {
@@ -1526,15 +1523,6 @@ export const deleteEnquiry = async (id, token) => {
 };
 
 // career enquiries
-// export const createCareerEnquiry = async (payload) => {
-//   const res = await axios.post(
-//     `${API_URL}/careerspage/create-career-enquiry`,
-//     payload,
-//   );
-//   return res.data;
-// };
-
-// career enquiries
 export const createCareerEnquiry = async (payload) => {
   const res = await axios.post(
     `${API_URL}/careerspage/create-career-enquiry`,
@@ -1648,7 +1636,7 @@ export const deleteCareerRole = async (id) => {
   return res.data;
 };
 
-// CREATE OR UPDATE EVENT PAGE
+//Create or update event page
 export const createOrUpdateEventTop = async (formData, token) => {
   const res = await axios.post(
     `${API_URL}/eventspage/update-event-page`,
@@ -1663,7 +1651,6 @@ export const createOrUpdateEventTop = async (formData, token) => {
   return res.data;
 };
 
-// GET EVENT PAGE
 export const getEventTop = async () => {
   const res = await axios.get(`${API_URL}/eventspage/get-event-page`);
   return res.data;
@@ -1678,13 +1665,11 @@ export const createEventEnquiry = async (payload) => {
   return res.data;
 };
 
-// GET ALL EVENT ENQUIRIES
 export const getAllEventEnquiries = async () => {
   const res = await axios.get(`${API_URL}/eventspage/all-event-enquiry`);
   return res.data;
 };
 
-// DELETE EVENT ENQUIRY
 export const deleteEventEnquiry = async (id) => {
   const res = await axios.delete(
     `${API_URL}/eventspage/delete-event-enquiry/${id}`,
@@ -1776,8 +1761,7 @@ export const deleteBrandMotive = async (id, token) => {
   return res.data;
 };
 
-// CONTACT MAIN
-
+// Contact
 export const createContactMain = async (formData, token) => {
   const res = await axios.post(
     `${API_URL}/contactpage/create-contactmain`,
@@ -1818,8 +1802,7 @@ export const deleteContactMain = async (token) => {
   return res.data;
 };
 
-// LOCATION API
-
+// Location
 export const createLocation = async (data, token) => {
   const res = await axios.post(`${API_URL}/contactpage/create-location`, data, {
     headers: { Authorization: `Bearer ${token}` },
@@ -1853,7 +1836,6 @@ export const deleteLocation = async (id, token) => {
   return res.data;
 };
 
-// CREATE CONTACT ENQUIRY (Frontend public form)
 export const createContactEnquiry = async (payload) => {
   const res = await axios.post(
     `${API_URL}/contactpage/create-contact-enquiry`,
@@ -1862,7 +1844,6 @@ export const createContactEnquiry = async (payload) => {
   return res.data;
 };
 
-// GET ALL CONTACT ENQUIRIES (Admin)
 export const getAllContactEnquiries = async (token) => {
   const res = await axios.get(`${API_URL}/contactpage/all-contact-enquiry`, {
     headers: { Authorization: `Bearer ${token}` },
@@ -1870,7 +1851,6 @@ export const getAllContactEnquiries = async (token) => {
   return res.data;
 };
 
-// DELETE CONTACT ENQUIRY (Admin)
 export const deleteContactEnquiry = async (id, token) => {
   const res = await axios.delete(
     `${API_URL}/contactpage/delete-contact-enquiry/${id}`,

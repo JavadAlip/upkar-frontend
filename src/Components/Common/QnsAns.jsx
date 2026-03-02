@@ -89,11 +89,6 @@ const QnsAns = () => {
                   <p className="text-[#000000] text-base sm:text-lg md:text-xl lg:text-[20px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                     {faq.answer}
                   </p>
-                  {/* <div className="flex justify-end mt-2">
-                    <span className="text-[#000000] text-base sm:text-lg md:text-xl lg:text-[20px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
-                      Learn more
-                    </span>
-                  </div> */}
                 </div>
               )}
             </div>

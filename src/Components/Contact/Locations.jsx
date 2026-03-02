@@ -54,7 +54,6 @@ const Locations = () => {
     }
   };
 
-  // Filter projects by status
   useEffect(() => {
     if (Array.isArray(projects)) {
       const filtered = formData.projectStatus
@@ -107,18 +106,16 @@ const Locations = () => {
     if (!location.trim()) return 'Location is required.';
     if (!name.trim()) return 'Full name is required.';
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) return 'Please enter a valid email address.';
 
-    // Phone validation (10 digits)
     const phoneRegex = /^[0-9]{10}$/;
     if (!phoneRegex.test(phone)) return 'Phone number must be 10 digits.';
 
     if (!query.trim()) return 'Query field cannot be empty.';
     if (!consent) return 'Please authorize before submitting the enquiry.';
 
-    return null; // No errors
+    return null;
   };
 
   const handleSubmit = async (e) => {
@@ -153,25 +150,6 @@ const Locations = () => {
     }
   };
 
-  // const getEmbedUrl = (locationUrl) => {
-  //   const src = extractIframeSrc(locationUrl);
-  //   if (!src) return '';
-  //   if (src.includes('google.com/maps/embed')) return src;
-
-  //   return `https://maps.google.com/maps?q=${encodeURIComponent(
-  //     src,
-  //   )}&output=embed&hl=en`;
-  // };
-
-  // const handleMapClick = () => {
-  //   if (activeLocation?.locationUrl) {
-  //     window.open(
-  //       getDirectUrl(activeLocation.locationUrl),
-  //       '_blank',
-  //       'noopener,noreferrer',
-  //     );
-  //   }
-  // };
   const handleMapClick = () => {
     if (activeLocation?.locationUrl) {
       window.open(activeLocation.locationUrl, '_blank', 'noopener,noreferrer');
@@ -181,19 +159,15 @@ const Locations = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-16 font-figtree">
       <div className="flex items-center justify-center mb-12">
-        {/* Left Line */}
         <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 mr-6"></div>
 
-        {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-semibold text-center whitespace-nowrap">
           Project Enquiries
         </h2>
 
-        {/* Right Line */}
         <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 ml-6"></div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-10 items-stretch">
-        {/* ===== LEFT — MAP ===== */}
         <div className="flex flex-col h-full">
           <div className="flex flex-wrap gap-6 mb-6 border-b pb-4">
             {locations.map((loc) => (
@@ -228,19 +202,15 @@ const Locations = () => {
           )}
         </div>
 
-        {/* ===== RIGHT — CONTACT FORM ===== */}
         <div className="border border-gray-300 rounded-2xl shadow-lg overflow-hidden">
-          {/* Blue Header */}
           <div className="bg-black text-white text-center py-4 px-4 rounded-t-2xl">
             <h1 className="text-base md:text-lg font-normal">
               We'd be delighted to connect regarding our customized offers
             </h1>
           </div>
 
-          {/* Form Section */}
           <div className="p-8 bg-white rounded-b-2xl">
             <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Project Status */}
               <div className="relative flex flex-col">
                 <label className="mb-1 text-sm">Project Status*</label>
                 <select
@@ -260,7 +230,6 @@ const Locations = () => {
                 </div>
               </div>
 
-              {/* Project */}
               <div className="relative flex flex-col">
                 <label className="mb-1 text-sm">Project*</label>
                 <select
@@ -281,8 +250,6 @@ const Locations = () => {
                   ))}
                 </select>
               </div>
-
-              {/* Other Fields */}
 
               <input
                 type="text"
@@ -335,7 +302,7 @@ const Locations = () => {
                 className="border border-black rounded-[20px] px-4 py-2 w-full"
                 required
               />
-              {/* Consent Checkbox */}
+
               <div className="flex items-start gap-3">
                 <input
                   type="checkbox"

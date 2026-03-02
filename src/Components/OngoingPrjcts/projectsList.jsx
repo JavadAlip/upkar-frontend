@@ -124,10 +124,8 @@ const OngoingProjectsList = () => {
                 <div
                   key={project._id}
                   onClick={() => handleProjectClick(project._id)}
-                  className=" bg-white rounded-xl overflow-hidden font-figtree shadow-md cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-[1.03]  border-gray-300 
-hover:border-[#2D5C3A] border-2 "
+                  className=" bg-white rounded-xl overflow-hidden font-figtree shadow-md cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-[1.03]  border-gray-300 hover:border-[#2D5C3A] border-2 "
                 >
-                  {/* Image */}
                   <div className="overflow-hidden">
                     <img
                       src={project.propertyImages?.[0]}
@@ -136,14 +134,11 @@ hover:border-[#2D5C3A] border-2 "
                     />
                   </div>
 
-                  {/* Content */}
                   <div className="p-6 text-center">
-                    {/* Project Name */}
                     <h3 className="text-[22px] font-semibold text-black">
                       {project.projectName}
                     </h3>
 
-                    {/* Location */}
                     <div className="flex justify-center items-center gap-2 mt-2 text-black">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -167,36 +162,30 @@ hover:border-[#2D5C3A] border-2 "
                       <span className="text-[16px]">{project.location}</span>
                     </div>
 
-                    {/* 3 Icons */}
                     <div className="flex justify-center gap-3 mt-6">
-                      {/* Hand Icon */}
                       <div className="relative group">
                         <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110 cursor-pointer">
                           <Hand size={20} />
                         </div>
 
-                        {/* Tooltip */}
                         <span className="absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition duration-300">
                           I’m Interested
                         </span>
                       </div>
 
-                      {/* Headset Icon */}
                       <div className="relative group">
                         <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110 cursor-pointer">
                           <Headset size={20} />
                         </div>
 
-                        {/* Tooltip */}
                         <span className="absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition duration-300">
                           Call
                         </span>
                       </div>
                     </div>
-                    {/* Small Line */}
+
                     <div className="w-72 h-[1px] bg-gray-500 mx-auto my-6"></div>
 
-                    {/* BHK Type */}
                     <p className="text-[16px] font-medium text-black">
                       {project.unitConfiguration}
                     </p>

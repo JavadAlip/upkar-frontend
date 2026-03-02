@@ -34,7 +34,6 @@ export default function Section() {
 
   return (
     <div className="flex flex-col gap-6 px-4 sm:px-0 md:gap-6 lg:gap-6">
-      {/* Heading Container */}
       <div className="text-center flex flex-col gap-4 sm:gap-4 md:gap-6 lg:gap-8 mt-4 items-center">
         <h2
           className="text-2xl sm:text-4xl md:text-5xl lg:text-[64px] font-medium"

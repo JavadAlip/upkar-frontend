@@ -62,7 +62,7 @@ const BrochureForm = ({ projectId, onSubmitSuccess }) => {
         phone: '',
         isExistingCustomer: '',
       });
-      if (onSubmitSuccess) onSubmitSuccess(); // trigger brochure download
+      if (onSubmitSuccess) onSubmitSuccess();
     } catch (error) {
       console.error(error);
       toast.error(
@@ -93,7 +93,6 @@ const BrochureForm = ({ projectId, onSubmitSuccess }) => {
           </div>
         </div>
 
-        {/* Project Selection */}
         <div className="relative w-full">
           <select
             name="projectId"
@@ -115,7 +114,6 @@ const BrochureForm = ({ projectId, onSubmitSuccess }) => {
           </div>
         </div>
 
-        {/* Site Visit Date */}
         <input
           type="date"
           name="siteVisitDate"
@@ -125,7 +123,6 @@ const BrochureForm = ({ projectId, onSubmitSuccess }) => {
           required
         />
 
-        {/* Location */}
         <input
           type="text"
           name="location"
@@ -136,7 +133,6 @@ const BrochureForm = ({ projectId, onSubmitSuccess }) => {
           required
         />
 
-        {/* Name */}
         <input
           type="text"
           name="name"
@@ -147,7 +143,6 @@ const BrochureForm = ({ projectId, onSubmitSuccess }) => {
           required
         />
 
-        {/* Email */}
         <input
           type="email"
           name="email"
@@ -158,7 +153,6 @@ const BrochureForm = ({ projectId, onSubmitSuccess }) => {
           required
         />
 
-        {/* Phone */}
         <input
           type="tel"
           name="phone"
@@ -169,7 +163,6 @@ const BrochureForm = ({ projectId, onSubmitSuccess }) => {
           required
         />
 
-        {/* Existing Customer */}
         <div className="relative w-full">
           <select
             name="isExistingCustomer"
@@ -187,7 +180,6 @@ const BrochureForm = ({ projectId, onSubmitSuccess }) => {
           </div>
         </div>
 
-        {/* Submit */}
         <button
           type="submit"
           className="bg-[#2D5C3A] text-white px-6 py-2 rounded-xl hover:bg-green-900 transition mt-2"

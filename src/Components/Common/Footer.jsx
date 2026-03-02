@@ -26,7 +26,6 @@ const Footer = forwardRef((props, ref) => {
           </p>
         </div>
 
-        {/* QUICK LINKS */}
         <div className="lg:ml-12">
           <h4 className="text-lg font-semibold mb-2">Quick Links</h4>
           <hr className="w-24  border-white mb-4" />

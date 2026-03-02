@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
 import AboutCertification from '../AboutUs/AboutCertification';
 import BrandEthosSection from '../AboutUs/BrandEthosSection';
 import BrandMotiveSection from '../AboutUs/BrandMotiveSection';
@@ -28,7 +27,6 @@ const HomeBrandSections = () => {
 
   return (
     <div className="relative w-full">
-      {/* LEFT Arrow */}
       {currentSection > 0 && (
         <button
           onClick={prevSection}
@@ -42,7 +40,6 @@ const HomeBrandSections = () => {
         </button>
       )}
 
-      {/* RIGHT Arrow */}
       {currentSection < sections.length - 1 && (
         <button
           onClick={nextSection}
@@ -56,7 +53,6 @@ const HomeBrandSections = () => {
         </button>
       )}
 
-      {/* Section Content */}
       <div className="transition-all duration-500">
         {sections[currentSection]}
       </div>
