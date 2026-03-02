@@ -54,8 +54,8 @@ const PlotLayoutAdd = ({ isOpen, onClose, onAdd }) => {
     formData.append(
       'icons',
       JSON.stringify(
-        icons.map((ic) => ({ heading: ic.heading, subheading: ic.subheading }))
-      )
+        icons.map((ic) => ({ heading: ic.heading, subheading: ic.subheading })),
+      ),
     );
 
     try {
@@ -64,14 +64,13 @@ const PlotLayoutAdd = ({ isOpen, onClose, onAdd }) => {
       toast.success(data.message || 'Plot layout added successfully!');
       if (onAdd) onAdd();
       onClose();
-      // Reset form
       setMainImage(null);
       setMainImagePreview('');
       setIcons([{ file: null, preview: '', heading: '', subheading: '' }]);
     } catch (error) {
       console.error(error.response?.data || error.message);
       toast.error(
-        error.response?.data?.message || 'Failed to add plot layout!'
+        error.response?.data?.message || 'Failed to add plot layout!',
       );
     } finally {
       setLoading(false);

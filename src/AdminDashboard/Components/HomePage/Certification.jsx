@@ -67,7 +67,6 @@ const Certification = () => {
 
   const truncateText = (text) => {
     if (!text) return '';
-    // return text.length > 20 ? text.substring(0, 20) + '...' : text;
     return text.length > 40 ? text.substring(0, 40) + '...' : text;
   };
 

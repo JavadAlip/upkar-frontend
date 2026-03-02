@@ -3,9 +3,7 @@ import { Plus, Edit, Trash2, Eye } from 'lucide-react';
 import VisionMissionAdd from '../Common/VisionMissionAdd';
 import VisionMissionEdit from '../Common/VisionMissionEdit';
 import VisionMissionViewModal from '../ViewModals/HomePage/VisionMissionView';
-
 import { getVisionMission, deleteVisionMission } from '../../../Api';
-
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';

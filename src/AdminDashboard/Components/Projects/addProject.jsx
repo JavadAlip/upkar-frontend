@@ -181,16 +181,10 @@ export default function AddProject({ onClose, onSuccess }) {
         );
         return;
       }
-
-      //  Close modal IMMEDIATELY
       onClose();
-
-      //  Show SUCCESS immediately
       toast.success('Project submitted! Processing images...', {
         autoClose: 3000,
       });
-
-      //  Prepare FormData in background
       const data = new FormData();
 
       data.append('projectName', formData.projectName);
@@ -215,14 +209,6 @@ export default function AddProject({ onClose, onSuccess }) {
       if (formData.totalUnits !== null) {
         data.append('totalUnits', formData.totalUnits);
       }
-
-      // if (formData.totalUnits && formData.totalUnits.trim() !== '') {
-      //   const totalUnitsNum = Number(formData.totalUnits);
-      //   if (!isNaN(totalUnitsNum)) {
-      //     data.append('totalUnits', totalUnitsNum);
-      //   }
-      // }
-
       if (formData.noBrokerReraId)
         data.append('noBrokerReraId', formData.noBrokerReraId);
       if (formData.builderProjectReraId)
@@ -274,10 +260,8 @@ export default function AddProject({ onClose, onSuccess }) {
         data.append('propertyImages', img),
       );
 
-      // 🔥 API CALL - happens in background
       createProjects(data, token)
         .then(() => {
-          // ✅ After upload completes, refresh list
           if (onSuccess) onSuccess();
           toast.success('Project fully uploaded!');
         })
@@ -285,9 +269,6 @@ export default function AddProject({ onClose, onSuccess }) {
           console.error(err);
           toast.error(err.response?.data?.message || 'Upload failed');
         });
-
-      // 🔄 Refresh list immediately (will show basic info while images upload)
-      // Give it 2 seconds for the basic project data to be created
       setTimeout(() => {
         if (onSuccess) onSuccess();
       }, 2000);
@@ -439,12 +420,6 @@ export default function AddProject({ onClose, onSuccess }) {
             value={formData.projectArea}
             onChange={(e) => handleInputChange('projectArea', e.target.value)}
           />
-          {/* <Input
-            type="number"
-            placeholder="Total Units"
-            value={formData.totalUnits}
-            onChange={(e) => handleInputChange('totalUnits', e.target.value)}
-          /> */}
           <Input
             type="number"
             placeholder="Total Units"

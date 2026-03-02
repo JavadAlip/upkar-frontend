@@ -37,7 +37,6 @@ const AdminOtpVerify = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center font-figtree p-4">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-4xl grid md:grid-cols-2">
-        {/* Left Blue Section */}
         <div className="bg-[#2D5C3A] flex items-center justify-center text-white p-8">
           <div className="text-center">
             <User className="w-20 h-20 mx-auto mb-4" />
@@ -46,7 +45,6 @@ const AdminOtpVerify = () => {
           </div>
         </div>
 
-        {/* Right Section */}
         <div className="p-8 flex flex-col justify-center">
           <h2 className="text-3xl font-bold text-center mb-6">Verify OTP</h2>
 

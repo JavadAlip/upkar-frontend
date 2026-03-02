@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Plus, Edit, Trash2, Eye } from 'lucide-react';
 import Swal from 'sweetalert2';
 import { toast, ToastContainer } from 'react-toastify';
-
 import ContactMainAdd from '../../Components/Common/ContactMainAdd';
 import ContactMainEdit from '../../Components/Common/ContactMainEdit';
 import ContactMainView from '../../Components/ViewModals/ContactPage/ContactMainView';
-
 import { getContactMain, deleteContactMain } from '../../../Api';
 
 const ContactMain = () => {

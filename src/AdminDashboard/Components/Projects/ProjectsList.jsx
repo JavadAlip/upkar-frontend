@@ -115,15 +115,12 @@ const ProjectsList = () => {
     }
   };
 
-  //  FIX: Remove duplicate toast - AddProject already shows success toast
   const handleAddSuccess = () => {
     fetchProjects();
-    // Don't show toast here - AddProject component already shows it
   };
 
   const handleEditSuccess = () => {
     fetchProjects();
-    // Don't show toast here - EditProjectModal already shows it
   };
 
   const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);

@@ -1,168 +1,3 @@
-// import React, { useState } from 'react';
-// import { createEvent } from '../../../Api';
-
-// const EventAdd = ({ isOpen, onClose, onEventAdded }) => {
-//   const [form, setForm] = useState({
-//     eventTitle: '',
-//     eventDescription: '',
-//     eventLocation: '',
-//     eventDate: '',
-//     // eventImage: null,
-//     eventImages: [],
-//   });
-//   const [loading, setLoading] = useState(false);
-
-//   const token = localStorage.getItem('adminToken');
-
-//   if (!isOpen) return null;
-
-//   const handleChange = (e) =>
-//     setForm({ ...form, [e.target.name]: e.target.value });
-
-//   // const handleImageChange = (e) =>
-//   //   setForm({ ...form, eventImage: e.target.files[0] });
-//   const handleImageChange = (e) => {
-//     const files = Array.from(e.target.files);
-
-//     if (files.length > 5) {
-//       alert('Maximum 5 images allowed');
-//       return;
-//     }
-
-//     setForm({ ...form, eventImages: files });
-//   };
-
-//   // const handleSubmit = async (e) => {
-//   //   e.preventDefault();
-//   //   if (!form.eventTitle || !form.eventDescription || !form.eventImage)
-//   //     return alert('Title, Description, and Image are required!');
-
-//   //   const formData = new FormData();
-//   //   // Object.keys(form).forEach((key) => formData.append(key, form[key]));
-//   //   formData.append('eventTitle', form.eventTitle);
-//   //   formData.append('eventDescription', form.eventDescription);
-//   //   formData.append('eventLocation', form.eventLocation);
-//   //   formData.append('eventDate', form.eventDate);
-
-//   //   form.eventImages.forEach((image) => {
-//   //     formData.append('eventImages', image);
-//   //   });
-
-//   //   try {
-//   //     setLoading(true);
-//   //     await createEvent(formData, token);
-//   //     onEventAdded();
-//   //     onClose();
-//   //   } catch (error) {
-//   //     console.error(error);
-//   //     alert('Failed to add event.');
-//   //   } finally {
-//   //     setLoading(false);
-//   //   }
-//   // };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     console.log('FORM DATA:', form);
-
-//     if (
-//       !form.eventTitle ||
-//       !form.eventDescription ||
-//       !form.eventLocation ||
-//       !form.eventDate ||
-//       form.eventImages.length === 0
-//     ) {
-//       console.log('Validation Failed');
-//       return alert('All fields including at least one image are required!');
-//     }
-
-//     console.log('Validation Passed');
-
-//     const formData = new FormData();
-
-//     formData.append('eventTitle', form.eventTitle);
-//     formData.append('eventDescription', form.eventDescription);
-//     formData.append('eventLocation', form.eventLocation);
-//     formData.append('eventDate', form.eventDate);
-
-//     form.eventImages.forEach((image) => {
-//       formData.append('eventImages', image);
-//     });
-
-//     try {
-//       setLoading(true);
-//       const response = await createEvent(formData, token);
-//       console.log('API RESPONSE:', response);
-
-//       onEventAdded();
-//       onClose();
-//     } catch (error) {
-//       console.error('CREATE EVENT ERROR:', error);
-//       alert('Failed to add event.');
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-//   return (
-//     <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
-//       <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
-//         <h2 className="text-xl font-semibold mb-4">Add Event</h2>
-//         <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-//           <input
-//             name="eventTitle"
-//             placeholder="Event Title"
-//             className="border p-2 w-full rounded"
-//             onChange={handleChange}
-//           />
-//           <textarea
-//             name="eventDescription"
-//             placeholder="Description"
-//             className="border p-2 w-full rounded"
-//             onChange={handleChange}
-//           />
-//           <input
-//             name="eventLocation"
-//             placeholder="Location"
-//             className="border p-2 w-full rounded"
-//             onChange={handleChange}
-//           />
-//           <input
-//             type="date"
-//             name="eventDate"
-//             className="border p-2 w-full rounded"
-//             onChange={handleChange}
-//           />
-//           {/* <input type="file" accept="image/*" onChange={handleImageChange} /> */}
-//           <input
-//             type="file"
-//             accept="image/*"
-//             multiple
-//             onChange={handleImageChange}
-//           />
-//           <div className="flex justify-end gap-2 mt-2">
-//             <button
-//               type="button"
-//               onClick={onClose}
-//               className="px-4 py-2 bg-gray-300 rounded"
-//             >
-//               Cancel
-//             </button>
-//             <button
-//               type="submit"
-//               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-//             >
-//               {loading ? 'Adding...' : 'Add'}
-//             </button>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default EventAdd;
-
 import React, { useState } from 'react';
 import { createEvent } from '../../../Api';
 
@@ -180,12 +15,10 @@ const EventAdd = ({ isOpen, onClose, onEventAdded }) => {
 
   if (!isOpen) return null;
 
-  // Handle text input changes
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Handle image selection
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
 
@@ -202,7 +35,6 @@ const EventAdd = ({ isOpen, onClose, onEventAdded }) => {
     });
   };
 
-  // Remove selected image
   const handleRemoveImage = (index) => {
     const updatedImages = form.eventImages.filter((_, i) => i !== index);
 
@@ -212,7 +44,6 @@ const EventAdd = ({ isOpen, onClose, onEventAdded }) => {
     });
   };
 
-  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -310,7 +141,6 @@ const EventAdd = ({ isOpen, onClose, onEventAdded }) => {
             className="border p-2 rounded w-full"
           />
 
-          {/* Image Preview Section */}
           {form.eventImages.length > 0 && (
             <div className="grid grid-cols-2 gap-3 mt-2">
               {form.eventImages.map((file, index) => (

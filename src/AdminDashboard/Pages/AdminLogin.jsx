@@ -15,7 +15,7 @@ const AdminLogin = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('adminToken');
-    if (token) navigate('/admin'); // auto-redirect if logged in
+    if (token) navigate('/admin');
   }, [navigate]);
 
   const submitHandler = async (e) => {
@@ -51,7 +51,6 @@ const AdminLogin = () => {
           </div>
         </div>
 
-        {/* Right */}
         <div className="p-8">
           <h2 className="text-3xl font-bold text-center mb-6">Admin Login</h2>
 
@@ -62,7 +61,6 @@ const AdminLogin = () => {
           )}
 
           <form onSubmit={submitHandler}>
-            {/* Name */}
             <div className="mb-4">
               <label className="text-sm font-medium">Name</label>
               <div className="relative">
@@ -78,7 +76,6 @@ const AdminLogin = () => {
               </div>
             </div>
 
-            {/* Password */}
             <div className="mb-6">
               <label className="text-sm font-medium">Password</label>
               <div className="relative">

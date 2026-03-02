@@ -127,7 +127,6 @@ const QAs = () => {
                     <Edit className="w-4 h-4" />
                   </button>
 
-                  {/* Delete */}
                   <button
                     onClick={() => handleDelete(qa._id)}
                     className="text-red-500 hover:text-red-700"

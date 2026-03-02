@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Plus, Edit, Trash2 } from 'lucide-react';
 import Swal from 'sweetalert2';
 import { toast, ToastContainer } from 'react-toastify';
-
 import { getAllLocations, deleteLocation } from '../../../Api';
-
 import LocationAdd from '../../Components/Common/LocationAdd';
 import LocationEdit from '../../Components/Common/LocationEdit';
 

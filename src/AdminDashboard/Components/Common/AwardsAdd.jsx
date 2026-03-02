@@ -19,8 +19,8 @@ const AwardsAdd = ({ isOpen, onClose, onAwardAdded }) => {
     try {
       setLoading(true);
       await createAwardAPI(formData, token);
-      onAwardAdded(); // refresh list
-      onClose(); // close modal
+      onAwardAdded();
+      onClose();
     } catch (error) {
       console.error('Error creating award:', error);
       alert('Failed to create award.');

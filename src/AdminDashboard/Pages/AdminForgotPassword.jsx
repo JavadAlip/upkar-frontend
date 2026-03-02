@@ -18,8 +18,6 @@ const AdminForgotPassword = () => {
       localStorage.setItem('adminEmail', email);
 
       toast.success('OTP sent! Check your email.');
-
-      // Redirect after 1 second so user can see toast
       setTimeout(() => {
         navigate('/admin-otp');
       }, 1000);
@@ -33,7 +31,6 @@ const AdminForgotPassword = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center font-figtree justify-center p-4">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-4xl grid md:grid-cols-2">
-        {/* Left Blue Section */}
         <div className="bg-[#2D5C3A] flex items-center justify-center text-white p-8">
           <div className="text-center">
             <User className="w-20 h-20 mx-auto mb-4" />
@@ -42,7 +39,6 @@ const AdminForgotPassword = () => {
           </div>
         </div>
 
-        {/* Right Form Section */}
         <div className="p-8">
           <h2 className="text-3xl font-bold text-center mb-6">
             Forgot Password

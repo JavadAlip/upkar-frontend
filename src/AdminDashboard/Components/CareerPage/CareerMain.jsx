@@ -53,7 +53,6 @@ const CareerMainManagement = () => {
     }
   };
 
-  // truncate helper
   const truncate = (text, length = 20) =>
     text?.length > length ? text.slice(0, length) + '...' : text;
 

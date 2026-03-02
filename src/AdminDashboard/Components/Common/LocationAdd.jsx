@@ -13,11 +13,6 @@ const LocationAdd = ({ isOpen, onClose, onAdded }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // if (!form.title || !form.locationUrl) {
-    //   toast.error('All fields required');
-    //   return;
-    // }
     if (!form.title || !form.embedUrl || !form.locationUrl) {
       toast.error('All fields required');
       return;

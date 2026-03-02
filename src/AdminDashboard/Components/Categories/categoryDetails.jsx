@@ -71,7 +71,6 @@ const CategoryDetails = () => {
       style={{ fontFamily: 'Figtree, sans-serif' }}
     >
       <div className="flex items-center justify-between mb-1">
-        {/* <h2 className="text-[20px] font-semibold">Categories</h2> */}
         <h2 className="text-[20px] font-semibold mb-4">{id} Projects</h2>
 
         <button
@@ -82,7 +81,6 @@ const CategoryDetails = () => {
         </button>
       </div>
 
-      {/* Filter Section */}
       <div className="mb-6 flex flex-col sm:flex-row gap-4">
         <div className="flex-1">
           <input
@@ -116,9 +114,6 @@ const CategoryDetails = () => {
               <th className="px-6 py-3 text-left font-medium">Project Name</th>
               <th className="px-6 py-3 text-left  font-medium">Location</th>
               <th className="px-6 py-3 text-left  font-medium">Price</th>
-              {/* <th className="px-6 py-3 text-left  font-medium">
-                Customer Name
-              </th> */}
               <th className="px-6 py-3 text-left  font-medium">Status</th>
             </tr>
           </thead>
@@ -138,7 +133,6 @@ const CategoryDetails = () => {
                   <td className="px-6 py-3 text-[18px] text-left">
                     ₹ {project.priceStartsFrom}
                   </td>
-                  {/* <td className="px-6 py-3 text-[18px] text-left">-</td> */}
                   <td className="px-6 py-3 text-[18px] text-left">
                     <span className="px-3 py-1 rounded-md text-[16px] bg-[#2D5C3A] text-white inline-block">
                       {project.projectStatus}

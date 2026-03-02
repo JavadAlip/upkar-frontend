@@ -82,7 +82,6 @@ const MediaLibrary = () => {
     }
   };
 
-  // Pagination logic
   const totalPages = Math.ceil(images.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentImages = images.slice(startIndex, startIndex + ITEMS_PER_PAGE);
@@ -109,7 +108,6 @@ const MediaLibrary = () => {
 
   return (
     <div className="h-screen flex flex-col bg-gray-50 font-figtree overflow-hidden">
-      {/* Fixed Header Section */}
       <div className="flex-shrink-0 bg-white shadow-sm p-6 pb-4">
         <div className="flex items-center justify-between mb-1">
           <h2 className="text-[20px] font-semibold">Media Gallery</h2>
@@ -125,7 +123,6 @@ const MediaLibrary = () => {
         </p>
       </div>
 
-      {/* Gallery Grid with Pagination */}
       <div className="flex-1 overflow-y-auto px-6 pt-6 pb-6">
         {currentImages.length === 0 ? (
           <div className="flex items-center justify-center h-64">
@@ -139,7 +136,6 @@ const MediaLibrary = () => {
           </div>
         )}
 
-        {/* Pagination Controls */}
         {totalPages > 1 && (
           <div className="flex justify-center items-center gap-4 mt-8">
             <button
@@ -171,7 +167,6 @@ const MediaLibrary = () => {
         )}
       </div>
 
-      {/* Add Images Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-[500px] max-h-[90vh] overflow-y-auto">
@@ -189,7 +184,6 @@ const MediaLibrary = () => {
             </div>
 
             <div className="space-y-4">
-              {/* File Upload */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Select Image
@@ -222,7 +216,6 @@ const MediaLibrary = () => {
                 </div>
               )}
 
-              {/* Action Buttons */}
               <div className="flex gap-3 pt-4">
                 <button
                   onClick={() => {
@@ -245,7 +238,6 @@ const MediaLibrary = () => {
         </div>
       )}
 
-      {/* View Image Modal */}
       {viewImage && (
         <div
           className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"

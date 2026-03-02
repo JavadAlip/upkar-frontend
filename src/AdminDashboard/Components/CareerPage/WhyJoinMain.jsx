@@ -103,7 +103,6 @@ const WhyJoinMain = () => {
                       <Eye className="w-4 h-4" />
                     </button>
 
-                    {/* Edit Button */}
                     <button
                       className="text-blue-500 hover:text-blue-700"
                       onClick={() => {

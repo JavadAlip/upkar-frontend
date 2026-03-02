@@ -14,11 +14,8 @@ const JobRoles = () => {
   const [roles, setRoles] = useState([]);
   const [filteredRoles, setFilteredRoles] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-
-  // Modal state
   const [open, setOpen] = useState(false);
   const [form, setForm] = useState({
     role: '',
@@ -110,7 +107,6 @@ const JobRoles = () => {
 
   return (
     <div className="p-6 bg-[#F7F8FA] min-h-screen font-figtree">
-      {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-semibold">Manage Job Roles</h2>
 
@@ -122,7 +118,6 @@ const JobRoles = () => {
         </button>
       </div>
 
-      {/* Search */}
       <div className="bg-white p-4 rounded-xl border mb-6">
         <input
           type="text"
@@ -174,8 +169,6 @@ const JobRoles = () => {
           ))
         )}
       </div>
-
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex justify-center items-center gap-6 mt-10">
           <button
@@ -204,7 +197,6 @@ const JobRoles = () => {
         </div>
       )}
 
-      {/* CREATE ROLE MODAL */}
       {open && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-xl w-full max-w-md">

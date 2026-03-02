@@ -88,32 +88,11 @@ const Dashboard = () => {
     }
   };
 
-  // const fetchProjects = async () => {
-  //   try {
-  //     const res = await getAllProjects();
-
-  //     console.log('PROJECT API RESPONSE:', res);
-
-  //     if (Array.isArray(res)) {
-  //       setTotalProjects(res.length);
-
-  //       const latestProjects = [...res]
-  //         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-  //         .slice(0, 1);
-
-  //       setRecentProjects(latestProjects);
-  //     }
-  //   } catch (error) {
-  //     console.error('Failed to fetch projects', error);
-  //   }
-  // };
   const fetchProjects = async () => {
     try {
       const res = await getAllProjects();
 
       console.log('RAW PROJECT RESPONSE:', res);
-
-      // 🔥 normalize projects array
       const projects =
         res?.projects ||
         res?.data?.projects ||
@@ -159,7 +138,6 @@ const Dashboard = () => {
     { year: 2024, value: 10000 },
     { year: 2025, value: 20000 },
     { year: 2026, value: 60000 },
-    // { year: 2023, value: 100000 },
   ];
 
   const projects = [
@@ -235,68 +213,6 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {/* <div className="bg-white rounded-xl shadow p-6">
-        <h2 className="text-lg font-semibold mb-4">Recent Activities</h2>
-
-        <div className="space-y-5">
-          {recentEnquiries.length === 0 ? (
-            <p className="text-center text-gray-500">No recent enquiries</p>
-          ) : (
-            recentEnquiries.map((item) => (
-              <div
-                key={item._id}
-                className="flex justify-between border-b pb-4 last:border-0"
-              >
-                <div className="flex gap-3">
-                  <div className="bg-green-100 p-3 rounded-full">
-                    <PhoneCall className="text-[#2D5C3A]" size={18} />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-800">
-                      Recent Enquiry for {item.projectType}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      {item.name} · {timeAgo(item.createdAt)}
-                    </p>
-                  </div>
-                </div>
-                <button className="text-gray-500">⋮</button>
-              </div>
-            ))
-          )}
-
-          {[
-            {
-              icon: <MapPin className="text-[#2D5C3A]" size={18} />,
-              title: 'Plot A-45 sold in Sunrise Layout',
-              name: 'Priya Sharma',
-              time: '3 hours ago',
-            },
-            // {
-            //   icon: <Home className="text-[#2D5C3A]" size={18} />,
-            //   title: 'New Property “Eden Gardens” added',
-            //   name: 'Yash Raj',
-            //   time: '23 hours ago',
-            // },
-          ].map((a, i) => (
-            <div
-              key={i}
-              className="flex justify-between border-b pb-4 last:border-0"
-            >
-              <div className="flex gap-3">
-                <div className="bg-green-100 p-3 rounded-full">{a.icon}</div>
-                <div>
-                  <p className="font-medium">{a.title}</p>
-                  <p className="text-sm text-gray-500">
-                    {a.name} · {a.time}
-                  </p>
-                </div>
-              </div>
-              <button className="text-gray-500">⋮</button>
-            </div>
-          ))}
-        </div>
-      </div> */}
       <div className="bg-white rounded-xl shadow p-6">
         <h2 className="text-lg font-semibold mb-4">Recent Activities</h2>
 
@@ -316,7 +232,6 @@ const Dashboard = () => {
                   </div>
 
                   <div>
-                    {/* TITLE */}
                     <p className="font-medium text-gray-800">
                       Recent Project Enquiry for{' '}
                       <span className="font-semibold">
@@ -324,7 +239,6 @@ const Dashboard = () => {
                       </span>
                     </p>
 
-                    {/* SUB TITLE */}
                     <p className="text-sm text-gray-500">
                       {item.name} · {timeAgo(item.createdAt)}
                     </p>
@@ -336,7 +250,6 @@ const Dashboard = () => {
             ))
           )}
 
-          {/* Recent Project Added */}
           {recentProjects.length === 0
             ? null
             : recentProjects.map((project) => (
@@ -402,22 +315,6 @@ const Dashboard = () => {
           </ResponsiveContainer>
         </div>
 
-        {/* <div className="bg-white rounded-2xl shadow p-6 grid grid-cols-2 gap-4">
-          {[
-            { icon: <FileText />, text: 'Add new Property' },
-            { icon: <MapPin />, text: 'Manage Plots' },
-            { icon: <Users />, text: 'View Inquiries' },
-            { icon: <ImageIcon />, text: 'Upload Media' },
-          ].map((b, i) => (
-            <button
-              key={i}
-              className="bg-green-800 text-white py-6 rounded-lg flex flex-col items-center gap-2"
-            >
-              {b.icon}
-              <span className="text-sm">{b.text}</span>
-            </button>
-          ))}
-        </div> */}
         <div className="bg-white rounded-2xl shadow p-6 grid grid-cols-2 gap-4">
           {[
             {
@@ -517,7 +414,6 @@ const Dashboard = () => {
                         ? new Date(project.possessionDate).toLocaleDateString()
                         : '-'}
                     </td>
-                    {/* <td className="px-4 py-3">Admin</td> static agent */}
                   </tr>
                 );
               })

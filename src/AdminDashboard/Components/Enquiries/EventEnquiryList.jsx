@@ -134,7 +134,6 @@ const EventEnquiryList = () => {
         />
       </div>
 
-      {/* Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {currentEnquiries.map((item, index) => (
           <div
@@ -177,7 +176,6 @@ const EventEnquiryList = () => {
         ))}
       </div>
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex justify-center mt-8 gap-2">
           {[...Array(totalPages)].map((_, index) => (

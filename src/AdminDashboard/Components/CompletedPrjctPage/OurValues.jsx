@@ -63,7 +63,6 @@ const OurValuesMain = () => {
     toast.success('Value updated successfully!');
   };
 
-  // helper to truncate text
   const truncate = (text, length = 20) =>
     text?.length > length ? text.slice(0, length) + '...' : text;
 
@@ -120,7 +119,6 @@ const OurValuesMain = () => {
                     <Eye size={18} />
                   </button>
 
-                  {/* Edit button */}
                   <button
                     onClick={() => {
                       setSelectedValue(item);
@@ -131,7 +129,6 @@ const OurValuesMain = () => {
                     <Edit size={18} />
                   </button>
 
-                  {/* Delete button */}
                   <button
                     onClick={() => handleDelete(item._id)}
                     className="text-red-500 hover:text-red-700"
@@ -152,23 +149,17 @@ const OurValuesMain = () => {
           </tbody>
         </table>
       </div>
-
-      {/* Add Modal */}
       <OurValueAdd
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onAdded={handleAdded}
       />
-
-      {/* Edit Modal */}
       <OurValueEdit
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
         value={selectedValue}
         onUpdated={handleUpdated}
       />
-
-      {/* View Modal */}
       <OurValueViewModal
         isOpen={isViewOpen}
         onClose={() => setIsViewOpen(false)}
