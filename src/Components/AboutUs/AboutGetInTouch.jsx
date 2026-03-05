@@ -119,7 +119,12 @@ const GetInTouch = () => {
         <span style={{ fontWeight: 700 }}>Touch</span>
       </h2>
 
-      <div className="bg-white rounded-3xl p-8 md:p-10 lg:p-12 w-full shadow-xl">
+      {/* <div className="bg-white rounded-3xl p-8 md:p-10 lg:p-12 w-full shadow-xl"> */}
+      <div
+        className="bg-white rounded-3xl p-8 md:p-10 lg:p-8 
+                w-full max-w-full lg:max-w-5xl 
+                mx-auto shadow-xl"
+      >
         <form
           className="grid grid-cols-1 lg:grid-cols-2 gap-5"
           onSubmit={handleSubmit}
@@ -260,7 +265,7 @@ const GetInTouch = () => {
             <img
               src={getinBtn}
               alt="Send Enquiry"
-              className="w-full max-w-[200px] cursor-pointer hover:opacity-90 transition-opacity"
+              className="w-full max-w-[150px] sm:max-w-[180px] md:max-w-[200px] lg:max-w-[220px] cursor-pointer hover:opacity-90 transition-opacity"
             />
           </button>
         </form>
