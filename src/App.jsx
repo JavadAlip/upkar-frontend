@@ -25,6 +25,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import FloatingContact from './Components/Common/FloatingContact';
 import logo from './assets/logo.png';
 import ScrollToTop from './Components/Common/ScrollToTop';
+import ReadMoreDetails from './Components/Blogs/ReadMoreDetails';
 
 function AppWrapper() {
   const footerRef = useRef(null);
@@ -62,6 +63,7 @@ function AppWrapper() {
         <Route path="/events" element={<Event />} />
         <Route path="/careers" element={<Career />} />
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/read-more/:id" element={<ReadMoreDetails />} />
         <Route path="/contact" element={<Contact />} />
 
         {/* Admin Routes */}
