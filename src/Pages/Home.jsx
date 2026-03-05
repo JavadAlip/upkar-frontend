@@ -17,6 +17,7 @@ const Home = () => {
       <Navbar />
       <div className="pt-24">
         <HomeMain />
+        <div className="pt-16 sm:pt-24"></div>
         <TreeSection />
         <VisionMission />
         <Map />
