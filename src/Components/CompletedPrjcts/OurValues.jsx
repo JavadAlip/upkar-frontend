@@ -1,9 +1,83 @@
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
+// import { getAllOurValues } from '../../Api';
+
+// const OurValues = () => {
+//   const [values, setValues] = useState([]);
+
+//   useEffect(() => {
+//     const fetchValues = async () => {
+//       try {
+//         const res = await getAllOurValues();
+//         setValues(res.data);
+//       } catch (error) {
+//         console.error('Failed to fetch values:', error);
+//       }
+//     };
+
+//     fetchValues();
+//   }, []);
+
+//   return (
+//     <div className="w-full bg-white py-16 px-4 font-figtree">
+//       <div className="max-w-6xl mx-auto">
+//         <h2 className="text-4xl md:text-5xl mb-16 text-black font-figtree">
+//           <span className="font-light">Our </span>
+//           <span className="font-semibold">Values!</span>
+//         </h2>
+
+//         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16">
+//           {values.map((value) => (
+//             <div
+//               key={value._id}
+//               className="flex flex-col items-center justify-center space-y-4 group cursor-pointer"
+//             >
+//               <div
+//                 className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+//                 style={{
+//                   width: '64px',
+//                   height: '64px',
+//                   display: 'flex',
+//                   alignItems: 'center',
+//                   justifyContent: 'center',
+//                 }}
+//               >
+//                 <img
+//                   src={value.iconImage}
+//                   alt={value.title}
+//                   style={{
+//                     maxWidth: '64px',
+//                     maxHeight: '64px',
+//                     width: 'auto',
+//                     height: 'auto',
+//                     objectFit: 'contain',
+//                   }}
+//                 />
+//               </div>
+
+//               <p className="font-satoshi font-medium text-[20px] text-black text-center">
+//                 {value.title}
+//               </p>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default OurValues;
+
+import React, { useEffect, useState, useRef } from 'react';
 import { getAllOurValues } from '../../Api';
 
 const OurValues = () => {
   const [values, setValues] = useState([]);
+  const [animatedTitles, setAnimatedTitles] = useState({});
+  const [isVisible, setIsVisible] = useState(false);
 
+  const sectionRef = useRef(null);
+
+  // Fetch Values
   useEffect(() => {
     const fetchValues = async () => {
       try {
@@ -17,10 +91,58 @@ const OurValues = () => {
     fetchValues();
   }, []);
 
+  // 👀 Detect when component becomes visible
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // run only once
+        }
+      },
+      { threshold: 0.4 },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // 🔥 Animate ONLY when visible
+  useEffect(() => {
+    if (!isVisible || !values.length) return;
+
+    values.forEach((value) => {
+      let index = 0;
+      const duration = 2000; // smoother timing
+      const intervalTime =
+        value.title.length > 0 ? duration / value.title.length : 100;
+
+      setAnimatedTitles((prev) => ({
+        ...prev,
+        [value._id]: '',
+      }));
+
+      const interval = setInterval(() => {
+        index++;
+        setAnimatedTitles((prev) => ({
+          ...prev,
+          [value._id]: value.title.slice(0, index),
+        }));
+
+        if (index >= value.title.length) {
+          clearInterval(interval);
+        }
+      }, intervalTime);
+    });
+  }, [isVisible, values]);
+
   return (
-    <div className="w-full bg-white py-16 px-4 font-figtree">
+    <div ref={sectionRef} className="w-full bg-white py-16 px-4 font-figtree">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl mb-16 text-black font-figtree">
+        <h2 className="text-4xl md:text-5xl mb-16 text-black">
           <span className="font-light">Our </span>
           <span className="font-semibold">Values!</span>
         </h2>
@@ -31,31 +153,18 @@ const OurValues = () => {
               key={value._id}
               className="flex flex-col items-center justify-center space-y-4 group cursor-pointer"
             >
-              <div
-                className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                style={{
-                  width: '64px',
-                  height: '64px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
+              {/* Icon */}
+              <div className="flex items-center justify-center w-16 h-16 transition-transform duration-300 group-hover:scale-110">
                 <img
                   src={value.iconImage}
                   alt={value.title}
-                  style={{
-                    maxWidth: '64px',
-                    maxHeight: '64px',
-                    width: 'auto',
-                    height: 'auto',
-                    objectFit: 'contain',
-                  }}
+                  className="max-w-[64px] max-h-[64px] object-contain"
                 />
               </div>
 
-              <p className="font-satoshi font-medium text-[20px] text-black text-center">
-                {value.title}
+              {/* Animated Title */}
+              <p className="font-satoshi font-medium text-[20px] text-black text-center min-h-[28px]">
+                {animatedTitles[value._id] || ''}
               </p>
             </div>
           ))}

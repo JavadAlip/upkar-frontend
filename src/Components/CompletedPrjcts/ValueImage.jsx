@@ -1,8 +1,49 @@
+// import React, { useEffect, useState } from 'react';
+// import { getValueImages } from '../../Api';
+
+// const ValueImage = () => {
+//   const [latestImage, setLatestImage] = useState(null);
+
+//   useEffect(() => {
+//     loadImage();
+//   }, []);
+
+//   const loadImage = async () => {
+//     try {
+//       const data = await getValueImages();
+
+//       if (Array.isArray(data) && data.length > 0) {
+//         setLatestImage(data[0].image);
+//       }
+//     } catch (error) {
+//       console.error('Error fetching value image:', error);
+//     }
+//   };
+
+//   return (
+//     <div className="relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl">
+//       {latestImage ? (
+//         <img
+//           src={latestImage}
+//           alt="Value Image"
+//           className="w-full h-auto object-cover"
+//         />
+//       ) : (
+//         <div className="w-full h-64 flex items-center justify-center bg-gray-200">
+//           Loading image...
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default ValueImage;
 import React, { useEffect, useState } from 'react';
 import { getValueImages } from '../../Api';
 
 const ValueImage = () => {
   const [latestImage, setLatestImage] = useState(null);
+  const [showImage, setShowImage] = useState(false);
 
   useEffect(() => {
     loadImage();
@@ -14,6 +55,11 @@ const ValueImage = () => {
 
       if (Array.isArray(data) && data.length > 0) {
         setLatestImage(data[0].image);
+
+        // 🔥 Show image after 1 second for premium effect
+        setTimeout(() => {
+          setShowImage(true);
+        }, 100); // small delay to trigger animation immediately
       }
     } catch (error) {
       console.error('Error fetching value image:', error);
@@ -21,18 +67,30 @@ const ValueImage = () => {
   };
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl">
-      {latestImage ? (
-        <img
-          src={latestImage}
-          alt="Value Image"
-          className="w-full h-auto object-cover"
-        />
-      ) : (
-        <div className="w-full h-64 flex items-center justify-center bg-gray-200">
-          Loading image...
+    <div className="w-full px-4 py-16">
+      <div className="max-w-4xl mx-auto">
+        <div
+          className={`group bg-white rounded-3xl overflow-hidden shadow-md 
+            cursor-pointer 
+            border-2
+            transition-all duration-1000 ease-in-out
+            hover:shadow-2xl hover:scale-[1.03] hover:border-[#2D5C3A]
+            ${showImage ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
+          `}
+        >
+          {latestImage ? (
+            <img
+              src={latestImage}
+              alt="Value Image"
+              className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div className="w-full h-64 flex items-center justify-center bg-gray-200">
+              Loading image...
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

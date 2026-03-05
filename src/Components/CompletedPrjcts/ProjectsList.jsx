@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Search, Hand, BadgePercent, Headset } from 'lucide-react';
+import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FiChevronDown } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import { getAllProjects, getAllCategories } from '../../Api';
@@ -56,7 +56,28 @@ const CompletedProjectsList = () => {
     return matchesSearch && matchesCategory;
   });
 
-  const projectsPerPage = 9;
+  const [projectsPerPage, setProjectsPerPage] = useState(6);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        // Mobile (sm)
+        setProjectsPerPage(3);
+      } else if (window.innerWidth < 1024) {
+        // Tablet (md)
+        setProjectsPerPage(6);
+      } else {
+        // Large screens (lg+)
+        setProjectsPerPage(6);
+      }
+    };
+
+    handleResize(); // run initially
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
   const startIndex = currentPage * projectsPerPage;
   const currentProjects = filteredProjects.slice(
@@ -174,7 +195,7 @@ hover:border-[#2D5C3A] border-2 "
           )}
         </div>
 
-        {totalPages > 1 && (
+        {/* {totalPages > 1 && (
           <div className="flex justify-center gap-2 pb-8">
             {Array.from({ length: totalPages }).map((_, index) => (
               <button
@@ -187,6 +208,35 @@ hover:border-[#2D5C3A] border-2 "
                 }`}
               />
             ))}
+          </div>
+        )} */}
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center gap-4 pb-10">
+            {/* Previous */}
+            <button
+              onClick={() =>
+                currentPage > 0 && setCurrentPage((prev) => prev - 1)
+              }
+              disabled={currentPage === 0}
+              className="p-2 rounded-full border border-gray-300 hover:bg-gray-100 disabled:opacity-40"
+            >
+              <ChevronLeft size={20} />
+            </button>
+
+            {/* Page Number */}
+            <span className="text-[15px] font-medium">{currentPage + 1}</span>
+
+            {/* Next */}
+            <button
+              onClick={() =>
+                currentPage < totalPages - 1 &&
+                setCurrentPage((prev) => prev + 1)
+              }
+              disabled={currentPage === totalPages - 1}
+              className="p-2 rounded-full border border-gray-300 hover:bg-gray-100 disabled:opacity-40"
+            >
+              <ChevronRight size={20} />
+            </button>
           </div>
         )}
       </div>
