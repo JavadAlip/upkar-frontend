@@ -63,6 +63,10 @@ const CareerOpenings = () => {
               <button
                 onClick={() => handleApply(item.role)}
                 className="text-sm font-semibold lg:text-sm text-[#2D5C3A] mt-2 hover:underline"
+                style={{
+                  display: 'inline-block',
+                  animation: 'moveUpDown 1.5s ease-in-out infinite',
+                }}
               >
                 Apply Now →
               </button>
@@ -79,6 +83,16 @@ const CareerOpenings = () => {
       {open && (
         <JoinTeamModal role={selectedRole} onClose={() => setOpen(false)} />
       )}
+
+      <style>
+        {`
+@keyframes moveUpDown {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(0px); }
+}
+`}
+      </style>
     </div>
   );
 };
