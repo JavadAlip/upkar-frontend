@@ -17,6 +17,10 @@ const ReadMoreViewModal = ({ isOpen, onClose, readMore }) => {
 
         <div className="space-y-4">
           <div className="p-3 border rounded">
+            <span className="font-semibold">Heading:</span>
+            <p className="text-gray-900">{readMore.heading}</p>
+          </div>
+          <div className="p-3 border rounded">
             <span className="font-semibold">Description:</span>
             <p className="text-gray-900">{readMore.description}</p>
           </div>

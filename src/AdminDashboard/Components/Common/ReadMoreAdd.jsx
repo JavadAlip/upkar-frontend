@@ -6,17 +6,19 @@ const ReadMoreAdd = ({ isOpen, onClose, onAdded }) => {
   const [description, setDescription] = useState('');
   const [mainImage, setMainImage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [heading, setHeading] = useState('');
 
   if (!isOpen) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!description || !mainImage) {
+    if (!heading || !description || !mainImage) {
       toast.error('Description and Image are required!');
       return;
     }
 
     const fd = new FormData();
+    fd.append('heading', heading);
     fd.append('description', description);
     fd.append('mainImage', mainImage);
 
@@ -28,6 +30,7 @@ const ReadMoreAdd = ({ isOpen, onClose, onAdded }) => {
         toast.success('ReadMore added successfully!');
         onAdded();
         onClose();
+        setHeading('');
         setDescription('');
         setMainImage(null);
       } else toast.error(res.message || 'Failed to add ReadMore');
@@ -44,6 +47,13 @@ const ReadMoreAdd = ({ isOpen, onClose, onAdded }) => {
       <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
         <h2 className="text-xl font-semibold mb-4">Add ReadMore</h2>
         <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Heading"
+            className="border p-2 rounded"
+            value={heading}
+            onChange={(e) => setHeading(e.target.value)}
+          />
           <textarea
             placeholder="Description"
             className="border p-2 rounded"

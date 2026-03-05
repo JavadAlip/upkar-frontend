@@ -82,6 +82,9 @@ const ReadMoreMain = () => {
           <thead className="bg-gray-50">
             <tr>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
+                Heading
+              </th>
+              <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
                 Description
               </th>
               <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">
@@ -96,6 +99,8 @@ const ReadMoreMain = () => {
           <tbody className="bg-white divide-y divide-gray-200">
             {readMores.map((item) => (
               <tr key={item._id}>
+                <td className="px-4 py-2 font-medium">{item.heading}</td>
+
                 <td className="px-4 py-2">
                   {item.description.slice(0, 20)}
                   {item.description.length > 20 ? '...' : ''}
@@ -140,7 +145,7 @@ const ReadMoreMain = () => {
 
             {readMores.length === 0 && (
               <tr>
-                <td colSpan="3" className="text-center py-4 text-gray-500">
+                <td colSpan="4" className="text-center py-4 text-gray-500">
                   No ReadMore Found.
                 </td>
               </tr>
