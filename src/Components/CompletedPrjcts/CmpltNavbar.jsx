@@ -114,7 +114,7 @@ const CmpltNavbar = () => {
       </button>
 
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white shadow-md rounded-md mt-2 z-50 md:hidden">
+        <div className="absolute top-full left-0 w-full bg-white shadow-md rounded-md mt-0 z-50 md:hidden">
           <ul className="flex flex-col space-y-2 p-4">
             <li>
               <Link
@@ -172,7 +172,7 @@ const CmpltNavbar = () => {
             <li>
               <Link
                 to="/contact"
-                className="block text-white bg-black text-center py-2 px-4 rounded-lg hover:bg-gray-900 transition-all duration-300"
+                className="block text-start  rounded-lg  transition-all duration-300"
                 onClick={() => setMenuOpen(false)}
               >
                 Contact Us

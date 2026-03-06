@@ -186,13 +186,15 @@ const Team = () => {
                   'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease, border 0.4s ease',
               }}
               onTouchStart={(e) => {
-                e.currentTarget.style.transform = 'scale(1.02)';
+                e.currentTarget.style.transform = 'scale(1.03)';
                 e.currentTarget.style.boxShadow =
-                  '0 20px 40px rgba(0,0,0,0.08)';
+                  '0 20px 50px rgba(0,0,0,0.10)';
+                e.currentTarget.style.border = '2px solid #2D5C3A';
               }}
               onTouchEnd={(e) => {
                 e.currentTarget.style.transform = 'scale(1)';
                 e.currentTarget.style.boxShadow = '';
+                e.currentTarget.style.border = '2px solid transparent';
               }}
             >
               <div className="w-full h-80 bg-gray-200">

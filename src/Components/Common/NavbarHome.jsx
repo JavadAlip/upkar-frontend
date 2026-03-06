@@ -115,7 +115,7 @@ const NavbarHome = () => {
       </button>
 
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full font-figtree bg-white shadow-md rounded-md mt-2 z-50 md:hidden">
+        <div className="absolute top-full left-0 w-full font-figtree bg-white shadow-md rounded-md mt-0 z-50 md:hidden">
           <ul className="flex flex-col space-y-2 p-4">
             <li>
               <Link
