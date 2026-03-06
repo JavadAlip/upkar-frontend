@@ -177,7 +177,7 @@ const UpcomingProjectsList = () => {
                       <span className="text-[16px]">{project.location}</span>
                     </div>
 
-                    <div className="flex justify-center gap-3 mt-6">
+                    <div className="flex justify-center gap-3 mt-3">
                       <div className="relative group">
                         <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110 cursor-pointer">
                           <Hand size={20} />

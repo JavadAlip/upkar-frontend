@@ -78,12 +78,16 @@ const Footer = forwardRef((props, ref) => {
           <hr className="w-40  border-white mb-4" />
           <ul className="space-y-2 text-white text-base">
             <li>
-              <Link to="/" className="hover:text-white">
+              <Link
+                to="/city-projects?city=bengaluru"
+                className="hover:text-white"
+              >
                 Projects in Bengaluru
               </Link>
             </li>
+
             <li>
-              <Link to="/" className="hover:text-white">
+              <Link to="/city-projects?city=hosur" className="hover:text-white">
                 Projects in Hosur
               </Link>
             </li>

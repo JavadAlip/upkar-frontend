@@ -26,6 +26,7 @@ import FloatingContact from './Components/Common/FloatingContact';
 import logo from './assets/logo.png';
 import ScrollToTop from './Components/Common/ScrollToTop';
 import ReadMoreDetails from './Components/Blogs/ReadMoreDetails';
+import CityProjects from './Components/Common/CityProjects';
 
 function AppWrapper() {
   const footerRef = useRef(null);
@@ -65,6 +66,7 @@ function AppWrapper() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/read-more/:id" element={<ReadMoreDetails />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/city-projects" element={<CityProjects />} />
 
         {/* Admin Routes */}
         <Route path="/admin-login" element={<AdminLogin />} />
