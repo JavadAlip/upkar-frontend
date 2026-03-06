@@ -397,12 +397,12 @@ const ReadMore = () => {
                   {/* Show Full Article */}
                   <span
                     onClick={() => navigate(`/read-more/${article._id}`)}
-                    className="inline-block mt-2 bg-[#2D5C3A] text-white px-4 py-2 rounded-xl font-medium cursor-pointer hover:bg-[#244c2f] transition-all duration-300"
+                    className="inline-block mt-2 text-[#2D5C3A]  rounded-xl font-medium cursor-pointer hover:text-[#244c2f] transition-all duration-300"
                     style={{
                       animation: 'moveUpDown 1.5s ease-in-out infinite',
                     }}
                   >
-                    Show Full Article
+                    Show Full Article →
                   </span>
                 </div>
               </div>
