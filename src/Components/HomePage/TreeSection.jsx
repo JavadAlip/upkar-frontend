@@ -127,9 +127,9 @@ export default function Section() {
       <div className="text-center flex flex-col gap-4 sm:gap-4 md:gap-6 lg:gap-8 mt-4 items-center">
         {/* Heading 1 Animation */}
         <h2
-          className="text-2xl sm:text-4xl md:text-5xl lg:text-[64px] font-medium"
+          className="text-2xl sm:text-4xl md:text-5xl font-figtree lg:text-[64px] font-medium"
           style={{
-            fontFamily: "'Noto Serif JP', serif",
+            // fontFamily: "'Noto Serif JP', serif",
             opacity: animate ? 1 : 0,
             transform: animate ? 'translateY(0)' : 'translateY(30px)',
             transition: 'all 1.2s ease',
@@ -140,9 +140,9 @@ export default function Section() {
 
         {/* Heading 2 Animation */}
         <h2
-          className="text-2xl sm:text-4xl md:text-5xl lg:text-[64px] font-semibold"
+          className="text-2xl sm:text-4xl md:text-5xl font-figtree lg:text-[64px] font-semibold"
           style={{
-            fontFamily: "'Noto Serif JP', serif",
+            // fontFamily: "'Noto Serif JP', serif",
             opacity: animate ? 1 : 0,
             transform: animate ? 'translateY(0)' : 'translateY(30px)',
             transition: 'all 1.4s ease',
@@ -174,7 +174,7 @@ export default function Section() {
             transition: 'all 1.6s ease',
           }}
         >
-          <span className="font-bold">Upkar Developers</span>{' '}
+          {/* <span className="font-bold">Upkar Developers</span>{' '} */}
           {section.description}
         </p>
       </div>

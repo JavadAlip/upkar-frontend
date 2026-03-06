@@ -400,8 +400,8 @@ const Projects = () => {
     return (
       <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
         <h2
-          className="mb-4 lg:mb-12 text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight"
-          style={{ fontFamily: "'Noto Serif JP', serif" }}
+          className="mb-4 lg:mb-12 text-3xl sm:text-4xl md:text-5xl font-figtree lg:text-[48px] font-light leading-tight"
+          // style={{ fontFamily: "'Noto Serif JP', serif" }}
         >
           <span style={{ fontWeight: 700 }}>Our </span>
           <span style={{ fontWeight: 500 }}>Projects</span>
@@ -416,8 +416,8 @@ const Projects = () => {
   return (
     <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
       <h2
-        className="mb-4 lg:mb-12 text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight"
-        style={{ fontFamily: "'Noto Serif JP', serif" }}
+        className="mb-4 lg:mb-12 text-3xl sm:text-4xl md:text-5xl font-figtree lg:text-[48px] font-light leading-tight"
+        // style={{ fontFamily: "'Noto Serif JP', serif" }}
       >
         <span style={{ fontWeight: 700 }}>Our </span>
         <span style={{ fontWeight: 500 }}>Projects</span>
@@ -433,10 +433,10 @@ const Projects = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div className={`space-y-6 ${!isEven ? 'order-2' : ''}`}>
                   <h2
-                    className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-800 leading-tight"
+                    className="text-3xl sm:text-4xl font-medium  font-figtree md:text-5xl  text-gray-800 leading-tight"
                     style={{
-                      fontFamily: "'Noto Serif JP', serif",
-                      fontWeight: 300,
+                      // fontFamily: "'Noto Serif JP', serif",
+
                       fontSize: '48px',
                       color: '#000000',
                     }}
@@ -444,9 +444,9 @@ const Projects = () => {
                   />
 
                   <p
-                    className="text-sm sm:text-base lg:text-xl"
+                    className="text-sm sm:text-base font-figtree lg:text-xl"
                     style={{
-                      fontFamily: "'Figtree', sans-serif",
+                      // fontFamily: "'Figtree', sans-serif",
                       fontWeight: 300,
                       fontSize: '20px',
                       color: '#000000',
@@ -465,7 +465,7 @@ const Projects = () => {
                       <li
                         key={idx}
                         style={{
-                          fontFamily: "'Figtree', sans-serif",
+                          fontFamily: 'Figtree',
                           fontWeight: 300,
                           fontSize: '18px',
                           color: '#000000',
@@ -509,7 +509,7 @@ const Projects = () => {
                   >
                     <p
                       style={{
-                        fontFamily: "'Figtree', sans-serif",
+                        fontFamily: 'Figtree',
                         fontWeight: 300,
                         fontSize: '16px',
                         color: '#000000',
@@ -534,8 +534,8 @@ const Projects = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center pb-10 sm:pb-12">
               <div className="space-y-6">
                 <h2
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight"
-                  style={{ fontFamily: "'Noto Serif JP', serif" }}
+                  className="text-3xl sm:text-4xl font-figtree md:text-5xl lg:text-[48px] font-light leading-tight"
+                  // style={{ fontFamily: "'Noto Serif JP', serif" }}
                   dangerouslySetInnerHTML={{ __html: project.heading }}
                 />
 
@@ -580,7 +580,7 @@ const Projects = () => {
                 >
                   <p
                     style={{
-                      fontFamily: "'Figtree', sans-serif",
+                      fontFamily: 'Figtree',
                       fontWeight: 300,
                       fontSize: '16px',
                       color: '#000000',

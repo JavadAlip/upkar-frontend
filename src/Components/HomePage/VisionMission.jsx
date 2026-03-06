@@ -224,8 +224,8 @@ const VisionMission = () => {
         {/* LEFT CONTENT */}
         <div className="space-y-8">
           <h2
-            className="mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-[48px]"
-            style={{ fontFamily: "'Noto Serif JP', serif" }}
+            className="mb-6 text-3xl sm:text-4xl font-figtree md:text-5xl lg:text-[48px]"
+            // style={{ fontFamily: "'Noto Serif JP', serif" }}
           >
             <span className="font-bold">Vision </span>
             <span className="font-light">& Mission</span>
@@ -401,8 +401,8 @@ const VisionMission = () => {
             }
           >
             <div
-              className="text-[#000000] font-[Noto Serif JP] font-bold text-3xl sm:text-4xl md:text-[48px]"
-              style={{ fontFamily: "'Noto Serif JP', serif" }}
+              className="text-[#000000] font-figtree font-bold text-3xl sm:text-4xl md:text-[48px]"
+              // style={{ fontFamily: "'Noto Serif JP', serif" }}
             >
               <CountUp target={stat.number} duration={1000} />
             </div>
