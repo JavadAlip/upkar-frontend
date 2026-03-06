@@ -276,6 +276,7 @@
 // };
 
 // export default ReadMore;
+
 import React, { useState, useEffect, useRef } from 'react';
 import { getAllReadMore } from '../../Api';
 import { useNavigate } from 'react-router-dom';
@@ -342,9 +343,16 @@ const ReadMore = () => {
     <div className="w-full bg-white py-12 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Section Heading */}
-        <h2 className="text-2xl md:text-4xl lg:text-5xl font-figtree mb-12">
-          <span className="font-semibold">Blogs</span>
-        </h2>
+
+        <div className="flex items-center justify-center mb-12">
+          <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 mr-6"></div>
+
+          <h2 className="text-3xl md:text-4xl font-semibold font-figtree text-center whitespace-nowrap">
+            Blogs
+          </h2>
+
+          <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 ml-6"></div>
+        </div>
 
         <div className="space-y-12">
           {articles.map((article) => {
@@ -389,10 +397,9 @@ const ReadMore = () => {
                   {/* Show Full Article */}
                   <span
                     onClick={() => navigate(`/read-more/${article._id}`)}
-                    className="inline-block pt-2 text-[#2D5C3A] font-medium cursor-pointer hover:underline transition-all duration-300"
+                    className="inline-block mt-2 bg-[#2D5C3A] text-white px-4 py-2 rounded-xl font-medium cursor-pointer hover:bg-[#244c2f] transition-all duration-300"
                     style={{
                       animation: 'moveUpDown 1.5s ease-in-out infinite',
-                      display: 'inline-block',
                     }}
                   >
                     Show Full Article
