@@ -131,6 +131,7 @@ const Team = () => {
   const [teamMembers, setTeamMembers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [animate, setAnimate] = useState(false);
+  const [activeCard, setActiveCard] = useState(false);
 
   useEffect(() => {
     const fetchTeam = async () => {
@@ -160,6 +161,14 @@ const Team = () => {
     }
   };
 
+  const handleMobileTouch = () => {
+    setActiveCard(true);
+
+    setTimeout(() => {
+      setActiveCard(false);
+    }, 2000);
+  };
+
   return (
     <div
       className="w-full bg-white px-4 lg:px-10 py-8 font-[Figtree]"
@@ -180,22 +189,14 @@ const Team = () => {
         {teamMembers.length > 0 && (
           <div className="overflow-hidden">
             <div
-              className="bg-white rounded-lg shadow-md border-2 border-transparent"
-              style={{
-                transition:
-                  'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease, border 0.4s ease',
-              }}
-              onTouchStart={(e) => {
-                e.currentTarget.style.transform = 'scale(1.03)';
-                e.currentTarget.style.boxShadow =
-                  '0 20px 50px rgba(0,0,0,0.10)';
-                e.currentTarget.style.border = '2px solid #2D5C3A';
-              }}
-              onTouchEnd={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.boxShadow = '';
-                e.currentTarget.style.border = '2px solid transparent';
-              }}
+              onClick={handleMobileTouch}
+              className={`bg-white rounded-lg shadow-md border-2 cursor-pointer 
+              transition-all duration-300
+              ${
+                activeCard
+                  ? 'border-[#2D5C3A] scale-[1.03] shadow-xl'
+                  : 'border-gray-300'
+              }`}
             >
               <div className="w-full h-80 bg-gray-200">
                 <img
@@ -220,14 +221,7 @@ const Team = () => {
         {currentIndex > 0 && (
           <button
             onClick={prevSlide}
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/40 backdrop-blur-md p-2 rounded-full shadow-md"
-            style={{ transition: 'transform 0.3s ease' }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)')
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.transform = 'translateY(-50%) scale(1)')
-            }
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/40 backdrop-blur-md p-2 rounded-full shadow-md hover:scale-110 transition"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -236,14 +230,7 @@ const Team = () => {
         {currentIndex < teamMembers.length - 1 && (
           <button
             onClick={nextSlide}
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/40 backdrop-blur-md p-2 rounded-full shadow-md"
-            style={{ transition: 'transform 0.3s ease' }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)')
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.transform = 'translateY(-50%) scale(1)')
-            }
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/40 backdrop-blur-md p-2 rounded-full shadow-md hover:scale-110 transition"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -255,11 +242,7 @@ const Team = () => {
         {teamMembers.map((member, index) => (
           <div
             key={index}
-            className="bg-white rounded-lg overflow-hidden shadow-md border-2 border-transparent cursor-pointer"
-            style={{
-              transition:
-                'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease, border 0.4s ease',
-            }}
+            className="bg-white rounded-lg overflow-hidden shadow-md border-2 border-transparent cursor-pointer transition-all duration-300"
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'scale(1.03)';
               e.currentTarget.style.boxShadow = '0 20px 50px rgba(0,0,0,0.10)';
