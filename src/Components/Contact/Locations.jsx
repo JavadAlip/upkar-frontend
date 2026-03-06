@@ -161,8 +161,9 @@ const Locations = () => {
       <div className="flex items-center justify-center mb-12">
         <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 mr-6"></div>
 
-        <h2 className="text-3xl md:text-4xl font-semibold text-center whitespace-nowrap">
-          Project Enquiries
+        <h2 className="text-3xl md:text-4xl font-figtree text-center whitespace-nowrap">
+          <span className="font-semibold">Project</span>{' '}
+          <span className="font-light">Enquiries</span>
         </h2>
 
         <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 ml-6"></div>

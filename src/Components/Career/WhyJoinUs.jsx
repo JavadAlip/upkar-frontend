@@ -129,15 +129,16 @@ const WhyJoinUs = () => {
   return (
     <div ref={sectionRef} className="w-full bg-white py-16 px-4">
       <div className="max-w-6xl mx-auto space-y-16">
-        <h2 className="mb-10 sm:mb-12 text-center">
-          <span className="font-figtree font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-[48px] text-black">
-            Why{' '}
-          </span>
-          <span className="font-figtree font-light text-2xl sm:text-3xl md:text-4xl lg:text-[48px] text-black">
-            Join us?
-          </span>
-        </h2>
+        <div className="flex items-center justify-center mb-12">
+          <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 mr-6"></div>
 
+          <h2 className="text-3xl md:text-4xl font-figtree text-center whitespace-nowrap">
+            <span className="font-semibold">Why</span>{' '}
+            <span className="font-light">Join us?</span>
+          </h2>
+
+          <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 ml-6"></div>
+        </div>
         <div className="text-center">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {reasons.length > 0 ? (

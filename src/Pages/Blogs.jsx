@@ -1,5 +1,4 @@
-import BlogMain from '../Components/Blogs/BlogMain';
-// import PopularArticles from '../Components/Blogs/PopularArticles';
+import BlogImage from '../Components/Blogs/BlogImage';
 import ReadMore from '../Components/Blogs/ReadMore';
 import CmpltNavbar from '../Components/CompletedPrjcts/CmpltNavbar';
 
@@ -8,8 +7,7 @@ const Blogs = () => {
     <>
       <CmpltNavbar />
       <div className="pt-24">
-        <BlogMain />
-        {/* <PopularArticles /> */}
+        <BlogImage />
         <ReadMore />
       </div>
     </>
