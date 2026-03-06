@@ -333,10 +333,20 @@ const Events = () => {
   return (
     <div className="w-full bg-white py-8 md:py-12 lg:py-16 px-4 md:px-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-2xl md:text-4xl lg:text-5xl font-figtree mb-8 md:mb-12">
+        {/* <h2 className="text-2xl md:text-4xl lg:text-5xl font-figtree mb-8 md:mb-12">
           <span className="font-semibold">Events </span>
           <span className="font-light">at Upkar !</span>
-        </h2>
+        </h2> */}
+        <div className="flex items-center justify-center mb-12">
+          <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 mr-6"></div>
+
+          <h2 className="text-3xl md:text-4xl font-figtree text-center whitespace-nowrap">
+            <span className="font-semibold">Events</span>{' '}
+            <span className="font-light">at Upkar</span>
+          </h2>
+
+          <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 ml-6"></div>
+        </div>
 
         <div className="space-y-12">
           {events.map((event) => {

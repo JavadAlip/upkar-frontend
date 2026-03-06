@@ -108,7 +108,6 @@ const CompletedMain = () => {
     fetchProject();
   }, []);
 
-  // 🔥 Letter animation (1 second)
   useEffect(() => {
     if (!project?.heading) return;
 
@@ -151,9 +150,9 @@ const CompletedMain = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* LEFT CONTENT */}
           <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-black mb-8 sm:mb-12 md:mb-16 lg:mb-[100px] text-left">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-black mb-8 sm:mb-12 md:mb-16 lg:mb-[100px] text-left">
               {animatedHeading.split(' ')[0]}{' '}
-              <span className="font-semibold">
+              <span className="font-light">
                 {animatedHeading.split(' ').slice(1).join(' ')}
               </span>
             </h2>
