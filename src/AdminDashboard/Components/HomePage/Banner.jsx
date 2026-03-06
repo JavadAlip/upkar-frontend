@@ -110,7 +110,7 @@ const Banner = () => {
                 <td className="px-4 py-2">{truncateText(banner.subtitle)}</td>
                 <td className="px-4 py-2">
                   <img
-                    src={banner.image}
+                    src={banner.images?.[0]}
                     alt={banner.title}
                     className="w-20 h-12 object-cover rounded"
                   />
