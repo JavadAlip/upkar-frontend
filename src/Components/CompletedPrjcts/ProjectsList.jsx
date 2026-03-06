@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FiChevronDown } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,7 @@ const CompletedProjectsList = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [projects, setProjects] = useState([]);
   const [categories, setCategories] = useState([]);
+  const topRef = useRef(null);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -78,6 +79,12 @@ const CompletedProjectsList = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [currentPage]);
+
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
   const startIndex = currentPage * projectsPerPage;
   const currentProjects = filteredProjects.slice(
@@ -90,7 +97,7 @@ const CompletedProjectsList = () => {
   };
 
   return (
-    <div className="w-full py-16 px-4">
+    <div ref={topRef} className="w-full py-16 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Search, Hand, Headset, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FiChevronDown } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,7 @@ const UpcomingProjectsList = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [projects, setProjects] = useState([]);
   const [categories, setCategories] = useState([]);
+  const topRef = useRef(null);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -59,11 +60,11 @@ const UpcomingProjectsList = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
-        setProjectsPerPage(3); // Mobile
+        setProjectsPerPage(3);
       } else if (window.innerWidth < 1024) {
-        setProjectsPerPage(6); // Tablet
+        setProjectsPerPage(6);
       } else {
-        setProjectsPerPage(6); // Large
+        setProjectsPerPage(6);
       }
     };
 
@@ -79,12 +80,21 @@ const UpcomingProjectsList = () => {
     startIndex + projectsPerPage,
   );
 
+  useEffect(() => {
+    if (topRef.current) {
+      topRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  }, [currentPage]);
+
   const handleProjectClick = (projectId) => {
     navigate(`/project/${projectId}`);
   };
 
   return (
-    <div className="w-full py-16 px-4">
+    <div ref={topRef} className="w-full py-16 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="bg-white rounded-2xl shadow-lg p-6 mb-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -189,9 +199,11 @@ const UpcomingProjectsList = () => {
                       </div>
 
                       <div className="relative group">
-                        <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110 cursor-pointer">
-                          <Headset size={20} />
-                        </div>
+                        <a href="tel:8880796796">
+                          <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110 cursor-pointer">
+                            <Headset size={20} />
+                          </div>
+                        </a>
 
                         <span className="absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition duration-300">
                           Call

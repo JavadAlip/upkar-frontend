@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Hand, Headset } from 'lucide-react';
 import { getAllProjects } from '../../Api';
@@ -8,6 +8,7 @@ const CityProjects = () => {
   const [projects, setProjects] = useState([]);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const topRef = useRef(null);
 
   const city = searchParams.get('city');
 
@@ -37,6 +38,12 @@ const CityProjects = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [currentPage]);
 
   const fetchProjects = async () => {
     try {
@@ -97,7 +104,7 @@ const CityProjects = () => {
   return (
     <>
       <Navbar />
-      <div className="pt-28 w-full py-16 px-4">
+      <div ref={topRef} className="pt-28 w-full py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold font-figtree mb-10 text-center capitalize">
             {city} Projects
@@ -202,9 +209,12 @@ const CityProjects = () => {
               {totalPages > 1 && (
                 <div className="flex justify-center items-center gap-4 pt-10">
                   <button
-                    onClick={() =>
-                      currentPage > 0 && setCurrentPage((prev) => prev - 1)
-                    }
+                    onClick={() => {
+                      if (currentPage > 0) {
+                        setCurrentPage((prev) => prev - 1);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
                     disabled={currentPage === 0}
                     className="p-2 rounded-full border border-gray-300 hover:bg-gray-100 disabled:opacity-40"
                   >
@@ -216,10 +226,12 @@ const CityProjects = () => {
                   </span>
 
                   <button
-                    onClick={() =>
-                      currentPage < totalPages - 1 &&
-                      setCurrentPage((prev) => prev + 1)
-                    }
+                    onClick={() => {
+                      if (currentPage < totalPages - 1) {
+                        setCurrentPage((prev) => prev + 1);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
                     disabled={currentPage === totalPages - 1}
                     className="p-2 rounded-full border border-gray-300 hover:bg-gray-100 disabled:opacity-40"
                   >
