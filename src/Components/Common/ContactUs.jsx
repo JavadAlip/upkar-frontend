@@ -8,10 +8,10 @@ const ContactUs = () => {
     <div className="w-full bg-white py-12 sm:py-16 px-4 font-[Figtree]">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="mb-6 sm:mb-8">
-          <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black leading-tight font-light font-['Noto_Serif_JP']">
+          <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black leading-tight font-medium font-figtree">
             Ready to Find Your
           </span>
-          <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black leading-tight font-bold font-['Noto_Serif_JP']">
+          <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black leading-tight font-semibold font-figtree">
             Dream Property?
           </span>
         </h2>

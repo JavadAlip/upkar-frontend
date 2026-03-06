@@ -1,6 +1,11 @@
 import React, { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
-import { FaLinkedin, FaWhatsapp, FaInstagram } from 'react-icons/fa';
+import {
+  FaLinkedin,
+  FaWhatsapp,
+  FaInstagram,
+  FaFacebookF,
+} from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import Footerimg from '../../assets/Icons/FooterLogo.jpeg';
 import Footerimg1 from '../../assets/Footer.png';
@@ -67,7 +72,7 @@ const Footer = forwardRef((props, ref) => {
             </li>
             <li>
               <Link to="/contact" className="hover:text-white">
-                Contact
+                Contact Us
               </Link>
             </li>
           </ul>
@@ -98,16 +103,34 @@ const Footer = forwardRef((props, ref) => {
           <h4 className="text-lg font-semibold mb-2">Connect</h4>
           <hr className="w-36  border-white mb-4" />
           <div className="flex gap-4 text-white">
+            <a
+              href="https://www.facebook.com/Upkarcompany/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white"
+            >
+              <FaFacebookF size={22} />
+            </a>
             <a href="#" className="hover:text-white">
               <FaWhatsapp size={22} />
             </a>
             <a href="#" className="hover:text-white">
               <FaInstagram size={22} />
             </a>
-            <a href="#" className="hover:text-white">
+            <a
+              href="https://www.linkedin.com/company/upkar-developers/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white"
+            >
               <FaLinkedin size={22} />
             </a>
-            <a href="#" className="hover:text-white">
+            <a
+              href="https://x.com/upkardevelopers"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white"
+            >
               <FaXTwitter size={22} />
             </a>
           </div>
