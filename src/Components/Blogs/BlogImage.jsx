@@ -56,7 +56,7 @@ const BlogImage = () => {
       {/* TEXT CONTENT */}
       <div className="relative z-10 font-figtree text-center max-w-3xl px-4">
         {/* HEADING */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-6">
+        <h1 className="text-[28px]  md:text-[48px] font-figtree  font-light mb-6">
           {blogData.heading?.split(' ')[0]}{' '}
           <span className="font-semibold">
             {blogData.heading?.split(' ').slice(1).join(' ')}
@@ -64,7 +64,7 @@ const BlogImage = () => {
         </h1>
 
         {/* DESCRIPTION */}
-        <p className="text-sm font-figtree sm:text-base md:text-lg lg:text-xl leading-relaxed">
+        <p className="text-base font-figtree  md:text-xl lg:text-xl max-w-3xl">
           {blogData.description}
         </p>
       </div>

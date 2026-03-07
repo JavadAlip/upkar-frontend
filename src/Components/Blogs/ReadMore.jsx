@@ -347,7 +347,7 @@ const ReadMore = () => {
         <div className="flex items-center justify-center mb-12">
           <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 mr-6"></div>
 
-          <h2 className="text-3xl md:text-4xl font-semibold font-figtree text-center whitespace-nowrap">
+          <h2 className="text-3xl md:text-4xl font-semibold text-[#2D5C3A] font-figtree text-center whitespace-nowrap">
             Blogs
           </h2>
 
@@ -390,7 +390,7 @@ const ReadMore = () => {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-[18px] md:text-[20px]">
+                  <p className="text-base md:text-xl lg:text-xl">
                     {getLimitedText(article.description)}
                   </p>
 

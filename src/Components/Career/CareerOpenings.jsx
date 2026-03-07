@@ -36,7 +36,9 @@ const CareerOpenings = () => {
       id="job-openings"
       className="px-4 lg:px-10 py-12 font-[Figtree] bg-white"
     >
-      <h1 className="text-4xl md:text-5xl font-semibold mb-10">Openings</h1>
+      <h1 className="text-3xl md:text-4xl lg:text-4xl font-semibold text-[#2D5C3A] mb-10">
+        Openings
+      </h1>
 
       <div className="flex text-base justify-between text-gray-500 mb-4">
         <span>Available Roles</span>
@@ -56,7 +58,7 @@ const CareerOpenings = () => {
             className="flex justify-between items-center border-b pb-4"
           >
             <div>
-              <h2 className="text-2xl md:text-xl lg:text-4xl font-medium  cursor-pointer">
+              <h2 className="text-2xl md:text-2xl lg:text-2xl font-medium  cursor-pointer">
                 {item.role}
               </h2>
 

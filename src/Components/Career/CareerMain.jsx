@@ -206,7 +206,7 @@ const CareerMain = () => {
         ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
       >
         {/* Heading */}
-        <h1 className="text-3xl sm:text-4xl font-figtree md:text-5xl lg:text-6xl font-light">
+        <h1 className="text-[28px]  font-figtree md:text-[48px] font-light">
           {fullHeading.split('Upkar')[0]}
           <span className="font-semibold">
             Upkar{fullHeading.split('Upkar')[1]}
@@ -214,7 +214,7 @@ const CareerMain = () => {
         </h1>
 
         {/* Description */}
-        <p className="text-sm sm:text-base font-figtree md:text-lg lg:text-xl leading-relaxed">
+        <p className="text-base  font-figtree md:text-xl lg:text-xl">
           {careerDescription || 'Loading career description...'}
         </p>
 

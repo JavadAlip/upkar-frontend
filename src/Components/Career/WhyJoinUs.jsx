@@ -133,8 +133,8 @@ const WhyJoinUs = () => {
           <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 mr-6"></div>
 
           <h2 className="text-3xl md:text-4xl font-figtree text-center whitespace-nowrap">
-            <span className="font-semibold">Why</span>{' '}
-            <span className="font-light">Join us?</span>
+            <span className="font-normal">Why</span>{' '}
+            <span className="font-semibold text-[#2D5C3A]">Join us?</span>
           </h2>
 
           <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 ml-6"></div>
@@ -150,12 +150,12 @@ const WhyJoinUs = () => {
                     ${visibleReasons[reason._id] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                 >
                   {/* Title */}
-                  <h3 className="font-figtree font-semibold text-base sm:text-lg md:text-xl text-black">
+                  <h3 className="font-figtree font-semibold text-base sm:text-lg md:text-xl lg:text-xl text-black">
                     {reason.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="font-figtree font-light text-sm sm:text-base md:text-lg text-black leading-relaxed text-justify sm:text-center">
+                  <p className="font-figtree  text-base sm:text-base md:text-lg lg:text-lg text-black  text-justify sm:text-center">
                     {reason.description}
                   </p>
                 </div>
