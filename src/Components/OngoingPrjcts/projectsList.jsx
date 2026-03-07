@@ -3,6 +3,7 @@ import { Search, Hand, Headset, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FiChevronDown } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import { getAllProjects, getAllCategories } from '../../Api';
+import { FaLocationDot } from 'react-icons/fa6';
 
 const OngoingProjectsList = () => {
   const navigate = useNavigate();
@@ -166,25 +167,7 @@ const OngoingProjectsList = () => {
                     </h3>
 
                     <div className="flex justify-center items-center gap-2 mt-2 text-black">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-4 h-4 text-black"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={1.5}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M19.5 10.5c0 7.5-7.5 12-7.5 12s-7.5-4.5-7.5-12a7.5 7.5 0 1115 0z"
-                        />
-                      </svg>
+                      <FaLocationDot size={16} />
                       <span className="text-[16px]">{project.location}</span>
                     </div>
 
