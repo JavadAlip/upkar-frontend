@@ -341,8 +341,8 @@ const Events = () => {
           <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 mr-6"></div>
 
           <h2 className="text-3xl md:text-4xl font-figtree text-center whitespace-nowrap">
-            <span className="font-semibold">Events</span>{' '}
-            <span className="font-light">at Upkar</span>
+            <span className="font-normal">Events at</span>{' '}
+            <span className="font-semibold text-[#2D5C3A]">Upkar</span>
           </h2>
 
           <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 ml-6"></div>
@@ -374,13 +374,13 @@ const Events = () => {
                     />
                     {/* Floating Date Badge */}
                     <div
-                      className="absolute bottom-2 right-2 md:bottom-[-10px] md:right-[-10px] bg-white px-6 py-4 rounded-2xl shadow-md z-10"
+                      className="absolute bottom-2 right-2 md:bottom-[-10px] md:right-[-10px] bg-[#2D5C3A] text-white px-6 py-4 rounded-2xl shadow-md z-10"
                       style={{
                         animation: 'floatDateBox 4s ease-in-out infinite',
                         minWidth: '70px',
                       }}
                     >
-                      <p className="text-center font-figtree text-2xl lg:text-4xl font-light leading-none">
+                      <p className="text-center font-figtree text-xl lg:text-2xl md:text-2xl font-light leading-none">
                         {countedDates[event._id]?.day || 0} {month}
                         <br />
                         <span className="font-semibold">
@@ -401,13 +401,13 @@ const Events = () => {
                     {event.eventTitle}
                   </h3>
 
-                  <p className="text-[18px] md:text-[24px]">
+                  <p className="text-base md:text-xl lg:text-xl">
                     {event.eventDescription}
                   </p>
 
                   <div className="flex items-start gap-3">
                     <MapPin size={18} className="mt-1 text-gray-600" />
-                    <p className="text-[18px] md:text-[22px] text-gray-600 font-medium">
+                    <p className="text-base md:text-xl lg:text-xl text-gray-600 font-medium">
                       {event.eventLocation}
                     </p>
                   </div>

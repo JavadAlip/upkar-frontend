@@ -105,8 +105,8 @@ const EventGetIn = () => {
   return (
     <div className="w-full px-4 lg:px-10 py-10 font-figtree">
       <h2 className="text-2xl md:text-4xl lg:text-5xl mb-8 md:mb-12">
-        <span className="font-light">Get in</span>
-        <span className="font-semibold"> Touch</span>
+        <span className="font-normal">Get in</span>
+        <span className="font-semibold text-[#2D5C3A]"> Touch</span>
       </h2>
 
       <form onSubmit={handleSubmit}>

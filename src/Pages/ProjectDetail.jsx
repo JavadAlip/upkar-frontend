@@ -1428,12 +1428,12 @@ const ProjectDetail = () => {
                 <h1 className="text-xl sm:text-2xl md:text-[40px] font-figtree font-semibold">
                   {project.projectName}
                 </h1>
-                <div className="flex items-center gap-2 text-base sm:text-lg md:text-[20px] text-black">
+                <div className="flex items-center gap-2 text-base  md:text-xl lg:text-xl text-black">
                   <FaLocationDot className="text-black" size={18} />
                   <p>{project.location}</p>
                 </div>
 
-                <div className="grid grid-cols-1 font-figtree sm:grid-cols-2 gap-4">
+                <div className="grid text-base md:text-xl lg:text-xl grid-cols-1 font-figtree sm:grid-cols-2 gap-4">
                   <InfoBox
                     label="Unit Configuration"
                     value={project.unitConfiguration || '—'}
@@ -1466,13 +1466,13 @@ const ProjectDetail = () => {
                     ₹ {project.priceStartsFrom?.toLocaleString('en-IN') || '-'}
                   </p>
                 </div>
-                <div className="border bg-black rounded-lg p-4">
-                  <p className="font-medium mb-1 text-white capitalize">
+                <div className="border bg-[#2D5C3A] rounded-lg p-4">
+                  <p className="font-semibold font-figtree mb-1 text-base  text-white capitalize">
                     {project.projectStatus || 'Ongoing'} Project
                   </p>
                   <p className="text-white">
                     Possession in{' '}
-                    <span className="font-semibold text-white">
+                    <span className="font-semibold font-figtree text-white">
                       {project.possessionDate
                         ? new Date(project.possessionDate).toLocaleDateString(
                             'en-US',
@@ -1520,8 +1520,10 @@ const ProjectDetail = () => {
   ${visibleSections['keyFeatures'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                   >
                     <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-4">
-                      <span className="font-semibold">Key</span>{' '}
-                      <span className="font-light">Features</span>
+                      <span className="font-normal">Key</span>{' '}
+                      <span className="font-semibold text-[#2D5C3A]">
+                        Features
+                      </span>
                     </h1>
 
                     <ul className="grid grid-cols-1 font-figtree sm:grid-cols-2 gap-3">
@@ -1535,7 +1537,7 @@ const ProjectDetail = () => {
                             size={20}
                           />
 
-                          <span className="text-base sm:text-lg md:text-xl">
+                          <span className="text-base font-figtree lg:text-xl md:text-xl">
                             {feature}
                           </span>
                         </li>
@@ -1554,8 +1556,8 @@ const ProjectDetail = () => {
   ${visibleSections['masterPlan'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                   >
                     <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-6">
-                      <span className="font-semibold">Floor</span>{' '}
-                      <span className="font-light">Plan</span>
+                      <span className="font-normal">Floor</span>{' '}
+                      <span className="font-semibold text-[#2D5C3A]">Plan</span>
                     </h1>
 
                     {/* Plan Tabs - Scrollable on Mobile */}
@@ -1636,7 +1638,7 @@ const ProjectDetail = () => {
                     className={`transition-all duration-1000 ease-out
   ${visibleSections['amenities'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                   >
-                    <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-4 font-semibold">
+                    <h1 className="font-figtree text-[#2D5C3A] text-2xl sm:text-3xl md:text-4xl mb-4 font-semibold">
                       Amenities
                     </h1>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -1670,8 +1672,10 @@ const ProjectDetail = () => {
   ${visibleSections['aboutProject'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                   >
                     <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-3">
-                      <span className="font-semibold">About</span>{' '}
-                      <span className="font-light">Project</span>
+                      <span className="font-normal">About</span>{' '}
+                      <span className="font-semibold text-[#2D5C3A]">
+                        Project
+                      </span>
                     </h1>
                     <p className="leading-normal text-justify font-figtree text-base sm:text-lg md:text-xl">
                       {project.aboutProject}
@@ -1719,10 +1723,12 @@ const ProjectDetail = () => {
                 {/* ================= PROJECT GALLERY ================= */}
                 {project.propertyImages?.length > 0 && (
                   // <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
-                  <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 md:py-10 lg:py-12">
+                  <div>
                     <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-3">
-                      <span className="font-semibold">Project</span>{' '}
-                      <span className="font-light">Images</span>
+                      <span className="font-normal">Project</span>{' '}
+                      <span className="font-semibold text-[#2D5C3A]">
+                        Images
+                      </span>
                     </h1>
 
                     {/* ================= DESKTOP ================= */}
@@ -1843,7 +1849,7 @@ const ProjectDetail = () => {
                 {/* ================= DIRECTIONS + GET IN TOUCH ================= */}
 
                 {project?.locationEmbedUrl ? (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 ">
                     {/* ================= DIRECTIONS ================= */}
                     <div className="flex flex-col">
                       <div
@@ -2014,8 +2020,9 @@ const ProjectDetail = () => {
                   </div>
                 ) : (
                   /* ================= FULL WIDTH GET IN TOUCH ================= */
-
-                  <GetInTouch />
+                  <div>
+                    <GetInTouch />
+                  </div>
                 )}
 
                 {/* SECTIONS */}
@@ -2040,7 +2047,7 @@ const ProjectDetail = () => {
                         <div key={index} className="space-y-4">
                           {/* Section Name */}
                           {section.sectionName && (
-                            <h2 className="font-figtree text-2xl sm:text-3xl md:text-4xl font-semibold">
+                            <h2 className="font-figtree text-2xl sm:text-3xl md:text-4xl text-[#2D5C3A] font-semibold">
                               {section.sectionName}
                             </h2>
                           )}
