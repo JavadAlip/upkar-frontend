@@ -253,7 +253,7 @@ const MainSection = () => {
         <div className="flex flex-col items-center text-center">
           {/* Animated Heading → replaced with fade-in */}
           <h2
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light mb-6 leading-tight transition-opacity duration-1000 ${
+            className={`text-3xl sm:text-4xl md:text-5xl font-medium lg:text-[48px]  mb-6 leading-tight transition-opacity duration-1000 ${
               showHeading ? 'opacity-100' : 'opacity-0'
             }`}
           >
@@ -263,13 +263,13 @@ const MainSection = () => {
 
           <Link
             to="/ongoing-projects"
-            className="inline-flex items-center bg-black rounded-full shadow-md mb-10 hover:scale-105 transition-transform duration-300"
+            className="inline-flex items-center bg-[#2D5C3A]  rounded-full shadow-md mb-10 hover:scale-105 transition-transform duration-300"
           >
             <span className="px-6 py-3 text-white font-medium">
               Explore Projects
             </span>
-            <span className="w-12 h-12 bg-white rounded-full flex items-center justify-center border-2 border-[#071334]">
-              <ArrowRight className="text-[#071334]" />
+            <span className="w-12 h-12 bg-white rounded-full flex items-center justify-center border-2 border-[#2D5C3A]">
+              <ArrowRight className="text-[#2D5C3A]" />
             </span>
           </Link>
 

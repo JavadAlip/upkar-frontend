@@ -179,8 +179,8 @@ const Team = () => {
       }}
     >
       <div className="mb-8">
-        <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-light">
-          Our <span className="font-semibold">Team</span>
+        <h2 className="text-3xl sm:text-4xl lg:text-[48px] ">
+          Our <span className="font-semibold text-[#2D5C3A]">Team</span>
         </h2>
       </div>
 

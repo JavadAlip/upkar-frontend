@@ -107,7 +107,7 @@ const Quote = () => {
 
   return (
     <div
-      className="bg-black text-white py-12 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-8 md:px-14 font-figtree"
+      className="bg-[#2D5C3A] text-white py-12 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-8 md:px-14 font-figtree"
       style={{
         transition: 'background 0.6s ease',
       }}
@@ -144,7 +144,7 @@ const Quote = () => {
 
         {/* Quote Text */}
         <p
-          className="mt-6 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-light leading-relaxed text-justify"
+          className="mt-6 text-base sm:text-base md:text-xl lg:text-xl xl:text-xl font-normal  text-justify"
           style={{
             opacity: animate ? 1 : 0,
             transition: 'opacity 1.2s ease 0.3s',
@@ -187,7 +187,7 @@ const Quote = () => {
             {quote.name}
           </h3>
 
-          <p className="text-gray-400 text-xs sm:text-sm md:text-base lg:text-lg font-light">
+          <p className="text-white text-xs sm:text-sm md:text-base lg:text-lg font-light">
             {quote.position}
           </p>
         </div>
