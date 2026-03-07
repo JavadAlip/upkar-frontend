@@ -141,14 +141,14 @@ const CityProjects = () => {
                     </div>
 
                     <div className="p-6 text-center font-figtree">
-                      <h3 className="text-[22px] font-semibold text-black">
+                      <h3 className="text-xl font-semibold text-black">
                         {project.projectName}
                       </h3>
 
                       {/* Location */}
                       <div className="flex justify-center items-center gap-2 mt-2 text-black">
                         <FaLocationDot size={16} />
-                        <span className="text-[16px]">{project.location}</span>
+                        <span className="text-base">{project.location}</span>
                       </div>
 
                       {/* Action Icons for ongoing/upcoming */}
@@ -156,7 +156,7 @@ const CityProjects = () => {
                         project.projectStatus === 'upcoming') && (
                         <div className="flex justify-center gap-3 mt-3">
                           <div className="relative group">
-                            <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110">
+                            <div className="w-10 h-10 bg-[#2D5C3A] rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110">
                               <Hand size={20} />
                             </div>
 
@@ -166,7 +166,7 @@ const CityProjects = () => {
                           </div>
 
                           <div className="relative group">
-                            <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110">
+                            <div className="w-10 h-10 bg-[#2D5C3A] rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110">
                               <Headset size={20} />
                             </div>
 
@@ -179,7 +179,7 @@ const CityProjects = () => {
 
                       <div className="w-72 h-[1px] bg-gray-500 mx-auto my-6"></div>
 
-                      <p className="text-[16px] font-medium text-black">
+                      <p className="text-base  text-black">
                         {project.unitConfiguration}
                       </p>
                     </div>

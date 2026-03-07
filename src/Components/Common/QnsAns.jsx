@@ -148,9 +148,11 @@ const QnsAns = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 items-start">
         {/* LEFT SIDE */}
         <div className="text-left p-4 flex flex-col justify-between h-full">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px]  leading-tight">
             Invest smarter with <br />
-            <span className="font-bold">Right Answers !</span>
+            <span className="font-semibold text-[#2D5C3A] ">
+              Right Answers !
+            </span>
           </h2>
 
           <div className="hidden lg:block">
@@ -160,13 +162,13 @@ const QnsAns = () => {
 
             <button
               onClick={() => navigate('/contact')}
-              className="inline-flex items-center bg-black rounded-full shadow-md hover:scale-105 transition-transform duration-300"
+              className="inline-flex items-center bg-[#2D5C3A] rounded-full shadow-md hover:scale-105 transition-transform duration-300"
             >
               <span className="px-6 py-3 text-white text-sm sm:text-base font-medium">
                 Connect us
               </span>
-              <span className="relative -mr-1 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center border-2 border-[#071334]">
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#071334]" />
+              <span className="relative -mr-1 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center border-2 border-[#2D5C3A]">
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#2D5C3A]" />
               </span>
             </button>
           </div>
@@ -188,8 +190,8 @@ const QnsAns = () => {
                 transition-all duration-300 transform border-gray-200
                 ${
                   isOpen
-                    ? 'bg-black scale-[1.02]'
-                    : 'bg-white hover:bg-black hover:scale-[1.02]'
+                    ? 'bg-[#2D5C3A] scale-[1.02]'
+                    : 'bg-white hover:bg-[#2D5C3A] hover:scale-[1.02]'
                 }`}
               >
                 <button
@@ -197,8 +199,8 @@ const QnsAns = () => {
                   className="w-full flex items-center justify-between p-5 text-left"
                 >
                   <span
-                    className={`pr-4 text-base sm:text-lg md:text-xl lg:text-[22px]
-                    font-medium leading-snug sm:leading-relaxed 
+                    className={`pr-4 text-base sm:text-lg md:text-xl lg:text-xl
+                    font-medium 
                     transition-colors duration-300
                     ${
                       isOpen
@@ -228,7 +230,7 @@ const QnsAns = () => {
                   }}
                 >
                   <div className="px-5 pb-5 bg-white">
-                    <p className="text-black text-base sm:text-lg md:text-xl lg:text-[20px] font-light leading-snug sm:leading-relaxed">
+                    <p className="text-black text-base sm:text-lg md:text-xl lg:text-xl font-normal ">
                       {faq.answer}
                     </p>
                   </div>

@@ -50,11 +50,13 @@ const ContactMain = () => {
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
       <div className="relative z-10 font-figtree text-center max-w-3xl px-4">
-        <h1 className="text-4xl md:text-5xl font-semibold mb-6">
+        <h1 className="text-[28px] md:text-[48px] font-semibold mb-6">
           {data.heading}
         </h1>
 
-        <p className="text-lg md:text-xl">{data.description}</p>
+        <p className="text-base font-figtree md:text-xl lg:text-xl max-w-3xl">
+          {data.description}
+        </p>
       </div>
     </section>
   );

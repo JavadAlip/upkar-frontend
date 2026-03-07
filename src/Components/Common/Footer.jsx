@@ -7,15 +7,15 @@ import {
   FaFacebookF,
 } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
-import Footerimg from '../../assets/Icons/FooterLogo.jpeg';
+import Footerimg from '../../assets/Icons/FooterLogo.png';
 import Footerimg1 from '../../assets/Footer.png';
-import Footerimg2 from '../../assets/navbarLast.png';
+import Footerimg2 from '../../assets/creda.png';
 
 const Footer = forwardRef((props, ref) => {
   return (
     <footer
       ref={ref}
-      className="w-full bg-black text-white px-4 sm:px-8 lg:px-20 py-14 font-[Figtree]"
+      className="w-full bg-[#2D5C3A] text-white px-4 sm:px-8 lg:px-20 py-14 font-[Figtree]"
     >
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 lg:gap-6">
         <div>
@@ -151,7 +151,7 @@ const Footer = forwardRef((props, ref) => {
           alt="Upkar Logo"
           className="w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] object-contain"
         />
-        <p className="text-center text-sm sm:text-base md:text-lg font-light">
+        <p className="text-center text-sm sm:text-base md:text-base lg:text-base font-light">
           Copyright © 2026, All rights reserved with{' '}
           <span className="font-bold">Upkar Group</span>
         </p>

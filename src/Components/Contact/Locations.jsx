@@ -7,6 +7,7 @@ import {
 import { toast } from 'react-toastify';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import getinBtn from '../../assets/Icons/submitBtn.png';
+import { ArrowRight } from 'lucide-react';
 
 const Locations = () => {
   const [locations, setLocations] = useState([]);
@@ -162,8 +163,8 @@ const Locations = () => {
         <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 mr-6"></div>
 
         <h2 className="text-3xl md:text-4xl font-figtree text-center whitespace-nowrap">
-          <span className="font-semibold">Project</span>{' '}
-          <span className="font-light">Enquiries</span>
+          <span className="font-normal">Project</span>{' '}
+          <span className="font-semibold text-[#2D5C3A]">Enquiries</span>
         </h2>
 
         <div className="hidden lg:block flex-1 h-[1px] bg-gray-300 ml-6"></div>
@@ -177,8 +178,8 @@ const Locations = () => {
                 onClick={() => setActiveLocation(loc)}
                 className={`uppercase tracking-wide font-medium transition-colors ${
                   activeLocation?._id === loc._id
-                    ? 'text-black border-b-2 border-black'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'text-[#2D5C3A] border-b-2 border-[#2D5C3A]'
+                    : 'text-black hover:text-black'
                 }`}
               >
                 {loc.title}
@@ -204,8 +205,8 @@ const Locations = () => {
         </div>
 
         <div className="border border-gray-300 rounded-2xl shadow-lg overflow-hidden">
-          <div className="bg-black text-white text-center py-4 px-4 rounded-t-2xl">
-            <h1 className="text-base md:text-lg font-normal">
+          <div className="bg-[#2D5C3A] text-white text-center py-4 px-4 rounded-t-2xl">
+            <h1 className="text-base md:text-lg lg:text-lg font-normal">
               We'd be delighted to connect regarding our customized offers
             </h1>
           </div>
@@ -322,11 +323,15 @@ const Locations = () => {
               </div>
 
               <button type="submit" className="flex justify-center mt-6 w-full">
-                <img
-                  src={getinBtn}
-                  alt="Send Enquiry"
-                  className="w-[140px] sm:w-[160px] md:w-[180px] lg:w-[160px] cursor-pointer hover:opacity-90 transition"
-                />
+                <span className="inline-flex items-center bg-[#2D5C3A] rounded-full shadow-md hover:scale-105 transition-transform duration-300">
+                  <span className="px-6 py-2 sm:py-3 text-white text-sm sm:text-base font-medium">
+                    Submit
+                  </span>
+
+                  <span className="relative -mr-1 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center border-2 border-[#2D5C3A]">
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#2D5C3A]" />
+                  </span>
+                </span>
               </button>
             </form>
           </div>

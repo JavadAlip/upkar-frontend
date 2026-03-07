@@ -48,7 +48,7 @@ export default function FloatingContact() {
       >
         <Phone
           size={24}
-          className="text-black transition-colors duration-300 group-hover:text-[#2D5C3A]"
+          className="text-[#2D5C3A]  transition-colors duration-300 group-hover:text-[#2D5C3A]"
         />
       </a>
 
@@ -63,7 +63,7 @@ export default function FloatingContact() {
       >
         <Mail
           size={24}
-          className="text-black transition-colors duration-300 group-hover:text-[#2D5C3A]"
+          className="text-[#2D5C3A] transition-colors duration-300 group-hover:text-[#2D5C3A]"
         />
       </a>
     </div>
