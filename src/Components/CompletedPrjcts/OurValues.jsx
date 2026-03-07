@@ -110,7 +110,7 @@ const OurValues = () => {
     return () => observer.disconnect();
   }, []);
 
-  // 🔥 Animate ONLY when visible
+  //  Animate ONLY when visible
   useEffect(() => {
     if (!isVisible || !values.length) return;
 
@@ -143,8 +143,8 @@ const OurValues = () => {
     <div ref={sectionRef} className="w-full bg-white py-16 px-4 font-figtree">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl md:text-5xl mb-16 text-black">
-          <span className="font-light">Our </span>
-          <span className="font-semibold">Values!</span>
+          <span className="font-normal">Our </span>
+          <span className="font-semibold text-[#2D5C3A]">Values</span>
         </h2>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16">
@@ -163,7 +163,7 @@ const OurValues = () => {
               </div>
 
               {/* Animated Title */}
-              <p className="font-satoshi font-medium text-[20px] text-black text-center min-h-[28px]">
+              <p className="font-figtree font-medium text-lg text-black text-center min-h-[28px]">
                 {animatedTitles[value._id] || ''}
               </p>
             </div>

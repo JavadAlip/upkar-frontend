@@ -165,16 +165,16 @@ hover:border-[#2D5C3A] border-2 "
                   </div>
 
                   <div className="p-6 text-center">
-                    <h3 className="text-[22px] font-semibold text-black">
+                    <h3 className="text-xl font-semibold text-black">
                       {project.projectName}
                     </h3>
                     <div className="flex justify-center items-center gap-2 mt-2 text-black">
                       <FaLocationDot size={16} />
-                      <span className="text-[16px]">{project.location}</span>
+                      <span className="text-base">{project.location}</span>
                     </div>
 
                     <div className="w-72 h-[1px] bg-gray-500 mx-auto my-6"></div>
-                    <p className="text-[16px] font-medium text-black">
+                    <p className="text-base  text-black">
                       {project.unitConfiguration}
                     </p>
                   </div>

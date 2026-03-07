@@ -150,16 +150,16 @@ const CompletedMain = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* LEFT CONTENT */}
           <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-black mb-8 sm:mb-12 md:mb-16 lg:mb-[100px] text-left">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal leading-tight text-black mb-8 sm:mb-12 md:mb-16 lg:mb-[100px] text-left">
               {animatedHeading.split(' ')[0]}{' '}
-              <span className="font-light">
+              <span className="font-semibold text-[#2D5C3A]">
                 {animatedHeading.split(' ').slice(1).join(' ')}
               </span>
             </h2>
 
             {/* Description */}
             <p
-              className={`font-extralight text-base sm:text-lg text-justify md:text-xl lg:text-[24px] text-primaryText leading-[1.4] sm:leading-[1.3] lg:leading-[1.2] mb-6 sm:mb-8 lg:mb-[40px]
+              className={`font-extralight text-base sm:text-lg text-justify md:text-xl lg:text-xl text-primaryText  mb-6 sm:mb-8 lg:mb-[40px]
                 transition-opacity duration-1000 ease-in-out
                 ${showDescription ? 'opacity-100' : 'opacity-0'}`}
             >
