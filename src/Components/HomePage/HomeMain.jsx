@@ -124,6 +124,7 @@ import { getBanners } from '../../Api';
 import Connect from '../../assets/Icons/connect.png';
 import { useNavigate } from 'react-router-dom';
 import AboveIcon from '../../assets/aboveIcon.png';
+import { ArrowRight } from 'lucide-react';
 
 const HomeMain = () => {
   const [banner, setBanner] = useState(null);
@@ -160,7 +161,7 @@ const HomeMain = () => {
     return () => clearInterval(interval);
   }, [banner]);
 
-  // 🔥 Letter Animation Effect
+  //  Letter Animation Effect
   useEffect(() => {
     if (!banner?.title) return;
 
@@ -219,20 +220,26 @@ const HomeMain = () => {
             </h1>
 
             <p
-              className={`block text-white max-w-[90%] sm:max-w-lg md:max-w-xl text-sm sm:text-lg md:text-xl lg:text-2xl mb-4 sm:mb-6
-                font-figtree font-normal transition-opacity duration-1000 ease-in-out
+              className={`block text-white max-w-[90%] sm:max-w-lg md:max-w-xl text-base sm:text-lg md:text-2xl lg:text-2xl mb-4 sm:mb-6
+                font-figtree font-medium transition-opacity duration-1000 ease-in-out
                 ${showSubtitle ? 'opacity-100' : 'opacity-0'}`}
             >
               {animatedSubtitle}
             </p>
 
             <div className="hidden sm:flex items-start">
-              <img
-                src={Connect}
-                alt="Connect"
+              <button
                 onClick={() => navigate('/contact')}
-                className="w-32 sm:w-40 md:w-48 lg:w-52 h-auto cursor-pointer hover:scale-105 transition-transform duration-300"
-              />
+                className="inline-flex items-center bg-[#ffffff] rounded-full shadow-md hover:scale-105 transition-transform duration-300"
+              >
+                <span className="px-6 py-3 text-black text-sm sm:text-base font-medium">
+                  Connect us
+                </span>
+
+                <span className="relative -mr-1 w-10 h-10 sm:w-12 sm:h-12 bg-black rounded-full flex items-center justify-center border-2 border-[#ffffff]">
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#ffffff]" />
+                </span>
+              </button>
             </div>
           </div>
 
@@ -252,7 +259,7 @@ const HomeMain = () => {
 
           <div className="absolute bottom-3 sm:bottom-10 right-3 sm:right-8">
             <div className="bg-white px-2 py-1 sm:px-6 sm:py-2 rounded-lg sm:rounded-full shadow-lg flex items-center gap-1 sm:gap-2">
-              <p className="text-black text-[9px] sm:text-[12px] md:text-[14px] font-normal">
+              <p className="text-black text-base sm:text-sm md:text-sm lg:text-sm font-normal">
                 RERA & BMRDA Approved Projects
               </p>
               <img

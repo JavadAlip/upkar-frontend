@@ -419,8 +419,8 @@ const Projects = () => {
         className="mb-4 lg:mb-12 text-3xl sm:text-4xl md:text-5xl font-figtree lg:text-[48px] font-light leading-tight"
         // style={{ fontFamily: "'Noto Serif JP', serif" }}
       >
-        <span style={{ fontWeight: 700 }}>Our </span>
-        <span style={{ fontWeight: 500 }}>Projects</span>
+        <span className="font-normal">Our </span>
+        <span className="font-semibold text-[#2D5C3A] ">Projects</span>
       </h2>
 
       {/* Desktop View */}
@@ -444,7 +444,7 @@ const Projects = () => {
                   />
 
                   <p
-                    className="text-sm sm:text-base font-figtree lg:text-xl"
+                    className="text-sm sm:text-base text-justify font-figtree lg:text-xl"
                     style={{
                       // fontFamily: "'Figtree', sans-serif",
                       fontWeight: 300,
@@ -504,15 +504,16 @@ const Projects = () => {
                       isEven
                         ? '-bottom-6 -left-56 right-4'
                         : 'bottom-10 -right-56'
-                    } bg-white rounded-lg shadow-lg p-6`}
+                    } bg-[#2D5C3A] rounded-lg shadow-lg p-6`}
                     style={{ maxWidth: isEven ? '77%' : '430px' }}
                   >
                     <p
+                      className="text-justify"
                       style={{
                         fontFamily: 'Figtree',
                         fontWeight: 300,
                         fontSize: '16px',
-                        color: '#000000',
+                        color: '#ffffff',
                         lineHeight: '1.6',
                         margin: 0,
                       }}
@@ -539,7 +540,7 @@ const Projects = () => {
                   dangerouslySetInnerHTML={{ __html: project.heading }}
                 />
 
-                <p className="text-[#000000] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+                <p className="text-[#000000] text-base text-justify sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
                   {project.description}
                 </p>
 
@@ -575,7 +576,7 @@ const Projects = () => {
                 </div>
 
                 <div
-                  className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[85%] sm:w-[75%] md:w-[65%] bg-white rounded-lg shadow-lg p-3 sm:p-4"
+                  className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[85%] sm:w-[75%] text-justify md:w-[65%] bg-[#2D5C3A] text-white rounded-lg shadow-lg p-3 sm:p-4"
                   style={{ maxWidth: '77%' }}
                 >
                   <p
@@ -583,7 +584,7 @@ const Projects = () => {
                       fontFamily: 'Figtree',
                       fontWeight: 300,
                       fontSize: '16px',
-                      color: '#000000',
+                      color: '#ffffff',
                       lineHeight: '1.6',
                       margin: 0,
                     }}

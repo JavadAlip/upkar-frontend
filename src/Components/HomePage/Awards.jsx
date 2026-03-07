@@ -96,7 +96,7 @@ const Awards = () => {
   }, []);
 
   return (
-    <section className="bg-black py-10 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 font-[Figtree] overflow-hidden">
+    <section className="bg-[#2D5C3A] py-10 sm:py-14 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 font-[Figtree] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-16">
           {/* Title */}
@@ -104,10 +104,7 @@ const Awards = () => {
             className={`lg:flex-shrink-0 text-center lg:text-left transition-all duration-1000 ease-out
             ${animate ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'}`}
           >
-            <h2
-              className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light leading-tight"
-              style={{ fontFamily: "'Noto Serif JP', serif" }}
-            >
+            <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-figtree lg:text-[48px] font-semibold leading-tight">
               Awards
             </h2>
           </div>
@@ -133,16 +130,10 @@ const Awards = () => {
                   />
 
                   <div>
-                    <p
-                      className="text-white text-base sm:text-lg md:text-xl font-light leading-tight transition-all duration-500"
-                      style={{ fontFamily: "'Satoshi', sans-serif" }}
-                    >
+                    <p className="text-white text-base sm:text-lg md:text-xl lg:text-xl font-figtree font-normal leading-tight transition-all duration-500">
                       {award.title.split(' ')[0] || award.title}
                     </p>
-                    <p
-                      className="text-white text-base sm:text-lg md:text-xl font-bold leading-tight transition-all duration-500"
-                      style={{ fontFamily: "'Satoshi', sans-serif" }}
-                    >
+                    <p className="text-white font-figtree text-base sm:text-lg md:text-xl lg:text-xl font-semibold leading-tight transition-all duration-500">
                       {award.title.split(' ').slice(1).join(' ') || ''}
                     </p>
                   </div>

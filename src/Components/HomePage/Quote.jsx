@@ -152,7 +152,7 @@ const Quote = () => {
             </div>
 
             {/* LETTER BY LETTER ANIMATION */}
-            <p className="mt-6 text-white text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] leading-relaxed text-justify">
+            <p className="mt-6 text-white text-base sm:text-lg md:text-xl lg:text-xl xl:text-[22px] text-justify">
               {latestQuote.text.split('').map((char, index) => (
                 <span
                   key={index}

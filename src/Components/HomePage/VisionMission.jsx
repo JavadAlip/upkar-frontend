@@ -167,7 +167,7 @@ import React, { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import Vision3 from '../../assets/Vision3.png';
 import visionExp from '../../assets/visionExp1.png';
-import aboutArrow from '../../assets/Icons/aboutArrow7.png';
+import aboutArrow from '../../assets/Icons/aboutArrow8.png';
 import { getVisionMission } from '../../Api';
 import CountUp from './CountUp';
 import { Link } from 'react-router-dom';
@@ -224,14 +224,14 @@ const VisionMission = () => {
         {/* LEFT CONTENT */}
         <div className="space-y-8">
           <h2
-            className="mb-6 text-3xl sm:text-4xl font-figtree md:text-5xl lg:text-[48px]"
+            className="mb-6 text-3xl sm:text-4xl font-figtree text-[#2D5C3A]  md:text-5xl lg:text-[48px]"
             // style={{ fontFamily: "'Noto Serif JP', serif" }}
           >
-            <span className="font-bold">Vision </span>
-            <span className="font-light">& Mission</span>
+            <span className="font-semibold">Vision </span>
+            <span className="font-semibold">& Mission</span>
           </h2>
 
-          <p className="text-[#000000] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+          <p className="text-[#000000] text-base sm:text-lg md:text-xl lg:text-xl text-justify font-[Figtree] font-medium ">
             {visionMission?.description ||
               'Our core values are centered on integrity and trust, upholding transparency and ethical practices in every interaction. We are driven by a commitment to quality and craftsmanship.'}
           </p>
@@ -242,7 +242,7 @@ const VisionMission = () => {
               onClick={() => setMissionOpen(!missionOpen)}
               className="w-full flex items-center justify-between text-left"
             >
-              <h3 className="text-[#000000] text-lg sm:text-xl md:text-2xl lg:text-[24px] font-[Figtree] font-bold">
+              <h3 className="text-[#2D5C3A] text-lg sm:text-xl md:text-2xl lg:text-[24px] font-[Figtree] font-bold">
                 Our Mission
               </h3>
 
@@ -263,7 +263,7 @@ const VisionMission = () => {
                 transition: 'all 0.6s cubic-bezier(0.22, 1, 0.36, 1)',
               }}
             >
-              <p className="mt-4 text-[#000000] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+              <p className="mt-4 text-[#000000] text-base text-justify sm:text-lg md:text-xl lg:text-xl font-[Figtree] ">
                 {visionMission?.missionText ||
                   'It is to consistently deliver exceptional homes and build lasting relationships based on trust, quality, and a commitment to customer satisfaction.'}
               </p>
@@ -276,7 +276,7 @@ const VisionMission = () => {
               onClick={() => setVisionOpen(!visionOpen)}
               className="w-full flex items-center justify-between text-left"
             >
-              <h3 className="text-[#000000] text-lg sm:text-xl md:text-2xl lg:text-[24px] font-[Figtree] font-bold">
+              <h3 className="text-[#2D5C3A] text-lg sm:text-xl md:text-2xl lg:text-[24px] font-[Figtree] font-bold">
                 Our Vision
               </h3>
 
@@ -297,7 +297,7 @@ const VisionMission = () => {
                 transition: 'all 0.6s cubic-bezier(0.22, 1, 0.36, 1)',
               }}
             >
-              <p className="mt-4 text-[#000000] text-base sm:text-lg md:text-xl lg:text-[24px] font-[Figtree] font-light leading-snug sm:leading-relaxed">
+              <p className="mt-4 text-[#000000] text-base text-justify sm:text-lg md:text-xl lg:text-xl font-[Figtree]  ">
                 {visionMission?.visionText ||
                   'To be the most trusted and innovative real estate developer, creating sustainable communities that enhance the quality of life for generations to come.'}
               </p>
@@ -401,13 +401,13 @@ const VisionMission = () => {
             }
           >
             <div
-              className="text-[#000000] font-figtree font-bold text-3xl sm:text-4xl md:text-[48px]"
+              className="text-[#2D5C3A]  font-figtree font-bold text-3xl sm:text-4xl md:text-[48px]"
               // style={{ fontFamily: "'Noto Serif JP', serif" }}
             >
               <CountUp target={stat.number} duration={1000} />
             </div>
 
-            <div className="text-[#000000] font-[Figtree] text-sm sm:text-base md:text-[16px] leading-snug mt-1 whitespace-pre-line">
+            <div className="text-[#000000] font-[Figtree] font-medium text-sm sm:text-base md:text-base lg:text-base leading-snug mt-1 whitespace-pre-line">
               {stat.label}
             </div>
 

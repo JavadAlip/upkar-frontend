@@ -140,7 +140,7 @@ export default function Section() {
 
         {/* Heading 2 Animation */}
         <h2
-          className="text-2xl sm:text-4xl md:text-5xl font-figtree lg:text-[64px] font-semibold"
+          className="text-2xl sm:text-4xl md:text-5xl font-figtree lg:text-[64px] text-[#2D5C3A]  font-semibold"
           style={{
             // fontFamily: "'Noto Serif JP', serif",
             opacity: animate ? 1 : 0,
@@ -166,7 +166,7 @@ export default function Section() {
 
         {/* Paragraph Animation */}
         <p
-          className="text-sm sm:text-lg md:text-xl lg:text-2xl text-[#000000] font-[Figtree] leading-relaxed 
+          className="text-sm sm:text-lg md:text-xl lg:text-xl text-[#000000] font-medium font-[Figtree] 
              max-w-[90%] sm:max-w-[75%] md:max-w-[60%] lg:max-w-[55%] mt-2"
           style={{
             opacity: animate ? 1 : 0,
