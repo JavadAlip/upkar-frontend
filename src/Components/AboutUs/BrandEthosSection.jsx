@@ -82,11 +82,11 @@ const BrandEthosSection = () => {
     <div className="w-full bg-white py-16 px-6 lg:px-20">
       <div className="max-w-6xl mx-auto font-figtree text-center">
         <h2
-          className={`text-3xl mb-6 sm:text-4xl md:text-5xl lg:text-[48px] font-light transition-all duration-700 ease-out ${
+          className={`text-3xl mb-6 sm:text-4xl md:text-5xl lg:text-[48px]  transition-all duration-700 ease-out ${
             visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}
         >
-          Our <span className="font-semibold">Brand Ethos</span>
+          Our <span className="font-semibold text-[#2D5C3A]">Brand Ethos</span>
         </h2>
 
         <p
@@ -116,7 +116,7 @@ const BrandEthosSection = () => {
                   alt={item.title}
                   className="w-12 h-12 object-contain transition-transform duration-500 hover:scale-110"
                 />
-                <h3 className="text-2xl font-semibold text-black">
+                <h3 className="text-2xl font-semibold text-[#2D5C3A]">
                   {item.title}
                 </h3>
               </div>

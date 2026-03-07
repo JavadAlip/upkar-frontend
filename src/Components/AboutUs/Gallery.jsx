@@ -78,7 +78,7 @@ const AboutImages = () => {
 
   return (
     <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
-      <h2 className="text-[48px] font-[Figtree] font-semibold text-black leading-tight mb-12">
+      <h2 className="text-[48px] font-[Figtree] font-semibold text-[#2D5C3A] leading-tight mb-12">
         Gallery
       </h2>
 

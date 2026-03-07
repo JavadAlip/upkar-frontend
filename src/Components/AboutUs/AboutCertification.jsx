@@ -192,8 +192,8 @@ const AboutCertification = () => {
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-14">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-light">
-            Core <span className="font-semibold">Values</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] ">
+            Core <span className="font-semibold text-[#2D5C3A]">Values</span>
           </h2>
         </div>
 
@@ -203,7 +203,7 @@ const AboutCertification = () => {
             {certifications.map((cert, index) => (
               <div
                 key={index}
-                className="group relative bg-black text-white rounded-3xl p-8 min-h-[280px] 
+                className="group relative bg-[#2D5C3A] text-white rounded-3xl p-8 min-h-[280px] 
                 flex flex-col justify-between border-2 border-transparent
                 transition-all duration-300 ease-in-out transform will-change-transform
                 hover:scale-[1.03]  hover:border-gray-700"
@@ -246,7 +246,7 @@ const AboutCertification = () => {
                     className="w-[calc(100%/3-1.5rem)] flex-shrink-0 group"
                   >
                     <div
-                      className="relative bg-black text-white rounded-3xl p-8 
+                      className="relative bg-[#2D5C3A] text-white rounded-3xl p-8 
                       min-h-[300px]  flex flex-col justify-between 
                       border-2 border-transparent
                       transition-all duration-300 ease-in-out transform 
