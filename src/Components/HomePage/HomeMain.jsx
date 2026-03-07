@@ -259,7 +259,7 @@ const HomeMain = () => {
 
           <div className="absolute bottom-3 sm:bottom-10 right-3 sm:right-8">
             <div className="bg-white px-2 py-1 sm:px-6 sm:py-2 rounded-lg sm:rounded-full shadow-lg flex items-center gap-1 sm:gap-2">
-              <p className="text-black text-base sm:text-sm md:text-sm lg:text-sm font-normal">
+              <p className="text-black text-xs sm:text-xs md:text-base lg:text-base font-figtree  font-medium">
                 RERA & BMRDA Approved Projects
               </p>
               <img
