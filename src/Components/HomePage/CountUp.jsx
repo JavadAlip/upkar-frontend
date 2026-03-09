@@ -49,8 +49,7 @@ const CountUp = ({ target, duration = 2000 }) => {
 
   return (
     <span ref={ref}>
-      {count}
-      {suffix}
+      {count.toLocaleString()}+{suffix}
     </span>
   );
 };

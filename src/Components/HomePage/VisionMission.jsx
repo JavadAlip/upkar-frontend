@@ -404,14 +404,18 @@ const VisionMission = () => {
               className="text-[#2D5C3A]  font-figtree font-bold text-3xl sm:text-4xl md:text-[48px]"
               // style={{ fontFamily: "'Noto Serif JP', serif" }}
             >
-              <CountUp target={stat.number} duration={1000} />
+              {/* <CountUp target={stat.number} duration={1000} /> */}
+              <CountUp
+                target={parseInt(stat.number.replace(/,/g, ''))}
+                suffix={stat.number.includes('+') ? '+' : ''}
+              />
             </div>
 
             <div className="text-[#000000] font-[Figtree] font-medium text-sm sm:text-base md:text-base lg:text-base leading-snug mt-1 whitespace-pre-line">
               {stat.label}
             </div>
 
-            {index % 2 === 0 && index !== visionMission.stats.length - 1 && (
+            {index !== visionMission.stats.length - 1 && (
               <div className="absolute hidden md:block right-0 top-1/2 -translate-y-1/2 h-24 border-r border-[#000000]" />
             )}
           </div>

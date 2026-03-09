@@ -416,7 +416,7 @@ const Projects = () => {
   return (
     <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
       <h2
-        className="mb-4 lg:mb-12 text-3xl sm:text-4xl md:text-5xl font-figtree lg:text-[48px] font-light leading-tight"
+        className="mb-4 lg:mb-12 text-3xl sm:text-4xl md:text-5xl font-figtree lg:text-5xl font-light leading-tight"
         // style={{ fontFamily: "'Noto Serif JP', serif" }}
       >
         <span className="font-normal">Our </span>
@@ -433,11 +433,10 @@ const Projects = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div className={`space-y-6 ${!isEven ? 'order-2' : ''}`}>
                   <h2
-                    className="text-3xl sm:text-4xl font-medium  font-figtree md:text-5xl  text-gray-800 leading-tight"
+                    className="sm:text-3xl font-medium  font-figtree md:text-4xl lg:text-4xl  text-gray-800 leading-tight"
                     style={{
                       // fontFamily: "'Noto Serif JP', serif",
 
-                      fontSize: '48px',
                       color: '#000000',
                     }}
                     dangerouslySetInnerHTML={{ __html: project.heading }}
