@@ -27,6 +27,8 @@ import logo from './assets/logo.png';
 import ScrollToTop from './Components/Common/ScrollToTop';
 import ReadMoreDetails from './Components/Blogs/ReadMoreDetails';
 import CityProjects from './Components/Common/CityProjects';
+import PrivacyPolicy from './Components/Common/PrivacyPolicy';
+import TermsConditions from './Components/Common/TermsConditions';
 
 function AppWrapper() {
   const footerRef = useRef(null);
@@ -67,6 +69,8 @@ function AppWrapper() {
         <Route path="/read-more/:id" element={<ReadMoreDetails />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/city-projects" element={<CityProjects />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsConditions />} />
 
         {/* Admin Routes */}
         <Route path="/admin-login" element={<AdminLogin />} />

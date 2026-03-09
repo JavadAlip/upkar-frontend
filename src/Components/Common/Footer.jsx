@@ -26,7 +26,7 @@ const Footer = forwardRef((props, ref) => {
           />
 
           <p className="text-1xl sm:text-1xl md:text-2xl lg:text-2xl font-bold leading-snug font-figtree text-white max-w-sm">
-            Shaping a 50+ years legacy of quality & trust !
+            Shaping a 50+ years legacy of quality & trust
           </p>
         </div>
 
@@ -75,6 +75,16 @@ const Footer = forwardRef((props, ref) => {
                 Contact Us
               </Link>
             </li>
+            <li>
+              <Link to="/privacy-policy" className="hover:text-white">
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link to="/terms-and-conditions" className="hover:text-white">
+                Terms & Conditions
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -111,12 +121,7 @@ const Footer = forwardRef((props, ref) => {
             >
               <FaFacebookF size={22} />
             </a>
-            <a href="#" className="hover:text-white">
-              <FaWhatsapp size={22} />
-            </a>
-            <a href="#" className="hover:text-white">
-              <FaInstagram size={22} />
-            </a>
+
             <a
               href="https://www.linkedin.com/company/upkar-developers/"
               target="_blank"
@@ -151,7 +156,7 @@ const Footer = forwardRef((props, ref) => {
           alt="Upkar Logo"
           className="w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] object-contain"
         />
-        <p className="text-center text-sm sm:text-base md:text-base lg:text-base font-light">
+        <p className="text-center text-sm sm:text-sm md:text-sm lg:text-sm font-light">
           Copyright © 2026, All rights reserved with{' '}
           <span className="font-bold">Upkar Group</span>
         </p>
