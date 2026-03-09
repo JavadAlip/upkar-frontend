@@ -257,15 +257,16 @@ const HomeMain = () => {
             </div>
           )} */}
 
-          <div className="absolute bottom-3 sm:bottom-10 right-3 sm:right-8">
-            <div className="bg-white px-2 py-1 sm:px-6 sm:py-2 rounded-lg sm:rounded-full shadow-lg flex items-center gap-1 sm:gap-2">
-              <p className="text-black text-xs sm:text-xs md:text-base lg:text-base font-figtree  font-medium">
+          <div className="absolute bottom-2 sm:bottom-10 right-2 sm:right-8">
+            <div className="bg-white px-2 py-1 sm:px-6 sm:py-2 rounded-full sm:rounded-full shadow-lg flex items-center gap-1 sm:gap-2">
+              <p className="text-black text-[10px] sm:text-xs md:text-base lg:text-base font-figtree font-medium leading-tight">
                 RERA & BMRDA Approved Projects
               </p>
+
               <img
                 src={AboveIcon}
                 alt="Above Icon"
-                className="w-4 sm:w-8 md:w-10 h-auto"
+                className="w-3 sm:w-8 md:w-10 h-auto"
               />
             </div>
           </div>

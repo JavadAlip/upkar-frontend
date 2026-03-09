@@ -152,13 +152,13 @@ const JoinTeamModal = ({ role, onClose }) => {
         <button
           onClick={handleSubmit}
           disabled={loading}
-          className="mt-6 flex items-center bg-[#000000] rounded-full disabled:opacity-70"
+          className="mt-6 flex items-center bg-[#2D5C3A] rounded-full disabled:opacity-70"
         >
           <span className="px-6 py-3 text-white">
             {loading ? 'Submitting...' : 'Submit'}
           </span>
-          <span className="w-12 h-12 bg-white rounded-full flex items-center justify-center border border-[#000000]">
-            <ArrowRight className="text-[#000000]" />
+          <span className="w-12 h-12 bg-white rounded-full flex items-center justify-center border-2 border-[#2D5C3A]">
+            <ArrowRight className="text-[#2D5C3A]" />
           </span>
         </button>
       </div>

@@ -107,8 +107,9 @@ const CityProjects = () => {
       <Navbar />
       <div ref={topRef} className="pt-28 w-full py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold font-figtree mb-10 text-center capitalize">
-            {city} Projects
+          <h2 className="text-3xl font-figtree mb-10 text-center capitalize">
+            <span className="">{city}</span>{' '}
+            <span className="font-semibold text-[#2D5C3A]">Projects</span>
           </h2>
 
           {currentProjects.length === 0 ? (
@@ -123,7 +124,7 @@ const CityProjects = () => {
                   <div
                     key={project._id}
                     onClick={() => handleProjectClick(project._id)}
-                    className="group relative bg-white rounded-xl overflow-hidden shadow-md cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-[1.03] border-2 border-gray-300 hover:border-[#2D5C3A]"
+                    className="relative bg-white rounded-xl overflow-hidden shadow-md cursor-pointer transition-all duration-300 hover:shadow-xl hover:scale-[1.03] border-2 border-gray-300 hover:border-[#2D5C3A]"
                   >
                     {/* Status Badge */}
                     {project.projectStatus && (
@@ -166,10 +167,12 @@ const CityProjects = () => {
                           </div>
 
                           <div className="relative group">
-                            <div className="w-10 h-10 bg-[#2D5C3A] rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110">
-                              <Headset size={20} />
-                            </div>
-
+                            <a href="tel:8880796796">
+                              {' '}
+                              <div className="w-10 h-10 bg-[#2D5C3A] rounded-full flex items-center justify-center text-white shadow-md transition hover:scale-110">
+                                <Headset size={20} />
+                              </div>
+                            </a>
                             <span className="absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition">
                               Call
                             </span>
