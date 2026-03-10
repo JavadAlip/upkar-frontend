@@ -359,7 +359,7 @@ const VisionMission = () => {
                       target={
                         visionMission?.totalExperience?.split(' ')[0] ||
                         visionMission?.stats?.[0]?.number ||
-                        '10+'
+                        '10'
                       }
                       duration={1000}
                     />
