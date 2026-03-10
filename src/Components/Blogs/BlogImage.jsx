@@ -50,12 +50,9 @@ const BlogImage = () => {
         className="absolute inset-0 w-full h-full object-cover will-change-transform"
       />
 
-      {/* DARK OVERLAY */}
       <div className="absolute inset-0 bg-black/40"></div>
 
-      {/* TEXT CONTENT */}
       <div className="relative z-10 font-figtree text-center max-w-3xl px-4">
-        {/* HEADING */}
         <h1 className="text-[28px]  md:text-[48px] font-figtree  font-light mb-6">
           {blogData.heading?.split(' ')[0]}{' '}
           <span className="font-semibold">
@@ -63,7 +60,6 @@ const BlogImage = () => {
           </span>
         </h1>
 
-        {/* DESCRIPTION */}
         <p className="text-base font-figtree  md:text-xl lg:text-xl max-w-3xl">
           {blogData.description}
         </p>
