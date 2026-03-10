@@ -5,8 +5,11 @@ import {
   Route,
   useLocation,
 } from 'react-router-dom';
-import Footer from './Components/Common/Footer';
 import { ChevronUp } from 'lucide-react';
+import logo from './assets/logo.png';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Footer from './Components/Common/Footer';
 import Home from './Pages/Home';
 import AboutUs from './Pages/AboutUs';
 import CompletedPrjcts from './Pages/CompletedPrjcts';
@@ -20,10 +23,7 @@ import Contact from './Pages/Contact';
 import AdminDashboard from './AdminDashboard/Pages/AdminDashboard';
 import AdminLogin from './AdminDashboard/Pages/AdminLogin';
 import ProtectedRoute from './AdminDashboard/Components/ProtectedRoute';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import FloatingContact from './Components/Common/FloatingContact';
-import logo from './assets/logo.png';
 import ScrollToTop from './Components/Common/ScrollToTop';
 import ReadMoreDetails from './Components/Blogs/ReadMoreDetails';
 import CityProjects from './Components/Common/CityProjects';
