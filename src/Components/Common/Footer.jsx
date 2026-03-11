@@ -156,9 +156,16 @@ const Footer = forwardRef((props, ref) => {
           alt="Upkar Logo"
           className="w-full max-w-[90%] sm:max-w-[80%] md:max-w-[70%] lg:max-w-[60%] xl:max-w-[50%] object-contain"
         />
-        <p className="text-center text-sm sm:text-sm md:text-sm lg:text-sm font-light">
-          Copyright © 2026, All rights reserved with{' '}
-          <span className="font-bold">Upkar Group</span>
+        <p className="text-center text-sm sm:text-sm md:text-base lg:text-base font-normal">
+          © Upkar Group. All Rights Reserved | Design and Developed by{' '}
+          <a
+            href="https://seekneo.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-normal"
+          >
+            Seekneo
+          </a>
         </p>
       </div>
     </footer>
