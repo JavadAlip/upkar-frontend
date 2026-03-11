@@ -126,11 +126,11 @@ const Sidebar = () => {
             <UserCheck size={18} />
             Jobs Roles
           </NavLink>
-
+          {/* 
           <NavLink to="/admin/media" className={linkClass}>
             <ImageIcon size={18} />
             Media Library
-          </NavLink>
+          </NavLink> */}
 
           <button
             onClick={() => setOpenHome(!openHome)}
@@ -279,7 +279,7 @@ const Sidebar = () => {
             </div>
           )}
 
-          <button
+          {/* <button
             onClick={() => setOpenProject(!openProject)}
             className="w-full p-2 border rounded flex justify-between"
           >
@@ -287,9 +287,9 @@ const Sidebar = () => {
               <Folder size={18} /> Project Page
             </span>
             <ChevronDown className={openProject ? 'rotate-180' : ''} />
-          </button>
+          </button> */}
 
-          {openProject && (
+          {/* {openProject && (
             <div className="ml-4 space-y-1 text-sm">
               <NavLink to="/admin/project-main" className={linkClass}>
                 Project Main
@@ -310,7 +310,7 @@ const Sidebar = () => {
                 Project Images
               </NavLink>
             </div>
-          )}
+          )} */}
 
           <button
             onClick={() => setOpenEvent(!openEvent)}
