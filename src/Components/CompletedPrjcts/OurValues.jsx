@@ -72,10 +72,18 @@ const OurValues = () => {
   return (
     <div ref={sectionRef} className="w-full bg-white py-16 px-4 font-figtree">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl mb-16 text-black">
+        {/* <h2 className="text-4xl md:text-5xl mb-16 text-black">
           <span className="font-normal">Our </span>
           <span className="font-semibold text-[#2D5C3A]">Values</span>
-        </h2>
+        </h2> */}
+        <div className="flex items-center gap-4 mb-16">
+          <div className="flex-1 h-[2px] bg-gray-300"></div>
+          <h2 className="text-4xl md:text-5xl font-figtree text-center whitespace-nowrap">
+            <span className="font-normal">Our</span>{' '}
+            <span className="font-semibold text-[#2D5C3A]">Values</span>
+          </h2>
+          <div className="flex-1 h-[2px] bg-gray-300"></div>
+        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16">
           {values.map((value) => (

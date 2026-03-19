@@ -1,7 +1,6 @@
 import HomeMain from '../Components/HomePage/HomeMain';
 import VisionMission from '../Components/HomePage/VisionMission';
 import Projects from '../Components/HomePage/Projects';
-import GetInTouch from '../Components/AboutUs/AboutGetInTouch';
 import CoreValues from '../Components/AboutUs/HomeBrandSections';
 import QnsAns from '../Components/Common/QnsAns';
 import Awards from '../Components/HomePage/Awards';
@@ -22,7 +21,7 @@ const Home = () => {
         <VisionMission />
         <Map />
         <Projects />
-        <GetInTouch />
+
         <CoreValues />
         <Quote />
         <QnsAns />

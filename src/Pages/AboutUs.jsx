@@ -4,7 +4,6 @@ import Quote from '../Components/AboutUs/Quote';
 import Team from '../Components/AboutUs/Team';
 import AboutCertification from '../Components/AboutUs/HomeBrandSections';
 import Gallery from '../Components/AboutUs/Gallery';
-import AboutGetInTouch from '../Components/AboutUs/AboutGetInTouch';
 import Navbar from '../Components/CompletedPrjcts/CmpltNavbar';
 
 const AboutUs = () => {
@@ -18,7 +17,6 @@ const AboutUs = () => {
         <Team />
         <AboutCertification />
         <Gallery />
-        <AboutGetInTouch />
       </div>
     </>
   );
