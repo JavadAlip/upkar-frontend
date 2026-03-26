@@ -123,18 +123,20 @@ export default function ViewProjectModal({ project, onClose }) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <InfoBox
-                    label="Unit Configuration"
+                    // label="Unit Configuration"
+                    label="Types of Plots"
                     value={project.unitConfiguration || '—'}
                   />
-                  <InfoBox
-                    label="Water Supply"
-                    value={project.waterSupply || '—'}
-                  />
+
                   <InfoBox
                     label="Project Area"
                     value={project.projectArea || '—'}
                   />
-                  <InfoBox label="Units" value={project.totalUnits || '—'} />
+                  <InfoBox
+                    // label="Units"
+                    label="Total No Plots"
+                    value={project.totalUnits || '—'}
+                  />
                 </div>
 
                 {keyFeatures.length > 0 && (

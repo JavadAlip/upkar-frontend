@@ -476,18 +476,19 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Unit Configuration
+                    {/* Unit Configuration */}
+                    Types of Plots
                   </label>
                   <input
                     name="unitConfiguration"
                     value={form.unitConfiguration}
                     onChange={handleChange}
-                    placeholder="e.g., 1,2,2.5,3 BHK"
+                    // placeholder="e.g., 1,2,2.5,3 BHK"
                     className="w-full border border-gray-300 p-2 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
                   />
                 </div>
 
-                <div>
+                {/* <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Water Supply
                   </label>
@@ -498,7 +499,7 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
                     placeholder="e.g., Corporation and Borewell"
                     className="w-full border border-gray-300 p-2 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
                   />
-                </div>
+                </div> */}
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -508,21 +509,22 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
                     name="projectArea"
                     value={form.projectArea}
                     onChange={handleChange}
-                    placeholder="e.g., 6.42 Acres"
+                    // placeholder="e.g., 6.42 Acres"
                     className="w-full border border-gray-300 p-2 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Total Units
+                    {/* Total Units */}
+                    Total No Plots
                   </label>
                   <input
                     type="number"
                     name="totalUnits"
                     value={form.totalUnits}
                     onChange={handleChange}
-                    placeholder="e.g., 430"
+                    // placeholder="e.g., 430"
                     className="w-full border border-gray-300 p-2 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
                   />
                 </div>
