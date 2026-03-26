@@ -20,7 +20,7 @@ import vastu from './vastu.png';
 import visitorsParking from './visitors-parking.png';
 import Electricity from './electricity.png';
 import UndergroundElectricity from './underground-electricity.png';
-import Solarstreetlights from './Solar-street-lights.png';
+import Solar from './Solar.png';
 import ThirtyftRoad from './30ft-road.png';
 import FourtyftRoad from './40ft-road.png';
 
@@ -47,7 +47,7 @@ export const AMENITY_ICONS = {
   'Visitor parking': visitorsParking,
   Electricity: Electricity,
   'Underground Electricity': UndergroundElectricity,
-  'Solar street lights': Solarstreetlights,
+  'Solar street lights': Solar,
   '30ft Road': ThirtyftRoad,
   '40ft Road': FourtyftRoad,
 };
