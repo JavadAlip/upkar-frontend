@@ -5,7 +5,7 @@ import CoreValues from '../Components/AboutUs/HomeBrandSections';
 import QnsAns from '../Components/Common/QnsAns';
 import Awards from '../Components/HomePage/Awards';
 import ContactUs from '../Components/Common/ContactUs';
-import Navbar from '../Components/Common/NavbarHome';
+import Navbar from '../Components/CompletedPrjcts/CmpltNavbar';
 import Quote from '../Components/HomePage/Quote';
 import TreeSection from '../Components/HomePage/TreeSection';
 import Map from '../Components/HomePage/Map';
@@ -21,7 +21,6 @@ const Home = () => {
         <VisionMission />
         <Map />
         <Projects />
-
         <CoreValues />
         <Quote />
         <QnsAns />

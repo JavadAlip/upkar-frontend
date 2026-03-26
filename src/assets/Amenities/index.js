@@ -18,6 +18,11 @@ import spa from './spa.png';
 import swimmingPool from './swimming-pool.png';
 import vastu from './vastu.png';
 import visitorsParking from './visitors-parking.png';
+import Electricity from './electricity.png';
+import UndergroundElectricity from './underground-electricity.png';
+import Solarstreetlights from './Solar-street-lights.png';
+import ThirtyftRoad from './30ft-road.png';
+import FourtyftRoad from './40ft-road.png';
 
 export const AMENITY_ICONS = {
   Auditorium: auditorium,
@@ -40,4 +45,9 @@ export const AMENITY_ICONS = {
   'Swimming Pool': swimmingPool,
   'Vastu Compliant': vastu,
   'Visitor parking': visitorsParking,
+  Electricity: Electricity,
+  'Underground Electricity': UndergroundElectricity,
+  'Solar street lights': Solarstreetlights,
+  '30ft Road': ThirtyftRoad,
+  '40ft Road': FourtyftRoad,
 };
