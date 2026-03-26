@@ -29,6 +29,7 @@
 // import CityProjects from './Components/Common/CityProjects';
 // import PrivacyPolicy from './Components/Common/PrivacyPolicy';
 // import TermsConditions from './Components/Common/TermsConditions';
+// import DisclaimerModal from './Components/Common/Disclaimer';
 
 // function AppWrapper() {
 //   const footerRef = useRef(null);
@@ -101,14 +102,25 @@
 
 // export default function App() {
 //   const [loading, setLoading] = useState(true);
+//   const [showDisclaimer, setShowDisclaimer] = useState(false);
 
 //   useEffect(() => {
 //     const timer = setTimeout(() => {
 //       setLoading(false);
+//       const agreed = sessionStorage.getItem('disclaimerAgreed');
+//       if (!agreed) {
+//         setShowDisclaimer(true);
+//       }
 //     }, 3000);
 
 //     return () => clearTimeout(timer);
 //   }, []);
+
+//   const handleAgree = () => {
+//     sessionStorage.setItem('disclaimerAgreed', 'true');
+//     setShowDisclaimer(false);
+//   };
+
 //   if (loading) {
 //     return (
 //       <div className="flex items-center justify-center h-screen bg-white">
@@ -125,6 +137,7 @@
 //     <Router>
 //       <ScrollToTop />
 //       <ToastContainer />
+//       {showDisclaimer && <DisclaimerModal onAgree={handleAgree} />}
 //       <AppWrapper />
 //     </Router>
 //   );
@@ -235,6 +248,22 @@ function AppWrapper() {
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [showDisclaimer, setShowDisclaimer] = useState(false);
+
+  //  Chatbot Script
+  useEffect(() => {
+    if (window.location.pathname.startsWith('/admin')) return;
+
+    const script = document.createElement('script');
+    script.src =
+      'https://backend.livhousing.com/bot/create-script-tag?token=e5e9e8e1-fd8d-4391-9be3-8f4ded52f315';
+    script.async = true;
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
