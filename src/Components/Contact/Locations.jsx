@@ -131,6 +131,17 @@ const Locations = () => {
 
     try {
       await createContactEnquiry(formData);
+
+      //  Send email
+      // await fetch('http://localhost:5000/api/contact/send-contact-email', {
+      await fetch(
+        'https://upkar-backend.onrender.com/api/contact/send-contact-email',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        },
+      );
       toast.success('Enquiry submitted successfully!');
 
       setFormData({
