@@ -404,17 +404,17 @@ export default function AddProject({ onClose, onSuccess }) {
       <Section title="Project Details">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Input
-            placeholder="Unit Configuration"
+            placeholder="Types of Plots"
             value={formData.unitConfiguration}
             onChange={(e) =>
               handleInputChange('unitConfiguration', e.target.value)
             }
           />
-          <Input
+          {/* <Input
             placeholder="Water Supply"
             value={formData.waterSupply}
             onChange={(e) => handleInputChange('waterSupply', e.target.value)}
-          />
+          /> */}
           <Input
             placeholder="Project Area"
             value={formData.projectArea}
@@ -422,7 +422,7 @@ export default function AddProject({ onClose, onSuccess }) {
           />
           <Input
             type="number"
-            placeholder="Total Units"
+            placeholder="Total No Plots"
             value={formData.totalUnits ?? ''}
             onChange={(e) =>
               handleInputChange(
@@ -466,6 +466,11 @@ export default function AddProject({ onClose, onSuccess }) {
             'Indoor Games',
             'Club House',
             'Auditorium',
+            'Electricity',
+            'Underground Electricity',
+            'Solar street lights',
+            '30ft Road',
+            '40ft Road',
           ].map((item) => (
             <label
               key={item}

@@ -373,19 +373,21 @@ const ProjectDetail = () => {
 
                 <div className="grid text-base md:text-xl lg:text-xl grid-cols-1 font-figtree sm:grid-cols-2 gap-4">
                   <InfoBox
-                    label="Unit Configuration"
+                    // label="Unit Configuration"
+                    label="Types of Plots"
                     value={project.unitConfiguration || '—'}
                     icon={<Home size={28} strokeWidth={1.6} />}
                   />
 
-                  <InfoBox
+                  {/* <InfoBox
                     label="Water Supply"
                     value={project.waterSupply || '—'}
                     icon={waterIcon}
-                  />
+                  /> */}
 
                   <InfoBox
-                    label="Units"
+                    // label="Units"
+                    label="Total No Plots"
                     value={project.totalUnits || '—'}
                     icon={unitIcon}
                   />
