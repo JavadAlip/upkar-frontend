@@ -20,7 +20,7 @@ import vastu from './vastu.png';
 import visitorsParking from './visitors-parking.png';
 import Electricity from './electricity.png';
 import UndergroundElectricity from './underground-electricity.png';
-import Solar from './Solar.png';
+import Solar from './solar.png';
 import ThirtyftRoad from './30ft-road.png';
 import FourtyftRoad from './40ft-road.png';
 
