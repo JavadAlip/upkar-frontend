@@ -35,25 +35,24 @@
 //     </div>
 //   );
 // }
-
 import { Phone, Mail } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 
 export default function FloatingContact() {
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
       <div
-        className="flex items-center gap-6 px-6 py-3 
+        className="flex items-center gap-8 px-8 py-4 
         rounded-full 
         bg-white/30 backdrop-blur-xl 
         border border-white/40 
-        shadow-lg"
+        shadow-xl"
       >
         {/* Phone */}
         <a href="tel:8880796796" className="group">
           <Phone
-            size={22}
-            className="text-[#2D5C3A] hover:scale-110 transition"
+            size={28}
+            className="text-[#2D5C3A] group-hover:scale-125 transition duration-300"
           />
         </a>
 
@@ -65,16 +64,16 @@ export default function FloatingContact() {
           className="group"
         >
           <FaWhatsapp
-            size={22}
-            className="text-[#2D5C3A] hover:scale-110 transition"
+            size={28}
+            className="text-[#2D5C3A] group-hover:scale-125 transition duration-300"
           />
         </a>
 
         {/* Mail */}
         <a href="mailto:enquiry@upkardevelopers.com" className="group">
           <Mail
-            size={22}
-            className="text-[#2D5C3A] hover:scale-110 transition"
+            size={28}
+            className="text-[#2D5C3A] group-hover:scale-125 transition duration-300"
           />
         </a>
       </div>
