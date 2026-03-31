@@ -23,6 +23,11 @@ import UndergroundElectricity from './underground-electricity.png';
 import Solar from './solar.png';
 import ThirtyftRoad from './30ft-road.png';
 import FourtyftRoad from './40ft-road.png';
+import STP from './stp.png';
+import OHT from './oht.png';
+import AvenueTrees from './avenue-trees.png';
+import OpenGym from './open-gym.png';
+import CompoundWall from './compound-wall.png';
 
 export const AMENITY_ICONS = {
   Auditorium: auditorium,
@@ -50,4 +55,9 @@ export const AMENITY_ICONS = {
   'Solar street lights': Solar,
   '30ft Road': ThirtyftRoad,
   '40ft Road': FourtyftRoad,
+  STP: STP,
+  OHT: OHT,
+  'Avenue Trees': AvenueTrees,
+  'Open Gym': OpenGym,
+  'Compound Wall': CompoundWall,
 };

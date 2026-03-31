@@ -26,7 +26,8 @@ export default function AddProject({ onClose, onSuccess }) {
     noBrokerReraId: '',
     builderProjectReraId: '',
     reraDescription: '',
-    aboutProject: '',
+    // aboutProject: '',
+    aboutProject: { mainDescription: '', blocks: [] },
     locationUrl: '',
     locationEmbedUrl: '',
     keyFeatures: [],
@@ -52,6 +53,14 @@ export default function AddProject({ onClose, onSuccess }) {
       ...prev,
       { planName: '', carpetArea: '', planPhoto: null },
     ]);
+  };
+
+  const removeMasterPlanFile = (index) => {
+    setMasterPlansList((prev) =>
+      prev.map((plan, i) =>
+        i === index ? { ...plan, planPhoto: null } : plan,
+      ),
+    );
   };
 
   const removeMasterPlan = (index) => {
@@ -215,8 +224,15 @@ export default function AddProject({ onClose, onSuccess }) {
         data.append('builderProjectReraId', formData.builderProjectReraId);
       if (formData.reraDescription)
         data.append('reraDescription', formData.reraDescription);
-      if (formData.aboutProject)
-        data.append('aboutProject', formData.aboutProject);
+      // if (formData.aboutProject)
+      //   data.append('aboutProject', formData.aboutProject);
+      const aboutProjectPayload = {
+        mainDescription: formData.aboutProject.mainDescription || undefined,
+        blocks: formData.aboutProject.blocks.filter(
+          (b) => b.heading || b.description,
+        ),
+      };
+      data.append('aboutProject', JSON.stringify(aboutProjectPayload));
       if (formData.locationUrl)
         data.append('locationUrl', formData.locationUrl);
       if (formData.locationEmbedUrl)
@@ -381,10 +397,16 @@ export default function AddProject({ onClose, onSuccess }) {
                 />
               </div>
 
+              {/* <FileUpload
+                label="Drag and Drop or Browse"
+                onChange={(files) => handleMasterPlanFileChange(index, files)}
+                selectedFile={plan.planPhoto}
+              /> */}
               <FileUpload
                 label="Drag and Drop or Browse"
                 onChange={(files) => handleMasterPlanFileChange(index, files)}
                 selectedFile={plan.planPhoto}
+                onRemove={() => removeMasterPlanFile(index)}
               />
             </div>
           ))}
@@ -471,6 +493,11 @@ export default function AddProject({ onClose, onSuccess }) {
             'Solar street lights',
             '30ft Road',
             '40ft Road',
+            'STP',
+            'OHT',
+            'Avenue Trees',
+            'Open Gym',
+            'Compound Wall',
           ].map((item) => (
             <label
               key={item}
@@ -526,7 +553,7 @@ export default function AddProject({ onClose, onSuccess }) {
         )}
       </Section>
 
-      <Section title="Property Media">
+      <Section title="Property Images (max 10)">
         <FileUpload
           label="Upload Property Images"
           multiple
@@ -561,13 +588,113 @@ export default function AddProject({ onClose, onSuccess }) {
         />
       </Section>
 
-      <Section title="About Project">
+      {/* <Section title="About Project">
         <textarea
           className="border rounded-lg px-3 py-2 text-sm w-full h-32 resize-none focus:outline-none focus:ring-2 focus:ring-green-800"
           placeholder="About Project"
           value={formData.aboutProject}
           onChange={(e) => handleInputChange('aboutProject', e.target.value)}
         />
+      </Section> */}
+      <Section title="About Project">
+        <div className="space-y-3">
+          <textarea
+            className="border rounded-lg px-3 py-2 text-sm font-semibold w-full h-24 resize-none focus:outline-none focus:ring-2 focus:ring-green-800"
+            placeholder="Main description (optional)"
+            value={formData.aboutProject.mainDescription}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                aboutProject: {
+                  ...prev.aboutProject,
+                  mainDescription: e.target.value,
+                },
+              }))
+            }
+          />
+
+          <p className="text-xs text-gray-500 font-medium">
+            Heading + Description blocks
+          </p>
+
+          {formData.aboutProject.blocks.map((block, index) => (
+            <div
+              key={index}
+              className="border rounded-xl p-4 bg-white shadow-sm relative space-y-2"
+            >
+              <button
+                type="button"
+                onClick={() =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    aboutProject: {
+                      ...prev.aboutProject,
+                      blocks: prev.aboutProject.blocks.filter(
+                        (_, i) => i !== index,
+                      ),
+                    },
+                  }))
+                }
+                className="absolute top-3 right-3 text-red-500 text-sm"
+              >
+                ✕
+              </button>
+              <input
+                className="border rounded-lg px-3 py-2 font-semibold text-sm w-full focus:outline-none focus:ring-2 focus:ring-green-800"
+                placeholder="Heading (optional) — e.g. Strategic Location:"
+                value={block.heading}
+                onChange={(e) => {
+                  const updated = [...formData.aboutProject.blocks];
+                  updated[index] = {
+                    ...updated[index],
+                    heading: e.target.value,
+                  };
+                  setFormData((prev) => ({
+                    ...prev,
+                    aboutProject: { ...prev.aboutProject, blocks: updated },
+                  }));
+                }}
+              />
+              <textarea
+                className="border rounded-lg px-3 py-2 text-sm font-normal w-full h-20 resize-none focus:outline-none focus:ring-2 focus:ring-green-800"
+                placeholder="Description (optional)"
+                value={block.description}
+                onChange={(e) => {
+                  const updated = [...formData.aboutProject.blocks];
+                  updated[index] = {
+                    ...updated[index],
+                    description: e.target.value,
+                  };
+                  setFormData((prev) => ({
+                    ...prev,
+                    aboutProject: { ...prev.aboutProject, blocks: updated },
+                  }));
+                }}
+              />
+            </div>
+          ))}
+
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={() =>
+                setFormData((prev) => ({
+                  ...prev,
+                  aboutProject: {
+                    ...prev.aboutProject,
+                    blocks: [
+                      ...prev.aboutProject.blocks,
+                      { heading: '', description: '' },
+                    ],
+                  },
+                }))
+              }
+              className="w-10 h-10 flex items-center justify-center rounded-lg bg-green-800 text-white text-xl hover:bg-green-900"
+            >
+              +
+            </button>
+          </div>
+        </div>
       </Section>
 
       <Section title="Location URL">

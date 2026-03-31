@@ -120,7 +120,6 @@ export default function ViewProjectModal({ project, onClose }) {
                     </p>
                   </div>
                 </div>
-
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <InfoBox
                     // label="Unit Configuration"
@@ -138,7 +137,6 @@ export default function ViewProjectModal({ project, onClose }) {
                     value={project.totalUnits || '—'}
                   />
                 </div>
-
                 {keyFeatures.length > 0 && (
                   <div>
                     <h1 className="text-2xl sm:text-3xl font-bold mb-4">
@@ -157,7 +155,6 @@ export default function ViewProjectModal({ project, onClose }) {
                     </ul>
                   </div>
                 )}
-
                 {masterPlans.length > 0 && (
                   <div>
                     <h1 className="text-2xl sm:text-3xl font-bold mb-4">
@@ -197,7 +194,6 @@ export default function ViewProjectModal({ project, onClose }) {
                     </div>
                   </div>
                 )}
-
                 {amenities.length > 0 && (
                   <div>
                     <h1 className="text-2xl sm:text-3xl font-bold mb-4">
@@ -216,7 +212,7 @@ export default function ViewProjectModal({ project, onClose }) {
                     </div>
                   </div>
                 )}
-
+                {/* 
                 {project.aboutProject && (
                   <div>
                     <h1 className="text-2xl sm:text-3xl font-bold mb-4">
@@ -227,8 +223,36 @@ export default function ViewProjectModal({ project, onClose }) {
                       {project.aboutProject}
                     </p>
                   </div>
-                )}
+                )} */}
 
+                {project.aboutProject && (
+                  <div>
+                    <h1 className="text-2xl sm:text-3xl font-bold mb-4">
+                      About Project
+                    </h1>
+
+                    {project.aboutProject.mainDescription && (
+                      <p className="text-sm sm:text-base font-semibold  leading-relaxed mb-4">
+                        {project.aboutProject.mainDescription}
+                      </p>
+                    )}
+
+                    {project.aboutProject.blocks?.map((block, i) => (
+                      <div key={i} className="mb-3">
+                        {block.heading && (
+                          <p className="font-semibold text-sm sm:text-base">
+                            {block.heading}
+                          </p>
+                        )}
+                        {block.description && (
+                          <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                            {block.description}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
                 {(project.reraDescription ||
                   project.noBrokerReraId ||
                   project.builderProjectReraId) && (
@@ -258,7 +282,6 @@ export default function ViewProjectModal({ project, onClose }) {
                     </div>
                   </div>
                 )}
-
                 {project.propertyImages?.length > 0 && (
                   <div>
                     <h1 className="text-2xl sm:text-3xl font-bold mb-4">
@@ -277,7 +300,6 @@ export default function ViewProjectModal({ project, onClose }) {
                     </div>
                   </div>
                 )}
-
                 {project.locationUrl && (
                   <div>
                     <h1 className="text-2xl sm:text-3xl font-bold mb-4">
@@ -294,7 +316,6 @@ export default function ViewProjectModal({ project, onClose }) {
                     </a>
                   </div>
                 )}
-
                 {project.locationEmbedUrl && (
                   <div>
                     <h1 className="text-2xl sm:text-3xl font-bold mb-4">
@@ -315,7 +336,6 @@ export default function ViewProjectModal({ project, onClose }) {
                     </div>
                   </div>
                 )}
-
                 {sections.length > 0 && (
                   <div>
                     <h1 className="text-2xl sm:text-3xl font-bold mb-4">

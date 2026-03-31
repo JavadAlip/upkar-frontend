@@ -104,6 +104,22 @@
 //   const [loading, setLoading] = useState(true);
 //   const [showDisclaimer, setShowDisclaimer] = useState(false);
 
+//   //  Chatbot Script
+//   useEffect(() => {
+//     if (window.location.pathname.startsWith('/admin')) return;
+
+//     const script = document.createElement('script');
+//     script.src =
+//       'https://backend.livhousing.com/bot/create-script-tag?token=e5e9e8e1-fd8d-4391-9be3-8f4ded52f315';
+//     script.async = true;
+
+//     document.body.appendChild(script);
+
+//     return () => {
+//       document.body.removeChild(script);
+//     };
+//   }, []);
+
 //   useEffect(() => {
 //     const timer = setTimeout(() => {
 //       setLoading(false);
@@ -154,6 +170,7 @@ import { ChevronUp } from 'lucide-react';
 import logo from './assets/logo.png';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import Footer from './Components/Common/Footer';
 import Home from './Pages/Home';
 import AboutUs from './Pages/AboutUs';
@@ -179,8 +196,12 @@ import DisclaimerModal from './Components/Common/Disclaimer';
 function AppWrapper() {
   const footerRef = useRef(null);
   const [showButton, setShowButton] = useState(false);
-  const location = useLocation();
+  const [showDisclaimer, setShowDisclaimer] = useState(false);
 
+  const location = useLocation();
+  const isAdminPage = location.pathname.startsWith('/admin');
+
+  // Scroll button logic
   useEffect(() => {
     const handleScroll = () => {
       if (!footerRef.current) return;
@@ -193,11 +214,23 @@ function AppWrapper() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Disclaimer logic (ONLY for user pages)
+  useEffect(() => {
+    const agreed = sessionStorage.getItem('disclaimerAgreed');
+
+    if (!agreed && !isAdminPage) {
+      setShowDisclaimer(true);
+    }
+  }, [isAdminPage]);
+
+  const handleAgree = () => {
+    sessionStorage.setItem('disclaimerAgreed', 'true');
+    setShowDisclaimer(false);
+  };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  const isAdminPage = location.pathname.startsWith('/admin');
 
   return (
     <>
@@ -230,9 +263,11 @@ function AppWrapper() {
         />
       </Routes>
 
+      {/* Hide in Admin */}
       {!isAdminPage && <Footer ref={footerRef} />}
       {!isAdminPage && <FloatingContact />}
 
+      {/* Scroll to top button */}
       {!isAdminPage && showButton && (
         <button
           onClick={scrollToTop}
@@ -241,15 +276,19 @@ function AppWrapper() {
           <ChevronUp className="w-6 h-6 text-white" />
         </button>
       )}
+
+      {/*  Disclaimer ONLY for user side */}
+      {!isAdminPage && showDisclaimer && (
+        <DisclaimerModal onAgree={handleAgree} />
+      )}
     </>
   );
 }
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const [showDisclaimer, setShowDisclaimer] = useState(false);
 
-  //  Chatbot Script
+  // Chatbot Script (ONLY for user pages)
   useEffect(() => {
     if (window.location.pathname.startsWith('/admin')) return;
 
@@ -265,22 +304,14 @@ export default function App() {
     };
   }, []);
 
+  // Loader
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-      const agreed = sessionStorage.getItem('disclaimerAgreed');
-      if (!agreed) {
-        setShowDisclaimer(true);
-      }
     }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
-
-  const handleAgree = () => {
-    sessionStorage.setItem('disclaimerAgreed', 'true');
-    setShowDisclaimer(false);
-  };
 
   if (loading) {
     return (
@@ -298,7 +329,6 @@ export default function App() {
     <Router>
       <ScrollToTop />
       <ToastContainer />
-      {showDisclaimer && <DisclaimerModal onAgree={handleAgree} />}
       <AppWrapper />
     </Router>
   );

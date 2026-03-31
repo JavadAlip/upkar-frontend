@@ -602,7 +602,7 @@ const ProjectDetail = () => {
                 )}
 
                 {/* ABOUT PROJECT */}
-                {project.aboutProject && (
+                {/* {project.aboutProject && (
                   <div
                     data-id="aboutProject"
                     ref={(el) => (sectionRefs.current['aboutProject'] = el)}
@@ -618,6 +618,49 @@ const ProjectDetail = () => {
                     <p className="leading-normal text-justify font-figtree text-base sm:text-lg md:text-xl">
                       {project.aboutProject}
                     </p>
+                  </div>
+                )} */}
+                {/* ABOUT PROJECT */}
+                {project.aboutProject && (
+                  <div
+                    data-id="aboutProject"
+                    ref={(el) => (sectionRefs.current['aboutProject'] = el)}
+                    className={`transition-all duration-1000 ease-out
+      ${visibleSections['aboutProject'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                  >
+                    <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-3">
+                      <span className="font-normal">About</span>{' '}
+                      <span className="font-semibold text-[#2D5C3A]">
+                        Project
+                      </span>
+                    </h1>
+
+                    {/* Main description */}
+                    {project.aboutProject.mainDescription && (
+                      <p className="leading-normal text-justify font-figtree text-base sm:text-lg md:text-xl mb-6">
+                        {project.aboutProject.mainDescription}
+                      </p>
+                    )}
+
+                    {/* Heading + description blocks */}
+                    {project.aboutProject.blocks?.length > 0 && (
+                      <div className="space-y-4">
+                        {project.aboutProject.blocks.map((block, i) => (
+                          <div key={i}>
+                            {block.heading && (
+                              <p className="font-semibold font-figtree text-base sm:text-lg md:text-xl text-black">
+                                {block.heading}
+                              </p>
+                            )}
+                            {block.description && (
+                              <p className="leading-normal text-justify font-figtree text-base sm:text-lg md:text-xl text-black">
+                                {block.description}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
 
