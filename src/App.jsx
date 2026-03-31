@@ -178,6 +178,7 @@ import CompletedPrjcts from './Pages/CompletedPrjcts';
 import UpcomingPrjcts from './Pages/UpcomingPrjcts';
 import OngoingPrjcts from './Pages/OngoingPrjcts';
 import ProjectDetail from './Pages/ProjectDetail';
+
 import Event from './Pages/Event';
 import Career from './Pages/Career';
 import Blogs from './Pages/Blogs';
