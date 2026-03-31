@@ -852,6 +852,14 @@ const ProjectDetail = () => {
 
                     <div className="w-full font-figtree flex flex-col border border-gray-400 rounded-lg">
                       <div className="bg-white rounded-3xl p-8 md:p-10 w-full flex-1">
+                        {/* GET IN TOUCH HEADING */}
+                        <h2 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-6">
+                          <span className="font-normal">Get In</span>{' '}
+                          <span className="font-semibold text-[#2D5C3A]">
+                            Touch
+                          </span>
+                        </h2>
+
                         <form
                           className="flex flex-col gap-5"
                           onSubmit={async (e) => {
@@ -980,7 +988,7 @@ const ProjectDetail = () => {
                           {/* SUBMIT */}
                           <button
                             type="submit"
-                            className="mt-4 flex justify-start"
+                            className="mt-4 flex justify-center"
                           >
                             <img
                               src={getinBtn}
