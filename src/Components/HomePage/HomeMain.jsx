@@ -164,6 +164,7 @@
 // };
 
 // export default HomeMain;
+
 import React, { useState, useEffect, useRef } from 'react';
 import { getBanners } from '../../Api';
 import { useNavigate } from 'react-router-dom';
@@ -201,7 +202,7 @@ const HomeMain = () => {
 
     const interval = setInterval(() => {
       goToNext();
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [banner, currentImageIndex]);
