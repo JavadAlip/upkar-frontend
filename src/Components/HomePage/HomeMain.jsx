@@ -77,7 +77,7 @@ const HomeMain = () => {
       <div className="relative w-full group cursor-pointer">
         <div className="relative w-full aspect-[16/9] overflow-hidden">
           {/* Slideshow Images */}
-          {/* {banner?.images?.map((img, index) => (
+          {banner?.images?.map((img, index) => (
             <img
               key={index}
               src={img}
@@ -85,9 +85,9 @@ const HomeMain = () => {
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out
                 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
             />
-          ))} */}
+          ))}
           {/* Banner Video */}
-          <video
+          {/* <video
             autoPlay
             loop
             muted
@@ -95,7 +95,7 @@ const HomeMain = () => {
             className="absolute inset-0 w-full h-full object-cover"
           >
             <source src={BannerVideo} type="video/mp4" />
-          </video>
+          </video> */}
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
 
