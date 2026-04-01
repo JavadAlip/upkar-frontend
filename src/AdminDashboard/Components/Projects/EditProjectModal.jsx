@@ -925,6 +925,8 @@ import { X, Plus, Trash2 } from 'lucide-react';
 import { updateProjects, getAllCategories } from '../../../Api';
 import { toast } from 'react-toastify';
 
+import RichTextEditor from './RichTextEditor';
+
 const EditProjectModal = ({ project, onClose, onUpdated }) => {
   const safeParseArray = (value) => {
     if (Array.isArray(value)) return value;
@@ -1547,7 +1549,7 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
                     About Project
                   </label>
 
-                  <textarea
+                  {/* <textarea
                     placeholder="Main description (optional)"
                     value={form.aboutProject.mainDescription}
                     onChange={(e) =>
@@ -1561,7 +1563,22 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
                     }
                     rows="3"
                     className="w-full border font-semibold  border-gray-300 p-2 rounded focus:ring-2 focus:ring-green-500 mb-3"
-                  />
+                  /> */}
+
+                  <div className="mb-3">
+                    <RichTextEditor
+                      value={form.aboutProject.mainDescription}
+                      onChange={(value) =>
+                        setForm((prev) => ({
+                          ...prev,
+                          aboutProject: {
+                            ...prev.aboutProject,
+                            mainDescription: value,
+                          },
+                        }))
+                      }
+                    />
+                  </div>
 
                   <p className="text-xs text-gray-500 font-medium mb-2">
                     Heading + Description blocks
@@ -1930,7 +1947,7 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
                 RERA & Legal Information
               </h3>
               <div className="space-y-4">
-                <div>
+                {/* <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     RERA Description
                   </label>
@@ -1941,6 +1958,18 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
                     placeholder="Enter RERA related description"
                     rows="3"
                     className="w-full border border-gray-300 p-2 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div> */}
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    RERA Description
+                  </label>
+                  <RichTextEditor
+                    value={form.reraDescription}
+                    onChange={(value) =>
+                      setForm((prev) => ({ ...prev, reraDescription: value }))
+                    }
                   />
                 </div>
 

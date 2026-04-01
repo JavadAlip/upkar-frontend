@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { createProjects } from '../../../Api';
 import { getAllCategories } from '../../../Api';
 import { toast } from 'react-toastify';
+import RichTextEditor from './RichTextEditor';
 
 export default function AddProject({ onClose, onSuccess }) {
   const token = localStorage.getItem('adminToken');
@@ -580,12 +581,18 @@ export default function AddProject({ onClose, onSuccess }) {
             }
           />
         </div>
-        <textarea
+        {/* <textarea
           className="border rounded-lg px-3 py-2 text-sm w-full h-24 resize-none mt-3 focus:outline-none focus:ring-2 focus:ring-green-800"
           placeholder="RERA Description"
           value={formData.reraDescription}
           onChange={(e) => handleInputChange('reraDescription', e.target.value)}
-        />
+        /> */}
+        <div className="mt-3">
+          <RichTextEditor
+            value={formData.reraDescription}
+            onChange={(value) => handleInputChange('reraDescription', value)}
+          />
+        </div>
       </Section>
 
       {/* <Section title="About Project">
@@ -598,7 +605,7 @@ export default function AddProject({ onClose, onSuccess }) {
       </Section> */}
       <Section title="About Project">
         <div className="space-y-3">
-          <textarea
+          {/* <textarea
             className="border rounded-lg px-3 py-2 text-sm font-semibold w-full h-24 resize-none focus:outline-none focus:ring-2 focus:ring-green-800"
             placeholder="Main description (optional)"
             value={formData.aboutProject.mainDescription}
@@ -611,7 +618,25 @@ export default function AddProject({ onClose, onSuccess }) {
                 },
               }))
             }
-          />
+          /> */}
+
+          <div>
+            <p className="text-xs text-gray-500 font-medium mb-1">
+              Main Description
+            </p>
+            <RichTextEditor
+              value={formData.aboutProject.mainDescription}
+              onChange={(value) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  aboutProject: {
+                    ...prev.aboutProject,
+                    mainDescription: value,
+                  },
+                }))
+              }
+            />
+          </div>
 
           <p className="text-xs text-gray-500 font-medium">
             Heading + Description blocks

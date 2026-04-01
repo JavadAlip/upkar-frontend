@@ -636,10 +636,18 @@ const ProjectDetail = () => {
                     </h1>
 
                     {/* Main description */}
-                    {project.aboutProject.mainDescription && (
+                    {/* {project.aboutProject.mainDescription && (
                       <p className="leading-normal text-justify font-figtree text-base sm:text-lg md:text-xl mb-6">
                         {project.aboutProject.mainDescription}
                       </p>
+                    )} */}
+                    {project.aboutProject.mainDescription && (
+                      <div
+                        className="leading-normal text-justify font-figtree text-base sm:text-lg md:text-xl mb-6 prose prose-sm max-w-none"
+                        dangerouslySetInnerHTML={{
+                          __html: project.aboutProject.mainDescription,
+                        }}
+                      />
                     )}
 
                     {/* Heading + description blocks */}
@@ -684,8 +692,16 @@ const ProjectDetail = () => {
                     </h1>
 
                     <div className="space-y-2 text-base font-figtree sm:text-lg md:text-xl">
-                      {project.reraDescription && (
+                      {/* {project.reraDescription && (
                         <p>{project.reraDescription}</p>
+                      )} */}
+                      {project.reraDescription && (
+                        <div
+                          className="font-figtree text-base sm:text-lg md:text-xl prose prose-sm max-w-none"
+                          dangerouslySetInnerHTML={{
+                            __html: project.reraDescription,
+                          }}
+                        />
                       )}
                       {project.noBrokerReraId && (
                         <p className="font-figtree">

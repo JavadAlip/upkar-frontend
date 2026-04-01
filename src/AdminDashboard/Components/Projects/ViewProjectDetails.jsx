@@ -231,10 +231,19 @@ export default function ViewProjectModal({ project, onClose }) {
                       About Project
                     </h1>
 
-                    {project.aboutProject.mainDescription && (
+                    {/* {project.aboutProject.mainDescription && (
                       <p className="text-sm sm:text-base font-semibold  leading-relaxed mb-4">
                         {project.aboutProject.mainDescription}
                       </p>
+                    )} */}
+
+                    {project.aboutProject.mainDescription && (
+                      <div
+                        className="text-sm sm:text-base leading-relaxed mb-4 prose prose-sm max-w-none"
+                        dangerouslySetInnerHTML={{
+                          __html: project.aboutProject.mainDescription,
+                        }}
+                      />
                     )}
 
                     {project.aboutProject.blocks?.map((block, i) => (
@@ -262,8 +271,16 @@ export default function ViewProjectModal({ project, onClose }) {
                     </h1>
 
                     <div className="space-y-2 text-sm sm:text-base">
-                      {project.reraDescription && (
+                      {/* {project.reraDescription && (
                         <p>{project.reraDescription}</p>
+                      )} */}
+                      {project.reraDescription && (
+                        <div
+                          className="prose prose-sm max-w-none"
+                          dangerouslySetInnerHTML={{
+                            __html: project.reraDescription,
+                          }}
+                        />
                       )}
 
                       {project.noBrokerReraId && (
