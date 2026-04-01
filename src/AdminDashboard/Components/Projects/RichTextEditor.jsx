@@ -126,7 +126,8 @@ export default function RichTextEditor({ value, onChange }) {
   })();
 
   return (
-    <div className="border rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-green-800">
+    // <div className="border rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-green-800">
+    <div className="border rounded-lg overflow-hidden">
       {/* Toolbar */}
       <div className="flex flex-wrap items-center gap-1 p-2 border-b bg-gray-50">
         {/* Font Family Dropdown */}
@@ -238,7 +239,8 @@ export default function RichTextEditor({ value, onChange }) {
       {/* Editor Area */}
       <EditorContent
         editor={editor}
-        className="prose prose-sm max-w-none p-3 min-h-[120px] text-sm text-gray-800 focus:outline-none"
+        // className="prose prose-sm max-w-none p-3 min-h-[120px] text-sm text-gray-800 focus:outline-none"
+        className="prose prose-sm max-w-none p-3 min-h-[120px] text-sm text-gray-800 outline-none focus:outline-none focus:ring-0"
       />
     </div>
   );

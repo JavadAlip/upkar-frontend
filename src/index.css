@@ -87,3 +87,13 @@ body {
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
+
+/* remove tiptap focus border */
+.ProseMirror {
+  outline: none !important;
+}
+
+/* remove any browser focus border */
+.ProseMirror:focus {
+  outline: none !important;
+}
