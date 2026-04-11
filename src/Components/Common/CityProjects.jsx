@@ -54,6 +54,8 @@ const CityProjects = () => {
       const filtered = projectList.filter((project) => {
         const location = project.location?.toLowerCase() || '';
 
+        if (!project.isVisible) return false;
+
         if (city === 'bengaluru') {
           return (
             location.includes('bangalore') ||
