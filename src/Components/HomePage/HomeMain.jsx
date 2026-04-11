@@ -185,13 +185,13 @@ const HomeMain = () => {
 
             <p
               className={`block text-white max-w-[90%] sm:max-w-lg md:max-w-xl text-base sm:text-lg md:text-2xl lg:text-2xl mb-4 sm:mb-6
-      font-figtree font-medium transition-opacity duration-1000 ease-in-out
+      font-figtree font-medium transition-opacity duration-300 ease-in-out
       ${showSubtitle ? 'opacity-100' : 'opacity-0'}`}
             >
               {animatedSubtitle}
             </p>
             <div
-              className={`flex items-start transition-opacity duration-1000 ease-in-out ${showSubtitle ? 'opacity-100' : 'opacity-0'}`}
+              className={`flex items-start transition-opacity duration-300 ease-in-out ${showSubtitle ? 'opacity-100' : 'opacity-0'}`}
             >
               <button
                 onClick={() => navigate('/contact')}
