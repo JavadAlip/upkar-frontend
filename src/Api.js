@@ -1592,6 +1592,18 @@ export const deleteProjects = async (id, token) => {
   });
   return res.data;
 };
+export const updateProjectVisibility = async (id, data, token) => {
+  const res = await axios.patch(
+    `${API_URL}/projects/update-visibility/${id}`,
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+  return res.data;
+};
 
 // Categories
 export const createCategory = async (data, token) => {

@@ -22,8 +22,11 @@ const CompletedProjectsList = () => {
         const projectList = Array.isArray(res) ? res : res.projects;
 
         if (projectList && projectList.length > 0) {
+          // const completedProjects = projectList.filter(
+          //   (p) => p.projectStatus === 'completed',
+          // );
           const completedProjects = projectList.filter(
-            (p) => p.projectStatus === 'completed',
+            (p) => p.projectStatus === 'completed' && p.isVisible !== false,
           );
           setProjects(completedProjects);
         }

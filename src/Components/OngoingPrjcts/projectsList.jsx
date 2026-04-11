@@ -22,8 +22,11 @@ const OngoingProjectsList = () => {
         const projectList = Array.isArray(res) ? res : res.projects;
 
         if (projectList && projectList.length > 0) {
+          // const ongoingProjects = projectList.filter(
+          //   (p) => p.projectStatus === 'ongoing',
+          // );
           const ongoingProjects = projectList.filter(
-            (p) => p.projectStatus === 'ongoing',
+            (p) => p.projectStatus === 'ongoing' && p.isVisible !== false,
           );
           setProjects(ongoingProjects);
         }

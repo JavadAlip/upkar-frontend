@@ -21,8 +21,11 @@ const UpcomingProjectsList = () => {
         const projectList = Array.isArray(res) ? res : res.projects;
 
         if (projectList && projectList.length > 0) {
+          // const upcomingProjects = projectList.filter(
+          //   (p) => p.projectStatus === 'upcoming',
+          // );
           const upcomingProjects = projectList.filter(
-            (p) => p.projectStatus === 'upcoming',
+            (p) => p.projectStatus === 'upcoming' && p.isVisible !== false,
           );
           setProjects(upcomingProjects);
         }
