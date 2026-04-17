@@ -1377,7 +1377,7 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
                   </select>
                 </div>
 
-                <div>
+                {/* <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Possession Date
                   </label>
@@ -1388,7 +1388,7 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
                     onChange={handleChange}
                     className="w-full border border-gray-300 p-2 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
                   />
-                </div>
+                </div> */}
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -1976,20 +1976,20 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      NoBroker RERA ID
+                      RERA
                     </label>
                     <input
                       name="noBrokerReraId"
                       value={form.noBrokerReraId}
                       onChange={handleChange}
-                      placeholder="Enter NoBroker RERA ID"
+                      placeholder="RERA ID"
                       className="w-full border border-gray-300 p-2 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     />
                   </div>
-
+                  {/* 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Builder Project RERA ID
+                      RERA ID
                     </label>
                     <input
                       name="builderProjectReraId"
@@ -1998,7 +1998,7 @@ const EditProjectModal = ({ project, onClose, onUpdated }) => {
                       placeholder="Enter Builder RERA ID"
                       className="w-full border border-gray-300 p-2 rounded focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

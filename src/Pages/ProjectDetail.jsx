@@ -406,7 +406,7 @@ const ProjectDetail = () => {
                     ₹ {project.priceStartsFrom?.toLocaleString('en-IN') || '-'}
                   </p>
                 </div>
-                <div className="border bg-[#2D5C3A] rounded-lg p-4">
+                {/* <div className="border bg-[#2D5C3A] rounded-lg p-4">
                   <p className="font-semibold font-figtree mb-1 text-base  text-white capitalize">
                     {project.projectStatus || 'Ongoing'} Project
                   </p>
@@ -421,7 +421,7 @@ const ProjectDetail = () => {
                         : '—'}
                     </span>
                   </p>
-                </div>
+                </div> */}
 
                 {/* {project.brochureImage && (
               <div
@@ -458,11 +458,21 @@ const ProjectDetail = () => {
                     className={`transition-all duration-1000 ease-out
   ${visibleSections['keyFeatures'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                   >
-                    <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-4">
+                    {/* <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-4">
                       <span className="font-normal">Key</span>{' '}
                       <span className="font-semibold text-[#2D5C3A]">
                         Features
                       </span>
+                    </h1> */}
+                    <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-4 flex items-center justify-center gap-4">
+                      <span className="hidden sm:block flex-1 h-px bg-[#2D5C3A]"></span>
+                      <span>
+                        <span className="font-normal">Key</span>{' '}
+                        <span className="font-semibold text-[#2D5C3A]">
+                          Features
+                        </span>
+                      </span>
+                      <span className="hidden sm:block flex-1 h-px bg-[#2D5C3A]"></span>
                     </h1>
 
                     <ul className="grid grid-cols-1 font-figtree sm:grid-cols-2 gap-3">
@@ -493,9 +503,19 @@ const ProjectDetail = () => {
                     className={`transition-all duration-1000 ease-out
   ${visibleSections['masterPlan'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                   >
-                    <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-6">
+                    {/* <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-6">
                       <span className="font-normal">Floor</span>{' '}
                       <span className="font-semibold text-[#2D5C3A]">Plan</span>
+                    </h1> */}
+                    <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-6 flex items-center justify-center gap-4">
+                      <span className="hidden sm:block flex-1 h-px bg-[#2D5C3A]"></span>
+                      <span>
+                        <span className="font-normal">Layout</span>{' '}
+                        <span className="font-semibold text-[#2D5C3A]">
+                          Plan
+                        </span>
+                      </span>
+                      <span className="hidden sm:block flex-1 h-px bg-[#2D5C3A]"></span>
                     </h1>
 
                     {/* Plan Tabs - Scrollable on Mobile */}
@@ -542,12 +562,28 @@ const ProjectDetail = () => {
                         </div>
 
                         {/* Info Card */}
-                        <div className="w-full mt-4 bg-[#000000] text-white rounded-xl p-4 sm:p-6 flex flex-col sm:flex-row gap-4 sm:justify-between sm:items-center">
-                          <div>
+                        {/* <div className="w-full mt-4 bg-[#000000] text-white rounded-xl p-4 sm:p-6 flex flex-col sm:flex-row gap-4 sm:justify-between sm:items-center"> */}
+                        <div className="w-full mt-4 bg-[#000000] text-white rounded-xl p-4 sm:p-6 flex flex-col items-center justify-center text-center gap-4">
+                          {/* <div>
                             <h3 className="text-xl sm:text-2xl font-semibold font-figtree text-white leading-tight mb-1">
                               {masterPlans[selectedPlanIndex]?.planName ||
                                 'BHK'}{' '}
                               Floor plan
+                            </h3>
+
+                            {masterPlans[selectedPlanIndex]?.carpetArea && (
+                              <p className="text-sm sm:text-base font-figtree text-gray-300">
+                                Carpet Area -{' '}
+                                {masterPlans[selectedPlanIndex].carpetArea} sq
+                                ft
+                              </p>
+                            )}
+                          </div> */}
+                          <div className="flex flex-col items-center text-center">
+                            <h3 className="text-xl sm:text-2xl font-semibold font-figtree text-white leading-tight mb-1">
+                              {masterPlans[selectedPlanIndex]?.planName ||
+                                'BHK'}{' '}
+                              Layout plan
                             </h3>
 
                             {masterPlans[selectedPlanIndex]?.carpetArea && (
@@ -576,8 +612,13 @@ const ProjectDetail = () => {
                     className={`transition-all duration-1000 ease-out
   ${visibleSections['amenities'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                   >
-                    <h1 className="font-figtree text-[#2D5C3A] text-2xl sm:text-3xl md:text-4xl mb-4 font-semibold">
+                    {/* <h1 className="font-figtree text-[#2D5C3A] text-2xl sm:text-3xl md:text-4xl mb-4 font-semibold">
                       Amenities
+                    </h1> */}
+                    <h1 className="font-figtree text-[#2D5C3A] text-2xl sm:text-3xl md:text-4xl mb-4 font-semibold flex items-center justify-center gap-4">
+                      <span className="hidden sm:block flex-1 h-px bg-[#000000]"></span>
+                      Amenities
+                      <span className="hidden sm:block flex-1 h-px bg-[#000000]"></span>
                     </h1>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                       {amenities.map((amenity, i) => (
@@ -628,11 +669,21 @@ const ProjectDetail = () => {
                     className={`transition-all duration-1000 ease-out
       ${visibleSections['aboutProject'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                   >
-                    <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-3">
+                    {/* <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-3">
                       <span className="font-normal">About</span>{' '}
                       <span className="font-semibold text-[#2D5C3A]">
                         Project
                       </span>
+                    </h1> */}
+                    <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-3 flex items-center justify-center gap-4">
+                      <span className="hidden sm:block flex-1 h-px bg-[#2D5C3A]"></span>
+                      <span>
+                        <span className="font-normal">About</span>{' '}
+                        <span className="font-semibold text-[#2D5C3A]">
+                          Project
+                        </span>
+                      </span>
+                      <span className="hidden sm:block flex-1 h-px bg-[#2D5C3A]"></span>
                     </h1>
 
                     {/* Main description */}
@@ -705,14 +756,14 @@ const ProjectDetail = () => {
                       )}
                       {project.noBrokerReraId && (
                         <p className="font-figtree">
-                          <b>NoBroker RERA ID:</b> {project.noBrokerReraId}
+                          <b>RERA ID:</b> {project.noBrokerReraId}
                         </p>
                       )}
-                      {project.builderProjectReraId && (
+                      {/* {project.builderProjectReraId && (
                         <p>
                           <b>Builder RERA ID:</b> {project.builderProjectReraId}
                         </p>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 )}
@@ -720,11 +771,21 @@ const ProjectDetail = () => {
                 {project.propertyImages?.length > 0 && (
                   // <div className="w-full bg-white px-4 lg:px-10 py-6 sm:py-8 md:py-10 lg:py-12">
                   <div>
-                    <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-3">
+                    {/* <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-3">
                       <span className="font-normal">Project</span>{' '}
                       <span className="font-semibold text-[#2D5C3A]">
                         Images
                       </span>
+                    </h1> */}
+                    <h1 className="font-figtree text-2xl sm:text-3xl md:text-4xl mb-3 flex items-center justify-center gap-4">
+                      <span className="hidden sm:block flex-1 h-px bg-[#2D5C3A]"></span>
+                      <span>
+                        <span className="font-normal">Project</span>{' '}
+                        <span className="font-semibold text-[#2D5C3A]">
+                          Images
+                        </span>
+                      </span>
+                      <span className="hidden sm:block flex-1 h-px bg-[#2D5C3A]"></span>
                     </h1>
 
                     <div className="relative hidden sm:block">
