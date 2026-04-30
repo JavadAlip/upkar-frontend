@@ -195,11 +195,15 @@ const Footer = forwardRef((props, ref) => {
 
         <div className="flex flex-col items-center gap-4">
           <img src={Footerimg1} alt="Footer" className="w-full max-w-[60%]" />
-          <p className="text-center text-sm">
+          {/* <p className="text-center text-sm">
             © Upkar Group. All Rights Reserved | Design and Developed by{' '}
             <a href="https://seekneo.com/" target="_blank" rel="noreferrer">
               Seekneo
             </a>
+          </p> */}
+          <p className="text-center text-sm">
+            Copyright © 2026, All rights reserved with{' '}
+            <span className="font-semibold">Upkar Group.</span>
           </p>
         </div>
       </div>
